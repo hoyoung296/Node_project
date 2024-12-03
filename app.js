@@ -4,14 +4,12 @@ const config = require("./config/cookie_session/cookie_session_config")
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser")
 const app = express();
-const session = require("express-session")
 
 app.use( session( config.sessionConfig ) );
 app.use( bodyParser.urlencoded() );
 app.use( bodyParser.json() );
 
 app.use(cookieParser());
-app.use(session(sessionConfig.sessionConfig))
 const router = require("./src/routers/router")(app)
 app.use("/", router);
 

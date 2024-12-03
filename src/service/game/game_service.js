@@ -4,7 +4,7 @@ const pageRead = {
         let msg, url
         if (!body) {
             msg = `로그인 이후 사용가능합니다!!!!`
-            url = '/로그인 사이트 경로'
+            url = '/member/login_form'
         } else {
             msg = `${body}님 환영합니다!!!!`
             url = '/game/index'
@@ -20,7 +20,7 @@ const pageRead = {
 }
 const pageUpdate = {
     update: async (body) => {
-        await dao.daoInsert.update(body)
+        await dao.daoUpdate.update(body)
     }
 }
 module.exports = { pageRead, pageUpdate }
