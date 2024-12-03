@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body align="center">
+    <link href="/static/css/game.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/static/js/result.js"></script>
+    <div id="modal_wrap">
+        <div id="first">
+            <div style="width: 250px; margin: 0 auto; padding-top: 20px;">
+                <form id="frm" action="/game/update" method="post">
+                    <b>
+                        <%= username %>
+                    </b>님의 획득 도토리<br>
+                    <b id="a" name="result" value="num"></b><br>
+                    <input type="hidden" name="id" value="<%= username %>">
+                    <input type="hidden" id="b" name="result" value="num">
+                    <button type="submit">확인</button>
+                </form>
+            </div>
+        </div>
+</body>
+
+</html>
