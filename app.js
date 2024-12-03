@@ -1,8 +1,11 @@
 const express = require("express");
+const session = require("express-session")
+const config = require("./config/cookie_session/cookie_session_config")
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser")
 const app = express();
 
+app.use( session( config.sessionConfig ) );
 app.use( bodyParser.urlencoded() );
 app.use( bodyParser.json() );
 app.use(cookieParser());
