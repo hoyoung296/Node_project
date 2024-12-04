@@ -20,7 +20,7 @@ const process = {
             url = "/member/login_form"
         }else{
            if(result.rows[0].PWD == body.pwd ){
-                req.session.id = body.id;
+                req.session.uid = body.id;
                 req.session.name =  result.rows[0].NAME
                 res.cookie("isLogin", true)
                 msg = "성공"
