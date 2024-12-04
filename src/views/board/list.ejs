@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="content_wrap" id="main">
+        <table border="1" style="width: 150px">
+            <tr>
+                <td>글 번호</td> <td>제목</td> <td>내용</td> <td>아이디</td> <td>닉네임</td> <td>날짜</td> <td>조회수</td> <td>업로드 파일</td> 
+            </tr>
+            <% if( list.length == 0){ %>
+                <tr>
+                    <th colspan="8">등록된 글이 없습니다.</th>
+                </tr>
+                <% }else{
+                list.forEach(data =>{ %>
+                <tr>
+                    <td><%= data.WRITE_NO %></td>
+                    <td>
+                        <a href="/board/data/<%= data.WRITE_NO %>">
+                            <%= data.TITLE %>
+                        </a>
+                    </td><td><%= data.CONTENT %></td><td><%= data.ID %></td>
+                    <td><%= data.NAME %></td><td><%= data.SAVE_DATE %></td>
+                    <td><%= data.HIT %></td><td><%= data.UPLOAD_FILE %></td>
+                </tr>
+                <% })
+                } %>
+                <tr>
+                    <th colspan="8" align="right">
+                    <% if( start <= 1 ){ %>
+                        <button disabled>이전</button>
+                    <% }else{ %>
+                        <button type="button" onclick="location.href='/board/list?start=<%= start -1 %>'">이전</button>         
+                </tr>
+                
+                list.forEach(data =>{ %>
+                <tr>
+                    <td><%= data.WRITE_NO %></td>
+                    <td>
+                        <a href="/board/data/<%= data.WRITE_NO %>">
+                            <%= data.TITLE %>
+                        </a>
+                    </td><td><%= data.CONTENT %></td><td><%= data.ID %></td>
+                    <td><%= data.NAME %></td><td><%= data.SAVE_DATE %></td>
+                    <td><%= data.HIT %></td><td><%= data.UPLOAD_FILE %></td>
+                </tr>
+                })
+            }
+
+        </table>
+    </div>
+</body>
+</html>
