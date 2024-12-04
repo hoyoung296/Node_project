@@ -1,0 +1,8 @@
+#main {
+    margin-top: 200px;
+    background: brown;
+
+    &>b>b {
+        font-size: 25px;
+    }
+}
