@@ -4,6 +4,9 @@ module.exports = (app) => {
 
     const gameRouter = require("../routers/game/game_router")
     app.use("/game", gameRouter)
+    
+    const boardRouter = require("../routers/board/board_router")
+    app.use("/board", boardRouter )
 
     const router = require("express").Router();
     router.get("/", (req, res) => {
