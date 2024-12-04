@@ -7,7 +7,8 @@ const views ={
     },
     loginForm : (req,res) => {
         res.render("member/loginForm")
-    }
+    },
+    
 }
 
 const process = {
@@ -48,6 +49,16 @@ const process = {
         req.session.destroy();
         res.clearCookie('isLogin')
         res.redirect("/")
+    },
+    idCheck : async(req,res) => {
+        // console.log(req.query)
+        const uid = req.query.uid;
+
+        const result = await(ser.process.ser_idCheck(uid))
+        console.log("result : ",result)
+
+        return res.json(result)
+
     }
     
 }
