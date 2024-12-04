@@ -1,7 +1,4 @@
 const con = require("../db_common")
-const daoRead = {
-
-}
 const daoUpdate = {
     update: async (body) => {
         const sql = `update member set DOTORI=DOTORI + ${body.result} where ID='${body.id}'`
@@ -12,4 +9,4 @@ const daoUpdate = {
         }
     }
 }
-module.exports = { daoRead, daoUpdate }
+module.exports = { daoUpdate }

@@ -1,4 +1,3 @@
-
 const con = require("../db_common")
 
 const boardRead = {

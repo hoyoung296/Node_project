@@ -13,8 +13,8 @@ let gameOver = false //true이면 게임이 끝남, false이면 게임이 안끝
 let score = 0
 
 // 우주선 좌표 > 우주선 죄표는 계속 바뀌기 때문에 따로 뺴줌
-let spaceshipX = 160
-let spaceshipY = 620
+let spaceshipX = 152
+let spaceshipY = 604
 
 // 총알 만들기
 //1. 스페이스바를 누르면 총알발사
@@ -27,8 +27,8 @@ let spaceshipY = 620
 let bulletList = []//총알들을 저장하는 리스트
 function Bullet() { //총알을 만들기 위한 자료
     this.init = function () {
-        this.x = spaceshipX + 25
-        this.y = spaceshipY - 30
+        this.x = spaceshipX + 18
+        this.y = spaceshipY - 60
         this.alive = true //true면 살아있는 총알, false면 죽은 총알
     }
 
@@ -42,7 +42,7 @@ function Bullet() { //총알을 만들기 위한 자료
 
     this.checkHit = function () {
         for (let i = 0; i < enemyList.length; i++) {
-            if (this.y <= enemyList[i].y && this.x >= enemyList[i].x && this.x <= enemyList[i].x + 64) {
+            if (this.y <= enemyList[i].y && this.x >= enemyList[i].x && this.x <= enemyList[i].x + 96) {
                 console.log(enemyList)
                 // -> 총알이 죽게됨 적군의 우주선이 없어짐, 점수 획득 
                 score++;
@@ -70,7 +70,7 @@ function generateRandomValue(min, max) {
 
 function Enemy() { //외계인을 만들기 위한 자료
     this.init = function () {
-        this.x = generateRandomValue(0, canvas.width - 64)
+        this.x = generateRandomValue(0, canvas.width - 96)
         this.y = 0
     }
 
@@ -78,7 +78,7 @@ function Enemy() { //외계인을 만들기 위한 자료
     this.update = function () {
         this.y += 1;
 
-        if (this.y >= canvas.height - 64) {
+        if (this.y >= canvas.height - 96) {
             gameOver = true
             let msg = `<br><button onclick="result_form()">결과 확인</button>`
             document.getElementById("main").insertAdjacentHTML("beforeend", msg)
@@ -89,19 +89,19 @@ function Enemy() { //외계인을 만들기 위한 자료
 
 function loadImage() { // 각 요소별 이미지 가져오기
     backgroundImage = new Image();
-    backgroundImage.src = "/static/game_image/bg3.jpg"
+    backgroundImage.src = "/static/game_image/배경.jpg"
 
     spaceshipImage = new Image();
-    spaceshipImage.src = "/static/game_image/비행기.png"
+    spaceshipImage.src = "/static/game_image/사람비행기.png"
 
     bulletImage = new Image();
-    bulletImage.src = "/static/game_image/총알.png"
+    bulletImage.src = "/static/game_image/던질거.png"
 
     enemyImage = new Image();
-    enemyImage.src = "/static/game_image/외계인.png"
+    enemyImage.src = "/static/game_image/도토리외계인.png"
 
     gameOverImage = new Image();
-    gameOverImage.src = "/static/game_image/게임오버.png"
+    gameOverImage.src = "/static/game_image/게임 오버.png"
 }
 
 function setupKeyboardListener() {
@@ -110,7 +110,7 @@ function setupKeyboardListener() {
 }
 
 function kDown(event) {
-    if (spaceshipY >= 0 && spaceshipY <= 620 && spaceshipX >= 0 && spaceshipX <= 320) {
+    if (spaceshipY >= 0 && spaceshipY <= 604 && spaceshipX >= 0 && spaceshipX <= 304) {
         switch (event.code) {
             case 'ArrowUp':
                 spaceshipY -= 10
@@ -129,14 +129,14 @@ function kDown(event) {
     if (spaceshipX < 0)
         spaceshipX = 0
 
-    if (spaceshipX > 320)
-        spaceshipX = 320
+    if (spaceshipX > 304)
+        spaceshipX = 304
 
     if (spaceshipY < 0)
         spaceshipY = 0
 
-    if (spaceshipY > 620)
-        spaceshipY = 620
+    if (spaceshipY > 604)
+        spaceshipY = 604
 }
 
 function kUp(event) {
@@ -149,7 +149,7 @@ function kUp(event) {
 function createBullet() {
     let b = new Bullet() // 총알 하나 생성
     b.init()
-    // console.log("새로운 총알 리스트", bulletList)
+    // console.log("새로운 총알 리스트 : ", bulletList)
 }
 
 function createEnemy() {
@@ -157,7 +157,7 @@ function createEnemy() {
         let e = new Enemy() // 외계인 하나 생성
         e.init()
     }, 1000)  //(호출하고 싶은 함수, 시간)
-    // console.log("새로운 외계인 리스트", enemyList)
+    // console.log("새로운 외계인 리스트 : ", enemyList)
 }
 
 function render() {
