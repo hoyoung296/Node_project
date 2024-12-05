@@ -1,3 +1,5 @@
+const dao = require("../../database/product/product_dao")
+
 const rename = (themaList) => {
     let thema = []
     let i = 0
@@ -13,9 +15,18 @@ const listSetting = (path, name) => {
     for(let i = 0; i < path.length; i++){
         list[i] = {"path" : path[i], "name" : name[i]}
     }
-    console.log(list)
     return list
 }
 
-module.exports = {rename, listSetting}
+const productList = async () => {
+    const list = await dao.productList()
+    console.log("plist ser : ", list)
+    return list.rows
+}
+
+const purchase = async (no, uid) => {
+    const result = await dao.purchase(no, uid)
+}
+
+module.exports = {rename, listSetting, purchase, productList}
 
