@@ -4,29 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        #index {
-            
-            & > a {
-                text-decoration: none;
-                color: black;
-                text-align: center;
-            }
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/static/css/product/list.css"> 
+    <script>
+        const setTheme = thema => document.documentElement.className = thema;
+    </script>
 </head>
 <body>
+    
     <table id="list">
         <% let i = 0 %>
         <% themaList.forEach(t => { %>
             <% if(i==0){ %>
             <tr>
             <% } %>
-            <td id="index">
-                <a href="/product/sample?thema=<%= t.path %>">
-                    <img src="/static/thema/<%= t.path %>" width="100px" height="100px"><br>
-                    <%= t.name %>
-                </a>
+            <td class="index">
+                <img src="/static/thema/<%= t.path %>" name="thema" onclick="setTheme('<%= t.name %>')" ><br>
+                <%= t.name %><br>
+                <button type="button">구매하기</button>
             </td>
             <% if(i < 2){ i++ }else{ i=0 %>
             </tr>

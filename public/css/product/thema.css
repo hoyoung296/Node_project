@@ -1,0 +1,26 @@
+:root,
+:root.autumn{
+    --background-color: #fffdf5; /*기본 배경 컬러*/
+    --text-color: #000000; /*기본 전체 텍스트 컬러*/
+    --header-color: #fff2d6; /*기본 헤더 컬러*/
+}
+:root.spring{
+    --background-color: #ffebeb; /*봄 배경 컬러*/
+    --text-color: #000000; /*봄 전체 텍스트 컬러*/
+    --header-color: #ffbce5; /*봄 헤더 컬러*/
+}
+:root.summer{
+    --background-color: #eef6ff; /*여름 배경 컬러*/
+    --text-color: #000000; /*여름 전체 텍스트 컬러*/
+    --header-color: #9cbfff; /*여름 헤더 컬러*/
+}
+:root.winter{
+    --background-color: #f9ebff; /*겨울 배경 컬러*/
+    --text-color: #000000; /*겨울 전체 텍스트 컬러*/
+    --header-color: #cdadff; /*겨울 헤더 컬러*/
+}
+:root.dark{
+    --background-color: #525252; /*다크 배경 컬러*/
+    --text-color: #ffffff; /*다크 전체 텍스트 컬러*/
+    --header-color: #111111; /*다크 헤더 컬러*/
+}
