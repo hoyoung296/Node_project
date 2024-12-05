@@ -5,17 +5,17 @@
     --text-color: #000000; /*기본 전체 텍스트 컬러*/
     --header-color: #fff2d6; /*기본 헤더 컬러*/
 }
-:root.spring{
+:root.pink{
     --background-color: #ffebeb; /*봄 배경 컬러*/
     --text-color: #000000; /*봄 전체 텍스트 컬러*/
     --header-color: #ffbce5; /*봄 헤더 컬러*/
 }
-:root.summer{
+:root.blue{
     --background-color: #eef6ff; /*여름 배경 컬러*/
     --text-color: #000000; /*여름 전체 텍스트 컬러*/
     --header-color: #9cbfff; /*여름 헤더 컬러*/
 }
-:root.winter{
+:root.violet{
     --background-color: #f9ebff; /*겨울 배경 컬러*/
     --text-color: #000000; /*겨울 전체 텍스트 컬러*/
     --header-color: #cdadff; /*겨울 헤더 컬러*/
@@ -31,7 +31,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-li{
+.nav_bar ul li{
     list-style: none;
 }
 body{
@@ -103,12 +103,12 @@ a{
     color: inherit;
 }
 
-nav{
+.nav_bar{
     /*background-color: #b17902;*/
     grid-area: nav;
     
 }
-button{
+.nav_bar ul li button{
     background: transparent;
     border: 0;
     cursor: pointer;
@@ -119,7 +119,7 @@ button{
     font-size: 15px;
     color: var(--text-color);
 }
-button:hover{
+.nav_bar ul li button:hover{
     background-color: var(--header-color);
     border-width: 0 0 1px;
     border-radius: 10px;
