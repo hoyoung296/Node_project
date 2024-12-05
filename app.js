@@ -1,4 +1,6 @@
 const express = require("express");
+// const nodemailer = require("nodemailer");
+// const crypto = require("crypto");  // 인증 토큰 생성을 위한 모듈
 const session = require("express-session")
 const config = require("./config/cookie_session/cookie_session_config")
 const bodyParser = require("body-parser");
@@ -6,6 +8,7 @@ const cookieParser = require("cookie-parser")
 const app = express();
 
 app.use( session( config.sessionConfig ) );
+// app.use( bodyParser.urlencoded({ extended: true }) );
 app.use( bodyParser.urlencoded() );
 app.use( bodyParser.json() );
 

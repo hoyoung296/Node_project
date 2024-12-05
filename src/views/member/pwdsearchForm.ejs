@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비밀 번호찾기</title>
+    <link rel="stylesheet" href="/static/css/member/pwdsearchForm.css">
+    <script src="/static/js/member/pwdsearchForm.js"></script>
+</head>
+
+<body>
+    <div id="main">
+        <form action="/member/pwdsearch_checkform" method="post" onsubmit="updateActionUrl(event)">
+            <!-- 아이디 입력 -->
+            <div class="form-group">
+                <label for="id" aria-hidden="true">비밀번호를 찾고자하는 아이디를 입력해주세요.</label>
+                <input type="text" id="id" name="id" required placeholder="아이디를 입력하세요">
+            </div>
+            <!-- 로그인 버튼 -->
+            <div class="form-group">
+                <input type="submit" value="비밀번호 찾기">
+            </div>
+            <div class="links">
+                <label aria-hidden="true">아이디 기억나지 않는다면?</label>
+                <a href="#">아이디 찾기</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
