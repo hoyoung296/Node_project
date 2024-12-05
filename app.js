@@ -18,4 +18,5 @@ app.set("view engine", "ejs");
 
 app.use("/static", express.static(__dirname + "/public"))
 
+
 app.listen(3000, () => console.log("3000 서버 실행"))
