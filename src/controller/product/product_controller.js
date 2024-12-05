@@ -2,7 +2,7 @@ const ser = require("../../service/product/product_service")
 const fs = require("fs")
 
 const list = (req, res) => {
-    const themaPath = fs.readdirSync("./thema")
+    const themaPath = fs.readdirSync("./public/thema")
     const themaName = ser.rename(themaPath)
     const themaList = ser.listSetting(themaPath, themaName)
     res.render("product/list", {themaList})

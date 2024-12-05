@@ -4,22 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #index {
+            
+            & > a {
+                text-decoration: none;
+                color: black;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <table>
-        <tr>
-            <% themaList.forEach(t => { %>
-                <td>
-                    <% for(let i = 0; i < 3; i++){ %>
-                        <a href="/product/sample?thema=<%= t.path %>">
-                            <img src="/product/load?thema=<%= t.path %>" width="100px" height="100px"><br>
-                            <%= t.name %>
-                        </a>
-                        <% i++ %>
-                    <% } %>
-                </td>
-            <% }) %>
-        </tr>
+    <table id="list">
+        <% let i = 0 %>
+        <% themaList.forEach(t => { %>
+            <% if(i==0){ %>
+            <tr>
+            <% } %>
+            <td id="index">
+                <a href="/product/sample?thema=<%= t.path %>">
+                    <img src="/static/thema/<%= t.path %>" width="100px" height="100px"><br>
+                    <%= t.name %>
+                </a>
+            </td>
+            <% if(i < 2){ i++ }else{ i=0 %>
+            </tr>
+            <% } %>
+        <% }) %>
+
     </table>
 </body>
 </html>
