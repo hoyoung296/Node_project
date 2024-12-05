@@ -6,7 +6,7 @@ ctx = canvas.getContext("2d") //2d로 그림을 그려줌
 //캔버스 사이즈 지정
 canvas.width = 400;
 canvas.height = 700;
-document.body.appendChild(canvas); //html의 body에다가 자식으로 canvas 갇다 붙이기
+document.section.appendChild(canvas); //section의 body에다가 자식으로 canvas 갇다 붙이기
 
 let backgroundImage, spaceshipImage, bulletImage, enemyImage, gameOverImage;
 let gameOver = false //true이면 게임이 끝남, false이면 게임이 안끝남
@@ -42,7 +42,7 @@ function Bullet() { //총알을 만들기 위한 자료
 
     this.checkHit = function () {
         for (let i = 0; i < enemyList.length; i++) {
-            if (this.y <= enemyList[i].y && this.x >= enemyList[i].x && this.x <= enemyList[i].x + 96) {
+            if (this.y <= enemyList[i].y && this.x >= enemyList[i].x && this.x <= enemyList[i].x + 64) {
                 console.log(enemyList)
                 // -> 총알이 죽게됨 적군의 우주선이 없어짐, 점수 획득 
                 score++;
@@ -70,7 +70,7 @@ function generateRandomValue(min, max) {
 
 function Enemy() { //외계인을 만들기 위한 자료
     this.init = function () {
-        this.x = generateRandomValue(0, canvas.width - 96)
+        this.x = generateRandomValue(10, canvas.width - 74)
         this.y = 0
     }
 
@@ -78,7 +78,7 @@ function Enemy() { //외계인을 만들기 위한 자료
     this.update = function () {
         this.y += 1;
 
-        if (this.y >= canvas.height - 96) {
+        if (this.y >= canvas.height - 64) {
             gameOver = true
             let msg = `<br><button onclick="result_form()">결과 확인</button>`
             document.getElementById("main").insertAdjacentHTML("beforeend", msg)
@@ -98,7 +98,7 @@ function loadImage() { // 각 요소별 이미지 가져오기
     bulletImage.src = "/static/game_image/던질거.png"
 
     enemyImage = new Image();
-    enemyImage.src = "/static/game_image/도토리외계인.png"
+    enemyImage.src = "/static/front_image/dotoree.png"
 
     gameOverImage = new Image();
     gameOverImage.src = "/static/game_image/게임 오버.png"
@@ -186,7 +186,7 @@ function render() {
     }
 
     for (let i = 0; i < enemyList.length; i++) {
-        ctx.drawImage(enemyImage, enemyList[i].x, enemyList[i].y)
+        ctx.drawImage(enemyImage, enemyList[i].x, enemyList[i].y, 64, 64)
     }
 }
 
