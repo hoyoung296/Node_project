@@ -19,7 +19,7 @@ const process = {
     ser_login : async( body , req , res) => {
         const result = await dao.process.dao_login( body.id )
         if(result.rows.length == 0 ){
-            msg = "존재하지 않는 id"
+            msg = "아이디 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요"
             url = "/member/login_form"
         }else{
            if(result.rows[0].PWD == body.pwd ){
@@ -29,7 +29,7 @@ const process = {
                 msg = "성공"
                 url = "/"
            }else{
-                msg = "비번틀림"
+                msg = "아이디 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요"
                 url = "/member/login_form"
            }
         }
