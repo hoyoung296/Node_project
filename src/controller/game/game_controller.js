@@ -1,7 +1,9 @@
 const ser = require("../../service/game/game_service")
 const views = {
     check: (req, res) => {
-        let msg = ser.pageRead.check(req.session.username)
+        req.session.uid = "aaa"
+        console.log("req.session.uid : ", req.session.uid)
+        let msg = ser.pageRead.check(req.session.uid)
         res.send(msg)
     },
     index: (req, res) => {
@@ -11,7 +13,9 @@ const views = {
         res.render("game/info")
     },
     play: (req, res) => {
-        res.render("game/play", { username: req.session.id })
+        req.session.uid = "aaa"
+        console.log("req.session.uid : ", req.session.uid)
+        res.render("game/play", { username: req.session.uid })
     }
 }
 const process = {

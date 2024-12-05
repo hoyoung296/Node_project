@@ -28,6 +28,7 @@ router.post("/register", memberCtrl.process.register);
 router.get("/login_form", memberCtrl.views.loginForm)
 router.post("/login_check", memberCtrl.process.loginCheck)
 router.get("/logout", memberCtrl.process.logout )
+router.get("/check-id",  memberCtrl.process.idCheck)
 
 
 module.exports = router;

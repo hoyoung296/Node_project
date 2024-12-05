@@ -1,0 +1,19 @@
+#main{
+    margin: 0 auto; 
+    background: brown; 
+    width: 1200px; 
+    height: 800px; 
+    border: 1px solid black;
+}
+
+#main ~ div {
+    border: 50px sold black; 
+    position: relative; 
+    margin-top: -700px; 
+    font-size: 70px;
+
+    &> img{
+        width: 200px; 
+        height: 200px;
+    }
+}
