@@ -1,8 +1,14 @@
 #main {
-    margin-top: 200px;
-    background: brown;
+    background: #fff2d6;
+    width: 730px;
+    height: 600px;
+    line-height: 90px;
 
     &>b>b {
         font-size: 25px;
+    }
+
+    &>b>p>button {
+        color: gold;
     }
 }
