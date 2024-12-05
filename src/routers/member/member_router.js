@@ -29,6 +29,8 @@ router.get("/login_form", memberCtrl.views.loginForm)
 router.post("/login_check", memberCtrl.process.loginCheck)
 router.get("/logout", memberCtrl.process.logout )
 router.get("/check-id",  memberCtrl.process.idCheck)
+router.get("/pwdsearch_form", memberCtrl.views.pwdsearchForm)
+router.post("/pwdsearch_checkform", memberCtrl.views.pwdsearch_checkForm)
 
 
 module.exports = router;
