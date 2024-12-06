@@ -1,185 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOTORI</title>
-    <link rel="icon" href="/static/front_image/dotoree.png"image/x-icon">
+    <link rel="icon" href="/static/front_image/dotoree.png" image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap" rel="stylesheet">
-    <style>
-        
-        :root,
-        :root.autumn{
-            --background-color: #fffdf5; /*기본 배경 컬러*/
-            --text-color: #000000; /*기본 전체 텍스트 컬러*/
-            --header-color: #fff2d6; /*기본 헤더 컬러*/
-        }
-        :root.spring{
-            --background-color: #ffebeb; /*봄 배경 컬러*/
-            --text-color: #000000; /*봄 전체 텍스트 컬러*/
-            --header-color: #ffbce5; /*봄 헤더 컬러*/
-        }
-        :root.summer{
-            --background-color: #eef6ff; /*여름 배경 컬러*/
-            --text-color: #000000; /*여름 전체 텍스트 컬러*/
-            --header-color: #9cbfff; /*여름 헤더 컬러*/
-        }
-        :root.winter{
-            --background-color: #f9ebff; /*겨울 배경 컬러*/
-            --text-color: #000000; /*겨울 전체 텍스트 컬러*/
-            --header-color: #cdadff; /*겨울 헤더 컬러*/
-        }
-        :root.dark{
-            --background-color: #525252; /*다크 배경 컬러*/
-            --text-color: #ffffff; /*다크 전체 텍스트 컬러*/
-            --header-color: #111111; /*다크 헤더 컬러*/
-        }
-          
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        li{
-            list-style: none;
-        }
-        body{
-            display: grid;
-            margin: 0 20%;
-            background-color: var(--background-color); /* #fffdf5;*/
-            padding: 0;
-            grid-template-areas:
-                'header header'
-                'nav section'
-                'footer footer';
-            grid-template-columns: 150px 80%;
-            grid-template-rows: auto 83vh auto;
-            
-            gap: 10px;
-            height: 300px;
-            
-        }
-        header{
-            background-color: var(--header-color); /*#fff2d6;*/
-            border-radius: 10px;
-            justify-items: center;
-            display: grid;
-            grid-template-areas:
-                'mainlogo'
-                'login';
-            grid-template-columns: 1ft auto;
-            grid-template-rows: auto;
-            grid-area: header;
-            top: 0;
-            z-index: 1;
-            width: 100%;
-            padding: 16px;
-            color: var(--text-color); /*#000000;*/
-        }
-        .header_h1{
-            /*background-color: #cfcfcf;*/
-            align-self: center;
-            grid-area: mainlogo;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            gap: 0px;
-            line-height: 0.5;
-            font-family: "Bungee";
-            font-size: 50px;
-            font-weight: 100;
-        }
-        img{
-            align-items: center;
-            width: 40px;
-            height: 50px;
-            transform: rotate(30deg);
-            margin: 0;
-            cursor: pointer;
-
-        }
-        .header_h4{
-            /*background-color: #cfcfcf;*/
-            grid-area: login;
-            align-self: center;
-            justify-self: end;
-            display: flex;
-        }
-        a{
-            text-decoration: none;
-            color: inherit;
-        }
-
-        nav{
-            /*background-color: #b17902;*/
-            grid-area: nav;
-            
-        }
-        button{
-            background: transparent;
-            border: 0;
-            cursor: pointer;
-            padding: 8%;
-            width: 100%;
-            transition: 0.2s;
-            font-family: "Nanum Gothic";
-            font-size: 15px;
-            color: var(--text-color);
-        }
-        button:hover{
-            background-color: var(--header-color);
-            border-width: 0 0 1px;
-            border-radius: 10px;
-        }
-
-        section{
-            /*background-color: #645e4f;*/
-            grid-area: section;
-            display: grid;
-            grid-template-rows: 1fr 9fr;
-            gap: 10px;
-        }
-        .story{
-            background-color: #dadada;
-            border-radius: 10px;
-        }
-        .main_section{
-            background-color: #dadada;
-        }
-        
-        footer{
-            /*background-color: #b9b9b9;*/
-            grid-area: footer;
-            bottom: 0;
-        }
-        .footerline{
-            width: 100%;
-            height: 1px;
-            background-color: #000000;
-        }
-        
-        footer>.theme{
-            display: flex;
-            gap: 10px;
-            
-            
-        }
-
-
-
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap"
+        rel="stylesheet">
+    <link href="/static/css/game/common.css" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <h1 class="header_h1"><img src="/static/front_image/dotoree.png" onclick="location.href='/main'"><br>DOTORI</h1>
         <h4 class="header_h4"><a href="#" id="login">로그인</a> &nbsp; / &nbsp;<a href="#" id="signup">회원가입</a></h4>
     </header>
-
     <nav>
         <ul>
             <li>
@@ -203,35 +42,30 @@
             </li>
         </ul>
     </nav>
-
     <section>
         <%- include("./index1.ejs") %>
     </section>
-
     <footer>
         <h1>
             <div class="footerline"></div>
             footer
-            
         </h1>
         <div class="theme">
-            <input type="radio" name="theme" class="theme-btn spring" onclick="setTheme('spring')" title="spring mode"><p>spring</p>
-            <input type="radio" name="theme" class="theme-btn summer" onclick="setTheme('summer')" title="summer mode"><p>summer</p>
-            <input type="radio" name="theme" class="theme-btn autumn" onclick="setTheme('autumn')" title="autumn mode"><p>autumn</p>
-            <input type="radio" name="theme" class="theme-btn winter" onclick="setTheme('winter')" title="winter mode"><p>winter</p>
-            <input type="radio" name="theme" class="theme-btn dark" onclick="setTheme('dark')" title="dark mode"><p>dark</p>
+            <input type="radio" name="theme" class="theme-btn spring" onclick="setTheme('spring')" title="spring mode">
+            <p>spring</p>
+            <input type="radio" name="theme" class="theme-btn summer" onclick="setTheme('summer')" title="summer mode">
+            <p>summer</p>
+            <input type="radio" name="theme" class="theme-btn autumn" onclick="setTheme('autumn')" title="autumn mode">
+            <p>autumn</p>
+            <input type="radio" name="theme" class="theme-btn winter" onclick="setTheme('winter')" title="winter mode">
+            <p>winter</p>
+            <input type="radio" name="theme" class="theme-btn dark" onclick="setTheme('dark')" title="dark mode">
+            <p>dark</p>
         </div>
     </footer>
 </body>
 <script>
-   /*
-    function changeTheme (background, text, header) {
-        const style = document.documentElement.style
-        style.setProperty('--background-color', background)
-        style.setProperty('--text-color', text)
-        style.setProperty('--header-color', header)
-    }
-    */
-   const setTheme = theme => document.documentElement.className = theme;
+    const setTheme = theme => document.documentElement.className = theme;
 </script>
+
 </html>
