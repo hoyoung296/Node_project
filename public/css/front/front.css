@@ -6,24 +6,24 @@
     --header-color: #fff2d6; /*기본 헤더 컬러*/
 }
 :root.pink{
-    --background-color: #ffebeb; /*봄 배경 컬러*/
+    --background-color: #F8E8EE; /*봄 배경 컬러*/
     --text-color: #000000; /*봄 전체 텍스트 컬러*/
-    --header-color: #ffbce5; /*봄 헤더 컬러*/
+    --header-color: #F2BED1; /*봄 헤더 컬러*/
 }
 :root.blue{
-    --background-color: #eef6ff; /*여름 배경 컬러*/
+    --background-color: #EEF5FF; /*여름 배경 컬러*/
     --text-color: #000000; /*여름 전체 텍스트 컬러*/
-    --header-color: #9cbfff; /*여름 헤더 컬러*/
+    --header-color: #86B6F6; /*여름 헤더 컬러*/
 }
 :root.violet{
-    --background-color: #f9ebff; /*겨울 배경 컬러*/
+    --background-color: #F5EFFF; /*겨울 배경 컬러*/
     --text-color: #000000; /*겨울 전체 텍스트 컬러*/
-    --header-color: #cdadff; /*겨울 헤더 컬러*/
+    --header-color: #CDC1FF; /*겨울 헤더 컬러*/
 }
 :root.dark{
-    --background-color: #525252; /*다크 배경 컬러*/
+    --background-color: #222222; /*다크 배경 컬러*/
     --text-color: #ffffff; /*다크 전체 텍스트 컬러*/
-    --header-color: #111111; /*다크 헤더 컬러*/
+    --header-color: #424242; /*다크 헤더 컬러*/
 }
   
 *{
@@ -97,6 +97,8 @@ header{
     align-self: center;
     justify-self: end;
     display: flex;
+    font-family: "Nanum Gothic";
+    font-size: 13px;
 }
 a{
     text-decoration: none;
@@ -144,6 +146,8 @@ footer{
     /*background-color: #b9b9b9;*/
     grid-area: footer;
     bottom: 0;
+    font-family: "Nanum Gothic";
+    color: var(--text-color);
 }
 .footerline{
     width: 100%;
