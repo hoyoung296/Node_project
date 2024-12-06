@@ -40,7 +40,32 @@ const process = {
         }
         //console.log(member)
         return id;
-    }
+    },
+    dao_emailCheck : async(email,uid) => {
+        const sql = `select email from member where email='${email}' AND id='${uid}'`;
+        let rs;
+        try{
+            rs = await(await con).execute(sql);
+        }catch(err){
+            console.log("catch dao : ", err)
+        }
+        //console.log(member)
+        return rs;
+    },
+    dao_chagePwd : async(email,uid,pwd) => {
+        console.log("dao임시비밀번호 : ",pwd)
+        console.log("dao_uid : ",email)
+        console.log("dao_email : ",uid)
+        const sql = `update member set pwd='${pwd}' where email='${email}' AND id='${uid}'`;
+        let rs;
+        try{
+            rs = await(await con).execute(sql);
+        }catch(err){
+            console.log("catch dao : ", err)
+        }
+        //console.log(member)
+        return rs;
+    },
 }
 
 module.exports = { process };
