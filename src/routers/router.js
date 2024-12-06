@@ -11,6 +11,9 @@ module.exports = (app) => {
     const productRouter = require("../routers/product/product_router")
     app.use("/product", productRouter)
 
+    const mypageRouter = require("../routers/mypage/mypage_router")
+    app.use("/mypage", mypageRouter)
+
     const router = require("express").Router();
     router.get("/", (req, res) => {
         res.render("main_cover", { id: req.session.uid })
