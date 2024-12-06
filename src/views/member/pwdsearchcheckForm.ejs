@@ -11,6 +11,9 @@
 <body>
     <div id="main">
         <form action="/member/send-email" method="post">
+             <!-- 숨은 필드로 uid 값 추가 -->
+             <input type="hidden" name="uid" value="<%= uid %>"> <!-- 여기서 uid 값을 EJS로 전달 -->
+
             <!-- 이메일 입력 -->
             <div class="form-group">
                 <label for="email" aria-hidden="true">인증할 이메일 입력</label>

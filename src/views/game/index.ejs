@@ -11,61 +11,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap"
         rel="stylesheet">
-    <link href="/static/css/game/common.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/front/front.css">
 </head>
 
-<body>
-    <header>
-        <h1 class="header_h1"><img src="/static/front_image/dotoree.png" onclick="location.href='/main'"><br>DOTORI</h1>
-        <h4 class="header_h4"><a href="#" id="login">로그인</a> &nbsp; / &nbsp;<a href="#" id="signup">회원가입</a></h4>
-    </header>
-    <nav>
-        <ul>
-            <li>
-                <button>사진</button>
-            </li>
-            <li>
-                <button>썰</button>
-            </li>
-            <li>
-                <button>쇼핑몰</button>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <button onclick="location.href='/game'">미니게임</button>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <button>마이페이지</button>
-            </li>
-        </ul>
-    </nav>
-    <section>
-        <%- include("./index1.ejs") %>
-    </section>
-    <footer>
-        <h1>
-            <div class="footerline"></div>
-            footer
-        </h1>
-        <div class="theme">
-            <input type="radio" name="theme" class="theme-btn spring" onclick="setTheme('spring')" title="spring mode">
-            <p>spring</p>
-            <input type="radio" name="theme" class="theme-btn summer" onclick="setTheme('summer')" title="summer mode">
-            <p>summer</p>
-            <input type="radio" name="theme" class="theme-btn autumn" onclick="setTheme('autumn')" title="autumn mode">
-            <p>autumn</p>
-            <input type="radio" name="theme" class="theme-btn winter" onclick="setTheme('winter')" title="winter mode">
-            <p>winter</p>
-            <input type="radio" name="theme" class="theme-btn dark" onclick="setTheme('dark')" title="dark mode">
-            <p>dark</p>
-        </div>
-    </footer>
+<body class="front_body">
+        <%- include('../include/header.ejs')%>
+
+            <section>
+                <%- include("./index1.ejs") %>
+            </section>
+
+                <%- include('../include/footer.ejs')%>
 </body>
 <script>
     const setTheme = theme => document.documentElement.className = theme;
+    function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
 </script>
 
 </html>

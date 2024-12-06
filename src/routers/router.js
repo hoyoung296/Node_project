@@ -14,6 +14,9 @@ module.exports = (app) => {
     const mypageRouter = require("../routers/mypage/mypage_router")
     app.use("/mypage", mypageRouter)
 
+    const friendsRouter= require("../routers/friends/friends_router")
+    app.use("/friends", friendsRouter)
+
     const router = require("express").Router();
     router.get("/", (req, res) => {
         res.render("main_cover", { id: req.session.uid })

@@ -34,7 +34,7 @@
 .nav_bar ul li{
     list-style: none;
 }
-body{
+.front_body{
     display: grid;
     margin: 0 20%;
     background-color: var(--background-color); /* #fffdf5;*/
@@ -50,7 +50,7 @@ body{
     height: 300px;
     
 }
-header{
+.front_body > header{
     background-color: var(--header-color); /*#fff2d6;*/
     border-radius: 10px;
     justify-items: center;
@@ -100,7 +100,7 @@ header{
     font-family: "Nanum Gothic";
     font-size: 13px;
 }
-a{
+.header_h4 > a{
     text-decoration: none;
     color: inherit;
 }
@@ -127,7 +127,7 @@ a{
     border-radius: 10px;
 }
 
-section{
+.front_body > section{
     /*background-color: #645e4f;*/
     grid-area: section;
     display: grid;
@@ -142,7 +142,7 @@ section{
     background-color: #dadada;
 }
 
-footer{
+.front_body > footer{
     /*background-color: #b9b9b9;*/
     grid-area: footer;
     bottom: 0;
@@ -221,12 +221,29 @@ footer{
     margin-bottom: 50px;
     
 }
-
-footer>.theme{
+.top{
+    position: relative;
+    left: 105%;
+    top: -40px;
+    width: 40px;
+    height: 40px;
     display: flex;
-    gap: 10px;
-    
-    
+    border-radius: 100%;
+    border-style: solid;
+    border-width: 3px;
+    border-color: var(--header-color);
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    scroll-behavior: smooth;
+}
+.top:hover{
+    background-color: var(--header-color);
+    cursor: pointer;
 }
 
+footer > .theme{
+    display: flex;
+    gap: 10px;
 
+}

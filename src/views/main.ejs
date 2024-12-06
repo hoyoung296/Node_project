@@ -14,20 +14,24 @@
     <link rel="stylesheet" href="/static/css/front/front.css">
 </head>
 
-<body>
-    <header>
-        <%-include('include/header.ejs')%>
-            </nav>
+<body class="front_body">
+        <%- include('include/header.ejs')%>
+
             <section>
                 <div class="story">스토리</div>
-                <div class="main_section">본문</div>
+                <div class="main_section"> <%-include('board/list.ejs')%></div>
             </section>
-            <footer>
-                <%-include('include/footer.ejs')%>
-            </footer>
+
+                <%- include('include/footer.ejs')%>
 </body>
 <script>
     const setTheme = theme => document.documentElement.className = theme;
+    function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
 </script>
 
 </html>
