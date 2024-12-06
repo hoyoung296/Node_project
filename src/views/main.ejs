@@ -15,9 +15,9 @@
 </head>
 
 <body>
-    <header id="top">
+    <header>
         <%-include('include/header.ejs')%>
-            </nav>
+            
             <section>
                 <div class="story">스토리</div>
                 <div class="main_section">본문</div>
@@ -28,6 +28,12 @@
 </body>
 <script>
     const setTheme = theme => document.documentElement.className = theme;
+    function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
 </script>
 
 </html>

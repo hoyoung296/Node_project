@@ -225,8 +225,8 @@ footer{
     position: relative;
     left: 105%;
     top: -40px;
-    width: 40px !important;
-    height: 40px !important;
+    width: 40px;
+    height: 40px;
     display: flex;
     border-radius: 100%;
     border-style: solid;
@@ -239,16 +239,13 @@ footer{
 }
 .top:hover{
     background-color: var(--header-color);
-}
-html {
-    scroll-behavior: smooth;
+    cursor: pointer;
 }
 
 footer>.theme{
     display: flex;
     gap: 10px;
-    
-    
+
 }
 
 
