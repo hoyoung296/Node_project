@@ -6,24 +6,24 @@
     --header-color: #fff2d6; /*기본 헤더 컬러*/
 }
 :root.pink{
-    --background-color: #ffebeb; /*봄 배경 컬러*/
+    --background-color: #F8E8EE; /*봄 배경 컬러*/
     --text-color: #000000; /*봄 전체 텍스트 컬러*/
-    --header-color: #ffbce5; /*봄 헤더 컬러*/
+    --header-color: #F2BED1; /*봄 헤더 컬러*/
 }
 :root.blue{
-    --background-color: #eef6ff; /*여름 배경 컬러*/
+    --background-color: #EEF5FF; /*여름 배경 컬러*/
     --text-color: #000000; /*여름 전체 텍스트 컬러*/
-    --header-color: #9cbfff; /*여름 헤더 컬러*/
+    --header-color: #86B6F6; /*여름 헤더 컬러*/
 }
 :root.violet{
-    --background-color: #f9ebff; /*겨울 배경 컬러*/
+    --background-color: #F5EFFF; /*겨울 배경 컬러*/
     --text-color: #000000; /*겨울 전체 텍스트 컬러*/
-    --header-color: #cdadff; /*겨울 헤더 컬러*/
+    --header-color: #CDC1FF; /*겨울 헤더 컬러*/
 }
 :root.dark{
-    --background-color: #525252; /*다크 배경 컬러*/
+    --background-color: #222222; /*다크 배경 컬러*/
     --text-color: #ffffff; /*다크 전체 텍스트 컬러*/
-    --header-color: #111111; /*다크 헤더 컬러*/
+    --header-color: #424242; /*다크 헤더 컬러*/
 }
   
 *{
@@ -34,7 +34,7 @@
 .nav_bar ul li{
     list-style: none;
 }
-body{
+.front_body{
     display: grid;
     margin: 0 20%;
     background-color: var(--background-color); /* #fffdf5;*/
@@ -50,7 +50,7 @@ body{
     height: 300px;
     
 }
-header{
+.front_body > header{
     background-color: var(--header-color); /*#fff2d6;*/
     border-radius: 10px;
     justify-items: center;
@@ -97,8 +97,10 @@ header{
     align-self: center;
     justify-self: end;
     display: flex;
+    font-family: "Nanum Gothic";
+    font-size: 13px;
 }
-a{
+.header_h4 > a{
     text-decoration: none;
     color: inherit;
 }
@@ -125,7 +127,7 @@ a{
     border-radius: 10px;
 }
 
-section{
+.front_body > section{
     /*background-color: #645e4f;*/
     grid-area: section;
     display: grid;
@@ -140,10 +142,14 @@ section{
     background-color: #dadada;
 }
 
-footer{
+.front_body > footer{
     /*background-color: #b9b9b9;*/
     grid-area: footer;
     bottom: 0;
+    font-family: "Nanum Gothic";
+    color: var(--text-color);
+    
+    
 }
 .footerline{
     width: 100%;
@@ -151,11 +157,93 @@ footer{
     background-color: #000000;
 }
 
-footer>.theme{
+.footer_set{
     display: flex;
-    gap: 10px;
-    
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.footer_info{
+    display: flex;
+    flex-direction: column;
+    margin: 30px 10px;
+}
+.footer_top{
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: lighter;
+    font-weight: bold;
+}
+.footer_body{
+    font-weight: lighter;
+    font-size: 13px;
+    line-height: 25px;
+}
+.footer_addr{
+    font-weight: lighter;
+    font-size: 11px;
+    line-height: 25px;
+    color: #707070;
+    margin-left: 0;
+}
+.footer_button{
+    font-weight: lighter;
+    font-size: 13px;
+    line-height: 25px;
+    cursor: pointer;
+}
+.footer_button:hover{
+    font-weight: bold;
     
 }
 
+.footer_members{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
+}
+.footer_member{
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+}
+.footer_name{
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: lighter;
+}
+.footer_part{
+    font-weight: lighter;
+    font-size: 13px;
+    line-height: 25px;
+    margin-bottom: 50px;
+    
+}
+.top{
+    position: relative;
+    left: 105%;
+    top: -40px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    border-radius: 100%;
+    border-style: solid;
+    border-width: 3px;
+    border-color: var(--header-color);
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    scroll-behavior: smooth;
+}
+.top:hover{
+    background-color: var(--header-color);
+    cursor: pointer;
+}
 
+footer > .theme{
+    display: flex;
+    gap: 10px;
+
+}
