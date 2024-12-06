@@ -221,6 +221,28 @@ footer{
     margin-bottom: 50px;
     
 }
+.top{
+    position: relative;
+    left: 105%;
+    top: -40px;
+    width: 40px !important;
+    height: 40px !important;
+    display: flex;
+    border-radius: 100%;
+    border-style: solid;
+    border-width: 3px;
+    border-color: var(--header-color);
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    scroll-behavior: smooth;
+}
+.top:hover{
+    background-color: var(--header-color);
+}
+html {
+    scroll-behavior: smooth;
+}
 
 footer>.theme{
     display: flex;
