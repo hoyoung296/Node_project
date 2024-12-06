@@ -4,16 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: none;
+        }
+        th, td{
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div class="content_wrap" id="main">
-        <table border="1" style="width: 150px">
+        <table>
             <tr>
-                <td>글 번호</td> <td>제목</td> <td>내용</td> <td>아이디</td> <td>닉네임</td> <td>날짜</td> <td>조회수</td> <td>업로드 파일</td> 
+                <td>글 번호</td> 
+                <td>제목</td> 
+                <td>아이디</td> 
+                <td>날짜</td> 
+                <td>조회수</td> 
             </tr>
             <% if( list.length == 0){ %>
                 <tr>
-                    <th colspan="8">등록된 글이 없습니다.</th>
+                    <th colspan="5">등록된 글이 없습니다.</th>
                 </tr>
                 <% }else{
                 list.forEach(data =>{ %>
@@ -23,34 +40,33 @@
                         <a href="/board/data/<%= data.WRITE_NO %>">
                             <%= data.TITLE %>
                         </a>
-                    </td><td><%= data.CONTENT %></td><td><%= data.ID %></td>
-                    <td><%= data.NAME %></td><td><%= data.SAVE_DATE %></td>
-                    <td><%= data.HIT %></td><td><%= data.UPLOAD_FILE %></td>
+                    </td>
+                    <td><%= data.CONTENT %></td>
+                    <td><%= data.ID %></td>
+                    <td><%= data.NAME %></td>
+                    <td><%= data.SAVE_DATE %></td>
+                    <td><%= data.HIT %></td>
+                    <td><%= data.UPLOAD_FILE %></td>
                 </tr>
                 <% })
-                } %>
+            } %>
                 <tr>
-                    <th colspan="8" align="right">
+                    <td colspan="5" align="right">
                     <% if( start <= 1 ){ %>
                         <button disabled>이전</button>
                     <% }else{ %>
-                        <button type="button" onclick="location.href='/board/list?start=<%= start -1 %>'">이전</button>         
-                </tr>
-                
-                list.forEach(data =>{ %>
-                <tr>
-                    <td><%= data.WRITE_NO %></td>
-                    <td>
-                        <a href="/board/data/<%= data.WRITE_NO %>">
-                            <%= data.TITLE %>
-                        </a>
-                    </td><td><%= data.CONTENT %></td><td><%= data.ID %></td>
-                    <td><%= data.NAME %></td><td><%= data.SAVE_DATE %></td>
-                    <td><%= data.HIT %></td><td><%= data.UPLOAD_FILE %></td>
-                </tr>
-                })
-            }
-
+                        <button type="button" onclick="location.href='/board/list?start=<%= start -1 %>'">이전</button>
+                    <% }for(let i = 1 ; i <= page ; i++ ){ %>
+                    <a href="/board/list?start=<%= i %>"><%= i %></a>
+                    <% }if( start < page ){ %>
+                        <button type="button" onclick="location.href='/board/list?start=<%= start + 1 %>'">다음</button>
+                    <% }else{ %> <button disabled>다음</button> <% } %>
+                    <%= start %> / <%= page %>
+                    <% if (isLoggedIn) { %>
+                        <a href="/board/write_form">글 작성</a>
+                    <% } %>
+                </td> 
+            </tr> 
         </table>
     </div>
 </body>
