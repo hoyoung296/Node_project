@@ -27,4 +27,30 @@ const boardRead = {
         return data;
     }
 }
-module.exports = { boardRead }
+const boardInsert = {
+    write : async ( body ) => {
+        const sql = `insert into board(write_no, title, contemt, origin_file_name, change_file_name, id) values(board_seq.nextval, :title, :content , :origin, :change, :id)`;
+        let result = 0;
+        try{
+            result = await(await con).execute(sql, body);
+        }catch(err){
+            console.log( err )
+        }
+        return result;
+    }
+}
+const boardUpdate = {
+    upHit : async( num ) => {
+        const sql = `update board set hit = hit +1 where write_no=${num}`;
+        (await con).execute( sql );
+    },
+    delete : async(writeNo) => {
+        const sql = `delete from board where write_no=${writeNo}`;
+        (await con).execute( sql );
+    },
+    modify : async ( body ) => {
+        const sql = `update board set title=:title, content=:content, origin_file_name=:origin_file_name, change_file_name=:change_file_name where write_no=:write_no`;
+        return ( await cocn).execute( sql, body );
+    }
+}
+module.exports = { boardUpdate, boardInsert, boardRead }
