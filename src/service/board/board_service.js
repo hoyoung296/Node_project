@@ -17,6 +17,11 @@ const boardRead = {
         let list = await dao.boardRead.list( startNum );
         list = serCom.timeModify( list.rows )
         return { list, start, page };
+    },
+    data : async ( num ) => {
+        boardUpdate.upHit( num );
+        data = serCom.timeModify( data.rows );
+        return data[0];
     }
 }
 module.exports = { boardRead }
