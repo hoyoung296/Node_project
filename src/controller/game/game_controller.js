@@ -5,10 +5,10 @@ const views = {
         res.send(msg)
     },
     index: (req, res) => {
-        res.render("game/index")
+        res.render("game/index", { username: req.session.uid })
     },
     info: (req, res) => {
-        res.render("game/info")
+        res.render("game/info", { username: req.session.uid })
     },
     play: (req, res) => {
         res.render("game/play", { username: req.session.uid })
