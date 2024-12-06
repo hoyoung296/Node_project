@@ -11,28 +11,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap"
         rel="stylesheet">
-    <link href="/static/css/game/common.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/front/front.css">
 </head>
 
-<body>
-    <% if(!username) { %>
-        <script>
-            alert("로그인 이후 사용가능합니다!!!!")
-            location.href = '/member/login_form'
-        </script>
-        <% } %>
-
-    <header>
+<body class="front_body">
         <%- include('../include/header.ejs')%>
-            
+
             <section>
                 <%- include("./index1.ejs") %>
             </section>
 
-            <footer>
                 <%- include('../include/footer.ejs')%>
-            </footer>
 </body>
 <script>
     const setTheme = theme => document.documentElement.className = theme;

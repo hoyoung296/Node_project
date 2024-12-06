@@ -14,18 +14,15 @@
     <link rel="stylesheet" href="/static/css/front/front.css">
 </head>
 
-<body>
-    <header>
-        <%- include('include/header.ejs')%>
-            
+<body class="front_body">
+        <%-include('include/header.ejs')%>
+
             <section>
                 <div class="story">스토리</div>
                 <div class="main_section">본문</div>
             </section>
-            
-            <footer>
-                <%- include('include/footer.ejs')%>
-            </footer>
+
+                <%-include('include/footer.ejs')%>
 </body>
 <script>
     const setTheme = theme => document.documentElement.className = theme;
