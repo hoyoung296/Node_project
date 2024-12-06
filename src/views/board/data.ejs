@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/static/js/reply_view.js"></script>
+    <script>window.onload = () => {
+    const num = document.getElementById("number")
+    console.log("number :", num )
+    console.log("num.innerHTML : ", num.innerHTML )
+    init( num.innerHTML )
+    }</script>
+    <style>
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: none;
+        }
+        th, td{
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <table>
+            <tr>
+                <th width="100">글 번호</th>
+                <td width="200" id="number"><%= data.WRITE_NO %>글 번호</td>
+                <th width="100">작성자</th>
+                <td width="200"><%= data.ID %></td>
+            </tr>
+            <tr>
+                <th>제목</th>
+                <td><%= data.TITLE %></td>
+                <th>등록 일자</th>
+                <td><%= data.SAVE_DATE %></td>
+            </tr>
+            <tr>
+                <th>내용</th><td><%= data.CONTENT %></td>
+                <td colspan="2">
+                    <% if( data.ORIGIN_FILE_NAME === "NAN") { %>
+                    <B>이미지가 없습니다
+                        <% }else { %>
+                        <img src="/board/download/<%= data.CHANGE_FILE_NAME %>"width="100px" height="100px">
+                        <% } %> 
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4"align="center">
+                    <% if( username === data.ID) {%>
+                        <input type="button" onclick="location.href='/board/modify_form/<%= data.WRITE_NO %>'" value="수정하기">
+                        <input type="button" onclick="location.href='/board/delete/<%= data.WRITE_NO %>/<%= data.CHANGE_FILE_NAME %>'" value="삭제하기">
+                        <% } %>
+                        <input type="button" onclick="reply_form()" value="답글달기">
+                        <input type="button" onclick="reply_form()" value="돌아가기">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" id="content"></td>
+            </tr>
+        </table>   
+    </div>   
+</body>
+</html>
