@@ -1,19 +1,21 @@
 #main{
     margin: 0 auto; 
-    background: brown; 
-    width: 1200px; 
-    height: 800px; 
-    border: 1px solid black;
+    background: #fff2d6; 
+    width: 730px; 
+    height: 600px; 
 }
 
 #main ~ div {
-    border: 50px sold black; 
     position: relative; 
-    margin-top: -700px; 
+    margin-top: -600px; 
     font-size: 70px;
 
     &> img{
         width: 200px; 
         height: 200px;
+    }
+
+    &> button {
+        color: gold;
     }
 }

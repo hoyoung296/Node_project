@@ -1,18 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>로그인 페이지</title>
+    <link rel="stylesheet" href="/static/css/member/loginForm.css">
 </head>
+
 <body>
-    <div id="main">
-        <form action="/member/login_check" method="post">
-            <input type="text" name="id"><br>
-            <input type="text" name="pwd"><br>
-            <a href="/member/register_form">회원가입</a>
-            <input type="submit" value="로그인"><br>
-        </form>
-    </div>
+    <body>
+        <div id="main">
+            <form action="/member/login_check" method="post">
+                <!-- 아이디 입력 -->
+                <div class="form-group">
+                    <label for="id" aria-hidden="true">아이디</label>
+                    <input type="text" id="id" name="id" required placeholder="아이디를 입력하세요">
+                </div>
+    
+                <!-- 비밀번호 입력 -->
+                <div class="form-group">
+                    <label for="pwd" aria-hidden="true">비밀번호</label>
+                    <input type="password" id="pwd" name="pwd" required placeholder="비밀번호를 입력하세요">
+                </div>
+    
+                <!-- 로그인 버튼 -->
+                <div class="form-group">
+                    <input type="submit" value="로그인">
+                </div>
+                <!-- 하단 링크들 (form 밖에 배치) -->
+                <div class="links">
+                    <a href="/member/pwdsearch_form">비밀번호 찾기</a>
+                    <a href="#">아이디 찾기</a>
+                    <a href="/member/register_form">회원가입</a>
+                </div>
+            </form>
+        </div>
+    </body>
+    
 </body>
+
 </html>

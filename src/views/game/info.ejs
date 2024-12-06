@@ -1,33 +1,75 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOTORI 깨기</title>
-    <link href="/static/css/game/info.css" rel="stylesheet">
-    <link href="/static/game_image/도토리외계인.png" rel="icon">
+    <title>DOTORI</title>
+    <link rel="icon" href="/static/front_image/dotoree.png" image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap"
+        rel="stylesheet">
+    <link href="/static/css/game/common.css" rel="stylesheet">
 </head>
 
-<body align="center">
-    <div id="main">
-        <b>
-            1. 방향키로 움직이고 스페이스바를 눌러 을 발사하세요.
-            <p>
-                2. 도토리가 무작위 위치에서 아래로 일정한 속도로 떨어집니다.
-            </p>
-            <p>
-                3. 도토리를 맞추면 점수가 1점씩 올라가고 도토리가 맨 아래까지 도달하면 게임오버입니다.
-            </p>
-            <p>
-                4. 게임을 통해 얻은 도토리로 아이템을 구매해서 홈페이지를 꾸며보세요!!!
-            </p>
-            <b>파이팅!!!!!!!!!!!!</b>
-            <p>
-                <button onclick="location.href='/game/play'">게임 시작</button>
-            </p>
-        </b>
-    </div>
+<body>
+    <header>
+        <h1 class="header_h1"><img src="/static/front_image/dotoree.png" onclick="location.href='/main'"><br>DOTORI</h1>
+        <h4 class="header_h4"><a href="#" id="login">로그인</a> &nbsp; / &nbsp;<a href="#" id="signup">회원가입</a></h4>
+    </header>
+
+    <nav>
+        <ul>
+            <li>
+                <button>사진</button>
+            </li>
+            <li>
+                <button>썰</button>
+            </li>
+            <li>
+                <button>쇼핑몰</button>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <button onclick="location.href='/game'">미니게임</button>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <button>마이페이지</button>
+            </li>
+        </ul>
+    </nav>
+
+    <section>
+        <%- include("./info1.ejs") %>
+    </section>
+
+    <footer>
+        <h1>
+            <div class="footerline"></div>
+            footer
+
+        </h1>
+        <div class="theme">
+            <input type="radio" name="theme" class="theme-btn spring" onclick="setTheme('spring')" title="spring mode">
+            <p>spring</p>
+            <input type="radio" name="theme" class="theme-btn summer" onclick="setTheme('summer')" title="summer mode">
+            <p>summer</p>
+            <input type="radio" name="theme" class="theme-btn autumn" onclick="setTheme('autumn')" title="autumn mode">
+            <p>autumn</p>
+            <input type="radio" name="theme" class="theme-btn winter" onclick="setTheme('winter')" title="winter mode">
+            <p>winter</p>
+            <input type="radio" name="theme" class="theme-btn dark" onclick="setTheme('dark')" title="dark mode">
+            <p>dark</p>
+        </div>
+    </footer>
 </body>
+<script>
+    const setTheme = theme => document.documentElement.className = theme;
+</script>
 
 </html>

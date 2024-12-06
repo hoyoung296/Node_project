@@ -1,25 +1,71 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOTORI 깨기</title>
-    <link href="/static/css/game/index.css" rel="stylesheet">
-    <link href="/static/game_image/도토리외계인.png" rel="icon">
+    <title>DOTORI</title>
+    <link rel="icon" href="/static/front_image/dotoree.png" image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap"
+        rel="stylesheet">
+    <link href="/static/css/game/common.css" rel="stylesheet">
 </head>
 
-<body align="center">
-    <div id="main"></div>
-    <div>
-        <img src="/static/game_image/도토리외계인.png"><br>
-        <b>DOTORI 깨기</b><br>
-        <button onclick="location.href='/game/info'">게임설명</button><br>
-        <button onclick="location.href='/game/play'">게임시작</button><br>
-    </div>
+<body>
+    <header>
+        <h1 class="header_h1"><img src="/static/front_image/dotoree.png" onclick="location.href='/main'"><br>DOTORI</h1>
+        <h4 class="header_h4"><a href="#" id="login">로그인</a> &nbsp; / &nbsp;<a href="#" id="signup">회원가입</a></h4>
+    </header>
+    <nav>
+        <ul>
+            <li>
+                <button>사진</button>
+            </li>
+            <li>
+                <button>썰</button>
+            </li>
+            <li>
+                <button>쇼핑몰</button>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <button onclick="location.href='/game'">미니게임</button>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <button>마이페이지</button>
+            </li>
+        </ul>
+    </nav>
+    <section>
+        <%- include("./index1.ejs") %>
+    </section>
+    <footer>
+        <h1>
+            <div class="footerline"></div>
+            footer
+        </h1>
+        <div class="theme">
+            <input type="radio" name="theme" class="theme-btn spring" onclick="setTheme('spring')" title="spring mode">
+            <p>spring</p>
+            <input type="radio" name="theme" class="theme-btn summer" onclick="setTheme('summer')" title="summer mode">
+            <p>summer</p>
+            <input type="radio" name="theme" class="theme-btn autumn" onclick="setTheme('autumn')" title="autumn mode">
+            <p>autumn</p>
+            <input type="radio" name="theme" class="theme-btn winter" onclick="setTheme('winter')" title="winter mode">
+            <p>winter</p>
+            <input type="radio" name="theme" class="theme-btn dark" onclick="setTheme('dark')" title="dark mode">
+            <p>dark</p>
+        </div>
+    </footer>
 </body>
-
-</html>
-</body>
+<script>
+    const setTheme = theme => document.documentElement.className = theme;
+</script>
 
 </html>

@@ -1,10 +1,12 @@
 const dao = require("../../database/member/member_dao")
 const serCom = require("../ser_common");
+const bcrypt = require("bcrypt");
 
 const process = {
     ser_insert : async(body) => {
         delete body.pwd2
         body.dotori = 0;
+        body.pwd = await bcrypt.hash(body.pwd,10);
         const result = await dao.process.dao_insert( body )
         console.log(body)
         if( result != 0 ){
@@ -19,17 +21,18 @@ const process = {
     ser_login : async( body , req , res) => {
         const result = await dao.process.dao_login( body.id )
         if(result.rows.length == 0 ){
-            msg = "존재하지 않는 id"
+            msg = "아이디 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요"
             url = "/member/login_form"
         }else{
-           if(result.rows[0].PWD == body.pwd ){
+            const isMatch = await bcrypt.compare(body.pwd,result.rows[0].PWD);
+           if( isMatch){
                 req.session.uid = body.id;
                 req.session.name =  result.rows[0].NAME
                 res.cookie("isLogin", true)
                 msg = "성공"
                 url = "/"
            }else{
-                msg = "비번틀림"
+                msg = "아이디 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요"
                 url = "/member/login_form"
            }
         }
