@@ -1,4 +1,5 @@
 const dao = require("../../database/product/product_dao")
+const common = require("../ser_common")
 
 const rename = (themaList) => {
     let thema = []
@@ -20,13 +21,43 @@ const listSetting = (path, name) => {
 
 const productList = async () => {
     const list = await dao.productList()
-    console.log("plist ser : ", list)
     return list.rows
 }
 
-const purchase = async (no, uid) => {
-    const result = await dao.purchase(no, uid)
+const product = async (no) => {
+    const product =  await dao.product(no)
+    return product.rows[0]
 }
 
-module.exports = {rename, listSetting, purchase, productList}
+const purchase = async (no, uid) => {
+    const udotori = await doCheck(uid)
+    const prod = await product(no)
+    const price = prod.PRICE
+    console.log("check : " + udotori, price)
+    let msg =''
+    if(udotori < price){
+        msg = "도토리가 부족합니다"
+    }else{
+        await dao.purchase(no, uid)
+        msg = "구매가 완료되었습니다"
+    }   
+    return msg
+}
+
+const loginCheck = (no, uid) => {
+    let msg ='', url = '/product'
+    if(!uid){
+        msg = "로그인 이후 구매가능합니다"
+    }else {
+        msg = purchase(no, uid)
+    }
+    return common.getMessage(msg, url)
+}
+
+const doCheck = async (uid) => {
+    const dotori = await dao.doCheck(uid)
+    return dotori.rows[0].DOTORI
+}
+
+module.exports = {rename, listSetting, purchase, productList, loginCheck}
 

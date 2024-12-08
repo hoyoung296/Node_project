@@ -14,12 +14,18 @@
     <link rel="stylesheet" type="text/css" href="/static/css/product/list.css"> 
     <script>
         const setThema = thema => document.documentElement.className = thema
+        const overBtn = (t) => {
+            document.getElementById(t.id+"_btn").style.visibility = "visible"
+        }
+        const outBtn = (t) => {
+            document.getElementById(t.id+"_btn").style.visibility = "hidden"
+        }
      </script>
 </head>
 <body>
     <header>
-        <%-include('../include/header.ejs')%>
-    </nav>
+        <!-- <%-include('../include/header.ejs')%> -->
+    </header>
 
     <section>
         <table id="list">
@@ -46,7 +52,7 @@
     </section>
 
     <footer>
-        <%-include('../include/footer.ejs')%>
+        <!-- <%-include('../include/footer.ejs')%> -->
     </footer>
 </body>
 </html>
