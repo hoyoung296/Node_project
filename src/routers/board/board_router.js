@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const multer = require("multer");
 const path = require("path")
+const ejs = require('ejs');
 const ctrl = require("../../controller/board/board_ctrl")
 
 
@@ -26,7 +27,7 @@ router.get("/modify_form/:writeNo", ctrl.views.modifyForm);
 router.post("/write", upload.single("image_file_name"), ctrl.process.write);
 router.get("/delete/:writeNo/:imgName", ctrl.process.delete);
 
-
+router.get("/main", ctrl.views.main);
 
 
 module.exports = router;
