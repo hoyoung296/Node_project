@@ -22,7 +22,8 @@ module.exports = (app) => {
         res.render("main_cover", { id: req.session.uid })
     })
     router.get("/main", (req, res) => {
-        res.render("main")
+        const isLogin = req.cookies.isLogin === "true";
+        res.render("main", { isLogin })
     })
 
     return router;
