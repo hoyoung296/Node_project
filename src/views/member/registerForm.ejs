@@ -6,9 +6,20 @@
     <title>Document</title>
     <link rel="stylesheet" href="/static/css/member/register.css">
     <script src="/static/js/member/register.js"></script>
+    <link rel="icon" href="/static/front_image/dotoree.png" image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap"rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/front/front.css">
 </head>
+<body class="front_body">
+
+    <%- include('../include/header.ejs')%>
+    
+        <section>
 <body>
-    <form action="/member/register" method="post" onsubmit="return validateForm()">
+    <form class="register_form" action="/member/register" method="post" onsubmit="return validateForm()">
         <table>
             <!-- ID -->
             <tr>
@@ -65,5 +76,10 @@
             </tr>
         </table>
     </form>
+</body>
+</section>
+
+<%- include('../include/footer.ejs')%>
+
 </body>
 </html>

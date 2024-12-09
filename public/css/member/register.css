@@ -1,82 +1,70 @@
-/* 화면 중앙에 폼을 정렬 */
-body {
+/* register.css 파일 수정 */
+/* .register_form 클래스 안에 있는 스타일만 적용되도록 범위 지정 */
+
+.register_form {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    /* 화면 높이를 100%로 설정 */
-    margin: 0;
-    /* 기본 여백 제거 */
+    height: 100vh; /* 화면 높이를 100%로 설정 */
+    margin: 0; /* 기본 여백 제거 */
     font-family: Arial, sans-serif;
 }
 
 /* 테이블 스타일 */
-table {
+.register_form table {
     border-collapse: collapse;
     width: 100%;
-    max-width: 500px;
-    /* 폼의 최대 너비 설정 */
-    height: 500px;
-    /* 폼의 고정된 높이 설정 */
-    table-layout: fixed;
-    /* 셀 크기를 고정하여 내용이 늘어나지 않게 설정 */
-    border: 1px solid #ccc;
-    /* 테이블에 border 설정 */
+    max-width: 500px; /* 폼의 최대 너비 설정 */
+    height: 500px; /* 폼의 고정된 높이 설정 */
+    table-layout: fixed; /* 셀 크기를 고정하여 내용이 늘어나지 않게 설정 */
+    border: 1px solid #ccc; /* 테이블에 border 설정 */
 }
 
-td {
+.register_form td {
     padding: 8px;
     vertical-align: middle;
     text-align: left;
 }
 
-td label {
+.register_form td label {
     padding-left: 20px;
-    display: block;
-    /* label을 블록 요소로 만들어 수평 중앙 정렬 */
-    text-align: left;
-    /* 텍스트 왼쪽 정렬 */
-    width: 100%;
-    /* label이 td 전체 너비를 차지하도록 설정 */
+    display: block; /* label을 블록 요소로 만들어 수평 중앙 정렬 */
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+    width: 100%; /* label이 td 전체 너비를 차지하도록 설정 */
 }
 
-td div {
+.register_form td div {
     padding-left: 10px;
 }
 
-input[type="text"],
-input[type="password"] {
-    width: 100%;
-    /* 입력 필드를 테이블 셀 크기에 맞게 설정 */
+.register_form input[type="text"],
+.register_form input[type="password"] {
+    width: 100%; /* 입력 필드를 테이블 셀 크기에 맞게 설정 */
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-input[type="submit"] {
-    width: 100%;
-    /* 버튼 너비를 100%로 설정하여 테이블 셀 크기에 맞게 설정 */
+.register_form input[type="submit"] {
+    width: 100%; /* 버튼 너비를 100%로 설정하여 테이블 셀 크기에 맞게 설정 */
     padding: 10px;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
-    /* 버튼 글자 크기 */
+    font-size: 16px; /* 버튼 글자 크기 */
 }
 
-input[type="submit"]:hover {
+.register_form input[type="submit"]:hover {
     background-color: #45a049;
 }
 
-.error-message {
+.register_form .error-message {
     color: red;
     font-size: 12px;
-    min-height: 20px;
-    /* 에러 메시지 영역의 최소 높이를 설정 */
+    min-height: 20px; /* 에러 메시지 영역의 최소 높이를 설정 */
 }
 
-.error-container {
+.register_form .error-container {
     min-height: 20px;
 }

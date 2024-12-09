@@ -4,21 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이메일 인증</title>
+    <title>아이디 찾기</title>
     <link rel="stylesheet" href="/static/css/member/idsearchForm.css">
     <script src="/static/js/member/idsearchForm.js"></script>
 </head>
 
 <body>
     <div id="main">
-        <h1>이메일 인증 페이지</h1>
+        <h1>아이디 찾기</h1>
 
         <form onsubmit="sendVerificationCode(event)">
-            <label for="email">이메일을 입력하세요:</label>
-            <input type="email" id="email" name="email" required>
+            <div class="form-group">
+                <label for="email">이메일을 입력:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
 
-            <label for="emailcheck">인증번호 :</label>
-            <input type="text" id="emailcheck" name="emailcheck" required disabled>
+            <div class="form-group">
+                <label for="emailcheck">인증번호 :</label>
+                <input type="text" id="emailcheck" name="emailcheck" required disabled>
+            </div>
 
             <button type="submit" id="sendEmailBtn">이메일 인증하기</button>
             <button type="button" id="verifyBtn" onclick="verifyCode(event)" disabled>인증번호 확인</button>
@@ -28,6 +32,7 @@
         </form>
 
         <div id="timer"></div> <!-- 만료시간 표시 영역 추가 -->
+        <a href="/member/pwdsearch_form">비밀번호 찾기</a>
     </div>
 
 </body>

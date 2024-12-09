@@ -29,21 +29,31 @@ h1 {
     color: #333333;
 }
 
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: flex-start;
+    text-align: left;
+}
+
 label {
     font-size: 14px;
     color: #666666;
-    display: block;
-    margin-bottom: 5px;
+    display: inline-block;
+    width: 120px; /* label의 크기를 지정하여 input과의 간격 조절 */
+    text-align: left; /* label 내용이 오른쪽으로 정렬되도록 */
+    margin-right: 10px; /* input과의 간격을 조정 */
+    vertical-align: middle; /* 세로 정렬 */
 }
 
 input[type="email"],
 input[type="text"] {
-    width: 100%;
+    width: calc(100% - 130px); /* label 크기만큼 뺀 나머지 공간을 input에 할당 */
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    margin-bottom: 20px;
     transition: border 0.3s ease;
 }
 
@@ -93,4 +103,19 @@ button:hover {
     font-size: 14px;
     margin-top: 10px;
     color: #666666;
+}
+
+a {
+    font-size: 16px;
+    color: #3b7a28;
+    text-decoration: none;
+    border: 2px solid #3b7a28;
+    padding: 8px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+a:hover {
+    background-color: #3b7a28;
+    color: white;
 }
