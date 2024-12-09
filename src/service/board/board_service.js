@@ -14,7 +14,6 @@ const boardRead = {
         const page = parseInt( num / 5 + result );
 
         const startNum = ( start - 1 ) * 5;
-
         let list = await dao.boardRead.list( startNum );
         console.log(list.rows[0])
         list = serCom.timeModify( list.rows )

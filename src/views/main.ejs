@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap"rel="stylesheet">
     <link rel="stylesheet" href="/static/css/front/front.css">
     <script>
         window.onload = async () => {
@@ -72,16 +70,17 @@
 </head>
 
 <body class="front_body">
-    <header>
-        <%-include('./include/header.ejs')%>
-    </header>
+
+    <%-include('./include/header.ejs')%>
+
 
     <section>
         <div class="story">스토리</div>
         <div id="main_section"> </div>
     </section>
 
-        <%- include('include/footer.ejs')%>
+    <%- include('include/footer.ejs')%>
+
 </body>
 <script>
     const setTheme = theme => document.documentElement.className = theme;
