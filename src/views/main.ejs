@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,20 +8,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap"rel="stylesheet">
     <link rel="stylesheet" href="/static/css/front/front.css">
 </head>
 
 <body class="front_body">
-        <%- include('include/header.ejs')%>
 
-            <section>
-                <div class="story">스토리</div>
+<%- include('include/header.ejs')%>
+
+    <section>
+        <div class="story">스토리</div>
                 <div class="main_section"> <%-include('board/list.ejs')%></div>
-            </section>
+    </section>
 
-                <%- include('include/footer.ejs')%>
+<%- include('include/footer.ejs')%>
+
 </body>
 <script>
     const setTheme = theme => document.documentElement.className = theme;
