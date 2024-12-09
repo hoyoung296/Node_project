@@ -1,7 +1,7 @@
 const ser = require("../../service/board/board_service")
+const serCom = require("../../service/ser_common")
 
-
-const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 안보이는 코드 list.ejs에도 있음
+const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 안보이는 코드 list.ejs에도 있음 
     list : async ( req, res ) => {
         const data = await ser.boardRead.list( req.query.start );
         const isLoggedIn = req.session.user ? true : false;
@@ -39,7 +39,7 @@ const process = {
     modify : async ( req, res) => {
         const deleteFile = req.body.change_file_name;
         const message = await ser.boardUpdate.modify( req. body, req.file );
-        if( req,file !== undefined && message.result ===1 ){
+        if( req.file !== undefined && message.result ===1 ){
             file_frocess.delete( deleteFile );
         }
         res.send(message.msg );

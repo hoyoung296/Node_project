@@ -5,7 +5,6 @@ const getMessage = (msg, url) => {
     </script>`;
 }
 const timeModify = ( list ) => {
-    console.log("time modi : ", list)
     list = list.map( data => {
         data['SAVE_DATE'] = data['SAVE_DATE'].toLocaleString();
         return data;
@@ -16,7 +15,8 @@ const sessionCheck = ( session ) => {
     if( session == undefined || session.username == undefined ){
         msg = `로그인 사용자만 가능합니다`
         url = '/member/login_form'
-        return getMessage(msg, url);
+        return getMessage(msg, url)
+
     }
     return 0;
 }
