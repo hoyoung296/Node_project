@@ -10,18 +10,77 @@
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap"rel="stylesheet">
     <link rel="stylesheet" href="/static/css/front/front.css">
+    <script>
+        window.onload = async () => {
+            const res = await fetch("/board/main", {method:"get"})
+            const data = await res.json()
+            let content = `
+            <table>
+            <tr>
+                <td>글 번호</td> 
+                <td>제목</td> 
+                <td>아이디</td> 
+                <td>날짜</td> 
+                <td>조회수</td> 
+            </tr>`
+            if( data.list.length == 0){
+                content += `<tr>
+                    <th colspan="5">등록된 글이 없습니다.</th>
+                </tr>`
+            }else{
+                data.list.forEach(d =>{
+                content += `<tr>
+                    <td>${d.WRITE_NO}</td>
+                    <td>
+                        <a href="/board/data/${d.WRITE_NO}">
+                            ${d.TITLE}
+                        </a>
+                    </td>
+                    <td>${d.CONTENT}</td>
+                    <td>${d.ID}</td>
+                    <td>${d.NAME}</td>
+                    <td>${dt.SAVE_DATE}</td>
+                    <td>${d.HIT}</td>
+                    <td>${d.UPLOAD_FILE}</td>
+                </tr>`
+                })
+            }
+                content += `<tr><td colspan="5" align="right">`
+                    if( data.start <= 1 ){
+                        content += `<button disabled>이전</button>`
+                    }else{
+                        content += `<button type="button" onclick="location.href='/board/list?start=${data.start}'">이전</button>`
+                    }
+                    for(let i = 1 ; i <= data.page ; i++ ){
+                        content += `<a href="/board/list?start=${i}">${i}</a>`
+                    }if( data.start < data.page ){
+                        content += `<button type="button" onclick="location.href='/board/list?start=${data.start + 1}">다음</button>`
+                    }else{ 
+                        content += `<button disabled>다음</button>`
+                    }
+                    content += `${data.start} / ${data.page}`
+                    if (data.isLoggedIn) {
+                        content += `<a href="/board/write_form">글 작성</a>`
+                    }
+                content += `</td> </tr> </table>`
+            document.getElementById("main_section").innerHTML = content
+        }
+        
+    </script>
 </head>
 
 <body class="front_body">
 
-<%- include('include/header.ejs')%>
+
+    <%-include('./include/header.ejs')%>
+
 
     <section>
         <div class="story">스토리</div>
-                <div class="main_section"> <%-include('board/list.ejs')%></div>
+        <div id="main_section"> </div>
     </section>
 
-<%- include('include/footer.ejs')%>
+    <%- include('include/footer.ejs')%>
 
 </body>
 <script>

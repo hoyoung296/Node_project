@@ -234,6 +234,7 @@
     border-style: solid;
     border-width: 3px;
     border-color: var(--header-color);
+    color: var(--text-color);
     justify-content: center;
     align-items: center;
     font-size: 12px;
