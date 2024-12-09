@@ -43,11 +43,11 @@
         'header header'
         'nav section'
         'footer footer';
-    grid-template-columns: 150px 80%;
-    grid-template-rows: auto 83vh auto;
-    
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: auto 1fr auto;
     gap: 10px;
-    height: 300px;
+    width: 1fr;
+    height: 100vh;
     
 }
 .front_body > header{
@@ -133,6 +133,8 @@
     display: grid;
     grid-template-rows: 1fr 9fr;
     gap: 10px;
+    min-height: 600px;
+
 }
 .story{
     background-color: #dadada;
@@ -232,6 +234,7 @@
     border-style: solid;
     border-width: 3px;
     border-color: var(--header-color);
+    color: var(--text-color);
     justify-content: center;
     align-items: center;
     font-size: 12px;
@@ -240,10 +243,4 @@
 .top:hover{
     background-color: var(--header-color);
     cursor: pointer;
-}
-
-footer > .theme{
-    display: flex;
-    gap: 10px;
-
 }

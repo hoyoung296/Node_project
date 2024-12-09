@@ -21,9 +21,9 @@ module.exports = (app) => {
     router.get("/", (req, res) => {
         res.render("main_cover", { id: req.session.uid })
     })
-    // router.get("/main", (req, res) => {
-    //     res.render("main")
-    // })
+    router.get("/main", (req, res) => {
+        res.render("main")
+    })
 
     return router;
 }

@@ -9,8 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/front/header.css">
-    <link rel="stylesheet" href="/static/css/front/header.css">
+    <link rel="stylesheet" href="/static/css/front/front.css">
     <link rel="stylesheet" type="text/css" href="/static/css/product/list.css"> 
     <script>
         const setThema = thema => document.documentElement.className = thema
@@ -22,10 +21,10 @@
         }
      </script>
 </head>
-<body>
-    <header>
-        <!-- <%-include('../include/header.ejs')%> -->
-    </header>
+<body  class="front_body">
+
+
+    <%-include('../include/header.ejs')%>
 
     <section>
         <table id="list">
@@ -51,8 +50,6 @@
         </table>
     </section>
 
-    <footer>
-        <!-- <%-include('../include/footer.ejs')%> -->
-    </footer>
+    <%-include('../include/footer.ejs')%>
 </body>
 </html>

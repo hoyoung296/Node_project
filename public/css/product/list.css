@@ -9,6 +9,7 @@
     vertical-align: middle;
     font-size: 130%;
     padding-bottom: 3%;
+    color: var(--text-color);
 
     & > .sample {
         width: 45%;
