@@ -2,9 +2,12 @@
     <h1 class="header_h1"><img class="dotori_img" src="/static/front_image/dotoree.png"
             onclick="location.href='/main'"><br>DOTORI</h1>
     <h4 class="header_h4">
-        <a href="/member/login_form" id="login">로그인</a>
-        &nbsp; / &nbsp;
-        <a href="/member/register_form" id="signup">회원가입</a>
+        <% if (typeof isLogin !== "undefined" && isLogin === true) { %>
+            <a href="/member/logout" id="logout">로그아웃</a>
+        <% } else { %>
+            <a href="/member/login_form" id="login">로그인</a> &nbsp; / &nbsp;<a href="/member/register_form" id="signup">회원가입</a>
+        <% } %>
+       
     </h4>
     <script src="/static/js/top.js"></script>
 </header>
@@ -12,10 +15,19 @@
 <nav class="nav_bar">
     <ul>
         <li>
-            <button>사진</button>
+            <button onclick="location.href='/board/hot_issue'">이번주 핫이슈</button>
         </li>
         <li>
-            <button>썰</button>
+            <button onclick="location.href='/board/restaurant'">맛집&카페</button>
+        </li>
+        <li>
+            <button onclick="location.href='/board/Problem Solving'">고민해결</button>
+        </li>
+        <li>
+            <button onclick="location.href='/board/gifs'">짤 모음</button>
+        </li>
+        <li>
+            <button onclick="location.href='/board/Problem Solving'">노래 추천</button>
         </li>
         <li>
             <button onclick="location.href='/product'">쇼핑몰</button>
