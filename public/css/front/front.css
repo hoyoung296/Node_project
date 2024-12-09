@@ -133,7 +133,8 @@
     display: grid;
     grid-template-rows: 1fr 9fr;
     gap: 10px;
-    min-height: 500px;
+    min-height: 600px;
+
 }
 .story{
     background-color: #dadada;
