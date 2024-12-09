@@ -2,17 +2,25 @@ const ser = require("../../service/board/board_service")
 const serCom = require("../../service/ser_common")
 
 const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 안보이는 코드 list.ejs에도 있음 
+
+    main : async (req, res) => {
+        const data = await ser.boardRead.list( req.query.start );
+        console.log("main ctrl", data)
+        const isLoggedIn = req.session.user ? true : false;
+        res.json({ list : data.list, start : data.start, page : data.page, isLoggedIn })
+    },
     list : async ( req, res ) => {
         const data = await ser.boardRead.list( req.query.start );
         const isLoggedIn = req.session.user ? true : false;
         res.render( "board/list", {list : data.list, start : data.start, page : data.page, isLoggedIn: isLoggedIn })
     },
     writeForm : (req, res) => {
+        console.log(req.session)
         const msg = serCom.sessionCheck( req.session );
         if( msg != 0 ){
             return res.send( msg )
         }
-        res.render("board/write_from", {username : req.session.username})
+        res.render("board/write_form", {username : req.session.name})
     },
     data : async ( req, res) => {
         const data = await ser.boardRead.data( req.query.num );

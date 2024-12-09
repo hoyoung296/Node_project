@@ -244,9 +244,3 @@
     background-color: var(--header-color);
     cursor: pointer;
 }
-
-footer > .theme{
-    display: flex;
-    gap: 10px;
-
-}

@@ -12,7 +12,7 @@ const timeModify = ( list ) => {
     return list;
 }
 const sessionCheck = ( session ) => {
-    if( session == undefined || session.username == undefined ){
+    if( session.uid == undefined || session.name == undefined ){
         msg = `로그인 사용자만 가능합니다`
         url = '/member/login_form'
         return getMessage(msg, url)

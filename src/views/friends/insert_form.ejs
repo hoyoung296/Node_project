@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
 </head>
-<body>
-    모달 창
+
+<body align="center">
+    <% if(!username) { %>
+        <script>
+            alert("로그인 이후 사용가능합니다!!!!")
+            location.href = '/member/login_form'
+        </script>
+        <% } %>
+            <link href="/static/css/game/friends.css" rel="stylesheet">
+            <div id="modal_wrap">
+                <div id="first">
+                    <div style="width: 250px; margin: 0 auto; padding-top: 20px;">
+                        <form id="frm" action="/friends/insert" method="post">
+                            <%= body.id %>님한테 친구 요쳥 메세지를 보내겠습니까?<br><br><br>
+                                <input type="hidden" name="sender" value="<%= username %>">
+                                <input type="hidden" name="receiver" value="<%= body.id %>">
+                                <input type="hidden" name="object" value="친구추가">
+                                <input type="hidden" name="subject" value="친구추가">
+                                <input type="hidden" name="content" value="친구 추가 수락 부탁">
+                                <button type="submit" style="color: gold; border: none; background: none; font-size: 25px; 
+                    font-weight: bold; cursor: pointer;">확인</button><br><br>
+                                <button type="button" onclick="location.href='/friends'" style="color: gold; border: none; background: none; font-size: 25px; 
+                    font-weight: bold; cursor: pointer;">취소</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
 </body>
+
 </html>
