@@ -50,7 +50,7 @@ const createRandomPassword = (length) => {
 }
 
 // 이메일 전송 함수
-const sendTemporaryPassword = async (email,uid) => {
+const sendTemporaryPassword = async (email, uid) => {
     var randomPassword = createRandomPassword(8);  // 8자리 임시 비밀번호 생성
 
     const transporter = nodemailer.createTransport({
@@ -76,25 +76,77 @@ const sendTemporaryPassword = async (email,uid) => {
     };
 
     try {
-        console.log("임시비밀번호 : ",randomPassword)
-        console.log("uid : ",email)
-        console.log("email : ",uid)
+        console.log("임시비밀번호 : ", randomPassword)
+        console.log("uid : ", email)
+        console.log("email : ", uid)
         const pwd = await bcrypt.hash(randomPassword, 10);
-        const rs = await dao.process.dao_chagePwd(email,uid,pwd)
-        console.log("emailsend의 rs : ",rs.rowsAffected)
+        const rs = await dao.process.dao_chagePwd(email, uid, pwd)
+        console.log("emailsend의 rs : ", rs.rowsAffected)
         // 이메일 전송
-        if(rs.rowsAffected == 1){
+        if (rs.rowsAffected == 1) {
             let info = await transporter.sendMail(emailOptions);
             console.log('Email sent: ' + info.response);  // 전송된 이메일의 응답 출력
             return randomPassword;  // 임시 비밀번호 반환
-        }else{
+        } else {
             return null;  // 비밀번호 변경 실패시
         }
-        
+
     } catch (error) {
         console.log("Error occurred: ", error);  // 오류 발생 시 오류 메시지 출력
         return null;  // 오류 발생 시 null 반환
     }
 }
 
-module.exports = { sendTemporaryPassword };
+
+// 이메일 발송 함수
+const sendVerificationEmail = async (email) => {
+    // 6자리 랜덤 인증번호 생성
+    const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+    // 인증번호 만료 시간을 10분으로 설정 (600000 밀리초)
+    const expirationTime = Date.now() + 600000;  // 현재 시간 + 10분 (600,000 밀리초)
+
+    // Nodemailer로 이메일 보내기
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        port: 465,
+        secure: true,
+        auth: {
+            user: '412jsh@gmail.com',
+            pass: 'xdne nwqt figz awqq',
+        },
+    });
+
+    const mailOptions = {
+        from: '412jsh@gmail.com',   // 발신자 이메일
+        to: email,                  // 수신자 이메일
+        subject: '이메일 인증번호',  // 이메일 제목
+        text: `귀하의 인증번호는 ${verificationCode}입니다. 이 인증번호는 10분 이내에만 유효합니다.`  // 이메일 본문
+    };
+
+    try {
+        // 이메일 발송
+        let info = await transporter.sendMail(mailOptions);
+        
+        // 인증번호와 만료시간을 반환
+        return { verificationCode, expirationTime, info: info.response };  // 인증번호, 만료 시간, 발송 결과를 반환
+    } catch (error) {
+        // 이메일 발송 실패 시 에러 처리
+        throw new Error('이메일 발송에 실패했습니다.');
+    }
+};
+
+// 인증번호 확인 함수
+const verifyEmailCode = (inputCode, storedCode, storedExpirationTime) => {
+    // 현재 시간이 만료 시간을 지나지 않았는지 확인
+    const currentTime = Date.now();
+
+    // 인증번호가 일치하고, 만료 시간이 지나지 않았으면 true 반환
+    if (inputCode === storedCode && currentTime <= storedExpirationTime) {
+        return true;
+    } else {
+        return false;  // 인증번호가 일치하지 않거나 만료 시간이 지나면 false 반환
+    }
+};
+
+module.exports = { sendTemporaryPassword, sendVerificationEmail, verifyEmailCode };

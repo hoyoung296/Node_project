@@ -76,6 +76,26 @@ const process = {
         }
         return serCom.getMessage(msg, url);
     },
+    ser_emailCheck2: async (email) => {
+        let result = await dao.process.dao_emailCheck2(email);
+        console.log("dao.email_result : ",result)
+        if (result.rows.length > 0) {
+            rs = { isAvailable: true };
+        } else {
+            rs = { isAvailable: false };
+        }
+        // rs.uid = result.rows[0].id;
+        // console.log("rs : ",rs)
+        return rs
+    },
+    ser_idsearch : async (email) => {
+        let result = await dao.process.dao_idsearch(email);
+        console.log("id : ",result.rows[0].ID)
+        rs = result.rows[0].ID
+        // rs.uid = result.rows[0].id;
+        // console.log("rs : ",rs)
+        return rs
+    },
 
 
 }
