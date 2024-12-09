@@ -1,5 +1,4 @@
 const dao = require("../../database/mypage/mypage_dao");
-const serCom = require("../ser_common")
 
 const getUserInfo = async (userId) => {
     try {
