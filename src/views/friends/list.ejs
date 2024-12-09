@@ -13,52 +13,58 @@
             location.href = '/member/login_form';
         </script>
         <% } %>
-    <table align="center" border="1">
-        <tr>
-            <th>ID</th>
-            <th>NAME</th>
-        </tr>
-        <% result.forEach (data=>{ %>
-            <% if(username!=data.ID){ %>
+            <table align="center" border="1">
                 <tr>
-                    <td>
-                        <%= data.ID %>
-                    </td>
-                    <td>
-                        <%= data.NAME %>
-                    </td>
-                    <td>
-                        <form action="/friends/check" method="post">
-                            <input type="hidden" name="id" value="<%= data.ID %>">
-                            <button type="submit">친구 추가</button>
-                        </form>
-                    </td>
+                    <th>ID</th>
+                    <th>NAME</th>
                 </tr>
-                <% } %>
-                    <% }) %>
-                        <% if(result.length==0) { %>
-                            <tr>
-                                <td colspan="3" align="center"><b>등록된 정보 없음</b></td>
-                            </tr>
-                            <% } %>
-                                <tr>
-                                    <td colspan="3">
-                                        <% if(start> 1){ %>
-                                            <button onclick="location.href='/friends?start=<%= start-1 %>'">이전</button>
-                                            <% } %>
-                                                <% for (let i=1 ; i <=page ; i++) { %>
-                                                    <a href="/friends?start=<%= i %>">
-                                                        <%= i %>
-                                                    </a>
+                <% result.forEach (data=>{ %>
+                    <% if(username!=data.ID){ %>
+                        <tr>
+                            <td>
+                                <%= data.ID %>
+                            </td>
+                            <td>
+                                <%= data.NAME %>
+                            </td>
+                            <td>
+                                <form action="/friends/check" method="post">
+                                    <input type="hidden" name="id" value="<%= data.ID %>">
+                                    <button type="submit" style="color: gold; border: none; background: none; font-size: 25px; 
+                    font-weight: bold; cursor: pointer;">친구 추가</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% } %>
+                            <% }) %>
+                                <% if(result.length==0) { %>
+                                    <tr>
+                                        <td colspan="3" align="center"><b>등록된 정보 없음</b></td>
+                                    </tr>
+                                    <% } %>
+                                        <tr>
+                                            <td colspan="3">
+                                                <% if(start> 1){ %>
+                                                    <button onclick="location.href='/friends?start=<%= start-1 %>'"
+                                                        style="color: gold; border: none; background: none; font-size: 25px; 
+                    font-weight: bold; cursor: pointer;">이전</button>
                                                     <% } %>
-                                                        <% if ( start < page ){ %>
-                                                            <button
-                                                                onclick="location.href='/friends?start=<%= start + 1 %>'">다음</button>
+                                                        <% for (let i=1 ; i <=page ; i++) { %>
+                                                            <a href="/friends?start=<%= i %>">
+                                                                <%= i %>
+                                                            </a>
                                                             <% } %>
-                                    </td>
-                                </tr>
-    </table>
-    <button onclick="location.href='/board/list'">메인 페이지</button>
+                                                                <% if ( start < page ){ %>
+                                                                    <button
+                                                                        onclick="location.href='/friends?start=<%= start + 1 %>'"
+                                                                        style="color: gold; border: none; background: none; font-size: 25px; 
+                    font-weight: bold; cursor: pointer;">다음</button>
+                                                                    <% } %>
+                                            </td>
+                                        </tr>
+            </table>
+            <button onclick="location.href='/main'" style="color: gold; border: none; background: none; font-size: 25px; 
+                    font-weight: bold; cursor: pointer;">메인 페이지</button>
 </body>
 
 </html>
