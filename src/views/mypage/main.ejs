@@ -7,9 +7,9 @@
 </head>
 <body>
     <h1>마이페이지</h1>
-    <p>안녕하세요, <%= user.name %>님!</p>
-    <p>아이디: <%= user.id %></p>
-    <p>이메일: <%= user.email %></p>
+    <p>안녕하세요, <%= user && user.NAME ? user.NAME : '' %>님!</p>
+    <p>아이디: <%= user && user.ID ? user.ID : '' %></p>
+    <p>이메일: <%= user && user.EMAIL ? user.EMAIL : '' %></p>
     
     <h2>내정보 관리</h2>
     <ul>
@@ -17,9 +17,9 @@
         <li><a href="/mypage/delete">회원탈퇴</a></li>
     </ul>
     
-    <h2>로그아웃</h2>
-    <form action="/logout" method="POST">
+    <form action="/mypage/logout" method="POST">
         <button type="submit">로그아웃</button>
     </form>
+    <a href="/">메인페이지</a>
 </body>
 </html>

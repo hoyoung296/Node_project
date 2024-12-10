@@ -2,7 +2,8 @@ const dao = require("../../database/mypage/mypage_dao");
 
 const getUserInfo = async (userId) => {
     try {
-        return await dao.getUserInfo(userId);
+        const user = await dao.getUserInfo(userId);
+        return user;
     } catch(err) {
         throw new Error("Error getting user information: " + err.message);
     }
