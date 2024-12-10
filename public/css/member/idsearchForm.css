@@ -1,35 +1,53 @@
-* {
+/* 기본 스타일 초기화 */
+#idsearchform * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f7fc;
+/* html과 body에 높이를 100%로 설정하여 페이지 전체를 차지하도록 함 */
+html, body {
+    height: 100%; /* 화면 전체 높이를 차지하도록 설정 */
+}
+#idsearchform {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    justify-content: center;  /* 가로 중앙 정렬 */
+    align-items: center;      /* 세로 중앙 정렬 */
+    height: 100%;             /* 화면의 100% 높이를 채우도록 설정 */
+    padding: 20px;
 }
 
-#main {
-    background-color: #ffffff;
+
+/* 폼을 중앙에 위치시키는 스타일 */
+#idsearchform body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;  /* 수평 중앙 정렬 */
+    align-items: center;      /* 수직 중앙 정렬 */
+    height: 100%;             /* 화면 전체 높이를 차지하도록 설정 */
+
+}
+
+/* 메인 폼 영역 */
+#idsearchform #main {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 400px;
+    max-width: 400px;  /* 폼의 최대 너비를 설정 */
     padding: 30px;
     text-align: center;
+
 }
 
-h1 {
+/* 폼 제목 */
+#idsearchform h1 {
     font-size: 24px;
     margin-bottom: 20px;
     color: #333333;
 }
 
-.form-group {
+/* 폼 입력 그룹 스타일 */
+#idsearchform .form-group {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
@@ -37,19 +55,20 @@ h1 {
     text-align: left;
 }
 
-label {
+/* 레이블 스타일 */
+#idsearchform .form-group label {
     font-size: 14px;
     color: #666666;
     display: inline-block;
-    width: 120px; /* label의 크기를 지정하여 input과의 간격 조절 */
-    text-align: left; /* label 내용이 오른쪽으로 정렬되도록 */
-    margin-right: 10px; /* input과의 간격을 조정 */
-    vertical-align: middle; /* 세로 정렬 */
+    width: 120px;
+    margin-right: 10px;
+    vertical-align: middle;
 }
 
-input[type="email"],
-input[type="text"] {
-    width: calc(100% - 130px); /* label 크기만큼 뺀 나머지 공간을 input에 할당 */
+/* 입력 필드 스타일 */
+#idsearchform .form-group input[type="email"],
+#idsearchform .form-group input[type="text"] {
+    width: calc(100% - 130px);
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ddd;
@@ -57,12 +76,13 @@ input[type="text"] {
     transition: border 0.3s ease;
 }
 
-input[type="email"]:focus,
-input[type="text"]:focus {
+#idsearchform .form-group input[type="email"]:focus,
+#idsearchform .form-group input[type="text"]:focus {
     border-color: #4e9e2e;
 }
 
-button {
+/* 버튼 스타일 */
+#idsearchform button {
     width: 100%;
     padding: 12px;
     font-size: 16px;
@@ -75,37 +95,41 @@ button {
     margin-bottom: 10px;
 }
 
-button:disabled {
+#idsearchform button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
 
-button:hover {
+#idsearchform button:hover {
     background-color: #3b7a28;
 }
 
-#message {
+/* 메시지 스타일 */
+#idsearchform #message {
     margin-top: 15px;
     color: #ff5722;
     font-size: 14px;
 }
 
-#resendBtn {
+/* 재발송 버튼 스타일 */
+#idsearchform #resendBtn {
     background-color: #ff5722;
     display: none;
 }
 
-#resendBtn:hover {
+#idsearchform #resendBtn:hover {
     background-color: #d4431c;
 }
 
-#timer {
+/* 타이머 스타일 */
+#idsearchform #timer {
     font-size: 14px;
     margin-top: 10px;
     color: #666666;
 }
 
-a {
+/* 링크 스타일 */
+#idsearchform a {
     font-size: 16px;
     color: #3b7a28;
     text-decoration: none;
@@ -115,7 +139,7 @@ a {
     transition: background-color 0.3s;
 }
 
-a:hover {
+#idsearchform a:hover {
     background-color: #3b7a28;
     color: white;
 }

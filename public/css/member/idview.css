@@ -1,44 +1,51 @@
- /* 전체 스타일 리셋 */
- * {
+/* 전체 스타일 리셋 */
+#idview * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;  /* html과 body의 높이를 100%로 설정 */
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
+    height: 100%; /* body의 높이를 100%로 설정하여 화면 전체를 차지하도록 */
+}
+
+#idview {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    justify-content: center;  /* 가로 중앙 정렬 */
+    align-items: center;      /* 세로 중앙 정렬 */
+    height: 100%;             /* 화면의 100% 높이를 채우도록 설정 */
     padding: 20px;
 }
 
-#main {
-    background-color: #ffffff;
+#idview #main {
     padding: 40px 30px;
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
     max-width: 500px;
     width: 100%;
+    background-color: FFFDF5;  /* main 부분 배경색을 흰색으로 설정 */
 }
 
-h1 {
+#idview h1 {
     font-size: 28px;
     color: #333;
     margin-bottom: 20px;
     font-weight: 600;
 }
 
-.message {
+#idview .message {
     font-size: 18px;
     color: #555;
     margin-bottom: 20px;
 }
 
-.uid {
+#idview .uid {
     font-size: 22px;
     font-weight: 600;
     color: #4e9e2e;
@@ -46,7 +53,7 @@ h1 {
     margin-bottom: 30px;
 }
 
-a {
+#idview a {
     font-size: 16px;
     color: #3b7a28;
     text-decoration: none;
@@ -56,7 +63,7 @@ a {
     transition: background-color 0.3s;
 }
 
-a:hover {
+#idview a:hover {
     background-color: #3b7a28;
     color: white;
 }

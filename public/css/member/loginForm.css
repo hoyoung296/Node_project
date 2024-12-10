@@ -25,7 +25,7 @@
 
  /* 로그인 폼 스타일 */
  form {
-     background-color: white;
+     /* background-color: white; */
      /* 폼 배경을 흰색으로 설정 */
      padding: 30px;
      /* 폼 내부 여백을 30px로 설정 */
@@ -80,7 +80,7 @@
      /* 버튼 너비를 100%로 설정 */
      padding: 10px;
      /* 버튼 내부 여백을 10px로 설정 */
-     background-color: #4CAF50;
+     background-color: #4e9e2e;
      /* 버튼 배경색을 초록색으로 설정 */
      color: white;
      /* 버튼 텍스트 색을 흰색으로 설정 */
@@ -96,13 +96,13 @@
 
  /* 제출 버튼에 마우스를 올렸을 때의 효과 */
  input[type="submit"]:hover {
-     background-color: #45a049;
+     background-color: #3b7a28;
      /* 버튼 배경색을 어두운 초록색으로 변경 */
  }
 
  /* 링크 스타일 */
  #main a {
-     color: #4CAF50;
+     color: #4e9e2e;
      /* 링크 텍스트 색을 초록색으로 설정 */
      text-decoration: none;
      /* 링크에 밑줄을 없애기 */

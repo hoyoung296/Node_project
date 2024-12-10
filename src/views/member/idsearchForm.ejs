@@ -5,35 +5,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>아이디 찾기</title>
-    <link rel="stylesheet" href="/static/css/member/idsearchForm.css">
-    <script src="/static/js/member/idsearchForm.js"></script>
+    <!-- idsearchform.css 스타일 시트 추가 -->
+    <link rel="stylesheet" href="/static/css/member/idsearchform.css">
+    <!-- JavaScript 추가 (여기서는 idsearchForm.js 사용) -->
+    <script src="/static/js/member/idsearchForm.js" defer></script>
+    <!-- 아이콘 및 폰트 링크 -->
+    <link rel="icon" href="/static/front_image/dotoree.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap" rel="stylesheet">
+    <!-- front.css 추가 (헤더 등 공통 스타일을 위한 링크) -->
+    <link rel="stylesheet" href="/static/css/front/front.css">
 </head>
 
-<body>
-    <div id="main">
-        <h1>아이디 찾기</h1>
+<body class="front_body">
 
-        <form onsubmit="sendVerificationCode(event)">
-            <div class="form-group">
-                <label for="email">이메일을 입력:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
+    <%- include('../include/header.ejs') %>
 
-            <div class="form-group">
-                <label for="emailcheck">인증번호 :</label>
-                <input type="text" id="emailcheck" name="emailcheck" required disabled>
-            </div>
+    <!-- 아이디 찾기 폼 -->
+    <section id="idsearchform">
+        <div id="main">
+            <h1>아이디 찾기</h1>
 
-            <button type="submit" id="sendEmailBtn">이메일 인증하기</button>
-            <button type="button" id="verifyBtn" onclick="verifyCode(event)" disabled>인증번호 확인</button>
-            <button type="button" id="resendBtn" style="display:none;" onclick="resendCode(event)">인증번호 재발송</button>
+            <form onsubmit="sendVerificationCode(event)">
+                <div class="form-group">
+                    <label for="email">이메일을 입력:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
 
-            <p id="message"></p>
-        </form>
+                <div class="form-group">
+                    <label for="emailcheck">인증번호 :</label>
+                    <input type="text" id="emailcheck" name="emailcheck" required disabled>
+                </div>
 
-        <div id="timer"></div> <!-- 만료시간 표시 영역 추가 -->
-        <a href="/member/pwdsearch_form">비밀번호 찾기</a>
-    </div>
+                <button type="submit" id="sendEmailBtn">이메일 인증하기</button>
+                <button type="button" id="verifyBtn" onclick="verifyCode(event)" disabled>인증번호 확인</button>
+                <button type="button" id="resendBtn" style="display:none;" onclick="resendCode(event)">인증번호 재발송</button>
+
+                <p id="message"></p>
+            </form>
+
+            <div id="timer"></div> <!-- 만료시간 표시 영역 추가 -->
+            <a href="/member/pwdsearch_form">비밀번호 찾기</a>
+        </div>
+    </section>
+
+    <%- include('../include/footer.ejs') %>
 
 </body>
 
