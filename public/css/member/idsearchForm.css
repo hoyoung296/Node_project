@@ -1,3 +1,35 @@
+/* .register_form 클래스 안에 있는 스타일만 적용되도록 범위 지정 */
+:root,
+:root.autumn{
+    --background-color: #fffdf5; /*기본 배경 컬러*/
+    --text-color: #000000; /*기본 전체 텍스트 컬러*/
+    --header-color: #fff2d6; /*기본 헤더 컬러*/
+    --shadow-color: rgba(0, 0, 0, 0.1); /*기본 헤더 컬러*/
+}
+:root.pink{
+    --background-color: #F8E8EE; /*봄 배경 컬러*/
+    --text-color: #000000; /*봄 전체 텍스트 컬러*/
+    --header-color: #F2BED1; /*봄 헤더 컬러*/
+    --shadow-color: rgba(0, 0, 0, 0.1); /*기본 헤더 컬러*/
+}
+:root.blue{
+    --background-color: #EEF5FF; /*여름 배경 컬러*/
+    --text-color: #000000; /*여름 전체 텍스트 컬러*/
+    --header-color: #86B6F6; /*여름 헤더 컬러*/
+    --shadow-color: rgba(0, 0, 0, 0.1); /*기본 헤더 컬러*/
+}
+:root.violet{
+    --background-color: #F5EFFF; /*겨울 배경 컬러*/
+    --text-color: #000000; /*겨울 전체 텍스트 컬러*/
+    --header-color: #CDC1FF; /*겨울 헤더 컬러*/
+    --shadow-color: rgba(0, 0, 0, 0.1); /*기본 헤더 컬러*/
+}
+:root.dark{
+    --background-color: #222222; /*다크 배경 컬러*/
+    --text-color: #ffffff; /*다크 전체 텍스트 컬러*/
+    --header-color: #424242; /*다크 헤더 컬러*/
+    --shadow-color: rgba(253, 253, 253, 0.445); /*기본 헤더 컬러*/
+}
 /* 기본 스타일 초기화 */
 #idsearchform * {
     margin: 0;
@@ -31,7 +63,7 @@ html, body {
 /* 메인 폼 영역 */
 #idsearchform #main {
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--shadow-color); 
     width: 100%;
     max-width: 400px;  /* 폼의 최대 너비를 설정 */
     padding: 30px;
@@ -43,7 +75,7 @@ html, body {
 #idsearchform h1 {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #333333;
+    color: var(--text-color); /*#000000;*/
 }
 
 /* 폼 입력 그룹 스타일 */
@@ -58,7 +90,7 @@ html, body {
 /* 레이블 스타일 */
 #idsearchform .form-group label {
     font-size: 14px;
-    color: #666666;
+    color: var(--text-color); /*#000000;*/
     display: inline-block;
     width: 120px;
     margin-right: 10px;
