@@ -8,8 +8,10 @@ const process = {
         delete body.pwd2
         body.dotori = 0;
         body.pwd = await bcrypt.hash(body.pwd, 10);
+        body.thema = 1;
+        body.count = 0;
         const result = await dao.process.dao_insert(body)
-        console.log(body)
+        // console.log(body)
         if (result != 0) {
             msg = "회원 가입 성공";
             url = "/member/login_form";
@@ -21,20 +23,57 @@ const process = {
     },
     ser_login: async (body, req, res) => {
         const result = await dao.process.dao_login(body.id)
+        const loginFail = await dao.process.selectLoginFailCount(body.id);
+        let LoginFailCount = loginFail[0].LOGIN_FAIL_COUNT;
+        let LoginFailTime = loginFail[0].LOGIN_FAIL_TIME;
+        let currentTime = loginFail[0].CURRENT_TIME;
+        console.log("loginFail : ",loginFail)
         if (result.rows.length == 0) {
             msg = "아이디 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요"
             url = "/member/login_form"
         } else {
             const isMatch = await bcrypt.compare(body.pwd, result.rows[0].PWD);
             if (isMatch) {
-                req.session.uid = body.id;
-                req.session.name = result.rows[0].NAME
-                res.cookie("isLogin", true)
-                msg = "성공"
-                url = "/"
+                if (LoginFailCount > 4) {
+                    if (LoginFailTime > currentTime) {
+                        msg = "비밀번호 5회 불일치, 10분 뒤 재시도해주시기 바랍니다."
+                        url = "/member/login_form"
+                    } else {
+                        await dao.process.clearLoginFailCount(body.id);
+                        req.session.uid = body.id;
+                        req.session.name = result.rows[0].NAME
+                        res.cookie("isLogin", true)
+                        msg = "성공"
+                        url = "/"
+                    }
+                } else {
+                    await dao.process.clearLoginFailCount(body.id);
+                    req.session.uid = body.id;
+                    req.session.name = result.rows[0].NAME
+                    res.cookie("isLogin", true)
+                    msg = "성공"
+                    url = "/"
+                }
             } else {
-                msg = "아이디 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요"
-                url = "/member/login_form"
+                if (LoginFailCount > 4) {
+                    if (LoginFailTime > currentTime) {
+                        msg = "비밀번호 5회 불일치, 10분 뒤 재시도해주시기 바랍니다."
+                        url = "/member/login_form"
+                    } else {
+                        await dao.process.clearLoginFailCount(body.id);
+                        await dao.process.updateLoginFailCount(body.id);
+                        const loginFail2 = await dao.process.selectLoginFailCount(body.id);
+                        const LoginFailCount2 = loginFail2[0].LOGIN_FAIL_COUNT;
+                        msg = `비밀번호 ${LoginFailCount2}회 불일치, 비밀번호를 정확히 입력해 주세요`;
+                        url = "/member/login_form"
+                    }
+                } else {
+                    await dao.process.updateLoginFailCount(body.id);
+                    const loginFail2 = await dao.process.selectLoginFailCount(body.id);
+                    const LoginFailCount2 = loginFail2[0].LOGIN_FAIL_COUNT;
+                    msg = `비밀번호 ${LoginFailCount2}회 불일치, 비밀번호를 정확히 입력해 주세요`;
+                    url = "/member/login_form"
+                }
             }
         }
         return serCom.getMessage(msg, url);
@@ -47,7 +86,7 @@ const process = {
         } else {
             result = { isAvailable: true };
         }
-        console.log("result : ", result)
+        // console.log("result : ", result)
         return result;
     },
     ser_emailCheck: async (email, uid) => {
@@ -78,7 +117,7 @@ const process = {
     },
     ser_emailCheck2: async (email) => {
         let result = await dao.process.dao_emailCheck2(email);
-        console.log("dao.email_result : ",result)
+        console.log("dao.email_result : ", result)
         if (result.rows.length > 0) {
             rs = { isAvailable: true };
         } else {
@@ -88,9 +127,9 @@ const process = {
         // console.log("rs : ",rs)
         return rs
     },
-    ser_idsearch : async (email) => {
+    ser_idsearch: async (email) => {
         let result = await dao.process.dao_idsearch(email);
-        console.log("id : ",result.rows[0].ID)
+        console.log("id : ", result.rows[0].ID)
         rs = result.rows[0].ID
         // rs.uid = result.rows[0].id;
         // console.log("rs : ",rs)

@@ -1,6 +1,11 @@
 const ctrl = require("../controller/controller")
 
 module.exports = (app) => {
+    app.use((req, res, next) => {
+        res.locals.username = req.session.name || null;
+        next();
+    });
+
     const memberRouter = require("../routers/member/member_router");
     app.use("/member", memberRouter)
 
@@ -26,6 +31,8 @@ module.exports = (app) => {
     router.get("/main", (req, res) => {
         ctrl.main(req, res)
     })
+
+    
 
     return router;
 }

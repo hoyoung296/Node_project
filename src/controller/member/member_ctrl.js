@@ -48,6 +48,16 @@ const process = {
         return res.json(result)
 
     },
+    emailCheck : async (req, res) => {
+        // console.log(req.query)
+        const email = req.body.email;
+
+        const result = await (ser.process.ser_emailCheck2(email))
+        console.log("result : ", result)
+
+        return res.json(result)
+
+    },
     sendEmail: async (req, res) => {
         try {
             console.log("uid :", req.body.uid);
