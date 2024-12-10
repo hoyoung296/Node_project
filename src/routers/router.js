@@ -1,4 +1,11 @@
+const ctrl = require("../controller/controller")
+
 module.exports = (app) => {
+    app.use((req, res, next) => {
+        res.locals.username = req.session.name || null;
+        next();
+    });
+
     const memberRouter = require("../routers/member/member_router");
     app.use("/member", memberRouter)
 
@@ -22,9 +29,10 @@ module.exports = (app) => {
         res.render("main_cover", { id: req.session.uid })
     })
     router.get("/main", (req, res) => {
-        const isLogin = req.cookies.isLogin === "true";
-        res.render("main", { isLogin })
+        ctrl.main(req, res)
     })
+
+    
 
     return router;
 }

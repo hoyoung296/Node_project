@@ -12,6 +12,7 @@
 }
 
 #first {
+    text-align: center;
     display: none;
     position: fixed;
     z-index: 10;

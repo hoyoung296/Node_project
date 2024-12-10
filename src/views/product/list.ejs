@@ -11,8 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/front/front.css">
     <link rel="stylesheet" type="text/css" href="/static/css/product/list.css"> 
+    <script src="/static/js/top.js"></script> 
     <script>
-        const setThema = thema => document.documentElement.className = thema
+        // const setThema = thema => document.documentElement.className = thema
         const overBtn = (t) => {
             document.getElementById(t.id+"_btn").style.visibility = "visible"
         }
@@ -22,7 +23,6 @@
      </script>
 </head>
 <body  class="front_body">
-
 
     <%-include('../include/header.ejs')%>
 
@@ -37,7 +37,11 @@
                     <img class="sample" src="/static/thema/<%= p.PRODUCT %>.png" name="thema" onclick="setThema('<%= p.PRODUCT %>')" ><br>
                     <%= p.PRODUCT %><br>
                     <img class="dotori" src="/static/front_image/dotoree.png">
+                    <% if(p.PRICE == 0){ %>
+                        무료<br>
+                    <% }else{ %>
                     <%= p.PRICE %><br>
+                    <% } %>
                     <button type="button" id="<%= p.PRODUCT_NO %>_btn"
                     onclick="location.href='/product/purchase?no=<%= p.PRODUCT_NO %>'">
                     구매하기

@@ -32,12 +32,12 @@ const pageRead = {
         })
         return list
     },
-    view : async (body) => {
+    view: async (body) => {
         let result = await dao.daoRead.view(body)
         result = pageRead.timeModify(result.rows)
         return result
     },
-    friendsview: async (start,username) => {
+    friendsview: async (start, username) => {
         if (!start)
             start = 1
         start = Number(start)
@@ -46,18 +46,41 @@ const pageRead = {
         const number = (num % 5 == 0) ? 0 : 1
         const page = parseInt(num / 5 + number)
         startNum = (start - 1) * 5
-        let result = await dao.daoRead.friendsview(startNum,username)
+        let result = await dao.daoRead.friendsview(startNum, username)
         return { result: result.rows, page, start }
     },
+    check: async (body) => {
+        let list1 = await dao.daoRead.check1(body)
+        let list2 = await dao.daoRead.check2(body)
+        console.log("check list1 : ", list1)
+        console.log("check list2 : ", list2)
+        return { list1: list1.rows, list2: list2.rows }
+    }
 }
 const pageInsert = {
     insert: async (body) => {
         await dao.daoInsert.insert(body)
     },
-    update : (body) => {
-        dao.daoInsert.update(body)
+    update: async (body) => {
+       let result = await dao.daoInsert.update(body)
+       console.log("친구 ser result : " , result)
+       let msg=""
+       if(result!=0){
+        msg="친구추가 완료!!!!"
+       }
+       else{
+        msg="이미 친구관계입니다!!!!"
+       }
+       let url="/friends/alram"
+       return pageInsert.getMessage(msg,url)
     },
-    del : (body) => {
+    getMessage : (msg,url) => {
+        return `<script>
+        alert("${msg}")
+        location.href="${url}"
+</script>`
+    },
+    del: (body) => {
         dao.daoInsert.del(body)
     }
 }

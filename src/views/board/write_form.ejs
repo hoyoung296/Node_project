@@ -11,13 +11,13 @@
         <div style="width: 400px; margin: 0 auto;"></div>
         <h1 style="text-align: center">글 작성</h1>
         <form method="post" action="/board/write" enctype="multipart/form-data">
-            <selsect name="category" id="category">
+            <select name="category" id="category">
                 <option value="이번주 핫이슈">이번주 핫이슈</option>
                 <option value="맛집&카페">맛집&카페 공유</option>
                 <option value="고민해결">고민해결</option>
                 <option value="짤 모음">짤 모음</option>
                 <option value="노래 추천">노래 추천</option>
-            </selsect><br>
+            </select><br>
             <b>작성자</b><br>
             <input type="text" name="id" value="<%= username %>" readonly /><hr>
             <b>제목</b><br>

@@ -1,3 +1,35 @@
+ /* .register_form 클래스 안에 있는 스타일만 적용되도록 범위 지정 */
+:root,
+:root.autumn{
+    --background-color: #fffdf5; /*기본 배경 컬러*/
+    --text-color: #000000; /*기본 전체 텍스트 컬러*/
+    --header-color: #fff2d6; /*기본 헤더 컬러*/
+    --shadow-color: rgba(0, 0, 0, 0.1); /*기본 헤더 컬러*/
+}
+:root.pink{
+    --background-color: #F8E8EE; /*봄 배경 컬러*/
+    --text-color: #000000; /*봄 전체 텍스트 컬러*/
+    --header-color: #F2BED1; /*봄 헤더 컬러*/
+    --shadow-color: rgba(0, 0, 0, 0.1); /*기본 헤더 컬러*/
+}
+:root.blue{
+    --background-color: #EEF5FF; /*여름 배경 컬러*/
+    --text-color: #000000; /*여름 전체 텍스트 컬러*/
+    --header-color: #86B6F6; /*여름 헤더 컬러*/
+    --shadow-color: rgba(0, 0, 0, 0.1); /*기본 헤더 컬러*/
+}
+:root.violet{
+    --background-color: #F5EFFF; /*겨울 배경 컬러*/
+    --text-color: #000000; /*겨울 전체 텍스트 컬러*/
+    --header-color: #CDC1FF; /*겨울 헤더 컬러*/
+    --shadow-color: rgba(0, 0, 0, 0.1); /*기본 헤더 컬러*/
+}
+:root.dark{
+    --background-color: #222222; /*다크 배경 컬러*/
+    --text-color: #ffffff; /*다크 전체 텍스트 컬러*/
+    --header-color: #424242; /*다크 헤더 컬러*/
+    --shadow-color: rgba(253, 253, 253, 0.445); /*기본 헤더 컬러*/
+}
  /* 전체 화면을 채우는 스타일 */
  body{
      height: 100%;
@@ -25,13 +57,13 @@
 
  /* 로그인 폼 스타일 */
  form {
-     background-color: white;
+     /* background-color: white; */
      /* 폼 배경을 흰색으로 설정 */
      padding: 30px;
      /* 폼 내부 여백을 30px로 설정 */
      border-radius: 10px;
      /* 폼 모서리를 둥글게 설정 */
-     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+     box-shadow: 0 4px 6px var(--shadow-color); 
      /* 폼에 그림자 효과 추가 */
      width: 100%;
      /* 폼의 너비를 100%로 설정 */
@@ -51,6 +83,7 @@
 
  /* 레이블 스타일 */
  label {
+    color: var(--text-color); /*#000000;*/
      font-weight: bold;
      /* 글씨를 굵게 설정 */
      width: 100px;
@@ -80,7 +113,7 @@
      /* 버튼 너비를 100%로 설정 */
      padding: 10px;
      /* 버튼 내부 여백을 10px로 설정 */
-     background-color: #4CAF50;
+     background-color: #4e9e2e;
      /* 버튼 배경색을 초록색으로 설정 */
      color: white;
      /* 버튼 텍스트 색을 흰색으로 설정 */
@@ -96,13 +129,13 @@
 
  /* 제출 버튼에 마우스를 올렸을 때의 효과 */
  input[type="submit"]:hover {
-     background-color: #45a049;
+     background-color: #3b7a28;
      /* 버튼 배경색을 어두운 초록색으로 변경 */
  }
 
  /* 링크 스타일 */
  #main a {
-     color: #4CAF50;
+     color: #4e9e2e;
      /* 링크 텍스트 색을 초록색으로 설정 */
      text-decoration: none;
      /* 링크에 밑줄을 없애기 */
