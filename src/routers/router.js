@@ -1,6 +1,6 @@
 module.exports = (app) => {
     app.use((req, res, next) => {
-        res.locals.id = req.session.uid || null;
+        res.locals.username = req.session.name || null;
         next();
     });
 
