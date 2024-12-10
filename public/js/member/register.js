@@ -90,14 +90,37 @@ function checkAddrAvailability() {
     }
 }
 
-function checkEmailAvailability() {
+async function checkEmailAvailability() {
     const email = document.getElementById("email").value;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const emailError = document.getElementById("emailError");
     if (!emailRegex.test(email)) {
         emailError.innerHTML = "올바른 이메일 주소를 입력하세요.";
+        emailError.style.color = "red";  // 빨간색으로 오류 표시
     } else {
-        emailError.innerHTML = "";
+        try {
+            const response = await fetch('/member/check-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: email })  // 이메일을 JSON 형식으로 요청 본문에 포함
+            });
+        
+            const data = await response.json();  // 응답을 JSON으로 파싱
+        
+            if (!data.isAvailable) {
+                emailError.innerHTML = "사용 가능한 이메일입니다.";
+                emailError.style.color = "green";  // 중복이 아니면 초록색
+            } else {
+                emailError.innerHTML = "이미 사용 중인 이메일입니다.";
+                emailError.style.color = "red";  // 중복이 있으면 빨간색
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            emailError.innerHTML = "서버 오류가 발생했습니다.";
+            emailError.style.color = "red";
+        }
     }
 }
 
@@ -158,7 +181,7 @@ function validateForm() {
 
     // 이메일 유효성 검사
     checkEmailAvailability();
-    if (document.getElementById("emailError").innerHTML !== "") {
+    if (document.getElementById("emailError").innerHTML !== "green") {
         alert("이메일 입력을 올바르게 해주세요..");
         return false;  // 이메일 오류가 있으면 제출을 막음
     }

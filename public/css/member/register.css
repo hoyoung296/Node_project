@@ -1,4 +1,36 @@
 /* .register_form 클래스 안에 있는 스타일만 적용되도록 범위 지정 */
+:root,
+:root.autumn{
+    --background-color: #fffdf5; /*기본 배경 컬러*/
+    --text-color: #000000; /*기본 전체 텍스트 컬러*/
+    --header-color: #fff2d6; /*기본 헤더 컬러*/
+    --shadow-color: rgba(0, 0, 0, 0.1); /*기본 헤더 컬러*/
+}
+:root.pink{
+    --background-color: #F8E8EE; /*봄 배경 컬러*/
+    --text-color: #000000; /*봄 전체 텍스트 컬러*/
+    --header-color: #F2BED1; /*봄 헤더 컬러*/
+    --shadow-color: rgba(0, 0, 0, 0.1); /*기본 헤더 컬러*/
+}
+:root.blue{
+    --background-color: #EEF5FF; /*여름 배경 컬러*/
+    --text-color: #000000; /*여름 전체 텍스트 컬러*/
+    --header-color: #86B6F6; /*여름 헤더 컬러*/
+    --shadow-color: rgba(0, 0, 0, 0.1); /*기본 헤더 컬러*/
+}
+:root.violet{
+    --background-color: #F5EFFF; /*겨울 배경 컬러*/
+    --text-color: #000000; /*겨울 전체 텍스트 컬러*/
+    --header-color: #CDC1FF; /*겨울 헤더 컬러*/
+    --shadow-color: rgba(0, 0, 0, 0.1); /*기본 헤더 컬러*/
+}
+:root.dark{
+    --background-color: #222222; /*다크 배경 컬러*/
+    --text-color: #ffffff; /*다크 전체 텍스트 컬러*/
+    --header-color: #424242; /*다크 헤더 컬러*/
+    --shadow-color: rgba(253, 253, 253, 0.445); /*기본 헤더 컬러*/
+}
+  
 .register_form {
     display: flex;
     justify-content: center;  /* 수평 가운데 정렬 */
@@ -7,7 +39,7 @@
     font-family: Arial, sans-serif;
     padding: 20px;            /* 폼 내부 여백을 20px로 설정 */
     border-radius: 10px;      /* 폼 모서리를 둥글게 설정 */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* 폼에 그림자 효과 추가 */
+    box-shadow: 0 4px 6px var(--shadow-color);  /* 폼에 그림자 효과 추가 */
     width: 100%;              /* 폼의 너비를 100%로 설정 */
     max-width: 600px;         /* 폼의 최대 너비를 600px로 제한 */
     margin-left: auto;        /* 왼쪽 마진 자동 설정 (가로 가운데 정렬) */
@@ -29,6 +61,7 @@
 }
 
 .register_form td label {
+    color: var(--text-color); /*#000000;*/
     padding-left: 20px;
     display: block;           /* label을 블록 요소로 만들어 수평 중앙 정렬 */
     text-align: left;         /* 텍스트 왼쪽 정렬 */
@@ -50,7 +83,7 @@
 .register_form input[type="submit"] {
     width: 100%;              /* 버튼 너비를 100%로 설정하여 테이블 셀 크기에 맞게 설정 */
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #4e9e2e;
     color: white;
     border: none;
     border-radius: 4px;
@@ -59,7 +92,7 @@
 }
 
 .register_form input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #3b7a28;
 }
 
 .register_form .error-message {
