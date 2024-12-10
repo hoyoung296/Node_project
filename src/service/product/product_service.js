@@ -37,19 +37,22 @@ const purchase = async (no, uid) => {
     let msg =''
     if(udotori < price){
         msg = "도토리가 부족합니다"
-    }else{
-        await dao.purchase(no, uid)
+    }else {
+        const dotori = udotori - price
+        await dao.purchase(no, uid, dotori)
+        console.log("구매완료")
         msg = "구매가 완료되었습니다"
     }   
+    console.log(msg)
     return msg
 }
 
-const loginCheck = (no, uid) => {
+const loginCheck = async (no, uid) => {
     let msg ='', url = '/product'
     if(!uid){
         msg = "로그인 이후 구매가능합니다"
     }else {
-        msg = purchase(no, uid)
+        msg = await purchase(no, uid)
     }
     return common.getMessage(msg, url)
 }
@@ -59,5 +62,11 @@ const doCheck = async (uid) => {
     return dotori.rows[0].DOTORI
 }
 
-module.exports = {rename, listSetting, purchase, productList, loginCheck}
+const userThema = async (uid) => {
+    const thema = await dao.userThema(uid)
+    console.log("ser Thema", thema.rows[0].PRODUCT)
+    return thema.rows[0].PRODUCT
+}
+
+module.exports = {rename, listSetting, purchase, productList, loginCheck, userThema}
 

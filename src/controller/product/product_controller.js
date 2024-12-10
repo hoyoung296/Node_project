@@ -5,7 +5,8 @@ const list = async (req, res) => {
     const productList = await ser.productList()
     const themaPath = fs.readdirSync("./public/thema")
     const themaName = ser.rename(themaPath)
-    const themaList = ser.listSetting(themaPath, themaName)
+    
+    console.log(req.session)
     res.render("product/list", {list : productList})
 }
 
@@ -14,9 +15,9 @@ const load = (req, res) => {
     res.download(path)
 }
 
-const purchase = (req, res) => {
-    const result = ser.loginCheck(req.query.no, req.session.uid)
-    // const result = ser.purchase(req.query.no, uid)
+const purchase = async (req, res) => {
+    const result = await ser.loginCheck(req.query.no, req.session.uid)
+    console.log(result)
     res.send(result)
 }
 

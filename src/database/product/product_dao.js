@@ -22,12 +22,24 @@ const product = async (no) => {
     return result
 }
 
-const purchase = async (no, uid) => {
+const purchase = async (no, uid, dotori) => {
     const sql = `insert into buy values(${no}, '${uid}')`
     let result = 0
     try{
         result = (await con).execute(sql)
+        await dotoriUse(uid, dotori)
     }catch(err){
+        console.log(err)
+    }
+    return result
+}
+
+const dotoriUse = async (uid, dotori) => {
+    const sql = `update member set dotori=${dotori} where id='${uid}'`
+    let result = 0
+    try{
+        result = (await con).execute(sql)
+    }catch(err){ 
         console.log(err)
     }
     return result
@@ -45,4 +57,15 @@ const doCheck = async (uid) => {
     return result
 }
 
-module.exports = { productList, purchase, doCheck, product }
+const userThema = async (uid) => {
+    const sql = `select * from member, product where id='${uid}' AND member.thema_no = product.product_no`
+    let result = 0
+    try{
+        result = (await con).execute(sql)
+    }catch(err){
+        console.log(err)
+    }
+    return result
+}
+
+module.exports = { productList, purchase, doCheck, product, userThema }
