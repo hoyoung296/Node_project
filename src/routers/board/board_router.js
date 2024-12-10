@@ -1,7 +1,5 @@
 const router = require("express").Router();
 const multer = require("multer");
-const path = require("path")
-const ejs = require('ejs');
 const ctrl = require("../../controller/board/board_ctrl")
 
 const upload = require("../../../config/file/file_config")

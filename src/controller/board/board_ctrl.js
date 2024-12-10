@@ -1,14 +1,24 @@
 const ser = require("../../service/board/board_service")
 const serCom = require("../../service/ser_common")
+const path = require("path")
+const ejs = require('ejs');
 
 const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 안보이는 코드 list.ejs에도 있음 
 
     main : async (req, res) => {
-        const data = await ser.boardRead.list( req.query.start );
-        console.log("main ctrl", data)
+        const boardList = await ser.boardRead.list( req.query.start );
         const isLoggedIn = req.session.user ? true : false;
-        res.json({ list : data.list, start : data.start, page : data.page, isLoggedIn })
+        const data = { list : boardList.list, start : boardList.start, page : boardList.page, isLoggedIn }
+        ejs.renderFile(path.join(__dirname, '../../views/board/main_list.ejs'), data, (err, str) => {
+            if(err){
+                console.log(err)
+                return res.status(500).send('Error rendering EJS')
+            }
+            res.send(str)
+        })
+        // res.json({ list : data.list, start : data.start, page : data.page, isLoggedIn })
     },
+
     list : async ( req, res ) => {
         const data = await ser.boardRead.list( req.query.start );
         const isLoggedIn = req.session.user ? true : false;
