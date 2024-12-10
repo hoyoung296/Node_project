@@ -1,0 +1,48 @@
+
+        <table>
+            <tr>
+                <td>글 번호</td> 
+                <td>제목</td> 
+                <td>아이디</td> 
+                <td>날짜</td> 
+                <td>조회수</td> 
+            </tr>
+            <% if( list.length == 0){ %>
+                <tr>
+                    <th colspan="5">등록된 글이 없습니다.</th>
+                </tr>
+                <% }else{
+                list.forEach(d =>{ %>
+                <tr>
+                    <td><%= d.WRITE_NO %></td>
+                    <td>
+                        <a href="/board/data/<%= d.WRITE_NO %>">
+                            <%= d.TITLE %>
+                        </a>
+                    </td>
+                    <td><%= d.CONTENT %></td>
+                    <td><%= d.ID %></td>
+                    <td><%= d.NAME %></td>
+                    <td><%= d.SAVE_DATE %></td>
+                    <td><%= d.HIT %></td>
+                    <td><%= d.UPLOAD_FILE %></td>
+                </tr>
+                <% })
+            } %>
+                <tr>
+                    <td colspan="5" align="right">
+                    <% if( start <= 1 ){ %>
+                        <button disabled>이전</button>
+                    <% }else{ %>
+                        <button type="button" onclick="location.href='/board/list?start=<%= start - 1 %>'">이전</button>
+                    <% }for(let i = 1 ; i <= page ; i++ ){ %>
+                    <a href="/board/list?start=<%= i %>"><%= i %></a>
+                    <% }if( start < page ){ %>
+                        <button type="button" onclick="location.href='/board/list?start=<%= start + 1 %>'">다음</button>
+                    <% }else{ %> <button disabled>다음</button> <% } %>
+                    <%= start %> / <%= page %>
+                    <a href="/board/write_form">글 작성</a>
+                   
+                </td> 
+            </tr> 
+        </table>
