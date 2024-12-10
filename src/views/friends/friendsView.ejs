@@ -1,62 +1,42 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOTORI</title>
+    <link rel="icon" href="/static/front_image/dotoree.png" image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/front/front.css">
 </head>
 
-<body align="center">
+<body class="front_body">
     <% if(!username) { %>
         <script>
             alert("로그인 이후 사용가능합니다!!!!");
             location.href = '/member/login_form';
         </script>
         <% } %>
-            <table align="center" border="1">
-                <tr>
-                    <th>멤버1</th>
-                    <th>멤버2</th>
-                </tr>
-                <% result.forEach (data=>{ %>
-                    <% if(username!=data.ID){ %>
-                        <tr>
-                            <td>
-                                <%= data.MEMBER_ID %>
-                            </td>
-                            <td>
-                                <%= data.FRIEND_ID %>
-                            </td>
-                        </tr>
-                        <% } %>
-                            <% }) %>
-                                <% if(result.length==0) { %>
-                                    <tr>
-                                        <td colspan="2" align="center"><b>등록된 정보 없음</b></td>
-                                    </tr>
-                                    <% } %>
-                                        <tr>
-                                            <td colspan="2">
-                                                <% if(start> 1){ %>
-                                                    <button
-                                                        onclick="location.href='/friends/friendsview?start=<%= start-1 %>'">이전</button>
-                                                    <% } %>
-                                                        <% for (let i=1 ; i <=page ; i++) { %>
-                                                            <a href="/friends/friendsview?start=<%= i %>">
-                                                                <%= i %>
-                                                            </a>
-                                                            <% } %>
-                                                                <% if ( start < page ){ %>
-                                                                    <button
-                                                                        onclick="location.href='/friends/friendsview?start=<%= start + 1 %>'">다음</button>
-                                                                    <% } %>
-                                            </td>
-                                        </tr>
-            </table>
-            <button onclick="location.href='/main'">메인 페이지</button>
-</body>
+            <%- include('../include/header.ejs')%>
 
-</html>
+                <section>
+                    <%- include("./friendsView1.ejs") %>
+                </section>
+
+                <%- include('../include/footer.ejs')%>
 </body>
+<script>
+    const setTheme = theme => document.documentElement.className = theme;
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+</script>
 
 </html>

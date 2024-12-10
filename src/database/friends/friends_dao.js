@@ -43,9 +43,9 @@ const daoRead = {
         }
         return result
     },
-    friendsview : async (start,username) => {
-         sql = `select * from friends where member_id='${username}' or friend_id='${username}' order by member_id desc offset ${start} rows fetch next 5 rows only`
-         try {
+    friendsview: async (start, username) => {
+        sql = `select * from friends where member_id='${username}' or friend_id='${username}' order by member_id desc offset ${start} rows fetch next 5 rows only`
+        try {
             result = await (await con).execute(sql)
         } catch (err) {
             console.log(err)
@@ -59,6 +59,24 @@ const daoRead = {
             console.log(err)
         }
         return cnt
+    },
+    check1: async (body) => {
+        sql = `select * from friends where member_id='${body}'`
+        try {
+            result = await (await con).execute(sql)
+        } catch (err) {
+            console.log(err)
+        }
+        return result
+    },
+    check2: async (body) => {
+        sql = `select * from friends where friend_id='${body}'`
+        try {
+            result = await (await con).execute(sql)
+        } catch (err) {
+            console.log(err)
+        }
+        return result
     }
 }
 const daoInsert = {
@@ -71,12 +89,20 @@ const daoInsert = {
         }
     },
     update: async (body) => {
+        let { mem_id, fr_id } = body
+        console.log("{mem_id, fr_id} : ", { mem_id, fr_id })
+        if (mem_id > fr_id) {
+            [mem_id, fr_id] = [fr_id, mem_id]
+        }
         sql = `insert into friends(member_id, friend_id) values(:mem_id, :fr_id)`
+        let result=0
         try {
-            (await con).execute(sql, body)
+            (await con).execute(sql, { mem_id, fr_id })
         } catch (err) {
             console.log(err)
         }
+        console.log("친구 result : " , result)
+        return result
     },
     del: async (body) => {
         sql = `delete from alram where num=:NUM`
