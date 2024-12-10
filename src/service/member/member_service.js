@@ -8,6 +8,7 @@ const process = {
         delete body.pwd2
         body.dotori = 0;
         body.pwd = await bcrypt.hash(body.pwd, 10);
+        body.thema = 1;
         const result = await dao.process.dao_insert(body)
         // console.log(body)
         if (result != 0) {

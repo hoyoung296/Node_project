@@ -181,7 +181,7 @@ function validateForm() {
 
     // 이메일 유효성 검사
     checkEmailAvailability();
-    if (document.getElementById("emailError").innerHTML !== "green") {
+    if (document.getElementById("emailError").style.color !== "green") {
         alert("이메일 입력을 올바르게 해주세요..");
         return false;  // 이메일 오류가 있으면 제출을 막음
     }
