@@ -6,17 +6,17 @@ const views = {
         res.send(msg)
     },
     index: (req, res) => {
-        res.render("game/index", { username: req.session.uid })
+        res.render("game/index", { name: req.session.uid })
     },
     info: (req, res) => {
-        res.render("game/info", { username: req.session.uid })
+        res.render("game/info", { name: req.session.uid })
     },
     play: (req, res) => {
 
         console.log("req.session.uid : ", req.session.uid)
 
 
-        res.render("game/play", { username: req.session.uid })
+        res.render("game/play", { name: req.session.uid })
     }
 }
 const process = {

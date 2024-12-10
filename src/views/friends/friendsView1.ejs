@@ -12,14 +12,14 @@
             <th>친구목록</th>
         </tr>
         <% result.forEach (data=>{ %>
-            <% if(username==data.MEMBER_ID){ %>
+            <% if(name==data.MEMBER_ID){ %>
                 <tr>
                     <td>
                         <%= data.FRIEND_ID %>
                     </td>
                 </tr>
                 <% } %>
-                    <% if(username==data.FRIEND_ID){ %>
+                    <% if(name==data.FRIEND_ID){ %>
                         <tr>
                             <td>
                                 <%= data.MEMBER_ID %>

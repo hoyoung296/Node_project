@@ -17,7 +17,7 @@
             <th>날짜</th>
         </tr>
         <% result.forEach (data=>{ %>
-            <% if(username==data.SENDER || username==data.RECEIVER){ %>
+            <% if(name==data.SENDER || name==data.RECEIVER){ %>
                 <tr>
                     <td>
                         <a href="/friends/view?num=<%= data.NUM %>">
