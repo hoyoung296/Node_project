@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body align="center">
+    <% if(!username) { %>
+        <script>
+            alert("로그인 이후 사용가능합니다!!!!");
+            location.href = '/member/login_form';
+        </script>
+        <% } %>
+            <div style="margin: 0 auto; width: 200px; height: 200px; text-align: center; border: 1px solid black;">
+                순번 : <%= result[0].NUM %><br>
+                    보낸 사람 : <%= result[0].SENDER %><br>
+                        받는 사람 : <%= result[0].RECEIVER %><br>
+                            목적 : <%= result[0].OBJECT %><br>
+                                제목 : <%= result[0].SUBJECT %><br>
+                                    내용 : <%= result[0].CONTENT %><br>
+                                        보낸 시간 : <%= result[0].SAVE_DATE %><br>
+            </div>
+            <% if(result[0].OBJECT=='친구추가' ) { %>
+                <form action="/friends/update" method="post" style="margin-top: 10px;">
+                    <input type="hidden" name="mem_id" value="<%= result[0].RECEIVER %>">
+                    <input type="hidden" name="fr_id" value="<%= result[0].SENDER %>">
+                    <button type="submit" style="color: gold; border: none; background: none; font-size: 25px; 
+                    font-weight: bold; cursor: pointer;">친구추가</button>
+                </form>
+                <% } else { %>
+                    
+                    <% } %>
+                        <form action="/friends/del" method="post" style="margin-top: 10px;">
+                            <input type="hidden" name="num" value="<%= result[0].NUM %>">
+                            <button type="submit" style="color: gold; border: none; background: none; font-size: 25px; 
+                    font-weight: bold; cursor: pointer;">알림 삭제</button>
+                        </form>
+                        <button onclick="location.href='/friends/alram'" style="color: gold; border: none; background: none; font-size: 25px; 
+                    font-weight: bold; cursor: pointer; margin-top: 10px;">목록페이지로</button>
+</body>
+
+</html>

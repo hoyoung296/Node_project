@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#main {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+label {
+    font-size: 14px;
+    color: #666666;
+    display: inline-block;
+    width: 120px; /* label의 크기를 지정하여 input과의 간격 조절 */
+    text-align: left; /* label 내용이 오른쪽으로 정렬되도록 */
+    margin-right: 10px; /* input과의 간격을 조정 */
+    vertical-align: middle; /* 세로 정렬 */
+}
+
+input[type="email"],
+input[type="text"] {
+    width: calc(100% - 130px); /* label 크기만큼 뺀 나머지 공간을 input에 할당 */
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: border 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="text"]:focus {
+    border-color: #4e9e2e;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4e9e2e;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+button:hover {
+    background-color: #3b7a28;
+}
+
+#message {
+    margin-top: 15px;
+    color: #ff5722;
+    font-size: 14px;
+}
+
+#resendBtn {
+    background-color: #ff5722;
+    display: none;
+}
+
+#resendBtn:hover {
+    background-color: #d4431c;
+}
+
+#timer {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #666666;
+}
+
+a {
+    font-size: 16px;
+    color: #3b7a28;
+    text-decoration: none;
+    border: 2px solid #3b7a28;
+    padding: 8px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+a:hover {
+    background-color: #3b7a28;
+    color: white;
+}

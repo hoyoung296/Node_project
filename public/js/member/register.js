@@ -63,13 +63,18 @@ function checkPwd2Availability(){
 }
 
 function checkPhoneAvailability() {
-    const phone = document.getElementById("phone").value;
-    const phoneRegex = /^010[0-9]{8,9}$/;
-    const phoneError = document.getElementById("phoneError");
-    if (!phoneRegex.test(phone)) {
-        phoneError.innerHTML = "010부터 시작하는 폰번호를 입력하세요.";
+    const phone = document.getElementById("phone").value;  // 사용자가 입력한 전화번호
+    const phoneError = document.getElementById("phoneError");  // 오류 메시지를 표시할 요소
+
+    // 전화번호가 010으로 시작하는지 확인하고, 그 뒤에 8자리 또는 9자리 숫자가 있는지 확인
+    if (phone.startsWith("010")) {
+        if (phone.length !== 11) {  // 010으로 시작하는 전화번호는 11자리여야 함
+            phoneError.innerHTML = "길이가 맞지 않습니다.";  // 길이가 맞지 않으면 오류 메시지
+        } else {
+            phoneError.innerHTML = "";  // 길이가 맞으면 오류 메시지 제거
+        }
     } else {
-        phoneError.innerHTML = "";
+        phoneError.innerHTML = "010부터 시작하는 폰번호를 입력하세요.";  // 010으로 시작하지 않으면 오류 메시지 제거
     }
 }
 

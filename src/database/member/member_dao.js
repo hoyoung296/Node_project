@@ -66,6 +66,28 @@ const process = {
         //console.log(member)
         return rs;
     },
+    dao_emailCheck2 : async(email) => {
+        const sql = `select email from member where email='${email}'`;
+        let rs;
+        try{
+            rs = await(await con).execute(sql);
+        }catch(err){
+            console.log("catch dao : ", err)
+        }
+        //console.log(member)
+        return rs;
+    },
+    dao_idsearch : async(email) => {
+        const sql = `select id from member where email='${email}'`;
+        let rs;
+        try{
+            rs = await(await con).execute(sql);
+        }catch(err){
+            console.log("catch dao : ", err)
+        }
+        //console.log(member)
+        return rs;
+    },
 }
 
 module.exports = { process };

@@ -15,56 +15,48 @@
         <% } %>
             <table align="center" border="1">
                 <tr>
-                    <th>ID</th>
-                    <th>NAME</th>
+                    <th>멤버1</th>
+                    <th>멤버2</th>
                 </tr>
                 <% result.forEach (data=>{ %>
                     <% if(username!=data.ID){ %>
                         <tr>
                             <td>
-                                <%= data.ID %>
+                                <%= data.MEMBER_ID %>
                             </td>
                             <td>
-                                <%= data.NAME %>
-                            </td>
-                            <td>
-                                <form action="/friends/check" method="post">
-                                    <input type="hidden" name="id" value="<%= data.ID %>">
-                                    <button type="submit" style="color: gold; border: none; background: none; font-size: 25px; 
-                    font-weight: bold; cursor: pointer;">친구 추가</button>
-                                </form>
+                                <%= data.FRIEND_ID %>
                             </td>
                         </tr>
                         <% } %>
                             <% }) %>
                                 <% if(result.length==0) { %>
                                     <tr>
-                                        <td colspan="3" align="center"><b>등록된 정보 없음</b></td>
+                                        <td colspan="2" align="center"><b>등록된 정보 없음</b></td>
                                     </tr>
                                     <% } %>
                                         <tr>
-                                            <td colspan="3">
+                                            <td colspan="2">
                                                 <% if(start> 1){ %>
-                                                    <button onclick="location.href='/friends?start=<%= start-1 %>'"
-                                                        style="color: gold; border: none; background: none; font-size: 25px; 
-                    font-weight: bold; cursor: pointer;">이전</button>
+                                                    <button
+                                                        onclick="location.href='/friends/friendsview?start=<%= start-1 %>'">이전</button>
                                                     <% } %>
                                                         <% for (let i=1 ; i <=page ; i++) { %>
-                                                            <a href="/friends?start=<%= i %>">
+                                                            <a href="/friends/friendsview?start=<%= i %>">
                                                                 <%= i %>
                                                             </a>
                                                             <% } %>
                                                                 <% if ( start < page ){ %>
                                                                     <button
-                                                                        onclick="location.href='/friends?start=<%= start + 1 %>'"
-                                                                        style="color: gold; border: none; background: none; font-size: 25px; 
-                    font-weight: bold; cursor: pointer;">다음</button>
+                                                                        onclick="location.href='/friends/friendsview?start=<%= start + 1 %>'">다음</button>
                                                                     <% } %>
                                             </td>
                                         </tr>
             </table>
-            <button onclick="location.href='/main'" style="color: gold; border: none; background: none; font-size: 25px; 
-                    font-weight: bold; cursor: pointer;">메인 페이지</button>
+            <button onclick="location.href='/main'">메인 페이지</button>
+</body>
+
+</html>
 </body>
 
 </html>
