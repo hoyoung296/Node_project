@@ -1,33 +1,78 @@
+/* .register_form 클래스 안에 있는 스타일만 적용되도록 범위 지정 */
+:root,
+:root.autumn{
+    --background-color: #fffdf5; /*기본 배경 컬러*/
+    --text-color: #000000; /*기본 전체 텍스트 컬러*/
+    --header-color: #fff2d6; /*기본 헤더 컬러*/
+    --shadow-color: rgba(0, 0, 0, 0.1); /*기본 헤더 컬러*/
+}
+:root.pink{
+    --background-color: #F8E8EE; /*봄 배경 컬러*/
+    --text-color: #000000; /*봄 전체 텍스트 컬러*/
+    --header-color: #F2BED1; /*봄 헤더 컬러*/
+    --shadow-color: rgba(0, 0, 0, 0.1); /*기본 헤더 컬러*/
+}
+:root.blue{
+    --background-color: #EEF5FF; /*여름 배경 컬러*/
+    --text-color: #000000; /*여름 전체 텍스트 컬러*/
+    --header-color: #86B6F6; /*여름 헤더 컬러*/
+    --shadow-color: rgba(0, 0, 0, 0.1); /*기본 헤더 컬러*/
+}
+:root.violet{
+    --background-color: #F5EFFF; /*겨울 배경 컬러*/
+    --text-color: #000000; /*겨울 전체 텍스트 컬러*/
+    --header-color: #CDC1FF; /*겨울 헤더 컬러*/
+    --shadow-color: rgba(0, 0, 0, 0.1); /*기본 헤더 컬러*/
+}
+:root.dark{
+    --background-color: #222222; /*다크 배경 컬러*/
+    --text-color: #ffffff; /*다크 전체 텍스트 컬러*/
+    --header-color: #424242; /*다크 헤더 컬러*/
+    --shadow-color: rgba(253, 253, 253, 0.445); /*기본 헤더 컬러*/
+}
+/* html과 body의 높이를 100%로 설정하여 화면 전체가 차지하도록 함 */
+html, body {
+    height: 100%; /* 화면 전체 높이를 100%로 설정 */
+    margin: 0; /* 기본 마진 제거 */
+}
+
+#pwdsearchform {
+    display: flex;
+    justify-content: center;  /* 가로 중앙 정렬 */
+    align-items: center;      /* 세로 중앙 정렬 */
+    height: 100%;             /* 화면의 100% 높이를 채우도록 설정 */
+    padding: 20px;
+}
+
 /* 페이지 전체 스타일 */
-body {
+#pwdsearchform body {
     font-family: Arial, sans-serif; /* 페이지의 글꼴을 Arial로 설정 */
     display: flex; /* flexbox를 사용하여 아이템을 정렬 */
     justify-content: center; /* 가로 중앙 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
-    height: 100vh; /* 페이지 높이를 100%로 설정하여 화면에 꽉 차게 */
-    margin: 0; /* 기본 마진 제거 */
-    background-color: #f4f4f4; /* 배경색을 연한 회색으로 설정 */
+    height: 100%; /* 페이지 높이를 100%로 설정하여 화면에 꽉 차게 */
+
 }
 
 /* 폼을 감싸는 div 스타일 */
-#main {
-    background-color: white; /* 배경을 흰색으로 설정 */
+#pwdsearchform #main {
+
     padding: 30px; /* 폼의 내부 여백을 30px로 설정 */
     border-radius: 8px; /* 모서리를 둥글게 만들기 위해 8px 설정 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자를 추가하여 입체감을 부여 */
+    box-shadow: 0 4px 8px var(--shadow-color); /* 그림자를 추가하여 입체감을 부여 */
     width: 100%; /* 너비 100%로 설정 */
     max-width: 400px; /* 최대 너비를 400px로 제한 */
 }
 
 /* 폼의 각 입력 필드와 버튼을 감싸는 div 스타일 */
-.form-group {
+#pwdsearchform .form-group {
     margin-bottom: 15px; /* 각 폼 항목들 사이에 15px의 간격을 설정 */
 }
 
 /* 레이블 스타일 */
-label {
+#pwdsearchform label {
     font-size: 14px; /* 레이블의 글꼴 크기를 14px로 설정 */
-    color: #333; /* 레이블의 글자 색을 어두운 회색으로 설정 */
+    color: var(--text-color); /* 레이블의 글자 색을 어두운 회색으로 설정 */
     display: block; /* 레이블을 블록 요소로 설정하여 전체 줄을 차지하게 함 */
     margin-bottom: 5px; /* 레이블과 입력 필드 사이에 5px 간격 추가 */
     text-align: center; /* 레이블을 가로로 중앙 정렬 */
@@ -35,7 +80,7 @@ label {
 }
 
 /* 텍스트 입력 필드 스타일 */
-input[type="text"] {
+#pwdsearchform input[type="text"] {
     width: 100%; /* 입력 필드의 너비를 100%로 설정 */
     padding: 10px; /* 입력 필드의 안쪽 여백을 10px로 설정 */
     font-size: 16px; /* 텍스트 크기를 16px로 설정 */
@@ -45,11 +90,11 @@ input[type="text"] {
 }
 
 /* 제출 버튼 스타일 */
-input[type="submit"] {
+#pwdsearchform input[type="submit"] {
     width: 100%; /* 버튼의 너비를 100%로 설정 */
     padding: 10px; /* 버튼의 안쪽 여백을 10px로 설정 */
     font-size: 16px; /* 버튼의 텍스트 크기를 16px로 설정 */
-    background-color: #007bff; /* 버튼 배경색을 파란색으로 설정 */
+    background-color: #4e9e2e; /* 버튼 배경색을 파란색으로 설정 */
     color: white; /* 버튼 텍스트 색을 흰색으로 설정 */
     border: none; /* 테두리 제거 */
     border-radius: 4px; /* 버튼의 모서리를 4px로 둥글게 설정 */
@@ -58,12 +103,12 @@ input[type="submit"] {
 }
 
 /* 제출 버튼에 마우스를 올렸을 때 색상 변경 */
-input[type="submit"]:hover {
-    background-color: #0056b3; /* 마우스를 올렸을 때 버튼 배경색을 어두운 파란색으로 변경 */
+#pwdsearchform input[type="submit"]:hover {
+    background-color: #3b7a28; /* 마우스를 올렸을 때 버튼 배경색을 어두운 파란색으로 변경 */
 }
 
 /* 아이디 찾기 링크를 감싸는 div 스타일 */
-.links {
+#pwdsearchform .links {
     display: flex; /* flexbox를 사용하여 아이템들을 나란히 정렬 */
     align-items: center; /* 세로로 아이템들을 중앙 정렬 */
     justify-content: center; /* 가로로 아이템들을 중앙 정렬 */
@@ -71,18 +116,18 @@ input[type="submit"]:hover {
 }
 
 /* 아이디 찾기 문구 앞의 레이블 스타일 */
-.links label {
+#pwdsearchform .links label {
     font-size: 14px; /* 레이블의 글꼴 크기를 14px로 설정 */
     margin-right: 20px; /* 레이블과 링크 사이에 20px의 간격을 추가 */
 }
 
 /* 아이디 찾기 링크 스타일 */
-.links a {
-    color: #007bff; /* 링크의 글자 색을 파란색으로 설정 */
+#pwdsearchform .links a {
+    color: #4e9e2e; /* 링크의 글자 색을 파란색으로 설정 */
     text-decoration: none; /* 링크의 밑줄을 제거 */
 }
 
 /* 아이디 찾기 링크에 마우스를 올렸을 때 스타일 */
-.links a:hover {
+#pwdsearchform .links a:hover {
     text-decoration: underline; /* 마우스를 올리면 밑줄이 생기도록 설정 */
 }
