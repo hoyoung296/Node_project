@@ -2,6 +2,7 @@ const ser = require("../../service/board/board_service")
 const serCom = require("../../service/ser_common")
 const path = require("path")
 const ejs = require('ejs');
+const mctrl = require("../controller") //thema설정하려고 추가
 
 const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 안보이는 코드 list.ejs에도 있음 
 
@@ -20,26 +21,30 @@ const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 
     },
 
     list : async ( req, res ) => {
+        const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         const data = await ser.boardRead.list( req.query.start );
         const isLoggedIn = req.session.user ? true : false;
-        res.render( "board/list", {list : data.list, start : data.start, page : data.page, isLoggedIn: isLoggedIn })
+        res.render( "board/list", {list : data.list, start : data.start, page : data.page, isLoggedIn: isLoggedIn, thema })
     },
-    writeForm : (req, res) => {
+    writeForm : async (req, res) => {
+        const thema = await mctrl.userThema(req.session)
         console.log(req.session)
         const msg = serCom.sessionCheck( req.session );
         if( msg != 0 ){
             return res.send( msg )
         }
-        res.render("board/write_form", {username : req.session.name})
+        res.render("board/write_form", {username : req.session.name, thema})
     },
     data : async ( req, res) => {
+        const thema = await mctrl.userThema(req.session)
         const data = await ser.boardRead.data( req.query.num );
         const username = req.session.username;
-        res.render("board/data", { data , username } );
+        res.render("board/data", { data , username, thema } );
     },
     modifyForm : async ( req, res ) => {
+        const thema = await mctrl.userThema(req.session)
         const data = await ser.boardRead.datta( req.query.writeNo );
-        res.render("board/modify_form", {data});
+        res.render("board/modify_form", {data, thema});
     }
 }
 const process = {
