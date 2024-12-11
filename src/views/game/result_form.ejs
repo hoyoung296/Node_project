@@ -4,6 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
+    <script>
+        const thema = "<%= thema %>" //사용자 thema변수 저장
+        window.onload = () => {
+            applyThema(thema) //사용자 thema 설정
+        }
+    </script>
 </head>
 
 <body>
@@ -15,10 +22,10 @@
             <div style="width: 250px; margin: 0 auto; padding-top: 20px;">
                 <form id="frm" action="/game/update" method="post">
                     <b>
-                        <%= username %>
+                        <%= name %>
                     </b>님의 획득 도토리<br>
                     <b id="a" name="result" value="num"></b><br>
-                    <input type="hidden" name="id" value="<%= username %>">
+                    <input type="hidden" name="id" value="<%= name %>">
                     <input type="hidden" id="b" name="result" value="num">
                     <button type="submit" style="color: gold; border: none; background: none; font-size: 25px; 
                     font-weight: bold; cursor: pointer;">확인</button>

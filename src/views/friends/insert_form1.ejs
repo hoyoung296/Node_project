@@ -4,6 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
+    <script>
+        const thema = "<%= thema %>" //사용자 thema변수 저장
+        window.onload = () => {
+            applyThema(thema) //사용자 thema 설정
+        }
+    </script>
 </head>
 
 <body>
@@ -13,7 +20,7 @@
             <div style="width: 250px; margin: 0 auto; padding-top: 20px;">
                 <form id="frm" action="/friends/insert" method="post">
                     <%= body.id %>님한테 친구 요쳥 메세지를 보내겠습니까?<br><br><br>
-                        <input type="hidden" name="sender" value="<%= username %>">
+                        <input type="hidden" name="sender" value="<%= name %>">
                         <input type="hidden" name="receiver" value="<%= body.id %>">
                         <input type="hidden" name="object" value="친구추가">
                         <input type="hidden" name="subject" value="친구추가">

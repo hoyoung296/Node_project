@@ -15,7 +15,7 @@
 </head>
 
 <body class="front_body">
-    <% if(!username) { %>
+    <% if(!name) { %>
         <script>
             alert("로그인 이후 사용가능합니다!!!!");
             location.href = '/member/login_form';
@@ -30,7 +30,6 @@
                 <%- include('../include/footer.ejs')%>
 </body>
 <script>
-    const setTheme = theme => document.documentElement.className = theme;
     function scrollToTop() {
     window.scrollTo({
         top: 0,
