@@ -29,7 +29,7 @@ const boardRead = {
 }
 const boardInsert = {
     write : async ( body ) => {
-        const sql = `insert into board(write_no, title, contemt, origin_file_name, change_file_name, id) values(board_seq.nextval, :title, :content , :origin, :change, :id)`;
+        const sql = `insert into board(write_no, title, content, upload_file, id, save_date, hit, name) values(board_seq.nextval, :title, :content, :origin, :id, TO_DATE(:save_data, 'YYYY-MM-DD'), :hit, :name)`;
         let result = 0;
         try{
             result = await(await con).execute(sql, body);
@@ -38,10 +38,11 @@ const boardInsert = {
         }
         return result;
     }
+
 }
 const boardUpdate = {
     upHit : async( num ) => {
-        const sql = `update board set hit = hit +1 where write_no=${num}`;
+        const sql = `update board set hit = hit + 1 where write_no=${num}`;
         (await con).execute( sql );
     },
     delete : async(writeNo) => {
@@ -49,7 +50,7 @@ const boardUpdate = {
         (await con).execute( sql );
     },
     modify : async ( body ) => {
-        const sql = `update board set title=:title, content=:content, origin_file_name=:origin_file_name, change_file_name=:change_file_name where write_no=:write_no`;
+        const sql = `update board set title=:title, content=:content, upload_file=:upload_file, where write_no=:write_no`;
         return ( await cocn).execute( sql, body );
     }
 }

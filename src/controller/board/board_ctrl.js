@@ -33,7 +33,7 @@ const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 
         res.render("board/write_form", {username : req.session.name})
     },
     data : async ( req, res) => {
-        const data = await ser.boardRead.data( req.query.num );
+        const data = await ser.boardRead.data( req.params.num );
         const username = req.session.username;
         res.render("board/data", { data , username } );
     },
@@ -45,7 +45,7 @@ const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 
 const process = {
     write : async ( req, res ) => {
         const msg = await ser.boardInsert.write(
-            req.body, req.file, req.fileValidation
+            req.body, req.file, req.fileValidation, req.session.uid
         );
         res.send( msg )
     },
@@ -55,7 +55,7 @@ const process = {
         res.redirect("/board/list");
     },
     modify : async ( req, res) => {
-        const deleteFile = req.body.change_file_name;
+        const deleteFile = req.body.upload_file;
         const message = await ser.boardUpdate.modify( req. body, req.file );
         if( req.file !== undefined && message.result ===1 ){
             file_frocess.delete( deleteFile );
