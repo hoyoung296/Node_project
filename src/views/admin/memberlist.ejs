@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/static/js/admin/memberlist.js" defer></script>
+     <!-- 아이콘 및 폰트 링크 -->
+     <link rel="icon" href="/static/front_image/dotoree.png" type="image/x-icon">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap" rel="stylesheet">
+     <!-- front.css 추가 (헤더 등 공통 스타일을 위한 링크) -->
+     <link rel="stylesheet" href="/static/css/front/front.css">
+ </head>
+</head>
+
+<body class="front_body">
+
+    <%- include('../include/header.ejs') %>
+     <!-- 아이디 찾기 폼 -->
+     <section id="memberlist">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>이름</th>
+                <th>이메일</th>
+                <th>주소</th>
+                <th>전화번호</th>
+                <th>탈퇴</th> <!-- 탈퇴 버튼을 추가 -->
+            </tr>
+        </thead>
+        <tbody>
+            <% data.forEach(d=> { %>
+                <tr>
+                    <td>
+                        <%= d.ID %>
+                    </td>
+                    <td>
+                        <%= d.NAME %>
+                    </td>
+                    <td>
+                        <%= d.EMAIL %>
+                    </td>
+                    <td>
+                        <%= d.ADDR %>
+                    </td>
+                    <td>
+                        <%= d.PHONE %>
+                    </td>
+                    <td>
+                        <!-- 탈퇴 링크를 <a> 태그로 추가 -->
+                        <a href="javascript:void(0);" onclick="deleteMember('<%= d.ID %>');">탈퇴</a>
+                    </td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+</section>
+
+<%- include('../include/footer.ejs') %>
+
+</body>
+
+</html>

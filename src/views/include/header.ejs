@@ -48,4 +48,11 @@
             <button onclick="location.href='/friends'">친구 추가</button>
         </li>
     </ul>
+    <%if(id == "admin"){%>
+        <ul>
+            <li>
+                <button onclick="location.href='/admin/memberlist'">회원 목록</button>
+            </li>
+        </ul>
+    <%}%>
 </nav>
