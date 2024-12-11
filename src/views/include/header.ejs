@@ -13,7 +13,9 @@
 </header>
 
 <nav class="nav_bar">
-    <ul>
+    <input type="checkbox" class="menu_checkbox" id="menu_checkbox">
+    <label for="menu_checkbox" class="menu_label">게시판</label>
+    <ul class="sub_menu">
         <li>
             <button onclick="location.href='/board/hot_issue'">이번주 핫이슈</button>
         </li>
@@ -29,6 +31,8 @@
         <li>
             <button onclick="location.href='/board/Problem Solving'">노래 추천</button>
         </li>
+    </ul>
+    <ul>
         <li>
             <button onclick="location.href='/product'">쇼핑몰</button>
         </li>

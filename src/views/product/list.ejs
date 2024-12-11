@@ -20,6 +20,10 @@
         const outBtn = (t) => {
             document.getElementById(t.id+"_btn").style.visibility = "hidden"
         }
+        const thema = "<%= thema %>";
+        window.onload = () => {
+            applyThema(thema)
+        }
      </script>
 </head>
 <body  class="front_body">

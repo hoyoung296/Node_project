@@ -1,13 +1,18 @@
 const pser = require("../service/product/product_service")
 
 const main = async (req, res) => {
-    let thema = "brown"
-    if(req.session.uid != undefined){
-        thema = await pser.userThema(req.session.uid)
-    }
+    const thema = await userThema(req.session)
     const isLogin = req.cookies.isLogin === "true";
     console.log("thema", thema)
     res.render("main", { isLogin, thema })
 }
 
-module.exports = {main}
+const userThema = async (session) => {
+    let thema = "brown"
+    if(session.uid != undefined){
+        thema = await pser.userThema(session.uid)
+    }
+    return thema
+}
+
+module.exports = {main, userThema}
