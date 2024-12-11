@@ -1,13 +1,12 @@
 const ser = require("../../service/product/product_service")
-const fs = require("fs")
+// const fs = require("fs")
+const mctrl = require("../controller")
 
 const list = async (req, res) => {
+    const thema = await mctrl.userThema(req.session)
     const productList = await ser.productList()
-    const themaPath = fs.readdirSync("./public/thema")
-    const themaName = ser.rename(themaPath)
-    
     console.log(req.session)
-    res.render("product/list", {list : productList})
+    res.render("product/list", {list : productList, thema})
 }
 
 const load = (req, res) => {

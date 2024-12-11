@@ -1,22 +1,24 @@
 const ser = require("../../service/game/game_service")
+const mctrl = require("../controller") //thema설정하려고 추가
+
 const views = {
     check: (req, res) => {
         console.log("req.session.uid : ", req.session.uid)
         let msg = ser.pageRead.check(req.session.uid)
         res.send(msg)
     },
-    index: (req, res) => {
-        res.render("game/index", { name: req.session.uid })
+    index: async (req, res) => {
+        const thema = await mctrl.userThema(req.session) //사용자 테마 설정
+        res.render("game/index", { name: req.session.uid, thema })
     },
-    info: (req, res) => {
-        res.render("game/info", { name: req.session.uid })
+    info: async (req, res) => {
+        const thema = await mctrl.userThema(req.session) //사용자 테마 설정
+        res.render("game/info", { name: req.session.uid, thema })
     },
-    play: (req, res) => {
-
+    play: async (req, res) => {
+        const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         console.log("req.session.uid : ", req.session.uid)
-
-
-        res.render("game/play", { name: req.session.uid })
+        res.render("game/play", { name: req.session.uid, thema })
     }
 }
 const process = {
