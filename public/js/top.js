@@ -21,3 +21,17 @@ function scrollToTop() {
         behavior: 'smooth'
     });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const currentPath = window.location.pathname;
+    const buttons = document.querySelectorAll("button");
+
+    buttons.forEach(button => {
+        const paths = button.getAttribute("data-path").split(" ");
+        if (paths.some(path => currentPath.startsWith(path))) {
+            button.classList.add("active");
+        }
+    });
+});
+
+

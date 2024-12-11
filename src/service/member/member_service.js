@@ -23,11 +23,14 @@ const process = {
     },
     ser_login: async (body, req, res) => {
         const result = await dao.process.dao_login(body.id)
+        console.log("login : ", result.rows[0].ID)
+        const admin = result.rows[0].ID;
         const loginFail = await dao.process.selectLoginFailCount(body.id);
         let LoginFailCount = loginFail[0].LOGIN_FAIL_COUNT;
         let LoginFailTime = loginFail[0].LOGIN_FAIL_TIME;
         let currentTime = loginFail[0].CURRENT_TIME;
-        console.log("loginFail : ",loginFail)
+        console.log("loginFail : ", loginFail)
+
         if (result.rows.length == 0) {
             msg = "아이디 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요"
             url = "/member/login_form"
@@ -47,12 +50,22 @@ const process = {
                         url = "/"
                     }
                 } else {
-                    await dao.process.clearLoginFailCount(body.id);
-                    req.session.uid = body.id;
-                    req.session.name = result.rows[0].NAME
-                    res.cookie("isLogin", true)
-                    msg = "성공"
-                    url = "/"
+                    if (admin == "admin") {
+                        await dao.process.clearLoginFailCount(body.id);
+                        req.session.uid = admin;
+                        req.session.name = result.rows[0].NAME
+                        res.cookie("isLogin", true)
+                        msg = `${req.session.name}님이 로그인 성공`
+                        url = "/"
+                    } else {
+                        await dao.process.clearLoginFailCount(body.id);
+                        req.session.uid = body.id;
+                        req.session.name = result.rows[0].NAME
+                        res.cookie("isLogin", true)
+                        msg = `${req.session.name}님이 로그인 성공`
+                        url = "/"
+                    }
+
                 }
             } else {
                 if (LoginFailCount > 4) {
