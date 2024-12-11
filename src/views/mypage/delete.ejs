@@ -10,11 +10,32 @@
     <form action="/mypage/delete" method="POST">
         <p>정말 탈퇴하시겠습니까?</p>
 
+        <!-- 현재 비밀번호 입력 -->
         <label for="currentPwd">현재 비밀번호:</label>
-        <input type="password" name="currentPwd" required><br>
-        
+        <input type="password" name="currentPwd" id="currentPwd" required><br>
+
+        <!-- 비밀번호 확인 입력 -->
+        <label for="confirmPwd">비밀번호 확인:</label>
+        <input type="password" name="confirmPwd" id="confirmPwd" required><br>
+        <span id="pwdError" style="color:red; font-size: 12px;"></span><br>
         <button type="submit">탈퇴</button>
         <button type="button" onclick="history.back();">취소</button>
     </form>
+    <script>
+        // 비밀번호 확인 기능 (두 비밀번호가 일치하는지 확인)
+        function validatePasswords() {
+            var currentPwd = document.getElementById("currentPwd").value;
+            var confirmPwd = document.getElementById("confirmPwd").value;
+            var errorMessage = document.getElementById("pwdError");
+
+            if (currentPwd !== confirmPwd) {
+                errorMessage.textContent = "비밀번호가 일치하지 않습니다. 다시 확인해주세요.";
+                return false;  // 폼 제출을 막음
+            } else {
+                errorMessage.textContent = "";  // 에러 메시지 숨김
+                return true;  // 폼 제출 허용
+            }
+        }
+    </script>
 </body>
 </html>

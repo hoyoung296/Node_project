@@ -1,26 +1,33 @@
 const ser = require("../../service/member/member_service")
 const authService = require("../../service/member/emailSend_service")
+const mctrl = require("../controller") //thema설정하려고 추가
 
 const views = {
-    registerForm: (req, res) => {
-        res.render("member/registerForm")
+    registerForm: async (req, res) => {
+        const thema = await mctrl.userThema(req.session) //사용자 테마 설정
+        res.render("member/registerForm", {thema})
     },
-    loginForm: (req, res) => {
-        res.render("member/loginForm")
+    loginForm: async (req, res) => {
+        const thema = await mctrl.userThema(req.session) //사용자 테마 설정
+        res.render("member/loginForm", {thema})
     },
-    pwdsearchForm: (req, res) => {
-        res.render("member/pwdsearchForm")
+    pwdsearchForm: async (req, res) => {
+        const thema = await mctrl.userThema(req.session) //사용자 테마 설정
+        res.render("member/pwdsearchForm", {thema})
     },
-    pwdsearch_checkForm: (req, res) => {
+    pwdsearch_checkForm: async (req, res) => {
+        const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         const uid = req.query.uid
-        res.render("member/pwdsearchcheckForm", { uid: uid })
+        res.render("member/pwdsearchcheckForm", { uid: uid, thema })
     },
-    idsearchForm: (req, res) => {
-        res.render("member/idsearchForm")
+    idsearchForm: async (req, res) => {
+        const thema = await mctrl.userThema(req.session) //사용자 테마 설정
+        res.render("member/idsearchForm", {thema})
     },
-    idview : (req, res) => {
+    idview : async (req, res) => {
+        const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         const uid = req.query.uid;  // 쿼리 파라미터에서 uid를 가져옴
-        res.render("member/idview", { uid: uid });  // uid를 템플릿에 전달
+        res.render("member/idview", { uid: uid, thema });  // uid를 템플릿에 전달
     }
 }
 
@@ -43,6 +50,16 @@ const process = {
         const uid = req.query.uid;
 
         const result = await (ser.process.ser_idCheck(uid))
+        console.log("result : ", result)
+
+        return res.json(result)
+
+    },
+    emailCheck : async (req, res) => {
+        // console.log(req.query)
+        const email = req.body.email;
+
+        const result = await (ser.process.ser_emailCheck2(email))
         console.log("result : ", result)
 
         return res.json(result)

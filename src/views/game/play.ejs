@@ -12,17 +12,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="/static/css/front/front.css">
+    <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
+    <script>
+        const thema = "<%= thema %>" //사용자 thema변수 저장
+        window.onload = () => {
+            applyThema(thema) //사용자 thema 설정
+        }
+    </script>
 </head>
 
 <body class="front_body">
-    <% if(!username) { %>
+    <% if(!name) { %>
         <script>
             alert("로그인 이후 사용가능합니다!!!!");
             location.href = '/member/login_form';
         </script>
         <% } %>
         <%- include('../include/header.ejs')%>
-
+        
             <section>
                 <div id="game">
                     <%- include("./play1.ejs") %>
@@ -32,7 +39,6 @@
                 <%- include('../include/footer.ejs')%>
 </body>
 <script>
-    const setTheme = theme => document.documentElement.className = theme;
     function scrollToTop() {
     window.scrollTo({
         top: 0,

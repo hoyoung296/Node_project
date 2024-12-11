@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+<<<<<<< HEAD
     <link rel="stylesheet" href="/static/css/board/board.css">
     <script src="/static/js/board/reply_view.js"></script>
     <script>window.onload = () => {
@@ -13,6 +14,33 @@
     console.log("num.innerHTML : ", num.innerHTML);
     init(num.innerHTML);
     }</script>
+=======
+    <script src="/static/js/reply_view.js"></script>
+    <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
+    <script>
+        const thema = "<%= thema %>" //사용자 thema변수 저장
+        window.onload = () => {
+            const num = document.getElementById("number")
+            console.log("number :", num )
+            console.log("num.innerHTML : ", num.innerHTML )
+            init( num.innerHTML )
+            applyThema(thema) //사용자 thema 설정
+        }
+    </script>
+    <style>
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: none;
+        }
+        th, td{
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+>>>>>>> cf5dfad7e7448caa6adc68b11df907ff0ee73daf
 </head>
 <body>
     <%- include ("./reply_form") %>

@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
+    <script>
+        const thema = "<%= thema %>" //사용자 thema변수 저장
+        window.onload = () => {
+            applyThema(thema) //사용자 thema 설정
+        }
+    </script>
 </head>
 <body>
     <script src="/static/js/img_view.js"></script>

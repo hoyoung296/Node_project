@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
+    <script>
+        const thema = "<%= thema %>" //사용자 thema변수 저장
+        window.onload = () => {
+            applyThema(thema) //사용자 thema 설정
+        }
+    </script>
+</head>
+
+<body>
+    <table align="center" border="1" style="margin-top: 150px; text-align: center;">
+        <tr>
+            <th>친구목록</th>
+        </tr>
+        <% result.forEach (data=>{ %>
+            <% if(name==data.MEMBER_ID){ %>
+                <tr>
+                    <td>
+                        <%= data.FRIEND_ID %>
+                    </td>
+                </tr>
+                <% } %>
+                    <% if(name==data.FRIEND_ID){ %>
+                        <tr>
+                            <td>
+                                <%= data.MEMBER_ID %>
+                            </td>
+                        </tr>
+                        <% } %>
+                            <% }) %>
+                                <% if(result.length==0) { %>
+                                    <tr>
+                                        <td align="center"><b>등록된 정보 없음</b></td>
+                                    </tr>
+                                    <% } %>
+                                        <tr>
+                                            <td>
+                                                <% if(start> 1){ %>
+                                                    <button
+                                                        onclick="location.href='/friends/friendsview?start=<%= start-1 %>'">이전</button>
+                                                    <% } %>
+                                                        <% for (let i=1 ; i <=page ; i++) { %>
+                                                            <a href="/friends/friendsview?start=<%= i %>">
+                                                                <%= i %>
+                                                            </a>
+                                                            <% } %>
+                                                                <% if ( start < page ){ %>
+                                                                    <button
+                                                                        onclick="location.href='/friends/friendsview?start=<%= start + 1 %>'">다음</button>
+                                                                    <% } %>
+                                            </td>
+                                        </tr>
+    </table>
+    <button onclick="location.href='/main'" style="color: gold; border: none; background: none; font-size: 25px; 
+                    font-weight: bold; cursor: pointer;">메인 페이지</button>
+</body>
+
+</html>
+</body>
+
+</html>

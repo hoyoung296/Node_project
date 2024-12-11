@@ -7,26 +7,50 @@
     <title>비밀 번호찾기</title>
     <link rel="stylesheet" href="/static/css/member/pwdsearchForm.css">
     <script src="/static/js/member/pwdsearchForm.js"></script>
+    <!-- 아이콘 및 폰트 링크 -->
+    <link rel="icon" href="/static/front_image/dotoree.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap" rel="stylesheet">
+    <!-- front.css 추가 (헤더 등 공통 스타일을 위한 링크) -->
+    <link rel="stylesheet" href="/static/css/front/front.css">
+    <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
+    <script>
+        const thema = "<%= thema %>" //사용자 thema변수 저장
+        window.onload = () => {
+            applyThema(thema) //사용자 thema 설정
+        }
+    </script>
 </head>
 
-<body>
-    <div id="main">
-        <form action="/member/pwdsearch_checkform" method="post" onsubmit="updateActionUrl(event)">
-            <!-- 아이디 입력 -->
-            <div class="form-group">
-                <label for="id" aria-hidden="true">비밀번호를 찾고자하는 아이디를 입력해주세요.</label>
-                <input type="text" id="id" name="id" required placeholder="아이디를 입력하세요">
+<body class="front_body">
+
+    <%- include('../include/header.ejs') %>
+
+        <!-- 아이디 찾기 폼 -->
+        <section id="pwdsearchform">
+            <div id="main">
+                <form action="/member/pwdsearch_checkform" method="post" onsubmit="updateActionUrl(event)">
+                    <!-- 아이디 입력 -->
+                    <div class="form-group">
+                        <label for="id" aria-hidden="true">비밀번호를 찾고자하는 아이디를 입력해주세요.</label>
+                        <input type="text" id="id" name="id" required placeholder="아이디를 입력하세요">
+                    </div>
+                    <!-- 로그인 버튼 -->
+                    <div class="form-group">
+                        <input type="submit" value="비밀번호 찾기">
+                    </div>
+                    <div class="links">
+                        <label aria-hidden="true">아이디 기억나지 않는다면?</label>
+                        <a href="/member/idsearch_form">아이디 찾기</a>
+                    </div>
+                </form>
             </div>
-            <!-- 로그인 버튼 -->
-            <div class="form-group">
-                <input type="submit" value="비밀번호 찾기">
-            </div>
-            <div class="links">
-                <label aria-hidden="true">아이디 기억나지 않는다면?</label>
-                <a href="/member/idsearch_form">아이디 찾기</a>
-            </div>
-        </form>
-    </div>
+        </section>
+
+        <%- include('../include/footer.ejs') %>
+
 </body>
 
 </html>
