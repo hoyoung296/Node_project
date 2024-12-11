@@ -23,7 +23,7 @@
                             내용 : <%= result[0].CONTENT %><br>
                                 보낸 시간 : <%= result[0].SAVE_DATE %><br>
     </div>
-    <% if(result[0].OBJECT=='친구추가' && username==result[0].RECEIVER) { %>
+    <% if(result[0].OBJECT=='친구추가' && name==result[0].RECEIVER) { %>
         <form action="/friends/update" method="post" style="margin-top: 10px; text-align: center;">
             <input type="hidden" name="mem_id" value="<%= result[0].RECEIVER %>">
             <input type="hidden" name="fr_id" value="<%= result[0].SENDER %>">
@@ -31,7 +31,7 @@
                     font-weight: bold; cursor: pointer; text-align: center;">친구추가</button>
         </form>
         <% } %>
-            <% if(username==result[0].RECEIVER || username==result[0].SENDER) { %>
+            <% if(name==result[0].RECEIVER || name==result[0].SENDER) { %>
                 <form action="/friends/del" method="post" style="margin-top: 10px; text-align: center;">
                     <input type="hidden" name="num" value="<%= result[0].NUM %>">
                     <button type="submit" style="color: gold; border: none; background: none; font-size: 25px; 

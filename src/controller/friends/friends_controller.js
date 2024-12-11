@@ -18,29 +18,28 @@ const views = {
             !list.list2.some(entry => entry.MEMBER_ID == item.ID)
         );
         console.log("filter2 : ", filter2)
-
-        res.render("friends/list", { result: filter2, page: data.page, start: data.start, username: req.session.uid, thema })
+        res.render("friends/list", { result: filter2, page: data.page, start: data.start, name: req.session.uid, thema })
     },
     alram: async (req, res) => {
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         let data = await ser.pageRead.alram(req.query.start)
-        res.render("friends/alramList", { result: data.result, page: data.page, start: data.start, username: req.session.uid, thema })
+        res.render("friends/alramList", { result: data.result, page: data.page, start: data.start, name: req.session.uid, thema })
     },
     view: async (req, res) => {
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         let result = await ser.pageRead.view(req.query.num)
-        res.render("friends/view", { result, username: req.session.uid, thema })
+        res.render("friends/view", { result, name: req.session.uid, thema })
     },
     friendsview: async (req, res) => {
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         let data = await ser.pageRead.friendsview(req.query.start, req.session.uid)
         console.log("friendsview data : ", data.result)
-        res.render("friends/friendsView", { result: data.result, page: data.page, start: data.start, username: req.session.uid, thema })
+        res.render("friends/friendsView", { result: data.result, page: data.page, start: data.start, name: req.session.uid, thema })
     }
 }
 const process = {
     check: (req, res) => {
-        res.render("friends/insert_form", { username: req.session.uid, body: req.body })
+        res.render("friends/insert_form", { name: req.session.uid, body: req.body })
     },
     insert: async (req, res) => {
         await ser.pageInsert.insert(req.body)
