@@ -98,11 +98,10 @@
     text-decoration: none;
     color: inherit;
 }
-
 .nav_bar{
     grid-area: nav;
 }
-.nav_bar ul li button{
+.nav_bar ul li button, .menu_label {
     background: transparent;
     border: none;
     cursor: pointer;
@@ -112,12 +111,29 @@
     font-family: "Nanum Gothic";
     font-size: 15px;
     color: var(--text-color);
+    display: block;
+    text-align: center;
 }
-.nav_bar ul li button:hover{
+.nav_bar ul li button:hover, .menu_label:hover{
     background-color: var(--header-color);
     border-radius: 10px;
+    
 }
-
+.menu_checkbox{
+    display: none;
+}
+.sub_menu{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+.menu_checkbox:checked + .menu_label + .sub_menu{
+    border-style: solid;
+    border-color: var(--header-color);
+    border-radius: 12px;
+    display: block;
+    max-height: 500px;
+}
 .front_body > section{
     grid-area: section;
     display: grid;
