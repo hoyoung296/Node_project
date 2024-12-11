@@ -1,25 +1,12 @@
 const ser = require("../../service/friends/friends_service")
 const views = {
     list: async (req, res) => {
-        let list = await ser.pageRead.check(req.session.uid)
-        console.log("ctrl list1 : ", list.list1)
-        console.log("ctrl list2 : ", list.list2)
-        let data = await ser.pageRead.list(req.query.start)
-        console.log("data result : ", data.result)
-        const filter1 = data.result.filter(item =>
-            !list.list1.some(entry => entry.FRIEND_ID == item.ID)
-        );
-        console.log("filter1 : ", filter1)
-
-        const filter2 = filter1.filter(item =>
-            !list.list2.some(entry => entry.MEMBER_ID == item.ID)
-        );
-        console.log("filter2 : ", filter2)
-
-        res.render("friends/list", { result: filter2, page: data.page, start: data.start, name: req.session.uid })
+        await ser.pageRead.check(req.session.uid)
+        let data = await ser.pageRead.list(req.query.start,req.session.uid)
+        res.render("friends/list", { result: data.result, page: data.page, start: data.start, name: req.session.uid })
     },
     alram: async (req, res) => {
-        let data = await ser.pageRead.alram(req.query.start)
+        let data = await ser.pageRead.alram(req.query.start,req.session.uid)
         res.render("friends/alramList", { result: data.result, page: data.page, start: data.start, name: req.session.uid })
     },
     view: async (req, res) => {
@@ -52,6 +39,11 @@ const process = {
         console.log("delete : ", req.body)
         ser.pageInsert.del(req.body)
         res.redirect("/friends/alram")
+    },
+    friendsdel: (req, res) => {
+        console.log("friendsdelete : ", req.body.id)
+        ser.pageInsert.friendsdel(req.body.id, req.session.uid)
+        res.redirect("/friends/friendsview")
     }
 }
 

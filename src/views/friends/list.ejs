@@ -21,22 +21,22 @@
             location.href = '/member/login_form';
         </script>
         <% } %>
-        <%- include('../include/header.ejs')%>
+            <%- include('../include/header.ejs')%>
 
-            <section>
-                <%- include("./list1.ejs") %>
-            </section>
+                <section>
+                    <%- include("./list1.ejs") %>
+                </section>
 
                 <%- include('../include/footer.ejs')%>
 </body>
 <script>
     const setTheme = theme => document.documentElement.className = theme;
     function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-}
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
 </script>
 
 </html>
