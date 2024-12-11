@@ -64,9 +64,22 @@ const doCheck = async (uid) => {
 
 const userThema = async (uid) => {
     const thema = await dao.userThema(uid)
-    console.log("ser Thema", thema.rows[0].PRODUCT)
-    return thema.rows[0].PRODUCT
+    return thema.rows[0]
 }
 
-module.exports = {rename, listSetting, purchase, productList, loginCheck, userThema}
+const haveThema = async (uid) => {
+    const hThema = await dao.haveThema(uid)
+    const uThema = await dao.userThema(uid)
+    hThema.rows.unshift({PRODUCT_NO : 1, PRODUCT : 'brown'})
+    let thema = 'brown'
+    if(uThema.rows.length != 0){
+        thema = uThema.rows[0].PRODUCT
+    }
+    return {hThema : hThema.rows, uThema : thema}
+}
 
+const saveThema = async (uid, no) => {
+    await dao.saveThema(uid, no)
+}
+
+module.exports = {rename, listSetting, purchase, productList, loginCheck, userThema, haveThema, saveThema}
