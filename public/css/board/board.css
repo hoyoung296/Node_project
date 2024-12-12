@@ -11,3 +11,6 @@
             text-align: center;
         }
 }
+.hidden-links { /*main_list.ejs에 있음*/
+    display: none;
+}

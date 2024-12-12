@@ -15,6 +15,11 @@ const process = {
             res.status(500).json({ success: false, error: "회원 삭제 실패" });
         }
     },
+    boardlist : async (req, res) => {
+        const data = await ser.process.ser_boardlist()
+        console.log("data : ",data);
+        res.render("admin/boardlist", { data: data })
+    },
 }
 
 module.exports = { process }

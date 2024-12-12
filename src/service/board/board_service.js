@@ -20,28 +20,35 @@ const boardRead = {
         return { list, start, page };
     },
     data : async ( num ) => {
-        boardUpdate.upHit( num );
+        // boardUpdate.upHit( num );
+        let data = await dao.boardRead.data( num )
         data = serCom.timeModify( data.rows );
         return data[0];
     }
 }
 const boardInsert = {
-    write : async ( body, file, fileValidation ) => {
+    write : async ( body, file, fileValidation, uid ) => {
         console.log( file )
         let msg, url;
         if( fileValidation ){
-            msg = filefileValidation;
+            msg = fileValidation;
             url = "/board/write_form"
             return serCom.getMessage(msg, url );
         }
         if( file != undefined ){
             body.origin = file.originalname;
-            boar.change = file.filename;
+            body.change = file.filename;
         }else{
-            body.origin = "파일 없음";
-            boar.change = "파일 없음";
+            body.origin = "";
+            body.change = "";
         }
-        const result = await dao.boardInser.write( body );
+        delete body['category']
+        delete body['change']
+        body.hit = 0;
+        body.id = uid
+        body.save_data =new Date().toISOString().slice(0, 10);
+        console.log(body)
+        const result = await dao.boardInsert.write( body );
         if( result != 0 ){
             msg = "등록 성공하였습니다"
             url = "/board/list";
@@ -53,17 +60,17 @@ const boardInsert = {
         return serCom.getMessage( msg, url );
     }
 }
-const boardUpdatd = {
+const boardUpdate = {
     upHit : ( num ) => {
         dao.boardUpdate.upHit( num );
     },
     delete : ( writeNo ) => {
-        dao.boardupdate.delete( writeNo );
+        dao.boardUpdate.delete( writeNo );
     },
     modify : async ( body, file ) => {
         if( file !== undefined ){
             body.origin = file.originalname;
-            boar.change = file.filename;
+            body.change = file.filename;
         }
         const result = await dao.boardUpdate.modify( body );
         let msg, url;
@@ -83,4 +90,4 @@ const boardUpdatd = {
    
 
 }
-module.exports = {boardUpdatd, boardInsert, boardRead }
+module.exports = {boardUpdate, boardInsert, boardRead }
