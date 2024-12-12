@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story</title>
+</head>
+<body>
+        <div class="story-icons">
+            <!-- 사진 추가 아이콘 -->
+            <div class="story-icon" id="add-photo-icon">+</div>
+        </div>
+    
+    
+    <!-- 팝업 이미지 -->
+    <div id="story-popup">
+        <img id="popup-image" src="" alt="사진 미리보기">
+    </div>
+    
+    <style>
+       
+
+        .story-icons {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .story-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--header-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 8px;
+            cursor: pointer;
+            overflow: hidden;
+            z-index: 11;
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .story-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #story-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        #story-popup img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+
+    <!-- 정적 파일 경로 수정 -->
+    <script src="static/js/story/story.js"></script>
+</body>
+</html>

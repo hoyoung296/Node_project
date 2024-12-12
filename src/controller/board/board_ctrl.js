@@ -40,7 +40,7 @@ const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 
         const data = await ser.boardRead.data( req.params.num );
 
         const thema = await mctrl.userThema(req.session)
-
+        console.log("data : ",data)
         const username = req.session.username;
         res.render("board/data", { data , username, thema } );
     },
@@ -74,7 +74,7 @@ const process = {
 const fs = require("fs");
 const file_process = {
     download : ( req, res ) => {
-        const filePath = `./upload_file/${req.query.imgName}`;
+        const filePath = `./upload_file/${req.params.imgName}`;
         res.download( filePath )
     },
     delete : ( imgName ) => {

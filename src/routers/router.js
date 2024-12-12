@@ -18,6 +18,9 @@ module.exports = (app) => {
     const gameRouter = require("../routers/game/game_router");
     app.use("/game", gameRouter);
 
+    const boardrepRouter = require("../routers/board/board_reply_router");
+    app.use("/board_rep", boardrepRouter);
+
     const boardRouter = require("../routers/board/board_router");
     app.use("/board", boardRouter);
 
