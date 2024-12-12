@@ -16,7 +16,7 @@ const boardRead = {
         const startNum = ( start - 1 ) * 15;
         let list = await dao.boardRead.list( startNum );
         console.log(list.rows[0])
-        list = serCom.dayModify( list.rows )
+        list = serCom.timeModify( list.rows )
         return { list, start, page };
     },
     data : async ( num ) => {

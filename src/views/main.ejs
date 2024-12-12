@@ -29,14 +29,19 @@
 </head>
 
 <body class="front_body">
-    <%-include('include/header.ejs')%>
+   
+    <%-include('./include/header.ejs')%>
 
-        <section>
-            <div class="story">스토리</div>
-            <div id="main_section"> </div>
-        </section>
+
+    <section>
+        <div class="story">
+            <%- include('./story/story.ejs') %>
+        </div>
+        <div id="main_section"> </div>
+    </section>
 
         <%- include('include/footer.ejs')%>
+
 
 </body>
 

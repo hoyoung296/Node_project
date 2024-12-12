@@ -15,14 +15,10 @@
         var thema = "<%= thema %>";  // EJS에서 전달한 thema 값을 JavaScript 변수로 설정
         console.log(thema)
         window.onload = async () => {
-            try {
-                // 서버에서 EJS 템플릿을 렌더링한 HTML을 받아옴
-                const res = await fetch('/board/main');
-                const html = await res.text();  // 서버에서 HTML을 텍스트로 받아옴
-                document.getElementById('main_section').innerHTML = html;  // 받아온 HTML을 페이지에 삽입
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
+            const num = document.getElementById("number")
+            console.log("number :", num )
+            console.log("num.innerHTML : ", num.innerHTML )
+            init( num.innerHTML )
             applyThema(thema);
         }
     </script>
@@ -56,6 +52,7 @@
                 <div id="main">
                     <table>
                         <tr>
+                            <th width="100">글 번호</th> 
                             <th width="100">글 번호</th>
                             <td width="200" id="number"><%= data.WRITE_NO %></td> 
                             <th width="100">작성자</th>
