@@ -27,11 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const buttons = document.querySelectorAll("button");
 
     buttons.forEach(button => {
-        const paths = button.getAttribute("data-path").split(" ");
-        if (paths.some(path => currentPath.startsWith(path))) {
-            button.classList.add("active");
+        const dataPath = button.getAttribute("data-path");
+
+        // data-path가 존재하는지 확인
+        if (dataPath) {
+            const paths = dataPath.split(" ");
+            if (paths.some(path => currentPath.startsWith(path))) {
+                button.classList.add("active");
+            }
         }
     });
 });
-
-
