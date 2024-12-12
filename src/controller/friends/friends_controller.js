@@ -21,13 +21,13 @@ const views = {
     friendsview: async (req, res) => {
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         let data = await ser.pageRead.friendsview(req.query.start, req.session.uid)
-        console.log("friendsview data : ", data.result)
         res.render("friends/friendsView", { result: data.result, page: data.page, start: data.start, name: req.session.uid, thema })
     }
 }
 const process = {
-    check: (req, res) => {
-        res.render("friends/insert_form", { name: req.session.uid, body: req.body })
+    check: async (req, res) => {
+        const thema = await mctrl.userThema(req.session) //사용자 테마 설정
+        res.render("friends/insert_form", { name: req.session.uid, body: req.body, thema })
     },
     insert: async (req, res) => {
         await ser.pageInsert.insert(req.body)
