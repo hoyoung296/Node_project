@@ -25,5 +25,5 @@
     background-color: #fff2d6;
     line-height: 100px;
     margin-top: 200px;
-    color: gold;
+    color: var(--header-color);;
 }

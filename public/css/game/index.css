@@ -17,6 +17,6 @@
     }
 
     &>button {
-        color: gold;
+        color: var(--header-color)
     }
 }
