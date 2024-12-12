@@ -75,7 +75,9 @@ const haveThema = async (uid) => {
     if(uThema.rows.length != 0){
         thema = uThema.rows[0].PRODUCT
     }
-    return {hThema : hThema.rows, uThema : thema}
+    let realhaveThema = hThema.rows
+        .map(item => item.PRODUCT)
+    return {hThema : realhaveThema, uThema : thema}
 }
 
 const saveThema = async (uid, no) => {
