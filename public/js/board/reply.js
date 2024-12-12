@@ -1,11 +1,11 @@
 function reply_form(){
     // document.getElementById("modal_wrap").style.display = "block"
     // document.getElementById("first").style.display = "block"
-    // console.log($("#id").val());
-    // if($("#id").val()==""){
-    //     alert("로그인 하셔야 함")
-    //     return location.href("/member/loginForm")
-    // }
+    console.log($("#id").val());
+    if($("#id").val()==""){
+        alert("로그인 후 작성가능합니다")
+        return location.href("/member/loginForm")
+    }
     $("#first").slideDown('slow');
     $("#modal_wrap").show();
 }
@@ -19,7 +19,7 @@ function rep(){
     let form = {}
     let arr = $("#frm").serializeArray();
     console.log(arr)
-    arr.forEach(d => {form[d.name] = d.value})
+    arr.forEach(d => {form[d.id] = d.value})
     console.log(form)
     fetch("/board_rep",{
         method : "post",
