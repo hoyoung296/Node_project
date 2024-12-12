@@ -7,6 +7,7 @@ module.exports = (app) => {
         res.locals.id = req.session.uid || null;         // session에서 uid 가져오기
         next(); // 다음 미들웨어로 전달
     });
+    
     // 각각의 라우터 설정
     const memberRouter = require("../routers/member/member_router");
     app.use("/member", memberRouter);

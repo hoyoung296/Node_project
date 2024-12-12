@@ -132,6 +132,7 @@ const daoRead = {
         } catch (err) {
             console.log(err)
         }
+        console.log("")
         return result
     },
     totalCnt1: async (body) => {

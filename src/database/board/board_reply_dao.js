@@ -1,7 +1,7 @@
 const con = require("../db_common")
 const insert = {
     register : async (body) => {
-        const sql = `insert into reply(id, name, content,reply_group, reply_no) values(:id, :title, : content,:write_no, reply_SEQ.nextval)`;
+        const sql = `insert into reply( reply_no, id, content,reply_group) values(: reply_SEQ.nextval, :id, : content,:write_no,)`;
         let result = 0;
         try{
             result = await(await con).execute(sql, body);
