@@ -11,19 +11,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/front/front.css">
     <link rel="stylesheet" href="/static/css/board/board.css">
+    <script src="/static/js/board/reply_view.js"></script>
     <script src="/static/js/top.js"></script>
     <script>
         var thema = "<%= thema %>";  // EJS에서 전달한 thema 값을 JavaScript 변수로 설정
-        console.log(thema)
+        console.log(thema);
         window.onload = async () => {
-            try {
-                // 서버에서 EJS 템플릿을 렌더링한 HTML을 받아옴
-                const res = await fetch('/board/main');
-                const html = await res.text();  // 서버에서 HTML을 텍스트로 받아옴
-                document.getElementById('main_section').innerHTML = html;  // 받아온 HTML을 페이지에 삽입
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
+            const num = document.getElementById("number");
+            console.log("number :", num);
+            console.log("num.textContent : ", num.textContent); // textContent를 사용하여 태그를 제외한 텍스트 값만 가져오기
+            await init(num.textContent.trim()); // .trim()을 사용하여 공백 제거
             applyThema(thema);
         }
     </script>
@@ -36,6 +33,9 @@
     <body><%- include ("./reply_form") %>
             <div id="main">
                 <div id="board_top">
+                    <div id="number">
+                        <div><%= data.WRITE_NO %></div>
+                    </div>
                     <div id="board_title">
                         <div><%= data.TITLE %></div>
                     </div>
@@ -49,7 +49,7 @@
                         </div>
                         <div id="board_count">
                             
-                            <div>조회 <%= data.HIT %></div><!--임시로 글번호 넣음-->
+                            <div>조회 <%= data.HIT %></div>
                         </div>
                     </div>
                 </div>
@@ -59,11 +59,13 @@
                         
                         <div><%= data.CONTENT %></div>
                         <div colspan="2">
-                            <% if( data.UPLOAD_FILE === "NAN") { %>
-                            <B>이미지가 없습니다
-                                <% }else { %>
-        
-                                <% } %> 
+                            <% if( data.UPLOAD_FILE === "nan"){%>
+                                <b>이미지가 없습니다
+                            <%}else{%>
+                                <img src="/board/download/<%= data.CHANGE_FILE %>"
+                            width="100px" height="100px">
+                            <%}%>
+
                         </div>
                     </div>
                 </div>

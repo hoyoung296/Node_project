@@ -2,6 +2,7 @@ async function init( write_no ) {
     console.log("init write_no : ", write_no )
     const res = await fetch("/board_rep/" + write_no )
     const data = await res.json();
+    // console.log(data)
     let html = "";
     data.forEach( d => {
         html += `<div align="left"><b>아이디 : </b>${d.ID}님 /`;

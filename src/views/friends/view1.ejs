@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div style="width: 730px; height: 600px; background: #fff2d6; text-align: center;">
+    <div style="width: 730px; height: 600px; text-align: center;">
         <table align="center" width="730px" height="300px" border="1"
             style="text-align: center; margin: 0px auto; border-color: gold; margin-top: 50px;">
             <tr>
@@ -54,7 +54,7 @@
                 </td>
             </tr>
         </table>
-        <% if(result[0].OBJECT=='친구추가' && name==result[0].RECEIVER) { %>
+        <% if(result[0].OBJECT=="친구 추가" && result[0].RECEIVER==name) { %>
             <form action="/friends/update" method="post" style="margin-top: 50px; text-align: center;">
                 <input type="hidden" name="mem_id" value="<%= result[0].RECEIVER %>">
                 <input type="hidden" name="fr_id" value="<%= result[0].SENDER %>">
@@ -62,15 +62,14 @@
                         font-weight: bold; cursor: pointer; text-align: center;">친구추가</button>
             </form>
             <% } %>
-                <% if(name==result[0].RECEIVER || name==result[0].SENDER) { %>
-                    <form action="/friends/del" method="post" style="margin-top: 30px; text-align: center;">
-                        <input type="hidden" name="num" value="<%= result[0].NUM %>">
-                        <button type="submit" style="color: gold; border: none; background: none; font-size: 25px; 
+                <form action="/friends/del" method="post" style="margin-top: 30px; text-align: center;">
+                    <input type="hidden" name="num" value="<%= result[0].NUM %>">
+                    <button type="submit" style="color: gold; border: none; background: none; font-size: 25px; 
                             font-weight: bold; cursor: pointer;">알림 삭제</button>
-                    </form>
-                    <% } %>
-                        <button onclick="location.href='/friends/alram'" style="color: gold; border: none; background: none; font-size: 25px; 
-                        font-weight: bold; cursor: pointer; margin-top: 10px;">목록페이지로</button>
+                </form>
+
+                <button onclick="location.href='/friends/alram'" style="color: gold; border: none; background: none; font-size: 25px; 
+                        font-weight: bold; cursor: pointer; margin-top: 30px;">목록페이지로</button>
     </div>
 </body>
 
