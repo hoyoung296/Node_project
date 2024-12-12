@@ -1,5 +1,3 @@
-
-
 function applyThema(thema) {// 테마를 설정하는 로직
     document.documentElement.className = thema;
     console.log(`Setting theme to ${thema}`);
@@ -38,3 +36,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+

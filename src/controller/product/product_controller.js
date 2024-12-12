@@ -6,7 +6,8 @@ const list = async (req, res) => {
     // const thema = await mctrl.userThema(req.session)
     const productList = await ser.productList()
     const thema = await ser.haveThema(req.session.uid)
-    res.render("product/list", {uid : req.session.uid , list : productList, uThema : thema.uThema, hThema : thema.hThema})
+    const userDotori = await ser.member(req.session.uid)
+    res.render("product/list", {uid : req.session.uid , list : productList, uThema : thema.uThema, hThema : thema.hThema, uDotori : userDotori.DOTORI})
 }
 
 const load = (req, res) => {

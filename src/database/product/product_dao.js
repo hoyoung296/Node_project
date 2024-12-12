@@ -45,7 +45,7 @@ const dotoriUse = async (uid, dotori) => {
     return result
 }
 
-const doCheck = async (uid) => {
+const member = async (uid) => {
     const sql = `select * from member where ID='${uid}'`
     let result = 0
     try{
@@ -53,7 +53,6 @@ const doCheck = async (uid) => {
     }catch(err){
         console.log(err)
     }
-    console.log("daodoto : ", result)
     return result
 }
 
@@ -80,7 +79,6 @@ const haveThema = async (uid) => {
 }
 
 const saveThema = async (uid, thema_no) => {
-    console.log("saveThema")
     const sql = `update member set thema_no='${thema_no}' where id='${uid}'`
     let result = 0
     try{
@@ -90,4 +88,5 @@ const saveThema = async (uid, thema_no) => {
     }
 }
 
-module.exports = { productList, purchase, doCheck, product, userThema, haveThema, saveThema }
+
+module.exports = { productList, purchase, member, product, userThema, haveThema, saveThema }
