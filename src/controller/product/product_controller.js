@@ -3,10 +3,10 @@ const ser = require("../../service/product/product_service")
 const mctrl = require("../controller")
 
 const list = async (req, res) => {
-    const thema = await mctrl.userThema(req.session)
+    // const thema = await mctrl.userThema(req.session)
     const productList = await ser.productList()
-    console.log(req.session)
-    res.render("product/list", {list : productList, thema})
+    const thema = await ser.haveThema(req.session.uid)
+    res.render("product/list", {uid : req.session.uid , list : productList, uThema : thema.uThema, hThema : thema.hThema})
 }
 
 const load = (req, res) => {
@@ -16,8 +16,12 @@ const load = (req, res) => {
 
 const purchase = async (req, res) => {
     const result = await ser.loginCheck(req.query.no, req.session.uid)
-    console.log(result)
     res.send(result)
 }
 
-module.exports = {list, load, purchase}
+async function saveThema(req, res) {
+    console.log("ctrl saveThema")
+    ser.saveThema(req.session.uid, req.query.thema)
+}
+
+module.exports = {list, load, purchase, saveThema}
