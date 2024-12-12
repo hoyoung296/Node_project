@@ -4,11 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-    <title>Document</title>
-    <script src="/static/js/board/reply.js"></script>
-    <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
-=======
     <title>DOTORI</title>
     <link rel="icon" href="/static/front_image/dotoree.png" image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +12,6 @@
     <link rel="stylesheet" href="/static/css/front/front.css">
     <link rel="stylesheet" href="/static/css/board/board.css">
     <script src="/static/js/top.js"></script>
->>>>>>> efa97e28c68fed1277e3d0ec81ae5b47c1dfd5a0
     <script>
         var thema = "<%= thema %>";  // EJS에서 전달한 thema 값을 JavaScript 변수로 설정
         console.log(thema)
@@ -35,27 +29,6 @@
     </script>
 </head>
 
-<<<<<<< HEAD
-                        <% } %> 
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4"align="center">
-                    <% if( username === data.ID) {%>
-                        <input type="button" onclick="location.href='/board/modify_form/<%= data.WRITE_NO %>'" value="수정하기">
-                        <input type="button" onclick="location.href='/board/delete/<%= data.WRITE_NO %>/<%= data.CHANGE_FILE_NAME %>'" value="삭제하기">
-                        <% } %>
-                        <input type="button" onclick="reply_form()" value="답글달기">
-                        <input type="button" onclick="" value="돌아가기">
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4" id="content"></td>
-            </tr>
-        </table>   
-    </div>
-   
-=======
 <body class="front_body">
     <%-include('../include/header.ejs')%>
 
@@ -76,7 +49,7 @@
                         </div>
                         <div id="board_count">
                             
-                            <div>조회 <%= data.HIT %></div><!--임시로 글번호 넣음-->
+                            <div>조회 <%= data.HIT %></div>
                         </div>
                     </div>
                 </div>
@@ -86,7 +59,7 @@
                         
                         <div><%= data.CONTENT %></div>
                         <div colspan="2">
-                            <% if( data.UPLOAD_FILE === "NAN") { %>
+                            <% if( data.CHANGE_FILE === "NAN") { %>
                             <B>이미지가 없습니다
                                 <% }else { %>
         
@@ -117,7 +90,6 @@
 
         <%- include('../include/footer.ejs')%>
 
->>>>>>> efa97e28c68fed1277e3d0ec81ae5b47c1dfd5a0
 </body>
 
 </html>
