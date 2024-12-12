@@ -21,6 +21,16 @@ const process ={
         }
         return rs;
     },
+    dao_boardlist : async()=>{
+        const sql = `select * from board`;
+        let data;
+        try{
+            data = await (await con).execute(sql);
+        }catch(err){
+            console.log("catch dao : ", err)
+        }
+        return data;
+    },
 }
 
 module.exports = { process };
