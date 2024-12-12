@@ -42,6 +42,21 @@ const views = {
             res.send("Error: " + err.message);
         }
     },
+
+    getProfilePage: async (req, res) => {
+        const userId = req.session.uid; // 세션에서 사용자 ID 가져오기
+        try {
+            const userInfo = await ser.getUserInfo(userId); // 사용자 정보 가져오기
+            if (!userInfo) {
+                return res.send("<script>alert('사용자 정보를 불러올 수 없습니다.'); history.back();</script>");
+            }
+            console.log(userInfo); // 콘솔로 확인하여 profilePic, statusMessage가 포함되어 있는지 확인
+            res.render("mypage/profile", { user: userInfo }); // userInfo를 뷰로 전달
+        } catch (err) {
+            res.send("Error: " + err.message); // 오류 발생 시 처리
+        }
+    },
+
     // 회원탈퇴 페이지
     getDeletePage: (req, res) => {
         res.render("mypage/delete");
@@ -77,6 +92,26 @@ const process = {
             res.send("<script>alert('정보가 수정되었습니다.'); location.href = '/';</script>");
         } catch (err) {
             return res.send("<script>alert('정보 수정에 실패했습니다.'); history.back();</script>");
+        }
+    },
+
+    // 프로필 수정 처리
+    updateProfile: async (req, res) => {
+        const userId = req.session.uid;
+        const statusMessage = req.body.statusMessage;
+        const profilePic = req.file ? req.file.filename : null;  // 업로드된 파일이 있으면 파일 이름 저장
+
+        try {
+            if (profilePic) {
+                await ser.updateProfilePic(userId, profilePic);  // 프로필 사진 업데이트
+            }
+            if (statusMessage) {
+                await ser.updateStatusMessage(userId, statusMessage);  // 상태 메시지 업데이트
+            }
+            res.send("<script>alert('프로필이 수정되었습니다.'); location.href = '/mypage';</script>");
+        } catch (err) {
+            console.error("Error:", err);
+            return res.send("<script>alert('프로필 수정에 실패했습니다.'); history.back();</script>");
         }
     },
 

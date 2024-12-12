@@ -1,3 +1,4 @@
+/*
 // 필요한 라이브러리 불러오기
 const nodemailer = require('nodemailer');
 const dao = require("../../database/member/member_dao")
@@ -150,3 +151,4 @@ const verifyEmailCode = (inputCode, storedCode, storedExpirationTime) => {
 };
 
 module.exports = { sendTemporaryPassword, sendVerificationEmail, verifyEmailCode };
+*/

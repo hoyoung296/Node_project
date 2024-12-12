@@ -7,6 +7,10 @@ router.get("/", ctrl.views.getMainPage);
 router.get("/edit", ctrl.views.getEditPage);
 // 개인정보 수정 처리
 router.post("/edit", ctrl.process.updateInfo);
+// 프로필 수정 페이지
+router.get("/profile", ctrl.views.getProfilePage);
+// 프로필 수정 처리
+router.post("/profile", ctrl.process.updateProfile);
 // 회원탈퇴 페이지
 router.get("/delete", ctrl.views.getDeletePage);
 // 회원탈퇴 처리
