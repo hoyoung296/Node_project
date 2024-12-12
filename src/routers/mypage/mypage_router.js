@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const ctrl = require("../../controller/mypage/mypage_ctrl");
+const { upload } = require("../../controller/mypage/mypage_ctrl"); // upload 미들웨어를 import
 
 // 마이페이지 메인화면
 router.get("/", ctrl.views.getMainPage);
@@ -10,7 +11,7 @@ router.post("/edit", ctrl.process.updateInfo);
 // 프로필 수정 페이지
 router.get("/profile", ctrl.views.getProfilePage);
 // 프로필 수정 처리
-router.post("/profile", ctrl.process.updateProfile);
+router.post("/profile", upload.single("profilePic"), ctrl.process.updateProfile);
 // 회원탈퇴 페이지
 router.get("/delete", ctrl.views.getDeletePage);
 // 회원탈퇴 처리

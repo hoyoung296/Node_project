@@ -15,16 +15,15 @@
             <img src="<%= user && user.picture ? '/uploads/' + user.picture : '/default-profile.png' %>" alt="Profile Picture" width="150"><br>
             <input type="file" name="profilePic" id="profilePic">
         </div>
-
+    
         <!-- 상태 메시지 -->
         <div>
             <label for="statusMessage">상태 메시지</label><br>
             <textarea name="statusMessage" id="statusMessage" rows="3" cols="30"><%= user && user.msg ? user.msg : '' %></textarea>
         </div>
-
+    
         <button type="submit">저장</button>
         <button type="button" onclick="history.back();">취소</button>
-
     </form>
 </body>
 </html>

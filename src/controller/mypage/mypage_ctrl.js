@@ -1,6 +1,19 @@
+const multer = require('multer');
 const ser = require("../../service/mypage/mypage_service");
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/uploads/');  // 업로드된 파일을 저장할 경로
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);  // 파일 이름에 날짜를 추가하여 중복을 방지
+    }
+});
+
+// 업로드 미들웨어 설정
+const upload = multer({ storage: storage });
 
 // 비밀번호 해시화
 const hashPassword = async (password) => {
@@ -42,7 +55,8 @@ const views = {
             res.send("Error: " + err.message);
         }
     },
-
+    
+    // 프로필 수정 페이지
     getProfilePage: async (req, res) => {
         const userId = req.session.uid; // 세션에서 사용자 ID 가져오기
         try {
@@ -101,6 +115,9 @@ const process = {
         const statusMessage = req.body.statusMessage;
         const profilePic = req.file ? req.file.filename : null;  // 업로드된 파일이 있으면 파일 이름 저장
 
+        console.log("profilePic:", profilePic); // 업로드된 파일 정보 출력
+        console.log("statusMessage:", statusMessage); // 상태 메시지 출력
+
         try {
             if (profilePic) {
                 await ser.updateProfilePic(userId, profilePic);  // 프로필 사진 업데이트
@@ -155,4 +172,4 @@ const process = {
     }
 };
 
-module.exports = { views, process };
+module.exports = { views, process, upload};
