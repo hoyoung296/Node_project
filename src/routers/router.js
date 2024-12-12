@@ -23,10 +23,7 @@ module.exports = (app) => {
 
     const boardRouter = require("../routers/board/board_router");
     app.use("/board", boardRouter);
-
-    const boardRepRouter = require("../routers/board/board_reply_router");
-    app.use("/board_rep", boardRepRouter)
-
+    
     const productRouter = require("../routers/product/product_router");
     app.use("/product", productRouter);
 
