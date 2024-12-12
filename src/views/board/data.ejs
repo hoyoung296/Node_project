@@ -1,77 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="/static/js/reply_view.js"></script>
-    <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
+    <title>DOTORI</title>
+    <link rel="icon" href="/static/front_image/dotoree.png" image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/front/front.css">
+    <link rel="stylesheet" href="/static/css/board/board.css">
+    <script src="/static/js/top.js"></script>
     <script>
-        const thema = "<%= thema %>" //사용자 thema변수 저장
-        window.onload = () => {
-            const num = document.getElementById("number")
-            console.log("number :", num )
-            console.log("num.innerHTML : ", num.innerHTML )
-            init( num.innerHTML )
-            applyThema(thema) //사용자 thema 설정
+        var thema = "<%= thema %>";  // EJS에서 전달한 thema 값을 JavaScript 변수로 설정
+        console.log(thema)
+        window.onload = async () => {
+            try {
+                // 서버에서 EJS 템플릿을 렌더링한 HTML을 받아옴
+                const res = await fetch('/board/main');
+                const html = await res.text();  // 서버에서 HTML을 텍스트로 받아옴
+                document.getElementById('main_section').innerHTML = html;  // 받아온 HTML을 페이지에 삽입
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+            applyThema(thema);
         }
     </script>
-    <style>
-        table{
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: none;
-        }
-        th, td{
-            padding: 10px;
-            text-align: center;
-        }
-    </style>
->>>>>>> cf5dfad7e7448caa6adc68b11df907ff0ee73daf
 </head>
-<body>
-    <%- include ("./reply_form") %>
-    <div id="main">
-        <table>
-            <tr>
-                <th width="100">글 번호</th>
-                <td width="200" id="number"><%= data.WRITE_NO %></td>
-                <th width="100">작성자</th>
-                <td width="200"><%= data.ID %></td>
-            </tr>
-            <tr>
-                <th>제목</th>
-                <td><%= data.TITLE %></td>
-                <th>등록 일자</th>
-                <td><%= data.SAVE_DATE %></td>
-            </tr>
-            <tr>
-                <th>내용</th><td><%= data.CONTENT %></td>
-                <td colspan="2">
-                    <% if( data.UPLOAD_FILE === "NAN") { %>
-                    <B>이미지가 없습니다
-                        <% }else { %>
 
-                        <% } %> 
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4"align="center">
-                    <% if( username === data.ID) {%>
-                        <input type="button" onclick="location.href='/board/modify_form/<%= data.WRITE_NO %>'" value="수정하기">
-                        <input type="button" onclick="location.href='/board/delete/<%= data.WRITE_NO %>/<%= data.CHANGE_FILE_NAME %>'" value="삭제하기">
-                        <% } %>
-                        <input type="button" onclick="reply_form()" value="답글달기">
-                        <input type="button" onclick="reply_form()" value="돌아가기">
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4" id="content"></td>
-            </tr>
-        </table>   
-    </div>
-   
+<body class="front_body">
+    <%-include('../include/header.ejs')%>
+
+<section>
+    <body><%- include ("./reply_form") %>
+            <div id="main">
+                <div id="board_top">
+                    <div id="board_title">
+                        <div><%= data.TITLE %></div>
+                    </div>
+                    <div id="board_name">
+                        <div><%= data.ID %></div>
+                    </div>
+                    <div id="board_info">
+                        <div id="board_date">
+                            
+                            <div><%= data.SAVE_DATE %></div>
+                        </div>
+                        <div id="board_count">
+                            
+                            <div>조회 <%= data.HIT %></div><!--임시로 글번호 넣음-->
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="board_content">
+                    <div>
+                        
+                        <div><%= data.CONTENT %></div>
+                        <div colspan="2">
+                            <% if( data.UPLOAD_FILE === "NAN") { %>
+                            <B>이미지가 없습니다
+                                <% }else { %>
+        
+                                <% } %> 
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="board_edit">
+                    <div>
+                        <div colspan="4"align="center" id="board_button">
+                            <% if( username === data.ID) {%>
+                                <input type="button" onclick="location.href='/board/modify_form/<%= data.WRITE_NO %>'" value="수정하기">
+                                <input type="button" onclick="location.href='/board/delete/<%= data.WRITE_NO %>/<%= data.CHANGE_FILE_NAME %>'" value="삭제하기">
+                                <% } %>
+                                <input type="button" onclick="reply_form()" value="답글달기">
+                                <input type="button" onclick="reply_form()" value="돌아가기">
+                        </div>
+                    </div>
+                    <div>
+                        <div colspan="4" id="content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</section>
+
+        <%- include('../include/footer.ejs')%>
+
 </body>
+
 </html>

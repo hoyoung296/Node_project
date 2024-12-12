@@ -3,6 +3,8 @@ const daoRead = {
     list: async (start, body) => {
         console.log("check1 : ", await daoRead.check1(body))
         console.log("check2 : ", await daoRead.check2(body))
+        console.log("typeof check1 : ", typeof await daoRead.check1(body))
+        console.log("typeof check2 : ", typeof await daoRead.check2(body))
         const check1Result = await daoRead.check1(body);
         const check2Result = await daoRead.check2(body);
 
@@ -37,7 +39,7 @@ const daoRead = {
                 break;
             }
 
-            msg2 += `id!='${check1Result[i].MEMBER_ID}' and `
+            msg2 += `id!='${check2Result[i].MEMBER_ID}' and `
         }
 
         console.log("msg1 : ", msg1)
@@ -99,7 +101,7 @@ const daoRead = {
                 break;
             }
 
-            msg2 += `id!='${check1Result[i].MEMBER_ID}' and `
+            msg2 += `id!='${check2Result[i].MEMBER_ID}' and `
         }
 
         console.log("msg1 : ", msg1)
