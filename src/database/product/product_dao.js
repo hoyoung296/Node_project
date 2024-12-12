@@ -68,4 +68,26 @@ const userThema = async (uid) => {
     return result
 }
 
-module.exports = { productList, purchase, doCheck, product, userThema }
+const haveThema = async (uid) => {
+    const sql = `select b.product_no, p.product from product p, buy b where id='${uid}' and p.product_no = b.product_no`
+    let result = 0
+    try{
+        result = (await con).execute(sql)
+    }catch(err){
+        console.log(err)
+    }
+    return result
+}
+
+const saveThema = async (uid, thema_no) => {
+    console.log("saveThema")
+    const sql = `update member set thema_no='${thema_no}' where id='${uid}'`
+    let result = 0
+    try{
+        result = (await con).execute(sql)
+    }catch(err){
+        console.log(err)
+    }
+}
+
+module.exports = { productList, purchase, doCheck, product, userThema, haveThema, saveThema }
