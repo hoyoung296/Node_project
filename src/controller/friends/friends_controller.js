@@ -16,6 +16,7 @@ const views = {
     view: async (req, res) => {
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         let result = await ser.pageRead.view(req.query.num)
+        console.log("view list : ", result)
         res.render("friends/view", { result, name: req.session.uid, thema })
     },
     friendsview: async (req, res) => {
