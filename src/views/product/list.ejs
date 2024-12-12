@@ -27,21 +27,19 @@
         const setThema = sampleThema => document.documentElement.className = sampleThema
         const apply = async (aThema, aThema_no) => {
             applyThema(aThema)
-            // await saveThema(aThema_no)
-            fetch("/product/saveThema?thema="+aThema_no)
+            location.href = "/product/saveThema?thema="+aThema_no
         }
      </script>
 </head>
 <body  class="front_body">
 
-    <%-include('../include/header.ejs')%>
-
+    <%- include('../include/header.ejs') %>
+    <%- include('./choice.ejs') %>
     <section>
         <table id="list">
             <% let i = 0 %>
             <% let h = 0 %>
             <% list.forEach(p => { %>
-            <%-include('./choice.ejs')%>
 
                 <% if(i==0){ %>
                 <tr>
@@ -66,7 +64,7 @@
                         </button>
                         <% h++ %>
                     <% }else{ %>
-                        <button type="button" id="<%= p.PRODUCT_NO %>_btn" onclick="choice()">
+                        <button type="button" id="<%= p.PRODUCT_NO %>_btn" onclick="choice('<%= p.PRICE %>', '<%= uDotori %>')">
                         구매하기
                         </button>
                     <% }%>
