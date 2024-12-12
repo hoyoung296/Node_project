@@ -17,6 +17,13 @@ const process = {
         }
         return serCom.getMessage(msg,url);
     },
+    ser_boardlist : async() => {
+        const data = await dao.process.dao_boardlist()
+        console.log("data.rows : ",data.rows);
+        const list = serCom.timeModify(data.rows);
+        console.log("data.rows : ",data.rows);
+        return list;
+    },
 }
 
 module.exports = { process }

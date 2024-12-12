@@ -10,7 +10,8 @@ const main = async (req, res) => {
 const userThema = async (session) => {
     let thema = "brown"
     if(session.uid != undefined){
-        thema = await pser.userThema(session.uid)
+        const uThema = await pser.userThema(session.uid)
+        thema = uThema.PRODUCT
     }
     return thema
 }

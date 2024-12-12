@@ -30,7 +30,7 @@ const boardRead = {
 }
 const boardInsert = {
     write : async ( body ) => {
-        const sql = `insert into board(write_no, title, content, upload_file, id, save_date, hit, name) values(board_seq.nextval, :title, :content, :origin, :id, TO_DATE(:save_data, 'YYYY-MM-DD'), :hit, :name)`;
+        const sql = `insert into board(write_no, title, content, upload_file, id, save_date, hit, name,category,change_file) values(board_seq.nextval, :title, :content, :image_file_name, :id, TO_DATE(:save_data, 'YYYY-MM-DD'), :hit, :name,:category,:change)`;
         let result = 0;
         try{
             result = await(await con).execute(sql, body);

@@ -25,7 +25,7 @@
     --text-color: #ffffff;
     --header-color: #424242;
 }
-  
+
 *{
     margin: 0;
     padding: 0;
@@ -140,10 +140,10 @@
 .front_body > section{
     grid-area: section;
     display: grid;
-    grid-template-rows: 1fr 9fr;
+    grid-template-rows: 1fr auto;
     gap: 10px;
     min-height: 600px;
-    max-height: 1vh;
+    
 }
 .story{
     background-color: #dadada;

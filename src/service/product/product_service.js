@@ -30,15 +30,14 @@ const product = async (no) => {
 }
 
 const purchase = async (no, uid) => {
-    const udotori = await doCheck(uid)
+    const udotori = await member(uid)
     const prod = await product(no)
     const price = prod.PRICE
-    console.log("check : " + udotori, price)
     let msg =''
-    if(udotori < price){
+    if(udotori.DOTORI < price){
         msg = "도토리가 부족합니다"
     }else {
-        const dotori = udotori - price
+        const dotori = udotori.DOTORI - price
         await dao.purchase(no, uid, dotori)
         console.log("구매완료")
         msg = "구매가 완료되었습니다"
@@ -51,22 +50,38 @@ const loginCheck = async (no, uid) => {
     let msg ='', url = '/product'
     if(!uid){
         msg = "로그인 이후 구매가능합니다"
-    }else {
+    }
+    else {
         msg = await purchase(no, uid)
     }
     return common.getMessage(msg, url)
 }
 
-const doCheck = async (uid) => {
-    const dotori = await dao.doCheck(uid)
-    return dotori.rows[0].DOTORI
+const member = async (uid) => {
+    const dotori = await dao.member(uid)
+    return dotori.rows[0]
 }
 
 const userThema = async (uid) => {
     const thema = await dao.userThema(uid)
-    console.log("ser Thema", thema.rows[0].PRODUCT)
-    return thema.rows[0].PRODUCT
+    return thema.rows[0]
 }
 
-module.exports = {rename, listSetting, purchase, productList, loginCheck, userThema}
+const haveThema = async (uid) => {
+    const hThema = await dao.haveThema(uid)
+    const uThema = await dao.userThema(uid)
+    hThema.rows.unshift({PRODUCT_NO : 1, PRODUCT : 'brown'})
+    let thema = 'brown'
+    if(uThema.rows.length != 0){
+        thema = uThema.rows[0].PRODUCT
+    }
+    let realhaveThema = hThema.rows
+        .map(item => item.PRODUCT)
+    return {hThema : realhaveThema, uThema : thema}
+}
 
+const saveThema = async (uid, no) => {
+    await dao.saveThema(uid, no)
+}
+
+module.exports = {rename, listSetting, purchase, productList, loginCheck, userThema, haveThema, saveThema, member}

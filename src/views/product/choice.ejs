@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="modal_wrap">
+        <div id="purchase">
+            구매하시겠습니까?
+            현재 도토리 : <%= uDotori %>
+            필요한 도토리 : <%= list.PRICE %>
+            <% dotori = uDotori - list.PRICE %>
+            남는 도토리 : <%= dotori %>
+            <button>예</button>
+            <button onclick="location.href='/product'">아니요</button>
+        </div>
+    </div>
+    
+</body>
+</html>
