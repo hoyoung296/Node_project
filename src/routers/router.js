@@ -7,7 +7,10 @@ module.exports = (app) => {
         res.locals.id = req.session.uid || null;         // session에서 uid 가져오기
         next(); // 다음 미들웨어로 전달
     });
+<<<<<<< HEAD
 
+=======
+>>>>>>> e7ac9b1ae5a1452bd6dbcaca206af5c754f13293
     // 각각의 라우터 설정
     const memberRouter = require("../routers/member/member_router");
     app.use("/member", memberRouter);
@@ -18,6 +21,7 @@ module.exports = (app) => {
     const gameRouter = require("../routers/game/game_router");
     app.use("/game", gameRouter);
 
+<<<<<<< HEAD
 
     const boardRepRouter = require("./board/board_reply_router")
     app.use("/board_rep", boardRepRouter)
@@ -25,6 +29,8 @@ module.exports = (app) => {
     const productRouter = require("../routers/product/product_router")
     app.use("/product", productRouter)
 
+=======
+>>>>>>> e7ac9b1ae5a1452bd6dbcaca206af5c754f13293
     const boardRouter = require("../routers/board/board_router");
     app.use("/board", boardRouter);
 
