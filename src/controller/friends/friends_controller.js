@@ -4,25 +4,13 @@ const mctrl = require("../controller") //thema설정하려고 추가
 const views = {
     list: async (req, res) => {
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
-        let list = await ser.pageRead.check(req.session.uid)
-        console.log("ctrl list1 : ", list.list1)
-        console.log("ctrl list2 : ", list.list2)
-        let data = await ser.pageRead.list(req.query.start)
-        console.log("data result : ", data.result)
-        const filter1 = data.result.filter(item =>
-            !list.list1.some(entry => entry.FRIEND_ID == item.ID)
-        );
-        console.log("filter1 : ", filter1)
-
-        const filter2 = filter1.filter(item =>
-            !list.list2.some(entry => entry.MEMBER_ID == item.ID)
-        );
-        console.log("filter2 : ", filter2)
-        res.render("friends/list", { result: filter2, page: data.page, start: data.start, name: req.session.uid, thema })
+        await ser.pageRead.check(req.session.uid)
+        let data = await ser.pageRead.list(req.query.start, req.session.uid)
+        res.render("friends/list", { result: data.result, page: data.page, start: data.start, name: req.session.uid, thema })
     },
     alram: async (req, res) => {
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
-        let data = await ser.pageRead.alram(req.query.start)
+        let data = await ser.pageRead.alram(req.query.start, req.session.uid)
         res.render("friends/alramList", { result: data.result, page: data.page, start: data.start, name: req.session.uid, thema })
     },
     view: async (req, res) => {
@@ -33,13 +21,13 @@ const views = {
     friendsview: async (req, res) => {
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         let data = await ser.pageRead.friendsview(req.query.start, req.session.uid)
-        console.log("friendsview data : ", data.result)
         res.render("friends/friendsView", { result: data.result, page: data.page, start: data.start, name: req.session.uid, thema })
     }
 }
 const process = {
-    check: (req, res) => {
-        res.render("friends/insert_form", { name: req.session.uid, body: req.body })
+    check: async (req, res) => {
+        const thema = await mctrl.userThema(req.session) //사용자 테마 설정
+        res.render("friends/insert_form", { name: req.session.uid, body: req.body, thema })
     },
     insert: async (req, res) => {
         await ser.pageInsert.insert(req.body)
@@ -57,6 +45,11 @@ const process = {
         console.log("delete : ", req.body)
         ser.pageInsert.del(req.body)
         res.redirect("/friends/alram")
+    },
+    friendsdel: (req, res) => {
+        console.log("friendsdelete : ", req.body.id)
+        ser.pageInsert.friendsdel(req.body.id, req.session.uid)
+        res.redirect("/friends/friendsview")
     }
 }
 
