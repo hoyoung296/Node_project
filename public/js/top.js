@@ -20,21 +20,22 @@ function scrollToTop() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const currentPath = window.location.pathname;
-    const buttons = document.querySelectorAll("button");
+// document.addEventListener("DOMContentLoaded", () => {
+//     const currentPath = window.location.pathname;
+//     const buttons = document.querySelectorAll("button");
 
-    buttons.forEach(button => {
-        const dataPath = button.getAttribute("data-path");
+//     buttons.forEach(button => {
+//         const dataPath = button.getAttribute("data-path");
 
-        // data-path가 존재하는지 확인
-        if (dataPath) {
-            const paths = dataPath.split(" ");
-            if (paths.some(path => currentPath.startsWith(path))) {
-                button.classList.add("active");
-            }
-        }
-    });
-});
+//         // data-path가 존재하는지 확인
+//         if (dataPath) {
+//             const paths = dataPath.split(" ");
+//             if (paths.some(path => currentPath.startsWith(path))) {
+//                 button.classList.add("active");
+//             }
+//         }
+//     });
+// });
+// 에러발생 삭제예정
 
 
