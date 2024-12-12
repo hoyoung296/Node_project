@@ -14,32 +14,63 @@
 </head>
 
 <body>
-    <div style="margin: 0 auto; width: 200px; height: 200px; text-align: center; border: 1px solid black; margin-top: 150px;">
-        순번 : <%= result[0].NUM %><br>
-            보낸 사람 : <%= result[0].SENDER %><br>
-                받는 사람 : <%= result[0].RECEIVER %><br>
-                    목적 : <%= result[0].OBJECT %><br>
-                        제목 : <%= result[0].SUBJECT %><br>
-                            내용 : <%= result[0].CONTENT %><br>
-                                보낸 시간 : <%= result[0].SAVE_DATE %><br>
-    </div>
-    <% if(result[0].OBJECT=='친구추가' && name==result[0].RECEIVER) { %>
-        <form action="/friends/update" method="post" style="margin-top: 10px; text-align: center;">
-            <input type="hidden" name="mem_id" value="<%= result[0].RECEIVER %>">
-            <input type="hidden" name="fr_id" value="<%= result[0].SENDER %>">
-            <button type="submit" style="color: gold; border: none; background: none; font-size: 25px; 
-                    font-weight: bold; cursor: pointer; text-align: center;">친구추가</button>
-        </form>
-        <% } %>
-            <% if(name==result[0].RECEIVER || name==result[0].SENDER) { %>
-                <form action="/friends/del" method="post" style="margin-top: 10px; text-align: center;">
+    <div style="width: 730px; height: 600px; text-align: center;">
+        <table align="center" width="730px" height="300px" border="1"
+            style="text-align: center; margin: 0px auto; border-color: gold; margin-top: 50px;">
+            <tr>
+                <th>번호</th>
+                <td>
+                    <%= result[0].NUM %>
+                </td>
+                <th>보낸 사람</th>
+                <td>
+                    <%= result[0].SENDER %>
+                </td>
+            </tr>
+            <tr>
+                <th>받는 사람</th>
+                <td>
+                    <%= result[0].RECEIVER %>
+                </td>
+                <th>목적</th>
+                <td>
+                    <%= result[0].OBJECT %>
+                </td>
+            </tr>
+            <tr>
+                <th>제목</th>
+                <td>
+                    <%= result[0].SUBJECT %>
+                </td>
+                <th>내용</th>
+                <td>
+                    <%= result[0].CONTENT %>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">보낸 시간</th>
+                <td colspan="2">
+                    <%= result[0].SAVE_DATE %>
+                </td>
+            </tr>
+        </table>
+        <% if(result[0].OBJECT=="친구 추가" && result[0].RECEIVER==name) { %>
+            <form action="/friends/update" method="post" style="margin-top: 50px; text-align: center;">
+                <input type="hidden" name="mem_id" value="<%= result[0].RECEIVER %>">
+                <input type="hidden" name="fr_id" value="<%= result[0].SENDER %>">
+                <button type="submit" style="color: gold; border: none; background: none; font-size: 25px; 
+                        font-weight: bold; cursor: pointer; text-align: center;">친구추가</button>
+            </form>
+            <% } %>
+                <form action="/friends/del" method="post" style="margin-top: 30px; text-align: center;">
                     <input type="hidden" name="num" value="<%= result[0].NUM %>">
                     <button type="submit" style="color: gold; border: none; background: none; font-size: 25px; 
-                        font-weight: bold; cursor: pointer;">알림 삭제</button>
+                            font-weight: bold; cursor: pointer;">알림 삭제</button>
                 </form>
-                <% } %>
-                    <button onclick="location.href='/friends/alram'" style="color: gold; border: none; background: none; font-size: 25px; 
-                    font-weight: bold; cursor: pointer;">목록페이지로</button>
+
+                <button onclick="location.href='/friends/alram'" style="color: gold; border: none; background: none; font-size: 25px; 
+                        font-weight: bold; cursor: pointer; margin-top: 30px;">목록페이지로</button>
+    </div>
 </body>
 
 </html>

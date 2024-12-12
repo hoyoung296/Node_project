@@ -10,38 +10,43 @@ const boardRead = {
 
         const totalCnt = await dao.boardRead.totalCnt();
         const num = totalCnt.rows[0]['COUNT(*)'];
-        const result = ( num % 5 == 0 )? 0 : 1;
-        const page = parseInt( num / 5 + result );
+        const result = ( num % 15 == 0 )? 0 : 1;
+        const page = parseInt( num / 15 + result );
 
-        const startNum = ( start - 1 ) * 5;
+        const startNum = ( start - 1 ) * 15;
         let list = await dao.boardRead.list( startNum );
         console.log(list.rows[0])
-        list = serCom.timeModify( list.rows )
+        list = serCom.dayModify( list.rows )
         return { list, start, page };
     },
     data : async ( num ) => {
         boardUpdate.upHit( num );
+        let data = await dao.boardRead.data( num )
         data = serCom.timeModify( data.rows );
         return data[0];
     }
 }
 const boardInsert = {
-    write : async ( body, file, fileValidation ) => {
+    write : async ( body, file, fileValidation, uid ) => {
         console.log( file )
         let msg, url;
         if( fileValidation ){
-            msg = filefileValidation;
+            msg = fileValidation;
             url = "/board/write_form"
             return serCom.getMessage(msg, url );
         }
         if( file != undefined ){
-            body.origin = file.originalname;
-            boar.change = file.filename;
+            body.image_file_name = file.originalname;
+            body.change = file.filename;
         }else{
-            body.origin = "파일 없음";
-            boar.change = "파일 없음";
+            body.origin = "";
+            body.change = "";
         }
-        const result = await dao.boardInser.write( body );
+        body.hit = 0;
+        body.id = uid
+        body.save_data =new Date().toISOString().slice(0, 10);
+        console.log(body)
+        const result = await dao.boardInsert.write( body );
         if( result != 0 ){
             msg = "등록 성공하였습니다"
             url = "/board/list";
@@ -53,17 +58,17 @@ const boardInsert = {
         return serCom.getMessage( msg, url );
     }
 }
-const boardUpdatd = {
+const boardUpdate = {
     upHit : ( num ) => {
-        dao.boardUpdate.upHit( num );
+       dao.boardUpdate.upHit( num );
     },
     delete : ( writeNo ) => {
-        dao.boardupdate.delete( writeNo );
+        dao.boardUpdate.delete( writeNo );
     },
     modify : async ( body, file ) => {
         if( file !== undefined ){
             body.origin = file.originalname;
-            boar.change = file.filename;
+            body.change = file.filename;
         }
         const result = await dao.boardUpdate.modify( body );
         let msg, url;
@@ -83,4 +88,4 @@ const boardUpdatd = {
    
 
 }
-module.exports = {boardUpdatd, boardInsert, boardRead }
+module.exports = {boardUpdate, boardInsert, boardRead }

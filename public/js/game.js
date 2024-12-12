@@ -194,7 +194,7 @@ function render() {
 }
 
 const dotori = () => {
-    let num = 5000 * score
+    let num = score
     console.log("score : ", score)
     console.log("num : ", num)
     document.getElementById("a").innerHTML = num + "개"

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const multer = require("multer");
+
 const ctrl = require("../../controller/board/board_ctrl")
 
 const upload = require("../../../config/file/file_config")
@@ -10,8 +10,12 @@ router.get("/data/:num", ctrl.views.data)
 router.get("/modify_form/:writeNo", ctrl.views.modifyForm);
 router.post("/write", upload.single("image_file_name"), ctrl.process.write);
 router.get("/delete/:writeNo/:imgName", ctrl.process.delete);
+router.post("/modify", upload.single("image_file_name"), ctrl.process.modify);
+router.get("/hot_issue",ctrl.views.main)
+
 
 router.get("/main", ctrl.views.main);
+
 
 
 module.exports = router;

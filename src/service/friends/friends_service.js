@@ -1,27 +1,27 @@
 const dao = require("../../database/friends/friends_dao")
 const pageRead = {
-    list: async (start) => {
+    list: async (start,body) => {
         if (!start)
             start = 1
         start = Number(start)
-        const totalCnt = await dao.daoRead.totalCnt()
+        const totalCnt = await dao.daoRead.totalCnt(body)
         const num = totalCnt.rows[0]['COUNT(*)']
         const number = (num % 5 == 0) ? 0 : 1
         const page = parseInt(num / 5 + number)
         startNum = (start - 1) * 5
-        let result = await dao.daoRead.list(startNum)
+        let result = await dao.daoRead.list(startNum,body)
         return { result: result.rows, page, start }
     },
-    alram: async (start) => {
+    alram: async (start,body) => {
         if (!start)
             start = 1
         start = Number(start)
-        const totalCnt = await dao.daoRead.totalCnt1()
+        const totalCnt = await dao.daoRead.totalCnt1(body)
         const num = totalCnt.rows[0]['COUNT(*)']
         const number = (num % 5 == 0) ? 0 : 1
         const page = parseInt(num / 5 + number)
         startNum = (start - 1) * 5
-        let result = await dao.daoRead.alram(startNum)
+        let result = await dao.daoRead.alram(startNum,body)
         result = pageRead.timeModify(result.rows)
         return { result, page, start }
     },
@@ -41,7 +41,7 @@ const pageRead = {
         if (!start)
             start = 1
         start = Number(start)
-        const totalCnt = await dao.daoRead.totalCnt2()
+        const totalCnt = await dao.daoRead.totalCnt2(username)
         const num = totalCnt.rows[0]['COUNT(*)']
         const number = (num % 5 == 0) ? 0 : 1
         const page = parseInt(num / 5 + number)
@@ -50,11 +50,8 @@ const pageRead = {
         return { result: result.rows, page, start }
     },
     check: async (body) => {
-        let list1 = await dao.daoRead.check1(body)
-        let list2 = await dao.daoRead.check2(body)
-        console.log("check list1 : ", list1)
-        console.log("check list2 : ", list2)
-        return { list1: list1.rows, list2: list2.rows }
+        await dao.daoRead.check1(body)
+        await dao.daoRead.check2(body)
     }
 }
 const pageInsert = {
@@ -62,19 +59,19 @@ const pageInsert = {
         await dao.daoInsert.insert(body)
     },
     update: async (body) => {
-       let result = await dao.daoInsert.update(body)
-       console.log("친구 ser result : " , result)
-       let msg=""
-       if(result!=0){
-        msg="친구추가 완료!!!!"
-       }
-       else{
-        msg="이미 친구관계입니다!!!!"
-       }
-       let url="/friends/alram"
-       return pageInsert.getMessage(msg,url)
+        let result = await dao.daoInsert.update(body)
+        console.log("친구 ser result : ", result)
+        let msg = ""
+        if (result != 0) {
+            msg = "친구추가 완료!!!!"
+        }
+        else {
+            msg = "이미 친구관계입니다!!!!"
+        }
+        let url = "/friends/alram"
+        return pageInsert.getMessage(msg, url)
     },
-    getMessage : (msg,url) => {
+    getMessage: (msg, url) => {
         return `<script>
         alert("${msg}")
         location.href="${url}"
@@ -82,6 +79,9 @@ const pageInsert = {
     },
     del: (body) => {
         dao.daoInsert.del(body)
+    },
+    friendsdel: (body, username) => {
+        dao.daoInsert.friendsdel(body, username)
     }
 }
 

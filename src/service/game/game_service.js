@@ -1,12 +1,12 @@
 const dao = require("../../database/game/game_dao")
 const pageRead = {
-    check: (body) => {
+    check: (body1,body2) => {
         let msg, url
-        if (!body) {
+        if (!body1) {
             msg = `로그인 이후 사용가능합니다!!!!`
             url = '/member/login_form'
         } else {
-            msg = `${body}님 환영합니다!!!!`
+            msg = `${body2}님 환영합니다!!!!`
             url = '/game/index'
         }
         return pageRead.getMessage(msg, url)

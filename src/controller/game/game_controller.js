@@ -4,7 +4,7 @@ const mctrl = require("../controller") //thema설정하려고 추가
 const views = {
     check: (req, res) => {
         console.log("req.session.uid : ", req.session.uid)
-        let msg = ser.pageRead.check(req.session.uid)
+        let msg = ser.pageRead.check(req.session.uid,req.session.name)
         res.send(msg)
     },
     index: async (req, res) => {

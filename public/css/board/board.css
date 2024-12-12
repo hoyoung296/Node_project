@@ -1,0 +1,63 @@
+#main{
+    display: grid;
+    grid-template-areas:
+        'board_title'
+        'board_name'
+        'board_info'
+        'board_content'
+        'board_edit';
+    grid-template-rows: 30px 15px 10px 1fr 100px;
+    gap: 10px;
+    border-style: solid;
+    border-color: var(--header-color);
+    border-width: 3px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+
+#board_title{ /*제목*/
+    grid-area: board_title;
+    display: flex;
+    align-items: center;
+    font-size: x-large;
+    font-weight: bold;
+}
+#board_name{ /*작성자*/
+    grid-area: board_name;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+#board_info{ /*작성시간, 조회수*/
+    grid-area: board_info;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #707070;
+}
+#board_content{ /*글 내용*/
+    grid-area: board_content;
+    margin: 15px 0;
+    border-style: solid;
+    border-color: var(--header-color);
+    border-width: 3px;
+    border-radius: 10px;
+}
+
+#board_edit{ /*댓글 수정 등*/
+    grid-area: board_edit;
+    display: flex;
+    border-style: solid;
+    border-color: var(--header-color);
+    border-width: 3px;
+    border-radius: 10px;
+}
+#board_button{
+    padding: 10px;
+}
+
+.hidden-links { /*main_list.ejs에 있음*/
+    display: none;
+}

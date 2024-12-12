@@ -4,9 +4,16 @@ const getMessage = (msg, url) => {
         location.href = "${url}"
     </script>`;
 }
+const dayModify = ( list ) => {
+    list = list.map( data => {
+        data['SAVE_DATE'] = data['SAVE_DATE'].toLocaleString([], {year: 'numeric', month: '2-digit', day: '2-digit' });
+        return data;
+    })
+    return list;
+}
 const timeModify = ( list ) => {
     list = list.map( data => {
-        data['SAVE_DATE'] = data['SAVE_DATE'].toLocaleString();
+        data['SAVE_DATE'] = data['SAVE_DATE'].toLocaleString([], {year: 'numeric', month: '2-digit', day: '2-digit' }) +" "+data['SAVE_DATE'].toLocaleTimeString([], { hour: '2-digit', minute: '2-digit',hour12: false});
         return data;
     })
     return list;
@@ -20,4 +27,4 @@ const sessionCheck = ( session ) => {
     }
     return 0;
 }
-module.exports = {sessionCheck, timeModify, getMessage }
+module.exports = {sessionCheck, timeModify, getMessage, dayModify }

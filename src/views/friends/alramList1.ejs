@@ -14,17 +14,18 @@
 </head>
 
 <body>
-    <table align="center" border="1" style="margin-top: 150px; text-align: center;">
-        <tr>
-            <th>번호</th>
-            <th>보낸 사람</th>
-            <th>받는 사람</th>
-            <th>제목</th>
-            <th>내용</th>
-            <th>날짜</th>
-        </tr>
-        <% result.forEach (data=>{ %>
-            <% if(name==data.SENDER || name==data.RECEIVER){ %>
+    <div style="width: 730px; height: 600px; text-align: center;">
+        <table align="center" width="730px" height="500px" border="1"
+            style="text-align: center; margin: 0px auto; border-color: gold;">
+            <tr>
+                <th>번호</th>
+                <th>보낸 사람</th>
+                <th>받는 사람</th>
+                <th>제목</th>
+                <th>내용</th>
+                <th>날짜</th>
+            </tr>
+            <% result.forEach (data=>{ %>
                 <tr>
                     <td>
                         <a href="/friends/view?num=<%= data.NUM %>">
@@ -47,35 +48,35 @@
                         <%= data.SAVE_DATE %>
                     </td>
                 </tr>
-                <% } %>
-                    <% }) %>
-                        <% if(result.length==0) { %>
+                <% }) %>
+                    <% if(result.length==0) { %>
+                        <tr>
+                            <td colspan="6" align="center"><b>등록된 글 없음</b></td>
+                        </tr>
+                        <% } else { %>
                             <tr>
-                                <td colspan="6" align="center"><b>등록된 정보 없음</b></td>
+                                <td colspan="6">
+                                    <% if(start> 1){ %>
+                                        <button onclick="location.href='/friends/alram?start=<%= start-1 %>'"
+                                            style="cursor: pointer;">이전</button>
+                                        <% } %>
+                                            <% for (let i=1 ; i <=page ; i++) { %>
+                                                <a href="/friends/alram?start=<%= i %>">
+                                                    <%= i %>
+                                                </a>
+                                                <% } %>
+                                                    <% if ( start < page ){ %>
+                                                        <button
+                                                            onclick="location.href='/friends/alram?start=<%= start + 1 %>'"
+                                                            style="cursor: pointer;">다음</button>
+                                                        <% } %>
+                                </td>
                             </tr>
                             <% } %>
-                                <tr>
-                                    <td colspan="6">
-                                        <% if(start> 1){ %>
-                                            <button onclick="location.href='/friends/alram?start=<%= start-1 %>'" style="color: gold; border: none; background: none; font-size: 25px; 
-                    font-weight: bold; cursor: pointer;">이전</button>
-                                            <% } %>
-                                                <% for (let i=1 ; i <=page ; i++) { %>
-                                                    <a href="/friends/alram?start=<%= i %>">
-                                                        <%= i %>
-                                                    </a>
-                                                    <% } %>
-                                                        <% if ( start < page ){ %>
-                                                            <button
-                                                                onclick="location.href='/friends/alram?start=<%= start + 1 %>'"
-                                                                style="color: gold; border: none; background: none; font-size: 25px; 
-                    font-weight: bold; cursor: pointer;">다음</button>
-                                                            <% } %>
-                                    </td>
-                                </tr>
-    </table>
-    <button onclick="location.href='/main'" style="color: gold; border: none; background: none; font-size: 25px; 
-                    font-weight: bold; cursor: pointer;">메인 페이지</button>
+        </table>
+        <button onclick="location.href='/main'" style="color: gold; border: none; background: none; font-size: 25px; 
+                    font-weight: bold; cursor: pointer; margin-top: 30px;">메인 페이지</button>
+    </div>
 
 </body>
 
