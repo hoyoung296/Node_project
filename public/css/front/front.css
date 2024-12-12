@@ -139,9 +139,13 @@
     min-height: 600px;
     max-height: 1vh;
 }
-.story{
-    background-color: #dadada;
+.story {
     border-radius: 10px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-style: solid; 
+    border-color: var(--header-color);
 }
 .main_section{
     background-color: #dadada;
