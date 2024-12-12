@@ -5,12 +5,12 @@ const views = {
     list: async (req, res) => {
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         await ser.pageRead.check(req.session.uid)
-        let data = await ser.pageRead.list(req.query.start,req.session.uid)
-        res.render("friends/list", { result: data.result, page: data.page, start: data.start, name: req.session.uid , thema })
+        let data = await ser.pageRead.list(req.query.start, req.session.uid)
+        res.render("friends/list", { result: data.result, page: data.page, start: data.start, name: req.session.uid, thema })
     },
     alram: async (req, res) => {
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
-        let data = await ser.pageRead.alram(req.query.start)
+        let data = await ser.pageRead.alram(req.query.start, req.session.uid)
         res.render("friends/alramList", { result: data.result, page: data.page, start: data.start, name: req.session.uid, thema })
     },
     view: async (req, res) => {
