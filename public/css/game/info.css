@@ -4,12 +4,21 @@
     width: 730px;
     height: 600px;
     line-height: 90px;
+    color: var(--text-color);
+
+    &>b {
+        display: inline-block;
+        margin-top: 50px;
+    }
 
     &>b>b {
         font-size: 25px;
     }
 
     &>b>p>button {
-        color: var(--header-color);
+        cursor: pointer;
+        background: var(--header-color);
+        font-size: 25px;
+        font-weight: bold;
     }
 }

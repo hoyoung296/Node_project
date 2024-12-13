@@ -1,0 +1,93 @@
+.board_main {
+    border-collapse: collapse;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-height: 400px;
+    color:  var(--text-color);
+    font-family: "Nanum Gothic";
+    font-size: 15px;
+}
+.board_menu {
+    font-weight: bold;
+    text-align: center;
+}
+.board_main tr {
+    border-bottom: 1px solid var(--header-color);
+}
+.board_main td, .board_main th {
+    padding: 8px;
+}
+.board_num {
+    width: 50px;
+    text-align: center;
+}
+.board_title {
+    width: 300px;
+}
+.board_id {
+    width: 80px;
+}
+.board_name {
+    width: 80px;
+}
+.board_date {
+    width: 50px;
+}
+.board_hit {
+    width: 50px;
+}
+.board_list_title{
+    text-decoration: none;
+    color: inherit;
+}
+.board_list_num{
+    text-align: center;
+}
+.board_list_id {
+    text-align: center;
+}
+.board_list_name {
+    text-align: center;
+}
+.board_list_date {
+    text-align: center;
+}
+.board_list_hit {
+    text-align: center;
+}
+.board_page{
+    color:  var(--text-color);
+    font-family: "Nanum Gothic";
+    font-size: 13px;
+}
+.board_button{
+    background-color: #cfcfcf;
+    display: block;
+    margin-left: 400px;
+    color:  var(--text-color);
+    font-family: "Nanum Gothic";
+    font-size: 13px;
+}
+.board_new{
+    font-family: "Nanum Gothic";
+    font-size: 13px;
+    margin-top: 10px;
+    display: flex;
+    justify-self: end;
+    text-decoration: none;
+    color: inherit;
+    width: 60px;
+    height: 32px;
+    border-radius: 100px;
+    background-color: var(--header-color);
+    color: var(--text-color);
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 3px 0 #bbbbbb85;
+}
+.board_new:active{
+    box-shadow: 1px 1px 0 #bbbbbb85;
+}
+
