@@ -75,7 +75,7 @@ const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 
 const process = {
     write : async ( req, res ) => {
         const msg = await ser.boardInsert.write(
-            req.body, req.file, req.fileValidation, req.session.uid
+            req.body, req.file, req.fileValidation, req.session.uid,req.session.name
         );
         res.send( msg )
     },
