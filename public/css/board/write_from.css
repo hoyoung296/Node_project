@@ -29,6 +29,7 @@
     border: 1px solid #666666;
     border-radius: 5px;
     background-color: var(--background-color);
+    color: var(--text-color);
 }
 #write_id, #write_img{
     font-size: 14px;
@@ -45,7 +46,6 @@
     font-family: "Nanum Gothic";
     outline: none;
 }
-
 #preview {
     display: block;
     max-width: 100%;
@@ -64,6 +64,7 @@
     width: 60px;
     height: 30px;
     cursor: pointer;
+    color: var(--text-color);
 }
 #write_from input[value="글쓰기"]:hover, #write_from input[value="목록보기"]:hover{
     text-decoration: underline;
