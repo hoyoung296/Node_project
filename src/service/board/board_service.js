@@ -43,7 +43,7 @@ const boardRead = {
     }
 }
 const boardInsert = {
-    write : async ( body, file, fileValidation, uid ) => {
+    write : async ( body, file, fileValidation, uid,name ) => {
         console.log( file )
         let msg, url;
         if( fileValidation ){
@@ -60,6 +60,7 @@ const boardInsert = {
         }
         body.hit = 0;
         body.id = uid
+        body.name = name
         body.save_data =new Date().toISOString().slice(0, 10);
         console.log(body)
         const result = await dao.boardInsert.write( body );
