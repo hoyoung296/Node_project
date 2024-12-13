@@ -28,7 +28,6 @@
 
 <body class="front_body">
     <%-include('../include/header.ejs')%>
-
 <section>
     <body><%- include ("./reply_form") %>
             <div id="main">
@@ -57,15 +56,14 @@
                 <div id="board_content">
                     <div>
                         
-                        <div><%= data.CONTENT %></div>
+                        
                         <div colspan="2">
                             <% if(data.UPLOAD_FILE === null ){%>
-                                <b>이미지가 없습니다</b>
+                                
                             <%}else{%>
-                                <img src="/board/download/<%= data.CHANGE_FILE %>"
-                            width="100px" height="100px">
+                                <img id="board_img" src="/board/download/<%= data.CHANGE_FILE %>">
                             <%}%>
-
+                            <div id="board_content_data"><%= data.CONTENT %></div>
                         </div>
                     </div>
                 </div>

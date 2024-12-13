@@ -62,7 +62,7 @@
     text-align: center;
 }
 .board_page{
-    color:  var(--text-color);
+    color: var(--text-color);
     font-family: "Nanum Gothic";
     font-size: 13px;
 }
@@ -73,7 +73,9 @@
     font-family: "Nanum Gothic";
     font-size: 13px;
 }
-
+.board_button button{
+    background-color: transparent;
+}
 .board_page .board_button button,
 .board_page a {
     font-size: 13px;
