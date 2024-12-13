@@ -43,8 +43,7 @@ function Bullet() { //총알을 만들기 위한 자료
     this.checkHit = function () {
         for (let i = 0; i < enemyList.length; i++) {
             if (this.y <= enemyList[i].y && this.x >= enemyList[i].x && this.x <= enemyList[i].x + 64) {
-                console.log(enemyList)
-                // -> 총알이 죽게됨 도토리가 없어짐, 점수 획득 
+                // -> 총알이 죽게됨, 도토리가 없어짐, 점수 획득 
                 score++;
                 this.alive = false // 죽은 총알
                 enemyList.splice(i, 1)
@@ -82,7 +81,6 @@ function Enemy() { //도토리를 만들기 위한 자료
             let msg = `<br><button onclick="result_form()" style='color:var(--text-color); width:200px; height:80px; background:var(--header-color); cursor:pointer; font-size:25px; font-weight:bold; margin : 0 auto; margin-top:-600px;'>
             결과 확인</button>`
             document.getElementById("main").insertAdjacentHTML("beforeend", msg)
-            // console.log(gameOver)
         }
     }
 }
@@ -151,7 +149,6 @@ function kUp(event) {
 function createBullet() {
     let b = new Bullet() // 총알 하나 생성
     b.init()
-    // console.log("새로운 총알 리스트 : ", bulletList)
 }
 
 function createEnemy() {
@@ -159,7 +156,6 @@ function createEnemy() {
         let e = new Enemy() // 도토리 하나 생성
         e.init()
     }, 1000)  //(호출하고 싶은 함수, 시간)
-    // console.log("새로운 외계인 리스트 : ", enemyList)
 }
 
 function render() {
@@ -169,7 +165,7 @@ function render() {
     ctx.fillStyle = "black"
     ctx.font = "20px Arial"
 
-    // 총알의 y좌표 업데이트하는 함수 호출, 동시에 총알이 적군을 쳤는지 동시 확인
+    // 총알의 y좌표 업데이트하는 함수 호출, 동시에 총알이 도토리를 쳤는지 동시 확인
     for (let i = 0; i < bulletList.length; i++) {
         if (bulletList[i].alive) {
             bulletList[i].update()
