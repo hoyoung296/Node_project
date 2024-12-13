@@ -71,7 +71,6 @@
                 </div>
                 
                 <div id="board_edit">
-                    <div>
                         <div colspan="4"align="center" id="board_button">
                             <% if( username === data.ID) {%>
                                 <input type="button" onclick="location.href='/board/modify_form/<%= data.WRITE_NO %>'" value="수정하기">
@@ -80,11 +79,13 @@
                                 <input type="button" onclick="reply_form()" value="답글달기">
                                 <input type="button" onclick="reply_form()" value="돌아가기">
                         </div>
-                    </div>
-                    <div>
-                        <div colspan="4" id="content"></div>
-                    </div>
+                        <div id="board_comment">
+                            <div colspan="4" id="content"></div>
+                        </div>
                 </div>
+                
+                    
+                
             </div>
         </div>
     </body>
