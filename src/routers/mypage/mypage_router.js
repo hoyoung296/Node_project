@@ -16,6 +16,8 @@ router.post("/profile", upload.single("profilePic"), ctrl.process.updateProfile)
 router.get("/delete", ctrl.views.getDeletePage);
 // 회원탈퇴 처리
 router.post("/delete", ctrl.process.deleteUser);
+// 로그인 처리
+router.post("/login", ctrl.process.login);
 // 로그아웃 처리
 router.post("/logout", ctrl.process.logout);
 
