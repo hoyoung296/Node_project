@@ -83,8 +83,8 @@ const boardUpdate = {
     },
     modify : async ( body, file ) => {
         if( file !== undefined ){
-            body.origin = file.originalname;
-            body.change = file.filename;
+            body.origin_file = file.originalname;
+            body.change_file = file.filename;
         }
         const result = await dao.boardUpdate.modify( body );
         let msg, url;
