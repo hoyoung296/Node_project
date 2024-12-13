@@ -27,23 +27,20 @@
         const setThema = sampleThema => document.documentElement.className = sampleThema
         const apply = async (aThema, aThema_no) => {
             applyThema(aThema)
-            // await saveThema(aThema_no)
-            fetch("/product/saveThema?thema="+aThema_no)
+            location.href = "/product/saveThema?thema="+aThema_no
         }
      </script>
 </head>
 <body  class="front_body">
 
-    <%-include('../include/header.ejs')%>
-
+    <%- include('../include/header.ejs') %>
+    <%- include('./choice.ejs') %>
     <section>
         <table id="list">
-            <% console.log("uThema : ", uThema) %>
-            <% console.log("list : ", list) %>
             <% let i = 0 %>
             <% let h = 0 %>
-            <% console.log("hThema[h] : ", hThema) %>
             <% list.forEach(p => { %>
+
                 <% if(i==0){ %>
                 <tr>
                 <% } %>
@@ -56,29 +53,22 @@
                     <% }else{ %>
                     <%= p.PRICE %><br>
                     <% } %>
-                    <% console.log("p:",p.PRODUCT) %>
                     <% if(uThema == p.PRODUCT ) { %>
                         <button disabled id="<%= p.PRODUCT_NO %>_btn">
                         적용중
                         </button>
                         <% if(uThema == hThema[h]){h++} %>
-                        <% console.log(h) %>
-                        <% console.log("적용중") %>
                     <% } else if(hThema[h] == p.PRODUCT) { %>
                         <button type="button" id="<%= p.PRODUCT_NO %>_btn" class="notButton" onclick="apply('<%= p.PRODUCT %>', '<%= p.PRODUCT_NO %>')">
                         적용하기
                         </button>
                         <% h++ %>
-                        <% console.log(h) %>
-                        <% console.log("적용하기") %>
                     <% }else{ %>
-                        <button type="button" id="<%= p.PRODUCT_NO %>_btn" onclick="location.href='/product/purchase?no=<%= p.PRODUCT_NO %>'">
+                        <button type="button" id="<%= p.PRODUCT_NO %>_btn" onclick="choice('<%= p.PRICE %>', '<%= uDotori %>')">
                         구매하기
                         </button>
-                        <% console.log("구매하기") %>
                     <% }%>
                 </td>
-                <% console.log("p ok:",p.PRODUCT) %>
                 <% if(i < 2){ i++ }else{ i=0 %>
                 </tr>
                 <% } %>

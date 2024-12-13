@@ -1,12 +1,17 @@
 const ser = require("../../service/product/product_service")
-// const fs = require("fs")
-const mctrl = require("../controller")
+const commonSer = require("../../service/ser_common")
 
 const list = async (req, res) => {
-    // const thema = await mctrl.userThema(req.session)
-    const productList = await ser.productList()
-    const thema = await ser.haveThema(req.session.uid)
-    res.render("product/list", {uid : req.session.uid , list : productList, uThema : thema.uThema, hThema : thema.hThema})
+    const check = commonSer.sessionCheck(req.session)
+    if(check == 0){
+        const productList = await ser.productList()
+        const thema = await ser.haveThema(req.session.uid)
+        const userDotori = await ser.member(req.session.uid)
+        res.render("product/list", {uid : req.session.uid , list : productList, uThema : thema.uThema, hThema : thema.hThema, uDotori : userDotori.DOTORI})
+    }else {
+        res.send(check)
+    }
+    
 }
 
 const load = (req, res) => {
@@ -22,6 +27,7 @@ const purchase = async (req, res) => {
 async function saveThema(req, res) {
     console.log("ctrl saveThema")
     ser.saveThema(req.session.uid, req.query.thema)
+    res.redirect("/product")
 }
 
 module.exports = {list, load, purchase, saveThema}

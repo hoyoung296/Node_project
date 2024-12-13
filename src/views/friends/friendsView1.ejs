@@ -14,11 +14,11 @@
 </head>
 
 <body>
-    <div style="width: 730px; height: 600px; background: #fff2d6; text-align: center;">
+    <div style="width: 730px; height: 600px; text-align: center; color: var(--text-color);">
         <table align="center" width="730px" height="500px" border="1"
-            style="text-align: center; margin: 0px auto; border-color: gold;">
-            <tr>
-                <th>친구목록</th>
+            style="text-align: center; margin: 0px auto; border-color: var(--header-color); border-collapse: collapse; border-radius: 30px; overflow: hidden;">
+            <tr style="background: var(--header-color);">
+                <th>친구 ID</th>
                 <th>친구 삭제</th>
             </tr>
             <% result.forEach (data=>{ %>
@@ -79,12 +79,10 @@
                                             </tr>
                                             <% } %>
         </table>
-        <button onclick="location.href='/main'" style="color: gold; border: none; background: none; font-size: 25px; 
-                    font-weight: bold; cursor: pointer; margin-top: 30px;">메인 페이지</button>
+        <button onclick="location.href='/main'"
+            style="background: var(--header-color); font-size: 25px; font-weight: bold; cursor: pointer; margin-top: 30px;">메인
+            페이지</button>
     </div>
-</body>
-
-</html>
 </body>
 
 </html>

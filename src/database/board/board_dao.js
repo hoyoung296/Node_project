@@ -7,8 +7,15 @@ oracledb.outFormat = oracledb.OBJECT;
 const con = require("../db_common")
 const boardRead = {
     list : async ( start ) => {
-        const sql = `select * from board order by write_no desc offset ${start} rows fetch next 5 rows only`;
+        const sql = `select * from board order by write_no desc offset ${start} rows fetch next 15 rows only`;
         const list = await ( await con ).execute( sql )
+        console.log(list)
+        return list;
+    },
+    list2 : async ( start,menu ) => {
+        const sql = `select * from board where category = '${menu}' order by write_no desc offset ${start} rows fetch next 15 rows only`;
+        const list = await ( await con ).execute( sql )
+        console.log(list)
         return list;
     },
     totalCnt : async() => {
@@ -29,7 +36,7 @@ const boardRead = {
 }
 const boardInsert = {
     write : async ( body ) => {
-        const sql = `insert into board(write_no, title, content, upload_file, id, save_date, hit, name) values(board_seq.nextval, :title, :content, :origin, :id, TO_DATE(:save_data, 'YYYY-MM-DD'), :hit, :name)`;
+        const sql = `insert into board(write_no, title, content, upload_file, id, save_date, hit, name,category,change_file) values(board_seq.nextval, :title, :content, :image_file_name, :id, TO_DATE(:save_data, 'YYYY-MM-DD'), :hit, :name,:category,:change)`;
         let result = 0;
         try{
             result = await(await con).execute(sql, body);

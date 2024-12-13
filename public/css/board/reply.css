@@ -10,7 +10,8 @@
     display: none;
     position: fixed;
     z-index: 10;
-    margin: 0 auto; top: 30px; left: 0; right: 0;
-    width: 300px; height: 500px;
-    background-color: rgba(22, 84, 218, 0.966);
+    margin: 0 auto; top: 200px; left: 0; right: 0;
+    width: 300px; height: 300px;
+    background-color: var(--header-color);
+    color: var(--text-color);
 }

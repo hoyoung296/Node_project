@@ -22,12 +22,13 @@
                     <%= body.id %>님한테 친구 요쳥 메세지를 보내겠습니까?<br><br><br>
                         <input type="hidden" name="sender" value="<%= name %>">
                         <input type="hidden" name="receiver" value="<%= body.id %>">
+                        <input type="hidden" name="object" value="친구 추가">
                         <input type="hidden" name="subject" value="친구추가">
                         <input type="hidden" name="content" value="친구 추가 수락 부탁">
-                        <button type="submit" style="color: gold; border: none; background: none; font-size: 25px; 
-                    font-weight: bold; cursor: pointer;">확인</button><br><br>
-                        <button type="button" onclick="location.href='/friends'" style="color: gold; border: none; background: none; font-size: 25px; 
-                    font-weight: bold; cursor: pointer;">취소</button>
+                        <button type="submit"
+                            style="color: var(--text-color); background: var(--header-color); font-size: 25px; font-weight: bold; cursor: pointer;">확인</button><br><br>
+                        <button type="button" onclick="location.href='/friends'"
+                            style="color: var(--text-color); background: var(--header-color); font-size: 25px; font-weight: bold; cursor: pointer;">취소</button>
                 </form>
             </div>
         </div>

@@ -1,4 +1,3 @@
-
 :root,
 :root.brown{
     --background-color: #fffdf5; /*기본 배경 컬러*/
@@ -25,7 +24,7 @@
     --text-color: #ffffff;
     --header-color: #424242;
 }
-  
+
 *{
     margin: 0;
     padding: 0;
@@ -96,6 +95,9 @@
     text-decoration: none;
     color: inherit;
 }
+.header_h4 > a:hover{
+    text-decoration: underline;
+}
 .nav_bar{
     grid-area: nav;
 }
@@ -140,15 +142,17 @@
 .front_body > section{
     grid-area: section;
     display: grid;
-    grid-template-rows: 1fr 9fr;
+    grid-template-rows: 1fr auto;
     gap: 10px;
     min-height: 600px;
-    max-height: 1vh;
 }
-.story{
-    background-color: #dadada;
+.story {
     border-radius: 10px;
-    height: 80px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-style: solid; 
+    border-color: var(--header-color);
 }
 .main_section{
     background-color: #dadada;
@@ -206,6 +210,7 @@
     display: flex;
     flex-direction: column;
     margin: 10px auto;
+    cursor: pointer;
 }
 .footer_name{
     margin-bottom: 10px;

@@ -36,14 +36,14 @@
     justify-content: center;  /* 수평 가운데 정렬 */
     align-items: center;      /* 세로 가운데 정렬 */
     margin: 0;                /* 기본 여백 제거 */
-    font-family: Arial, sans-serif;
+    font-family: "Nanum Gothic";
     padding: 20px;            /* 폼 내부 여백을 20px로 설정 */
     border-radius: 10px;      /* 폼 모서리를 둥글게 설정 */
     box-shadow: 0 4px 6px var(--shadow-color);  /* 폼에 그림자 효과 추가 */
     width: 100%;              /* 폼의 너비를 100%로 설정 */
+    height: 500px;
     max-width: 600px;         /* 폼의 최대 너비를 600px로 제한 */
-    margin-left: auto;        /* 왼쪽 마진 자동 설정 (가로 가운데 정렬) */
-    margin-right: auto;       /* 오른쪽 마진 자동 설정 (가로 가운데 정렬) */
+    margin: auto;
 }
 
 /* 테이블 스타일 */
@@ -83,16 +83,18 @@
 .register_form input[type="submit"] {
     width: 100%;              /* 버튼 너비를 100%로 설정하여 테이블 셀 크기에 맞게 설정 */
     padding: 10px;
-    background-color: #4e9e2e;
-    color: white;
+    background-color: var(--header-color);
+    color: var(--text-color);
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;          /* 버튼 글자 크기 */
+    box-shadow: 2px 3px 0 #bbbbbb85;
 }
 
 .register_form input[type="submit"]:hover {
-    background-color: #3b7a28;
+    background-color: var(--header-color);
+    box-shadow: 1px 1px 0 #bbbbbb85;
 }
 
 .register_form .error-message {

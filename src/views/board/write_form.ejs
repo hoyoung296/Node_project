@@ -14,18 +14,18 @@
     </script>
 </head>
 <body>
-    <script src="/static/js/img_view.js"></script>
+    <script src="/static/js/board/img_view.js"></script>
     <div id="main" class="content wrap">
         <div style="width: 400px; margin: 0 auto;"></div>
         <h1 style="text-align: center">글 작성</h1>
         <form method="post" action="/board/write" enctype="multipart/form-data">
             <b>카테고리</b><br>
             <select name="category" id="category"> 
-                <option value="이번주 핫이슈">이번주 핫이슈</option>
-                <option value="맛집&카페">맛집&카페 공유</option>
-                <option value="고민해결">고민해결</option>
-                <option value="짤 모음">짤 모음</option>
-                <option value="노래 추천">노래 추천</option>
+                <option value="1">이번주 핫이슈</option>
+                <option value="2">맛집&카페 공유</option>
+                <option value="3">고민해결</option>
+                <option value="4">짤 모음</option>
+                <option value="5">노래 추천</option>
             </select><br>
             <b>작성자</b><br>
             <input type="text" name="name" value="<%= username %>" readonly />

@@ -14,16 +14,20 @@
 </head>
 
 <body>
-    <div style="width: 730px; height: 600px; background: #fff2d6; text-align: center;">
+    <div style="width: 730px; height: 600px; text-align: center; color: var(--text-color);">
         <table align="center" width="730px" height="500px" border="1"
-            style="text-align: center; margin: 0px auto; border-color: gold;">
-            <tr>
+            style="text-align: center; margin: 0px auto; border-color: var(--header-color); border-collapse: collapse; border-radius: 30px; overflow: hidden;">
+            <tr style="background: var(--header-color);">
+                <th>프로필사진</th>
                 <th>ID</th>
                 <th>NAME</th>
                 <th>친구 추가</th>
             </tr>
             <% result.forEach (data=>{ %>
                 <tr>
+                    <td>
+                        프사예정
+                    </td>
                     <td>
                         <%= data.ID %>
                     </td>
@@ -42,11 +46,11 @@
                 <% }) %>
                     <% if(result.length==0) { %>
                         <tr>
-                            <td colspan="3" align="center"><b>친구 추가 가능 id 없음</b></td>
+                            <td colspan="4" align="center"><b>친구 추가 가능 id 없음</b></td>
                         </tr>
                         <% } else { %>
                             <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                                     <% if(start> 1){ %>
                                         <button onclick="location.href='/friends?start=<%= start-1 %>'"
                                             style="cursor: pointer;">이전</button>
@@ -65,7 +69,7 @@
                             </tr>
                             <% } %>
         </table>
-        <button onclick="location.href='/main'" style="color: gold; border: none; background: none; font-size: 25px; 
+        <button onclick="location.href='/main'" style="background: var(--header-color); font-size: 25px; 
                     font-weight: bold; cursor: pointer; margin-top: 30px;">메인 페이지</button>
     </div>
 </body>

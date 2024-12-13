@@ -10,17 +10,33 @@ const boardRead = {
 
         const totalCnt = await dao.boardRead.totalCnt();
         const num = totalCnt.rows[0]['COUNT(*)'];
-        const result = ( num % 5 == 0 )? 0 : 1;
-        const page = parseInt( num / 5 + result );
+        const result = ( num % 15 == 0 )? 0 : 1;
+        const page = parseInt( num / 15 + result );
 
-        const startNum = ( start - 1 ) * 5;
+        const startNum = ( start - 1 ) * 15;
         let list = await dao.boardRead.list( startNum );
         console.log(list.rows[0])
         list = serCom.timeModify( list.rows )
         return { list, start, page };
     },
+    list2 : async (start,menu) => {
+        if( start == undefined )
+            start = 1;
+        start = Number(start);
+
+        const totalCnt = await dao.boardRead.totalCnt();
+        const num = totalCnt.rows[0]['COUNT(*)'];
+        const result = ( num % 15 == 0 )? 0 : 1;
+        const page = parseInt( num / 15 + result );
+
+        const startNum = ( start - 1 ) * 15;
+        let list = await dao.boardRead.list2( startNum,menu );
+        console.log(list.rows[0])
+        list = serCom.timeModify( list.rows )
+        return { list, start, page };
+    },
     data : async ( num ) => {
-        // boardUpdate.upHit( num );
+        boardUpdate.upHit( num );
         let data = await dao.boardRead.data( num )
         data = serCom.timeModify( data.rows );
         return data[0];
@@ -36,14 +52,12 @@ const boardInsert = {
             return serCom.getMessage(msg, url );
         }
         if( file != undefined ){
-            body.origin = file.originalname;
+            body.image_file_name = file.originalname;
             body.change = file.filename;
         }else{
             body.origin = "";
             body.change = "";
         }
-        delete body['category']
-        delete body['change']
         body.hit = 0;
         body.id = uid
         body.save_data =new Date().toISOString().slice(0, 10);
@@ -62,7 +76,7 @@ const boardInsert = {
 }
 const boardUpdate = {
     upHit : ( num ) => {
-        dao.boardUpdate.upHit( num );
+       dao.boardUpdate.upHit( num );
     },
     delete : ( writeNo ) => {
         dao.boardUpdate.delete( writeNo );

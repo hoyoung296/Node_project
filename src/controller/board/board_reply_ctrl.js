@@ -1,7 +1,7 @@
 const ser = require("../../service/board/board_reply_service")
 const process = {
     register : async ( req, res ) => {
-        console.log(req.body );
+        console.log("req.body : ",req.body)
         const result = await ser.insert.register( req.body );
         console.log("ctrl result : ",result)
         res.json(result)
