@@ -22,6 +22,7 @@ const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 
     }, 
     topic : async (req, res) => {
         const menu = req.query.menu;
+        console.log("menu :",menu)
         const boardList = await ser.boardRead.list2( req.query.start,menu );
         const isLoggedIn = req.session.user ? true : false;
         const data = { list : boardList.list, start : boardList.start, page : boardList.page, isLoggedIn }
@@ -33,6 +34,12 @@ const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 
             res.send(str)
         })
         // res.json({ list : data.list, start : data.start, page : data.page, isLoggedIn })
+    },
+    category : async(req, res) => {
+        const thema = await mctrl.userThema(req.session) //사용자 테마 설정
+        const topic = req.params.category
+        const menu = req.query.menu
+        res.render("board/categori", {thema,topic,menu})
     },
 
     list : async ( req, res ) => {
@@ -68,7 +75,7 @@ const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 
 const process = {
     write : async ( req, res ) => {
         const msg = await ser.boardInsert.write(
-            req.body, req.file, req.fileValidation, req.session.uid
+            req.body, req.file, req.fileValidation, req.session.uid,req.session.name
         );
         res.send( msg )
     },
