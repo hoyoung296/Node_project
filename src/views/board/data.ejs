@@ -59,8 +59,8 @@
                         
                         <div><%= data.CONTENT %></div>
                         <div colspan="2">
-                            <% if( data.UPLOAD_FILE === "nan"){%>
-                                <b>이미지가 없습니다
+                            <% if(data.UPLOAD_FILE === null ){%>
+                                <b>이미지가 없습니다</b>
                             <%}else{%>
                                 <img src="/board/download/<%= data.CHANGE_FILE %>"
                             width="100px" height="100px">
@@ -72,7 +72,7 @@
                 
                 <div id="board_edit">
                         <div colspan="4"align="center" id="board_button">
-                            <% if( username === data.ID) {%>
+                            <% if( id === data.ID) {%>
                                 <input type="button" onclick="location.href='/board/modify_form/<%= data.WRITE_NO %>'" value="수정하기">
                                 <input type="button" onclick="location.href='/board/delete/<%= data.WRITE_NO %>/<%= data.CHANGE_FILE_NAME %>'" value="삭제하기">
                                 <% } %>

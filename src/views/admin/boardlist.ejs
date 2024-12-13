@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="/static/js/admin/memberlist.js" defer></script>
+    <script src="/static/js/admin/boardlist.js" defer></script>
      <!-- 아이콘 및 폰트 링크 -->
      <link rel="icon" href="/static/front_image/dotoree.png" type="image/x-icon">
      <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,7 +30,7 @@
                 <th>내용</th>
                 <th>날짜</th>
                 <th>이름</th>
-                <th>탈퇴</th>
+                <th>삭제</th>
             </tr>
         </thead>
         <tbody>
@@ -50,6 +50,10 @@
                     </td>
                     <td>
                         <%= d.NAME %>
+                    </td>
+                    <td>
+                        <!-- 탈퇴 링크를 <a> 태그로 추가 -->
+                        <a href="javascript:void(0);" onclick="deleteBoard('<%= d.WRITE_NO %>');">삭제</a>
                     </td>
                 </tr>
                 <% }) %>
