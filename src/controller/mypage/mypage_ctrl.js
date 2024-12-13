@@ -1,6 +1,19 @@
+const multer = require('multer');
 const ser = require("../../service/mypage/mypage_service");
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/uploads/');  // 업로드된 파일을 저장할 경로
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);  // 파일 이름
+    }
+});
+
+// 업로드 미들웨어 설정
+const upload = multer({ storage: storage });
 
 // 비밀번호 해시화
 const hashPassword = async (password) => {
@@ -12,21 +25,30 @@ const views = {
     // 마이페이지 메인화면
     getMainPage: async (req, res) => {
         const userId = req.session.uid;
-        console.log("세션에서 가져온 userId:", userId);
+    
+        console.log("Session Data in getMainPage:", req.session);  // 세션 값 출력
+    
         try {
             if (!userId) {
                 return res.send("<script>alert('로그인 후 이용해 주세요.'); location.href = '/member/login_form';</script>");
             }
-
-            const userInfo = await ser.getUserInfo(userId); // 사용자의 기본 정보 가져오기
-
-            console.log(userInfo);
-            
+    
+            const userInfo = await ser.getUserInfo(userId);  // 사용자 정보 가져오기
+    
             if (!userInfo) {
                 return res.send("<script>alert('로그인 후 이용해 주세요.'); location.href = '/member/login_form';</script>");
             }
+    
+            // 세션에 저장된 프로필 사진과 상태 메시지가 있으면 덮어쓰기
+            userInfo.picture = req.session.picture || 'default-profile.png';  // 세션에 프로필 사진 없으면 기본 이미지 사용
+            userInfo.msg = req.session.statusMessage || '상태 메시지가 없습니다.'; // 세션에 상태 메시지 가져오기
 
-            return res.render("mypage/main", { user: userInfo });
+            //console.log("Session Data in getMainPage:", req.session);  // 세션 데이터 출력
+            //console.log("Session Picture:", req.session.picture);  // 프로필 사진 출력
+            //console.log("Session Status Message:", req.session.statusMessage);  // 상태 메시지 출력
+
+    
+            return res.render("mypage/main", { user: userInfo });  // 사용자 정보를 뷰로 전달
         } catch (err) {
             return res.send("Error: " + err.message);
         }
@@ -42,6 +64,27 @@ const views = {
             res.send("Error: " + err.message);
         }
     },
+    
+    // 프로필 수정 페이지
+    getProfilePage: async (req, res) => {
+        const userId = req.session.uid; // 세션에서 사용자 ID 가져오기
+        try {
+            const userInfo = await ser.getUserInfo(userId); // 사용자 정보 가져오기
+            if (!userInfo) {
+                return res.send("<script>alert('사용자 정보를 불러올 수 없습니다.'); history.back();</script>");
+            }
+            
+            // 세션의 프로필 사진과 상태 메시지 반영
+            userInfo.picture = req.session.picture || userInfo.picture;  // 세션의 프로필 사진 반영
+            userInfo.msg = req.session.statusMessage || userInfo.msg; // 세션의 상태 메시지 반영
+            
+            // 프로필 페이지 렌더링
+            res.render("mypage/profile", { user: userInfo }); // userInfo를 뷰로 전달
+        } catch (err) {
+            res.send("Error: " + err.message); // 오류 발생 시 처리
+        }
+    },
+
     // 회원탈퇴 페이지
     getDeletePage: (req, res) => {
         res.render("mypage/delete");
@@ -80,6 +123,36 @@ const process = {
         }
     },
 
+    // 프로필 수정 처리
+    updateProfile: async (req, res) => {
+        const userId = req.session.uid;
+        const statusMessage = req.body.statusMessage;
+        const profilePic = req.file ? req.file.filename : null;  // 업로드된 파일이 있으면 파일 이름 저장
+
+        //console.log("profilePic:", profilePic); // 업로드된 파일 정보 출력
+        //console.log("statusMessage:", statusMessage); // 상태 메시지 출력
+        
+
+        try {
+            if (profilePic) {
+                await ser.updateProfilePic(userId, profilePic);  // 프로필 사진 업데이트
+                req.session.picture = profilePic;  // 세션에 프로필 사진 업데이트
+                //console.log("Session Picture:", req.session.picture);
+            }
+            if (statusMessage) {
+                await ser.updateStatusMessage(userId, statusMessage);  // 상태 메시지 업데이트
+                req.session.statusMessage = statusMessage;  // 세션에 상태 메시지 업데이트
+                //console.log("Session Status Message:", req.session.statusMessage);
+
+            }
+            // 수정 후 리다이렉트
+            res.redirect("/mypage");  // 프로필 수정 후 메인 페이지로 리다이렉트
+        } catch (err) {
+            console.error("Error:", err);
+            return res.send("<script>alert('프로필 수정에 실패했습니다.'); history.back();</script>");
+        }
+    },
+
     // 회원탈퇴 처리
     deleteUser: async (req, res) => {
         const userId = req.session.uid;
@@ -108,6 +181,41 @@ const process = {
         }
     },
 
+    login: async (req, res) => {
+        const userId = req.body.userId;
+        const password = req.body.password;
+        try {
+            // 사용자 정보 가져오기
+            const userInfo = await ser.getUserInfo(userId);
+    
+            // 로그인 실패 처리
+            if (!userInfo || !await bcrypt.compare(password, userInfo.pwd)) {
+                return res.send("<script>alert('로그인 실패'); location.href = '/member/login_form';</script>");
+            }
+    
+            // 로그인 성공 시 세션에 사용자 정보 저장
+            req.session.uid = userInfo.id; 
+            req.session.name = userInfo.name;  // 이름을 세션에 저장
+            req.session.picture = userInfo.picture || 'default-profile.png';  // DB에서 프로필 사진을 가져와 세션에 저장
+            req.session.statusMessage = userInfo.msg || '상태 메시지가 없습니다.';  // DB에서 상태 메시지를 가져와 세션에 저장
+    
+             // 세션에 저장된 값 확인 (세션 저장 전에 확인)
+            console.log("Session Data before save:", req.session);  // 세션 객체 전체 출력
+            console.log("Session Picture before save:", req.session.picture);  // 프로필 사진 확인
+            console.log("Session Status Message before save:", req.session.statusMessage);  // 상태 메시지 확인
+
+            // 세션 저장 후 로그를 찍고 리다이렉트
+            req.session.save(() => {
+                console.log("Session Data after save:", req.session);  // 세션 전체 데이터 출력
+                console.log("Session Picture after save:", req.session.picture);  // 프로필 사진 출력
+                console.log("Session Status Message after save:", req.session.statusMessage);  // 상태 메시지 출력
+                res.redirect('/mypage');  // 리다이렉트
+            });
+        } catch (err) {
+            return res.send("<script>alert('로그인 처리에 실패했습니다.'); location.href = '/member/login_form';</script>");
+        }
+    },
+
     // 로그아웃 처리
     logout: (req, res) => {
         req.session.destroy((err) => {
@@ -120,4 +228,4 @@ const process = {
     }
 };
 
-module.exports = { views, process };
+module.exports = { views, process, upload};

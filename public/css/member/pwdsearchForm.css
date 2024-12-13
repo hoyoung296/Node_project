@@ -46,7 +46,7 @@ html, body {
 
 /* 페이지 전체 스타일 */
 #pwdsearchform body {
-    font-family: Arial, sans-serif; /* 페이지의 글꼴을 Arial로 설정 */
+    font-family: "Nanum Gothic"; /* 페이지의 글꼴을 Arial로 설정 */
     display: flex; /* flexbox를 사용하여 아이템을 정렬 */
     justify-content: center; /* 가로 중앙 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
@@ -94,17 +94,19 @@ html, body {
     width: 100%; /* 버튼의 너비를 100%로 설정 */
     padding: 10px; /* 버튼의 안쪽 여백을 10px로 설정 */
     font-size: 16px; /* 버튼의 텍스트 크기를 16px로 설정 */
-    background-color: #4e9e2e; /* 버튼 배경색을 파란색으로 설정 */
-    color: white; /* 버튼 텍스트 색을 흰색으로 설정 */
+    background-color: var(--header-color); 
+    color: var(--text-color); /* 버튼 텍스트 색을 흰색으로 설정 */
     border: none; /* 테두리 제거 */
     border-radius: 4px; /* 버튼의 모서리를 4px로 둥글게 설정 */
     cursor: pointer; /* 버튼에 마우스를 올리면 포인터 커서로 변경 */
     box-sizing: border-box; /* padding과 border가 버튼의 전체 크기에 포함되도록 설정 */
+    box-shadow: 2px 3px 0 #bbbbbb85;
 }
 
 /* 제출 버튼에 마우스를 올렸을 때 색상 변경 */
 #pwdsearchform input[type="submit"]:hover {
-    background-color: #3b7a28; /* 마우스를 올렸을 때 버튼 배경색을 어두운 파란색으로 변경 */
+    background-color: var(--header-color); 
+    box-shadow: 1px 1px 0 #bbbbbb85;
 }
 
 /* 아이디 찾기 링크를 감싸는 div 스타일 */
@@ -123,7 +125,7 @@ html, body {
 
 /* 아이디 찾기 링크 스타일 */
 #pwdsearchform .links a {
-    color: #4e9e2e; /* 링크의 글자 색을 파란색으로 설정 */
+    color: #707070; 
     text-decoration: none; /* 링크의 밑줄을 제거 */
 }
 

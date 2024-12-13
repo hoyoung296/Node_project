@@ -7,7 +7,22 @@ const mctrl = require("../controller") //thema설정하려고 추가
 const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 안보이는 코드 list.ejs에도 있음 
 
     main : async (req, res) => {
+        console.log(" req.query.start : ", req.query.start)
         const boardList = await ser.boardRead.list( req.query.start );
+        const isLoggedIn = req.session.user ? true : false;
+        const data = { list : boardList.list, start : boardList.start, page : boardList.page, isLoggedIn }
+        ejs.renderFile(path.join(__dirname, '../../views/board/main_list.ejs'), data, (err, str) => {
+            if(err){
+                console.log(err)
+                return res.status(500).send('Error rendering EJS')
+            }
+            res.send(str)
+        })
+        // res.json({ list : data.list, start : data.start, page : data.page, isLoggedIn })
+    }, 
+    topic : async (req, res) => {
+        const menu = req.query.menu;
+        const boardList = await ser.boardRead.list2( req.query.start,menu );
         const isLoggedIn = req.session.user ? true : false;
         const data = { list : boardList.list, start : boardList.start, page : boardList.page, isLoggedIn }
         ejs.renderFile(path.join(__dirname, '../../views/board/main_list.ejs'), data, (err, str) => {
@@ -74,6 +89,7 @@ const process = {
 const fs = require("fs");
 const file_process = {
     download : ( req, res ) => {
+        console.log("req.params.imgName : ",req.params.imgName)
         const filePath = `./upload_file/${req.params.imgName}`;
         res.download( filePath )
     },

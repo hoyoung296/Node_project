@@ -1,13 +1,12 @@
-<table border="solid 1px">
-    <tr>
-        <td>글 번호</td> 
-        <td>제목</td> 
-        <td>내용</td>
-        <td>아이디</td> 
-        <td>이름</td>
-        <td>날짜</td> 
-        <td>조회수</td> 
-        <td>이미지</td>
+<table class="board_main">
+    <tr class="board_menu">
+        <td class="board_num">No</td> 
+        <td class="board_title">제목</td> 
+
+        <td class="board_id">아이디</td> 
+        <td class="board_name">이름</td>
+        <td class="board_date">날짜</td> 
+        <td class="board_hit">조회수</td> 
     </tr>
     <% if( list.length == 0){ %>
         <tr>
@@ -16,34 +15,38 @@
         <% }else{
         list.forEach(d =>{ %>
         <tr>
-            <td><%= d.WRITE_NO %></td>
+            <td class="board_list_num"><%= d.WRITE_NO %></td>
             <td>
-                <a href="/board/data/<%= d.WRITE_NO %>">
+                <a class="board_list_title" href="/board/data/<%= d.WRITE_NO %>">
                     <%= d.TITLE %>
                 </a>
             </td>
-            <td><%= d.CONTENT %></td>
-            <td><%= d.ID %></td>
-            <td><%= d.NAME %></td>
-            <td><%= d.SAVE_DATE %></td>
-            <td><%= d.HIT %></td>
+
+            <td class="board_list_id"><%= d.ID %></td>
+            <td class="board_list_name"><%= d.NAME %></td>
+            <td class="board_list_date"><%= d.SAVE_DATE %></td>
+            <td class="board_list_hit"><%= d.HIT %></td>
         </tr>
         <% })
     } %>
+    <table class="board_page">
         <tr>
-            <td colspan="5" align="right">
+            <td class="board_button">
             <% if( start <= 1 ){ %>
-                <button disabled>이전</button>
+                <button disabled>이전</button> |
             <% }else{ %>
-                <button type="button" onclick="location.href='/board/list?start=<%= start - 1 %>'">이전</button>
+                <button type="button" onclick="location.href='/board/list?start=<%= start - 1 %>'">이전</button> |
             <% }for(let i = 1 ; i <= page ; i++ ){ %>
             <a href="/board/list?start=<%= i %>"><%= i %></a>
             <% }if( start < page ){ %>
-                <button type="button" onclick="location.href='/board/list?start=<%= start + 1 %>'">다음</button>
-            <% }else{ %> <button disabled>다음</button> <% } %>
-            <%= start %> / <%= page %>
-            <a href="/board/write_form">글 작성</a>
-            
-        </td> 
-    </tr> 
+                | <button type="button" onclick="location.href='/board/list?start=<%= start + 1 %>'">다음</button>
+            <% }else{ %> | <button disabled>다음</button> <% } %>
+            <!-- <%= start %> / <%= page %>             -->
+            </td> 
+            <a class="board_new" href="/board/write_form">글쓰기</a>
+        </tr> 
+    </table>
 </table>
+
+
+

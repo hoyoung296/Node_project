@@ -11,10 +11,11 @@ router.get("/modify_form/:writeNo", ctrl.views.modifyForm);
 router.post("/write", upload.single("image_file_name"), ctrl.process.write);
 router.get("/delete/:writeNo/:imgName", ctrl.process.delete);
 router.post("/modify", upload.single("image_file_name"), ctrl.process.modify);
-router.get("/hot_issue",ctrl.views.main)
-router.get("/download/:imgName", ctrl.file_process.download );
-
 router.get("/main", ctrl.views.main);
+router.get("/download/:imgName", ctrl.file_process.download );
+router.get("/:topic",ctrl.views.topic);
+
+
 
 
 

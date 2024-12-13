@@ -11,6 +11,13 @@
     <p>아이디: <%= user && user.ID ? user.ID : '' %></p>
     <p>이메일: <%= user && user.EMAIL ? user.EMAIL : '' %></p>
     
+    <div>
+        <h2>프로필</h2>
+        <img src="<%= user.picture ? '/uploads/' + user.picture : '/default-profile.png' %>" alt="Profile Picture" width="150">
+        <p><%= user.msg ? user.msg : '상태 메시지가 없습니다.' %></p>
+        <p><a href="/mypage/profile">프로필 설정</a></p>
+    </div>
+
     <h2>내정보 관리</h2>
     <ul>
         <li><a href="/mypage/edit">내정보 수정</a></li>

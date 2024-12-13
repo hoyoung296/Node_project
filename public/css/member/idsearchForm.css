@@ -52,7 +52,7 @@ html, body {
 
 /* 폼을 중앙에 위치시키는 스타일 */
 #idsearchform body {
-    font-family: Arial, sans-serif;
+    font-family: "Nanum Gothic";
     display: flex;
     justify-content: center;  /* 수평 중앙 정렬 */
     align-items: center;      /* 수직 중앙 정렬 */
@@ -110,7 +110,7 @@ html, body {
 
 #idsearchform .form-group input[type="email"]:focus,
 #idsearchform .form-group input[type="text"]:focus {
-    border-color: #4e9e2e;
+    border-color: var(--header-color);
 }
 
 /* 버튼 스타일 */
@@ -120,20 +120,22 @@ html, body {
     font-size: 16px;
     border: none;
     border-radius: 5px;
-    background-color: #4e9e2e;
-    color: #ffffff;
+    background-color: var(--header-color);
+    color: var(--text-color);
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-bottom: 10px;
 }
 
 #idsearchform button:disabled {
-    background-color: #ccc;
+    background-color: #707070;
     cursor: not-allowed;
 }
 
 #idsearchform button:hover {
-    background-color: #3b7a28;
+    background-color: var(--header-color);
+    box-shadow: 2px 3px 0 #bbbbbb85;
+    
 }
 
 /* 메시지 스타일 */
@@ -163,15 +165,17 @@ html, body {
 /* 링크 스타일 */
 #idsearchform a {
     font-size: 16px;
-    color: #3b7a28;
+    color: var(--text-color);
     text-decoration: none;
-    border: 2px solid #3b7a28;
+    border: 2px solid var(--header-color);
     padding: 8px 20px;
     border-radius: 5px;
     transition: background-color 0.3s;
+    box-shadow: 2px 3px 0 #bbbbbb85;
 }
 
 #idsearchform a:hover {
-    background-color: #3b7a28;
-    color: white;
+    background-color: var(--header-color);
+    color: var(--text-color);
+    box-shadow: 1px 1px 0 #bbbbbb85;
 }

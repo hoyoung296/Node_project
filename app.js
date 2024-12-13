@@ -20,5 +20,6 @@ app.set("views", "./src/views")
 app.set("view engine", "ejs");
 
 app.use("/static", express.static(__dirname + "/public"))
+app.use("/uploads", express.static(__dirname + "/public/uploads"));
 
 app.listen(3000, () => console.log("3000 서버 실행"))
