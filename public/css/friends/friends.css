@@ -26,3 +26,17 @@
     margin-top: 200px;
     color: var(--text-color);
 }
+
+#main {
+    width: 250px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+button {
+    color: var(--text-color);
+    background: var(--header-color);
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}

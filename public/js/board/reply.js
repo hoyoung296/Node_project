@@ -16,11 +16,13 @@ const reply_hide = () => {
 }
 
 function rep(){
+    console.log("req  실행")
     let form = {}
     let arr = $("#frm").serializeArray();
     console.log(arr)
     arr.forEach(d => {form[d.name] = d.value})
     console.log(form)
+
     fetch("/board_rep",{
         method : "post",
         headers : {"Content-Type" : "application/json"},

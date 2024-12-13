@@ -10,6 +10,7 @@
     gap: 10px;
     border-style: solid;
     border-color: var(--header-color);
+    color: var(--text-color);
     border-width: 3px;
     border-radius: 10px;
     padding: 10px;
@@ -17,6 +18,9 @@
 }
 #board_top > #number{
     display: none;
+}
+#board_top{
+    line-height: 28px;
 }
 
 #board_title{ /*제목*/
@@ -39,7 +43,7 @@
     align-items: center;
     gap: 10px;
     font-size: 13px;
-    color: #707070;
+    color: #868686;
 }
 #board_content{ /*글 내용*/
     grid-area: board_content;

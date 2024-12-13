@@ -16,13 +16,16 @@ const views = {
     view: async (req, res) => {
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         let result = await ser.pageRead.view(req.query.num)
-        console.log("view list : ", result)
         res.render("friends/view", { result, name: req.session.uid, thema })
     },
     friendsview: async (req, res) => {
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         let data = await ser.pageRead.friendsview(req.query.start, req.session.uid)
         res.render("friends/friendsView", { result: data.result, page: data.page, start: data.start, name: req.session.uid, thema })
+    },
+    download: async (req, res) => {
+        const path = `./upload_file/${req.query.file}`
+        res.download(path)
     }
 }
 const process = {

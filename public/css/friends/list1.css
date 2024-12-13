@@ -1,0 +1,31 @@
+#main {
+    width: 730px;
+    height: 600px;
+    text-align: center;
+    color: var(--text-color);
+
+    &>table {
+        text-align: center;
+        margin: 0px auto;
+        border-color: var(--header-color);
+        border-collapse: collapse;
+        border-radius: 30px;
+        overflow: hidden;
+    }
+}
+
+#button1 {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#button2 {
+    background: var(--header-color);
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 30px;
+}

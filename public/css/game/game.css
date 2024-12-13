@@ -27,3 +27,11 @@
     margin-top: 200px;
     color: var(--text-color);
 }
+
+#button1 {
+    color: var(--text-color);
+    background: var(--header-color);
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
