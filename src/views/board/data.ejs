@@ -28,7 +28,6 @@
 
 <body class="front_body">
     <%-include('../include/header.ejs')%>
-
 <section>
     <body><%- include ("./reply_form") %>
             <div id="main">
@@ -57,34 +56,34 @@
                 <div id="board_content">
                     <div>
                         
-                        <div><%= data.CONTENT %></div>
+                        
                         <div colspan="2">
-                            <% if( data.UPLOAD_FILE === "nan"){%>
-                                <b>이미지가 없습니다
+                            <% if(data.UPLOAD_FILE === null ){%>
+                                
                             <%}else{%>
-                                <img src="/board/download/<%= data.CHANGE_FILE %>"
-                            width="100px" height="100px">
+                                <img id="board_img" src="/board/download/<%= data.CHANGE_FILE %>">
                             <%}%>
-
+                            <div id="board_content_data"><%= data.CONTENT %></div>
                         </div>
                     </div>
                 </div>
                 
                 <div id="board_edit">
-                    <div>
                         <div colspan="4"align="center" id="board_button">
-                            <% if( username === data.ID) {%>
+                            <% if( id === data.ID) {%>
                                 <input type="button" onclick="location.href='/board/modify_form/<%= data.WRITE_NO %>'" value="수정하기">
                                 <input type="button" onclick="location.href='/board/delete/<%= data.WRITE_NO %>/<%= data.CHANGE_FILE_NAME %>'" value="삭제하기">
                                 <% } %>
                                 <input type="button" onclick="reply_form()" value="답글달기">
                                 <input type="button" onclick="reply_form()" value="돌아가기">
                         </div>
-                    </div>
-                    <div>
-                        <div colspan="4" id="content"></div>
-                    </div>
+                        <div id="board_comment">
+                            <div colspan="4" id="content"></div>
+                        </div>
                 </div>
+                
+                    
+                
             </div>
         </div>
     </body>

@@ -12,6 +12,12 @@ const boardRead = {
         console.log(list)
         return list;
     },
+    list2 : async ( start,menu ) => {
+        const sql = `select * from board where category = '${menu}' order by write_no desc offset ${start} rows fetch next 15 rows only`;
+        const list = await ( await con ).execute( sql )
+        console.log(list)
+        return list;
+    },
     totalCnt : async() => {
         let cnt;
         try{

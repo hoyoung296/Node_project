@@ -1,0 +1,76 @@
+/* 메인 폼 컨테이너 */
+#write_from {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    border: solid var(--header-color);
+    border-radius: 10px;
+    font-family: "Nanum Gothic";
+    color: var(--text-color);
+}
+
+.select_box {
+    width: 200px;
+    padding: 6px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    outline: none;
+}
+
+#write_from input[type="text"], 
+#write_from textarea {
+    width: 100%;
+    padding: 6px;
+    margin: 6px 0;
+    border: 1px solid #666666;
+    border-radius: 5px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+#write_id, #write_img{
+    font-size: 14px;
+    font-weight: normal;
+}
+#write_title{
+    font-size: 15px;
+    font-weight: bold;
+    outline: none;
+}
+#write_content{
+    font-size: 15px;
+    font-weight: normal;
+    font-family: "Nanum Gothic";
+    outline: none;
+}
+#preview {
+    display: block;
+    max-width: 100%;
+    max-height: 150px;
+    margin: 15px;
+}
+#write_button{
+    display: flex;
+    justify-self: center;
+    gap: 20px;
+}
+#write_from input[value="글쓰기"], #write_from input[value="목록보기"]{
+    background-color: var(--header-color);
+    border: none;
+    border-radius: 5px;
+    width: 60px;
+    height: 30px;
+    cursor: pointer;
+    color: var(--text-color);
+}
+#write_from input[value="글쓰기"]:hover, #write_from input[value="목록보기"]:hover{
+    text-decoration: underline;
+}
+#write_from hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}

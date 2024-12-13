@@ -5,12 +5,12 @@
     <div id="first">
         <div style="width: 250px; margin : 0 auto; padding-top:20px">
             <form id="frm">
-                <input type="hidden" readonly id="id" name="id" value="<%= id %>"><br>
-                <input type="hidden" readonly id="groupNum" name="groupNum" value="<%= data.WRITE_NO %>"><br>
-                <b>답글 작성 페이지</b>
-                <hr>
-                <b>작성자 : <%= id %></b>
-                <hr>
+                <input type="hidden" readonly id="id" name="id" 
+                        value="<%= id %>"><br>
+                <input type="hidden" readonly id="reply_group" name="reply_group" 
+                        value=" <%= data.WRITE_NO %>"><br>
+                <b>답글 작성 페이지</b><hr>
+                <b>작성자 : <%= id %></b><hr>
                 <!-- <b>제목</b><br>
                 <input type="text" name="title" size="30"><hr> -->
                 <b>내용</b><br>

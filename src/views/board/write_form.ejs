@@ -4,47 +4,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
+    <title>DOTORI</title>
+    <link rel="icon" href="/static/front_image/dotoree.png" image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/front/front.css">
+    <link rel="stylesheet" href="/static/css/board/board_list.css">
+    <link rel="stylesheet" href="/static/css/board/write_from.css">
+    <script src="/static/js/top.js"></script>
     <script>
-        const thema = "<%= thema %>" //사용자 thema변수 저장
-        window.onload = () => {
-            applyThema(thema) //사용자 thema 설정
+        var thema = "<%= thema %>";  // EJS에서 전달한 thema 값을 JavaScript 변수로 설정
+        console.log(thema)
+        window.onload = async () => {
+            try {
+                // 서버에서 EJS 템플릿을 렌더링한 HTML을 받아옴
+                const res = await fetch('/board/main');
+                const html = await res.text();  // 서버에서 HTML을 텍스트로 받아옴
+                document.getElementById('main_section').innerHTML = html;  // 받아온 HTML을 페이지에 삽입
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+            applyThema(thema);
         }
     </script>
 </head>
-<body>
-    <script src="/static/js/board/img_view.js"></script>
-    <div id="main" class="content wrap">
-        <div style="width: 400px; margin: 0 auto;"></div>
-        <h1 style="text-align: center">글 작성</h1>
-        <form method="post" action="/board/write" enctype="multipart/form-data">
-            <b>카테고리</b><br>
-            <select name="category" id="category"> 
-                <option value="이번주 핫이슈">이번주 핫이슈</option>
-                <option value="맛집&카페">맛집&카페 공유</option>
-                <option value="고민해결">고민해결</option>
-                <option value="짤 모음">짤 모음</option>
-                <option value="노래 추천">노래 추천</option>
-            </select><br>
-            <b>작성자</b><br>
-            <input type="text" name="name" value="<%= username %>" readonly />
-            <hr>
-            <b>제목</b><br>
-            <input type="text" size="50" name="title">
-            <hr>
-            <b>내용</b><br>
-            <textarea name="content" rows="12" cols="50"></textarea>
-            <hr>
-            <b>이미지 첨부파일</b>
-            <input type="file" name="image_file_name" onchange="readURL(this);" />
-            <img id="preview" src="#" width="150" height="150" alt="선택된 이미지가 없습니다" />
-            <hr>
-            <input type="submit" value="글쓰기">
-            <input type="button" value="목록보기" onclick="location.href='/board/list'">
-        </form>
-    </div>
-    </div>
+
+<body class="front_body">
+
+    <%-include('../include/header.ejs')%>
+
+
+    <section>
+        <body>
+            <script src="/static/js/board/img_view.js"></script>
+            <div id="write_from">
+                <form method="post" action="/board/write" enctype="multipart/form-data">
+                    <select class="select_box" name="category" id="category">
+                        <option value="" selected disabled hidden>카테고리를 선택해주세요.</option>
+                        <option value="1">이번주 핫이슈</option>
+                        <option value="2">맛집&카페 공유</option>
+                        <option value="3">고민해결</option>
+                        <option value="4">짤 모음</option>
+                        <option value="5">노래 추천</option>
+                    </select><br>
+                    <b id="write_id">작성자 : <%= username %></b>
+                    <br>
+                    <hr>
+                    <input id="write_title" type="text" name="title" placeholder="제목">
+                    <textarea id="write_content" name="content" rows="12" cols="50" placeholder="내용"></textarea>
+                    <hr>
+                    <div id="write_img">
+                    <b>이미지 첨부파일</b>
+                    <input type="file" name="image_file_name" onchange="readURL(this);" />
+                    <img id="preview" src="#" alt="선택된 이미지가 없습니다" /></div>
+                    
+                    <div id="write_button">
+                        <input type="submit" value="글쓰기">
+                        <input type="button" value="목록보기" onclick="location.href='/board/list'">
+                    </div>
+                </form>
+            </div>
+        </body>
+    </section>
+
+        <%- include('../include/footer.ejs')%>
+
+
 </body>
 
 </html>

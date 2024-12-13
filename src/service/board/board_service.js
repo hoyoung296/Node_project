@@ -19,6 +19,22 @@ const boardRead = {
         list = serCom.timeModify( list.rows )
         return { list, start, page };
     },
+    list2 : async (start,menu) => {
+        if( start == undefined )
+            start = 1;
+        start = Number(start);
+
+        const totalCnt = await dao.boardRead.totalCnt();
+        const num = totalCnt.rows[0]['COUNT(*)'];
+        const result = ( num % 15 == 0 )? 0 : 1;
+        const page = parseInt( num / 15 + result );
+
+        const startNum = ( start - 1 ) * 15;
+        let list = await dao.boardRead.list2( startNum,menu );
+        console.log(list.rows[0])
+        list = serCom.timeModify( list.rows )
+        return { list, start, page };
+    },
     data : async ( num ) => {
         boardUpdate.upHit( num );
         let data = await dao.boardRead.data( num )

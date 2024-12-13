@@ -31,6 +31,16 @@ const process ={
         }
         return data;
     },
+    dao_boarddel : async(no)=>{
+        const sql = `delete from board where WRITE_NO = '${no}'`;
+        let rs;
+        try{
+            rs = await (await con).execute(sql);
+        }catch(err){
+            console.log("catch dao : ", err)
+        }
+        return rs;
+    },
 }
 
 module.exports = { process };

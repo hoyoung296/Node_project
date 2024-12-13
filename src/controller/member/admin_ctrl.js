@@ -20,6 +20,17 @@ const process = {
         console.log("data : ",data);
         res.render("admin/boardlist", { data: data })
     },
+    boarddelete : async (req, res) => {
+        const no = req.params.no;  // URL 경로에서 uid를 가져옴
+        console.log("Member ID to delete: ", no);
+        try {
+            const msg = await ser.process.ser_boarddel(no);
+            res.json({ success: true, message: msg });
+        } catch (err) {
+            console.log("Error in deleting member: ", err);
+            res.status(500).json({ success: false, error: "게시글 삭제 실패" });
+        }
+    },
 }
 
 module.exports = { process }
