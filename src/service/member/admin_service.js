@@ -24,6 +24,17 @@ const process = {
         console.log("data.rows : ",data.rows);
         return list;
     },
+    ser_boarddel :  async(no) => {
+        const rs = await dao.process.dao_boarddel(no)
+        if (rs != 0){
+            msg = "삭제 성공"
+            url = "/admin/boardlist"
+        }else{
+            msg = "삭제 실패"
+            url = "/admin/boardlist"
+        }
+        return serCom.getMessage(msg,url);
+    },
 }
 
 module.exports = { process }

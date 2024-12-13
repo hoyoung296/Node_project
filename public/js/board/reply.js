@@ -19,7 +19,7 @@ function rep(){
     let form = {}
     let arr = $("#frm").serializeArray();
     console.log(arr)
-    arr.forEach(d => {form[d.id] = d.value})
+    arr.forEach(d => {form[d.name] = d.value})
     console.log(form)
     fetch("/board_rep",{
         method : "post",
