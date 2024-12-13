@@ -55,7 +55,7 @@ const boardInsert = {
             body.image_file_name = file.originalname;
             body.change = file.filename;
         }else{
-            body.origin = "";
+            body.image_file_name = "";
             body.change = "";
         }
         body.hit = 0;

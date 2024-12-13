@@ -33,20 +33,17 @@
         <tr>
             <td class="board_button">
             <% if( start <= 1 ){ %>
-                <button disabled>이전</button>
+                <button disabled>이전</button> |
             <% }else{ %>
-                <button type="button" onclick="location.href='/board/list?start=<%= start - 1 %>'">이전</button>
+                <button type="button" onclick="location.href='/board/list?start=<%= start - 1 %>'">이전</button> |
             <% }for(let i = 1 ; i <= page ; i++ ){ %>
             <a href="/board/list?start=<%= i %>"><%= i %></a>
             <% }if( start < page ){ %>
-                <button type="button" onclick="location.href='/board/list?start=<%= start + 1 %>'">다음</button>
-            <% }else{ %> <button disabled>다음</button> <% } %>
+                | <button type="button" onclick="location.href='/board/list?start=<%= start + 1 %>'">다음</button>
+            <% }else{ %> | <button disabled>다음</button> <% } %>
             <!-- <%= start %> / <%= page %>             -->
             </td> 
             <a class="board_new" href="/board/write_form">글쓰기</a>
         </tr> 
     </table>
 </table>
-
-
-
