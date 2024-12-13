@@ -3,12 +3,24 @@ const con = require("../db_common")
 const dao = {
     // 사용자 정보 조회
     getUserInfo: async (userId) => {
-        const sql = `SELECT id, pwd, name, addr, phone, email FROM member WHERE id = :userId`;
+        const sql = `SELECT id, pwd, name, addr, phone, email, picture, msg FROM member WHERE id = :userId`;
         const data = await (await con).execute(sql, [userId]);
         if (data.rows.length === 0) {
             return null;
         }
         return data.rows[0];
+    },
+
+    // 상태 메시지 업데이트
+    updateStatusMessage: async (userId, statusMessage) => {
+        const sql = "UPDATE member SET msg = :statusMessage WHERE id = :userId";
+        await (await con).execute(sql, { userId, statusMessage });
+    },
+
+    // 프로필 사진 업데이트
+    updateProfilePic: async (userId, profilePic) => {
+        const sql = "UPDATE member SET picture = :profilePic WHERE id = :userId";
+        await (await con).execute(sql, { userId, profilePic });
     },
 
     // 사용자 정보 업데이트

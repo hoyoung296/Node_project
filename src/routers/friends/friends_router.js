@@ -10,5 +10,6 @@ router.post("/update", ctrl.process.update)
 router.post("/del", ctrl.process.del)
 router.get("/friendsview", ctrl.views.friendsview)
 router.post("/friendsdel", ctrl.process.friendsdel)
+router.get("/download", ctrl.views.download)
 
 module.exports = router

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/css/friends/list1.css" rel="stylesheet">
     <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
     <script>
         const thema = "<%= thema %>" //사용자 thema변수 저장
@@ -14,9 +15,8 @@
 </head>
 
 <body>
-    <div style="width: 730px; height: 600px; text-align: center; color: var(--text-color);">
-        <table align="center" width="730px" height="500px" border="1"
-            style="text-align: center; margin: 0px auto; border-color: var(--header-color); border-collapse: collapse; border-radius: 30px; overflow: hidden;">
+    <div id="main">
+        <table align="center" width="730px" height="500px" border="1">
             <tr style="background: var(--header-color);">
                 <th>번호</th>
                 <th>보낸 사람</th>
@@ -70,13 +70,13 @@
                                                             onclick="location.href='/friends/alram?start=<%= start + 1 %>'"
                                                             style="cursor: pointer;">다음</button>
                                                         <% } %>
+                                                            <br>
+                                                            <%= start %>/<%= page %>
                                 </td>
                             </tr>
                             <% } %>
         </table>
-        <button onclick="location.href='/main'"
-            style="background: var(--header-color); font-size: 25px; font-weight: bold; cursor: pointer; margin-top: 30px;">메인
-            페이지</button>
+        <button id="button2" onclick="location.href='/main'">메인 페이지</button>
     </div>
 
 </body>

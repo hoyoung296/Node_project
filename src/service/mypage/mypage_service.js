@@ -17,6 +17,22 @@ const updatePersonalInfo = async (userId, id, pwd, name, addr, phone, email) => 
     }
 };
 
+const updateStatusMessage = async (userId, statusMessage) => {
+    try {
+        await dao.updateStatusMessage(userId, statusMessage);
+    } catch (err) {
+        throw new Error("Error updating status message: " + err.message);
+    }
+};
+
+const updateProfilePic = async (userId, profilePic) => {
+    try {
+        await dao.updateProfilePic(userId, profilePic);
+    } catch (err) {
+        throw new Error("Error updating profile picture: " + err.message);
+    }
+};
+
 const deleteUser = async (userId) => {
     try {
         await dao.deleteUser(userId);
@@ -25,4 +41,4 @@ const deleteUser = async (userId) => {
     }
 };
 
-module.exports = {getUserInfo, updatePersonalInfo, deleteUser};
+module.exports = {getUserInfo, updatePersonalInfo, updateStatusMessage, updateProfilePic, deleteUser};

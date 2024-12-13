@@ -10,18 +10,24 @@
     gap: 10px;
     border-style: solid;
     border-color: var(--header-color);
+    color: var(--text-color);
     border-width: 3px;
     border-radius: 10px;
     padding: 10px;
-   
+    font-family: "Nanum Gothic";
 }
-
+#board_top > #number{
+    display: none;
+}
+#board_top{
+    line-height: 28px;
+}
 
 #board_title{ /*제목*/
     grid-area: board_title;
     display: flex;
     align-items: center;
-    font-size: x-large;
+    font-size: 25px;
     font-weight: bold;
 }
 #board_name{ /*작성자*/
@@ -29,14 +35,15 @@
     display: flex;
     align-items: center;
     font-weight: bold;
+    font-size: 15px;
 }
 #board_info{ /*작성시간, 조회수*/
     grid-area: board_info;
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 14px;
-    color: #707070;
+    font-size: 13px;
+    color: #868686;
 }
 #board_content{ /*글 내용*/
     grid-area: board_content;
@@ -46,6 +53,16 @@
     border-width: 3px;
     border-radius: 10px;
     height: auto;
+}
+#board_img{
+    background-color: #707070;
+    max-width: 600px;
+    max-height: 600px;
+    margin: 15px;
+}
+#board_content_data{
+    padding: 15px;
+    margin-bottom: 20px;
 }
 
 #board_edit{ /*댓글 수정 등*/
@@ -60,10 +77,46 @@
 #board_button{
     display: flex;
     padding: 10px;
+    margin: 10px 0;
 }
-#board_comment{
+#board_button input[type="button"] {
+    font-size: 13px;
+    border-radius: 5px;
+    border-color: var(--header-color);;
+    background-color: var(--header-color);
+    color: var(--text-color);
+    cursor: pointer;
+    margin: 0 10px;
+    width: 80px;
+    height: 25px;
+    
+}
+#board_button input[type="button"]:hover {
+    text-decoration: underline;
+}
+#board_reply{
     display: block;
+    margin-bottom: 25px;
+    margin-left: 10px;
 }
+#reply_id{
+    font-weight: normal;
+    font-size: 13px;
+    color: var(--text-color);
+}
+#reply_content{
+    font-weight: bold;
+    font-size: 15px;
+    color: var(--text-color);
+
+}
+#reply_date{
+    font-size: 13px;
+    color: #707070;
+    font-weight: lighter;
+}
+
+
 
 .hidden-links { /*main_list.ejs에 있음*/
     display: none;
