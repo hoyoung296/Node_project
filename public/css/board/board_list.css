@@ -41,6 +41,10 @@
 .board_list_title{
     text-decoration: none;
     color: inherit;
+    
+}
+.board_list_title:hover{
+    text-decoration: underline;
 }
 .board_list_num{
     text-align: center;
@@ -63,13 +67,30 @@
     font-size: 13px;
 }
 .board_button{
-    background-color: #cfcfcf;
     display: block;
     margin-left: 400px;
     color:  var(--text-color);
     font-family: "Nanum Gothic";
     font-size: 13px;
 }
+
+.board_page .board_button button,
+.board_page a {
+    font-size: 13px;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+.board_page .board_button button:hover,
+.board_page a:hover {
+    text-decoration: underline;
+}
+.board_page a {
+    margin: 0 10px;
+}
+
 .board_new{
     font-family: "Nanum Gothic";
     font-size: 13px;
@@ -90,4 +111,6 @@
 .board_new:active{
     box-shadow: 1px 1px 0 #bbbbbb85;
 }
-
+.board_new:hover{
+    text-decoration: underline;
+}

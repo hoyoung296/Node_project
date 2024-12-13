@@ -5,10 +5,9 @@ async function init( write_no ) {
     // console.log(data)
     let html = "";
     data.forEach( d => {
-        html += `<div align="left"><b>아이디 : </b>${d.ID}님 /`;
-        html += `<b>작성일 : </b>${d.SAVE_DATE}<BR>`;
-        html += `<b>제목 : </b>${d.NAME}<BR>`;
-        html += `<b>내용 : </b>${d.CONTENT}<HR></div>`;
+        html += `<div id="board_reply"><b id="reply_id">${d.ID}</b><BR>`;
+        html += `<b id="reply_content">${d.CONTENT}</b><BR>`;
+        html += `<b id="reply_date">${d.SAVE_DATE}</b></div>`;
     })
     const content = document.getElementById("content")
     content.innerHTML = html;
