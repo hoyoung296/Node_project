@@ -14,10 +14,10 @@
 </head>
 
 <body>
-    <div style="width: 730px; height: 600px; text-align: center;">
+    <div style="width: 730px; height: 600px; text-align: center; color: var(--text-color);">
         <table align="center" width="730px" height="300px" border="1"
-            style="text-align: center; margin: 0px auto; border-color: gold; margin-top: 50px;">
-            <tr>
+            style="text-align: center; margin: 0px auto; border-color: var(--header-color); margin-top: 50px; border-collapse: collapse; border-radius: 30px; overflow: hidden;">
+            <tr style="border-top: 10px solid var(--header-color);">
                 <th>번호</th>
                 <td>
                     <%= result[0].NUM %>
@@ -47,7 +47,7 @@
                     <%= result[0].CONTENT %>
                 </td>
             </tr>
-            <tr>
+            <tr style="border-bottom: 10px solid var(--header-color);">
                 <th colspan="2">보낸 시간</th>
                 <td colspan="2">
                     <%= result[0].SAVE_DATE %>
@@ -58,18 +58,18 @@
             <form action="/friends/update" method="post" style="margin-top: 50px; text-align: center;">
                 <input type="hidden" name="mem_id" value="<%= result[0].RECEIVER %>">
                 <input type="hidden" name="fr_id" value="<%= result[0].SENDER %>">
-                <button type="submit" style="color: gold; border: none; background: none; font-size: 25px; 
+                <button type="submit" style="background: var(--header-color); font-size: 25px; 
                         font-weight: bold; cursor: pointer; text-align: center;">친구추가</button>
             </form>
             <% } %>
                 <form action="/friends/del" method="post" style="margin-top: 30px; text-align: center;">
                     <input type="hidden" name="num" value="<%= result[0].NUM %>">
-                    <button type="submit" style="color: gold; border: none; background: none; font-size: 25px; 
+                    <button type="submit" style="background: var(--header-color); font-size: 25px; 
                             font-weight: bold; cursor: pointer;">알림 삭제</button>
                 </form>
 
-                <button onclick="location.href='/friends/alram'" style="color: gold; border: none; background: none; font-size: 25px; 
-                        font-weight: bold; cursor: pointer; margin-top: 30px;">목록페이지로</button>
+                <button onclick="location.href='/friends/alram'" style="background: var(--header-color); font-size: 25px; 
+                        font-weight: bold; cursor: pointer; margin-top: 30px;">목록페이지</button>
     </div>
 </body>
 

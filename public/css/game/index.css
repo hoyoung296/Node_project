@@ -10,13 +10,18 @@
     position: relative;
     margin-top: -600px;
     font-size: 70px;
+    color: var(--text-color);
 
     &>img {
         width: 200px;
         height: 200px;
+        margin-top: 100px;
     }
 
     &>button {
-        color: gold;
+        cursor: pointer;
+        background: var(--header-color);
+        font-size: 25px;
+        font-weight: bold;
     }
 }
