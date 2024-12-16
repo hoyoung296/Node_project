@@ -1,0 +1,12 @@
+<h1><%= username %>님의 게시글</h1>
+<ul>
+    <% if (posts && posts.length > 0) { %>
+        <% posts.forEach(post => { %>
+            <li>
+                <a href="/board/view/<%= post.write_no %>"><%= post.title %></a>
+            </li>
+        <% }) %>
+    <% } else { %>
+        <li>작성한 게시글이 없습니다.</li>
+    <% } %>
+</ul>

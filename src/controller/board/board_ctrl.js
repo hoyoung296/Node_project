@@ -50,6 +50,24 @@ const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 
         })
         // res.json({ list : data.list, start : data.start, page : data.page, isLoggedIn })
     },
+    myPosts: async (req, res) => {
+        try {
+            const uid = req.session.uid;  // 로그인된 사용자 ID
+            const posts = await boardService.myPosts(uid);  // 사용자 게시글 조회
+            
+            // posts가 배열 형태라면, 이를 그대로 사용
+            const rows = posts && posts.length ? posts : [];  // posts가 배열이라면 그대로 사용
+    
+            // thema 변수는 필요에 따라 정의
+            const thema = await mctrl.userThema(req.session);  // 예시로 테마 설정
+    
+            // EJS 템플릿에 필요한 데이터 전달
+            res.render("board/myposts", { thema, posts: rows, id: req.session.uid, username: req.session.name });
+        } catch (error) {
+            console.error("게시글 조회 중 오류 발생:", error.message);
+            res.status(500).send("게시글을 조회하는 중 오류가 발생했습니다.");
+        }
+    },
     category: async (req, res) => {
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         const topic = req.params.category
@@ -89,14 +107,15 @@ const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 
 }
 const process = {
     write: async (req, res) => {
+        console.log(req.body)
         const msg = await ser.boardInsert.write(
             req.body, req.file, req.fileValidation, req.session.uid, req.session.name
         );
         res.send(msg)
     },
-    delete : ( req, res ) => {
-        file_process.delete( req.params.imgName );
-        ser.boardUpdate.delete( req.params.writeNo );
+    delete: (req, res) => {
+        file_process.delete(req.params.imgName);
+        ser.boardUpdate.delete(req.params.writeNo);
         res.redirect("/board/list");
     },
     modify: async (req, res) => {
@@ -110,7 +129,7 @@ const process = {
 }
 const fs = require("fs");
 const file_process = {
-    download : ( req, res ) => {
+    download: (req, res) => {
         console.log("req.params.imgName : ", req.params.imgName)
         const filePath = `./upload_file/${req.params.imgName}`;
         res.download(filePath)
