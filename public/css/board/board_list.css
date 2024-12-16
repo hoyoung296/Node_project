@@ -69,9 +69,6 @@
     left: 80px;
     width: 800px; /* 테이블이 section 너비에 맞게 확장되도록 설정 */
 }
-.board_page a{
-    
-}
 .board_button{
     display: block;
     margin-left: 300px;

@@ -8,22 +8,58 @@
 <body>
     <h1>프로필 설정</h1>
 
-    <form action="/mypage/profile" method="POST" enctype="multipart/form-data">
-        <!-- 프로필 사진 -->
-        <div>
-            <label for="profilePic">프로필 사진</label><br>
-            <img src="<%= user.picture ? '/uploads/' + user.picture : '/default-profile.png' %>" alt="Profile Picture" width="150"><br>
-            <input type="file" name="profilePic" id="profilePic">
-        </div>
-    
-        <!-- 상태 메시지 -->
-        <div>
-            <label for="statusMessage">상태 메시지</label><br>
-            <textarea name="statusMessage" id="statusMessage" rows="3" cols="30"><%= user.msg ? user.msg : '' %></textarea>
-        </div>
-    
-        <button type="submit">저장</button>
-        <button type="button" onclick="history.back();">취소</button>
-    </form>
+ 
 </body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY PAGE</title>
+    <link rel="icon" href="/static/front_image/dotoree.png" image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap"rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/front/front.css">
+    <link rel="stylesheet" href="/static/css/mypage/mypage_main.css">
+    <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
+    <script>
+
+    </script>
+</head>
+<body class="front_body">
+
+    <%- include('../include/header.ejs')%>
+    
+        <section>
+            <div class="mypage">
+                <form action="/mypage/profile" method="POST" enctype="multipart/form-data">
+                    <!-- 프로필 사진 -->
+                    <div  class="mypage_myid" >
+                        <label for="profilePic">프로필 사진</label><br>
+                        <img src="<%= user.picture ? '/uploads/' + user.picture : '/default-profile.png' %>" alt="Profile Picture" width="150"><br>
+                        <input type="file" name="profilePic" id="profilePic">
+                    </div>
+                
+                    <!-- 상태 메시지 -->
+                    <div  class="mypropile">
+                        <label for="statusMessage">상태 메시지를 입력해주세요.</label><br>
+                        <textarea name="statusMessage" id="statusMessage" rows="3" cols="30" ><%= user.msg ? user.msg : '' %></textarea>
+                    </div>
+                    <div class="myimg_button_group">
+                        <button class="myimg_button" type="submit">저장</button>
+                        <button class="myimg_button" type="button" onclick="history.back();">취소</button>
+                    </div>
+                </form>
+            </div>
+</section>
+
+<%- include('../include/footer.ejs')%>
+
+</body>
+
 </html>
