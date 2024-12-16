@@ -204,6 +204,7 @@
 .footerline{
     height: 1px;
     background-color: #000000;
+    margin-top: 50px;
 }
 .footer_set{
     display: flex;
@@ -261,7 +262,7 @@
 }
 .top{
     position: relative;
-    left: 1060px;
+    left: 1100px;
     top: -40px;
     width: 40px;
     height: 40px;
