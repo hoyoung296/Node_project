@@ -1,32 +1,39 @@
 <table class="board_main">
-    <tr class="board_menu">
-        <td class="board_num">No</td>
-        <td class="board_title">제목</td>
-        <td class="board_id">아이디</td>
-        <td class="board_name">이름</td>
-        <td class="board_date">날짜</td>
-        <td class="board_hit">조회수</td>
-    </tr>
-    <% if (list.length == 0) { %>
+    <thead>
         <tr>
-            <th colspan="6">등록된 글이 없습니다.</th>
+            <th>ID</th>
+            <th>이름</th>
+            <th>이메일</th>
+            <th>주소</th>
+            <th>전화번호</th>
+            <th>탈퇴</th> <!-- 탈퇴 버튼을 추가 -->
         </tr>
-    <% } else { 
-        list.forEach(d => { %>
+    </thead>
+    <tbody>
+        <% list.forEach(d=> { %>
             <tr>
-                <td class="board_list_num"><%= d.WRITE_NO %></td>
                 <td>
-                    <a class="board_list_title" href="/board/data/<%= d.WRITE_NO %>">
-                        <%= d.TITLE %>
-                    </a>
+                    <%= d.ID %>
                 </td>
-                <td class="board_list_id"><%= d.ID %></td>
-                <td class="board_list_name"><%= d.NAME %></td>
-                <td class="board_list_date"><%= d.SAVE_DATE %></td>
-                <td class="board_list_hit"><%= d.HIT %></td>
+                <td>
+                    <%= d.NAME %>
+                </td>
+                <td>
+                    <%= d.EMAIL %>
+                </td>
+                <td>
+                    <%= d.ADDR %>
+                </td>
+                <td>
+                    <%= d.PHONE %>
+                </td>
+                <td>
+                    <!-- 탈퇴 링크를 <a> 태그로 추가 -->
+                    <a href="javascript:void(0);" onclick="deleteMember('<%= d.ID %>');">탈퇴</a>
+                </td>
             </tr>
-        <% }) 
-    } %>
+            <% }) %>
+    </tbody>
 </table>
 
 <!-- board_page 테이블을 board_main 테이블 밖으로 분리 -->
@@ -50,4 +57,3 @@
         <a class="board_new" href="/board/write_form">글쓰기</a>
     </tr>
 </table>
-
