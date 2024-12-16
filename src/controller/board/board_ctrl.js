@@ -37,7 +37,7 @@ const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 
         })
         // res.json({ list : data.list, start : data.start, page : data.page, isLoggedIn })
     },
-<<<<<<< HEAD
+
     myPosts: async (req, res) => {
         try {
             const uid = req.session.uid;  // 로그인된 사용자 ID
@@ -57,9 +57,6 @@ const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 
         }
     },
     category: async (req, res) => {
-=======
-    category : async(req, res) => {
->>>>>>> b89f48f404615288ab910509656a480bcacd1212
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         const topic = req.params.category
         const menu = req.query.menu
@@ -97,26 +94,17 @@ const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 
     }
 }
 const process = {
-<<<<<<< HEAD
+
     write: async (req, res) => {
         console.log(req.body)
-=======
-    write : async ( req, res ) => {
->>>>>>> b89f48f404615288ab910509656a480bcacd1212
         const msg = await ser.boardInsert.write(
             req.body, req.file, req.fileValidation, req.session.uid,req.session.name
         );
         res.send( msg )
     },
-<<<<<<< HEAD
     delete: (req, res) => {
         file_process.delete(req.params.imgName);
         ser.boardUpdate.delete(req.params.writeNo);
-=======
-    delete : ( req, res ) => {
-        file_process.delete( req.params.writeNo );
-        ser.boardUpdate.delete( req.params.writeNo );
->>>>>>> b89f48f404615288ab910509656a480bcacd1212
         res.redirect("/board/list");
     },
     modify : async ( req, res) => {
@@ -130,13 +118,9 @@ const process = {
 }
 const fs = require("fs");
 const file_process = {
-<<<<<<< HEAD
+
     download: (req, res) => {
         console.log("req.params.imgName : ", req.params.imgName)
-=======
-    download : ( req, res ) => {
-        console.log("req.params.imgName : ",req.params.imgName)
->>>>>>> b89f48f404615288ab910509656a480bcacd1212
         const filePath = `./upload_file/${req.params.imgName}`;
         res.download( filePath )
     },
