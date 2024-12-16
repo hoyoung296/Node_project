@@ -4,40 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="/static/js/board/img_view.js"></script>
+    <title>DOTORI</title>
+    <link rel="icon" href="/static/front_image/dotoree.png" image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/front/front.css">
+    <link rel="stylesheet" href="/static/css/board/board_list.css">
+    <link rel="stylesheet" href="/static/css/board/write_from.css">
+    <script src="/static/js/top.js"></script>
+    <script>
+        var thema = "<%= thema %>";  // EJS에서 전달한 thema 값을 JavaScript 변수로 설정
+        console.log(thema)
+        window.onload = async () => {
+            applyThema(thema);
+        }
+    </script>
 </head>
 
-<body>
-    <div id="mi">
-        <div style="width: 300px; margin: 0 auto;">
-            <form action="/board/modify" enctype="multipart/form-data" method="post">
-                <input type="hidden" name="write_no" value="<%= data.WRITE_NO %>">
-                <input type="hidden" name="change_file" value="<%= data.CHANGE_FILE %>">
-                <input type="hidden" name="upload_file" value="<%= data.UPLOAD_FILE %>">
-                제목 <input type="text" size="50" name="title" value="<%= data.TITLE %>">
-                <hr>
-                내용 <textarea rows="12" cols="50" name="content"><%= data.CONTENT %></textarea>
-                <hr>
-                <img width="200px" height="100px" id="preview" src="/board/download/<%= data.CHANGE_FILE %>">
-                <input type="file" name="image_file_name" onchange="readURL(this)">
-                <hr>
-                <input type="submit" value="수정하기">
-                <input type="button" onclick="history.back()" value="돌아가기">
+<body class="front_body">
 
-            </form>
-            <!-- <from action="/board/modify" enctype="multipart.form-data" method="post">
-                <input type="hidden" name="WRITE_NO" value="<%= data.WRITE_NO %>">
-                <b>제목</b>
-                <input type="text" size="50" name="title" value="data.TITLE %>"><hr>
-                <b>내용</b>
-                <textarea rows="12" cols="50" name="content"><%= data.CONTENT %></textarea><hr>
-                <input type="file" name="UPLOAD_FILE" onchange="readURL(this)"><hr>
-                <input type="submit" value="수정하기">
-                <input type="button" onclick="history.back()" value="돌아가기"
-            </from> -->
-        </div>
-    </div>
+    <%-include('../include/header.ejs')%>
+
+
+    <section>
+        <body>
+            <script src="/static/js/board/img_view.js"></script>
+            <div id="write_from">
+                <form action="/board/modify" enctype="multipart/form-data" method="post">
+                    <input type="hidden" name="write_no" value="<%= data.WRITE_NO %>">
+                    <input type="hidden" name="change_file" value="<%= data.CHANGE_FILE %>">
+                    <input type="hidden" name="upload_file" value="<%= data.UPLOAD_FILE %>">
+                    
+                    <input id="write_title" type="text" name="title" value="<%= data.TITLE %>">
+                    <textarea id="write_content" name="content" rows="12" cols="50"><%= data.CONTENT %></textarea>
+                    <hr>
+                    <div id="write_img">
+                    <input type="file" name="image_file_name" onchange="readURL(this)">
+                    <img  width="200px" height="100px" id="preview" src="/board/download/<%= data.CHANGE_FILE %>"></div>
+                    
+                    <div id="write_button">
+                        <input type="submit" value="수정하기">
+                        <input type="button" onclick="history.back()" value="돌아가기">
+                    </div>
+                </form>
+            </div>
+        </body>
+    </section>
+
+        <%- include('../include/footer.ejs')%>
+
+
 </body>
 
 </html>
+
