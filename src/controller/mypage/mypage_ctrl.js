@@ -71,8 +71,8 @@ const views = {
             }
             
             // 세션의 프로필 사진과 상태 메시지 반영
-            userInfo.picture = req.session.picture || userInfo.picture;  // 세션의 프로필 사진 반영
-            userInfo.msg = req.session.statusMessage || userInfo.msg; // 세션의 상태 메시지 반영
+            userInfo.picture = req.session.picture || userInfo.picture || 'default-profile.png';  // 세션의 프로필 사진 반영
+            userInfo.msg = req.session.statusMessage || userInfo.msg || '상태 메시지가 없습니다.'; // 세션의 상태 메시지 반영
             
             // 프로필 페이지 렌더링
             res.render("mypage/profile", { user: userInfo }); // userInfo를 뷰로 전달
@@ -124,20 +124,17 @@ const process = {
         const userId = req.session.uid;
         const statusMessage = req.body.statusMessage;
         const profilePic = req.file ? req.file.filename : null;  // 업로드된 파일이 있으면 파일 이름 저장
-
-        console.log("업로드된 프로필 사진:", profilePic); // 업로드된 파일 정보 확인
-        console.log("상태 메시지:", statusMessage); // 상태 메시지 확인
         
         try {
             if (profilePic) {
                 await ser.updateProfilePic(userId, profilePic);  // 프로필 사진 업데이트
                 req.session.picture = profilePic;  // 세션에 프로필 사진 업데이트
-                console.log("세션에 저장된 프로필 사진:", req.session.picture); // 세션 값 확인
+                console.log("업데이트된 프로필 사진:", req.session.picture); // 세션 값 확인
             }
             if (statusMessage) {
                 await ser.updateStatusMessage(userId, statusMessage);  // 상태 메시지 업데이트
                 req.session.statusMessage = statusMessage;  // 세션에 상태 메시지 업데이트
-                console.log("세션에 저장된 상태 메시지:", req.session.statusMessage); // 세션 값 확인
+                console.log("업데이트된 상태 메시지:", req.session.statusMessage); // 세션 값 확인
             }
 
             // 세션 저장을 강제로 호출 (세션 데이터가 정확히 저장되도록)
@@ -203,7 +200,7 @@ const process = {
                 res.redirect('/mypage');  // 마이페이지로 리다이렉트
             });
         } catch (err) {
-            console.error("Login error:", err);  // 로그인 관련 에러 출력
+            console.error("Login error:", err);
             return res.send("<script>alert('로그인 처리에 실패했습니다.'); location.href = '/member/login_form';</script>");
         }
     },
@@ -213,6 +210,7 @@ const process = {
         // 세션의 사용자 정보만 초기화
         req.session.uid = null;
         req.session.name = null;
+        // 프로필 정보는 유지
         req.session.picture = req.session.picture || 'default-profile.png';
         req.session.statusMessage = req.session.statusMessage || '상태 메시지가 없습니다.';
     
