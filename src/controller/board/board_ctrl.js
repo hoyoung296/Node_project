@@ -4,6 +4,7 @@ const path = require("path")
 const ejs = require('ejs');
 const mctrl = require("../controller") //thema설정하려고 추가
 
+
 const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 안보이는 코드 list.ejs에도 있음 
 
     // Controller (views.main)
@@ -93,9 +94,9 @@ const process = {
         );
         res.send(msg)
     },
-    delete: (req, res) => {
-        file_process.delete(req.params.writeNo);
-        ser.boardUpdate.delete(req.params.writeNo);
+    delete : ( req, res ) => {
+        file_process.delete( req.params.imgName );
+        ser.boardUpdate.delete( req.params.writeNo );
         res.redirect("/board/list");
     },
     modify: async (req, res) => {
@@ -109,7 +110,7 @@ const process = {
 }
 const fs = require("fs");
 const file_process = {
-    download: (req, res) => {
+    download : ( req, res ) => {
         console.log("req.params.imgName : ", req.params.imgName)
         const filePath = `./upload_file/${req.params.imgName}`;
         res.download(filePath)
