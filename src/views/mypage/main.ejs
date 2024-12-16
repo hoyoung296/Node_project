@@ -24,13 +24,11 @@
             <div class="mypage">
                 <div class="mypage_myid">
                     <p>안녕하세요, <%= user && user.NAME ? user.NAME : '' %>님!</p>
-                    <p>내 아이디: <%= user && user.ID ? user.ID : '' %></p>
-                    <p>내 이메일: <%= user && user.EMAIL ? user.EMAIL : '' %></p>
                     
                 </div>
                 <div class="mypropile">
                     <p class="mypage_title">내 프로필 확인하기</p>
-                    <img src="<%= user.picture ? '/uploads/' + user.picture : '/default-profile.png' %>" alt="Profile Picture" width="150">
+                    <img src="/static/uploads/<%= user.picture %>" alt="Profile Picture" width="150">
                     <p class="mypage_msg"><%= user.msg ? user.msg : '상태 메시지가 없습니다.' %></p>
                     <p><a href="/mypage/profile">프로필 수정</a></p>
                 </div>
