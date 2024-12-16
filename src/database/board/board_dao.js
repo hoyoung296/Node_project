@@ -28,6 +28,16 @@ const boardRead = {
         }
         return cnt;
     },
+    oneCnt : async(menu) => {
+        let cnt;
+        try{
+            const con = await oracledb.getConnection(dbConfig);
+            cnt = await con.execute(`select count(*) from board where category= '${menu}'`); 
+        }catch( err ){
+            console.log( err )
+        }
+        return cnt;
+    },
     data : async ( num ) => {
         const sql = `select * from board where write_no='${num}'`;
         const data = (await con).execute( sql );
@@ -58,7 +68,7 @@ const boardUpdate = {
     },
     modify : async ( body ) => {
         const sql = `update board set title=:title, content=:content, upload_file=:upload_file, where write_no=:write_no`;
-        return ( await cocn).execute( sql, body );
+        return ( await con).execute( sql, body );
     }
 }
 module.exports = { boardUpdate, boardInsert, boardRead }
