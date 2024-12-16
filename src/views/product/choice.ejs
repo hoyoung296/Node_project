@@ -3,48 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/static/js/top.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <title>Document</title>
     <style>
-        #modal_wrap{
-            display: none;
-            position: fixed;
-            z-index: 9;
-            margin: 0 auto; top: 0; left: 0; right: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-        #purchase{
-            display: none;
-            border-radius: 30px;
-            position: fixed;
-            z-index: 10;
-            margin: 0 auto; top:  100px; left: 0; right: 0;
-            width: 300px;
-            height: 350px;
-            background-color: var(--header-color)
-        }
-        #guid{
-            width: 250px; 
-            margin: 0 auto; 
-            padding-top: 20px; 
-            text-align: center;
-        }
+        
     </style>
 </head>
-<!-- if문 사용. 도토리부족(미니게임?) -->
 <body>
     <div id="modal_wrap">
         <div id="purchase">
             <div id="guid">
-                <h3>구매하시겠습니까?</h3>
-                현재 도토리 : <%= uDotori %><br>
-                필요한 도토리 : <p id="price"></p><br>
-                남는 도토리 : <p id="dotori"></p>
-                <button>예</button>
-                <button onclick="choice_hide()">아니요</button>
+                <h3>구매하시겠습니까?</h3><br><br>
+                현재 <img src="/static/front_image/dotoree.png"> : <%= uDotori %><br><br>
+                필요한 <img src="/static/front_image/dotoree.png"> : <span id="price"></span><br><br>
+                <h3 id="noDotori"></h3>
+                <button id="yes"></button>
+                <button id="no" onclick="choice_hide()"></button>
+                
             </div>
         </div>
     </div>

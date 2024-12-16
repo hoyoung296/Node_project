@@ -185,6 +185,7 @@
     grid-template-rows: 1fr auto;
     gap: 10px;
     min-height: 600px;
+    position: relative;
 }
 .story {
     border-radius: 10px;
@@ -193,9 +194,6 @@
     overflow: hidden;
     border-style: solid; 
     border-color: var(--header-color);
-}
-.main_section{
-    
 }
 .front_body > footer{
     grid-area: footer;
@@ -206,6 +204,7 @@
 .footerline{
     height: 1px;
     background-color: #000000;
+    margin-top: 50px;
 }
 .footer_set{
     display: flex;
@@ -263,7 +262,7 @@
 }
 .top{
     position: relative;
-    left: 1060px;
+    left: 1100px;
     top: -40px;
     width: 40px;
     height: 40px;
@@ -281,5 +280,3 @@
     background-color: var(--header-color);
     cursor: pointer;
 }
-
-

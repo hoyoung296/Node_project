@@ -1,15 +1,18 @@
-//캔버스 세팅
+// 캔버스 세팅
 let canvas;
 let ctx;
-canvas = document.createElement("canvas") //canvas를 만들어서 변수에 저장
-ctx = canvas.getContext("2d") //2d로 그림을 그려줌
-//캔버스 사이즈 지정
+// html은 텍스트나 구조를 보여주는 데는 적합하나 이미지의 움직임을 보여주기엔 부적합 
+// 그래서 html에서 제공하는 canvas태그 사용
+// canvas태그 사용 시 중요한 원칙이 있는데 이미지의 왼쪽 상단 모서리의 좌표(x,y)가 이미지의 위치를 결정
+canvas = document.createElement("canvas") // canvas를 만들어서 변수에 저장
+ctx = canvas.getContext("2d") // 2d로 그림을 그려줌
+// 캔버스 사이즈 지정
 canvas.width = 730;
 canvas.height = 600;
-document.getElementById("game").appendChild(canvas); //section의 id가 gamed인 body에다가 자식으로 canvas 갇다 붙이기
+document.getElementById("game").appendChild(canvas); // id가 game인 div에다가 자식으로 canvas 갇다 붙이기
 
 let backgroundImage, spaceshipImage, bulletImage, enemyImage, gameOverImage;
-let gameOver = false //true이면 게임이 끝남, false이면 게임이 안끝남
+let gameOver = false // true이면 게임이 끝남, false이면 게임이 안끝남
 let score = 0
 
 // 사람 좌표 > 사람 죄표는 계속 바뀌기 때문에 따로 뺴줌
@@ -17,22 +20,22 @@ let spaceshipX = 317
 let spaceshipY = 504
 
 // 총알 만들기
-//1. 스페이스바를 누르면 총알발사
-//2. 총알이 발사 = 총알의 y값이 --, 총알의 x의 값은? 스페이스를 누른 순간의 사람의 중앙에 위치
-//3. 발사된 총알들은 총알 배열에 저장을 한다.
-//4. 총알들은 x,y 좌표값이 있어야 한다.
-//5. 총알 배열을 가지고 render 그려준다.
+// 1. 스페이스바를 눌렀다 떼면 총알발사
+// 2. 총알이 발사 = 총알의 y값이 --, 총알의 x의 값은? 스페이스를 누른 순간의 사람의 중앙에 위치
+// 3. 발사된 총알들은 총알 배열에 저장을 한다.
+// 4. 총알들은 x,y 좌표값이 있어야 한다.
+// 5. 총알 배열을 가지고 render 그려준다.
 
 // 총알은 지속적으로 여러개가 필요하기 때문에 따로 함수로 생성
-let bulletList = []//총알들을 저장하는 리스트
-function Bullet() { //총알을 만들기 위한 자료
+let bulletList = [] // 총알들을 저장하는 리스트
+function Bullet() { // 총알을 만들기 위한 자료, 총알 만드는 틀(자바의 클래스랑 비슷)
     this.init = function () {
         this.x = spaceshipX + 18
         this.y = spaceshipY - 60
-        this.alive = true //true면 살아있는 총알, false면 죽은 총알
+        this.alive = true // true면 살아있는 총알, false면 죽은 총알
+        bulletList.push(this)
     }
 
-    bulletList.push(this)
     this.update = function () {
         this.y -= 7;
     }
@@ -66,19 +69,19 @@ function generateRandomValue(min, max) {
     return randomNum
 }
 
-function Enemy() { //도토리를 만들기 위한 자료
+function Enemy() { // 도토리를 만들기 위한 자료, 도토리 만드는 틀(자바의 클래스랑 비슷)
     this.init = function () {
-        this.x = generateRandomValue(10, canvas.width - 74)
-        this.y = 0
+        this.x = generateRandomValue(10, canvas.width - 74) // 적군의 x좌표는 랜덤하게
+        this.y = 0 // y좌표는 최상단 높이
+        enemyList.push(this)
     }
 
-    enemyList.push(this)
     this.update = function () {
         this.y += 1;
 
         if (this.y >= canvas.height - 64) {
             gameOver = true
-            let msg = `<br><button onclick="result_form()" style='color:var(--text-color); width:200px; height:80px; background:var(--header-color); cursor:pointer; font-size:25px; font-weight:bold; margin : 0 auto; margin-top:-600px;'>
+            let msg = `<br><button onclick="result_form()" style='color:var(--text-color); width:200px; height:80px; background:var(--header-color); cursor:pointer; font-size:25px; font-weight:bold; margin : 0 auto; margin-top:-600px; position:relative'>
             결과 확인</button>`
             document.getElementById("main").insertAdjacentHTML("beforeend", msg)
         }
@@ -142,20 +145,21 @@ function kDown(event) {
 function kUp(event) {
     switch (event.code) {
         case 'Space':
-            createBullet() //총알 생성
+            createBullet() // 총알 생성
     }
 }
 
 function createBullet() {
     let b = new Bullet() // 총알 하나 생성
     b.init()
+    console.log("새로운 총알 리스트 : ", bulletList)
 }
 
 function createEnemy() {
     const interval = setInterval(function () {
         let e = new Enemy() // 도토리 하나 생성
         e.init()
-    }, 1000)  //(호출하고 싶은 함수, 시간)
+    }, 1000)  // (호출하고 싶은 함수, 시간)
 }
 
 function render() {
@@ -190,16 +194,14 @@ function render() {
 
 const dotori = () => {
     let num = score
-    console.log("score : ", score)
-    console.log("num : ", num)
     document.getElementById("a").innerHTML = num + "개"
     document.getElementById("b").value = num
 }
 
 function main() {
-    if (!gameOver) { //gameOver가 true면 main함수 중지
+    if (!gameOver) { // gameOver가 true면 main함수 중지
         render()
-        // console.log("animation calls main function")
+        console.log("animation calls main function")
         dotori()
         requestAnimationFrame(main)
     }
@@ -211,7 +213,8 @@ function main() {
 // 사람의 좌표가 바뀌고
 // 다시 render 그려준다.
 
-loadImage() //이미지 가져오기
-setupKeyboardListener(); //키보드 업다운 이벤트 발생
-createEnemy() //적군 생성
-main() //이미지 그려주기
+loadImage() // 이미지 가져오기
+setupKeyboardListener(); // 키보드 업다운 이벤트 발생
+createEnemy() // 적군 생성
+// render() // 단순 이미지 그리기 (이미지 안 보임)
+main() // 지속적으로 이미지 그려주기 (이미지 보임)

@@ -13,7 +13,7 @@
         </tr>
     <% } else { 
         list.forEach(d => { %>
-            <tr>
+            <tr class="board_list">
                 <td class="board_list_num"><%= d.WRITE_NO %></td>
                 <td>
                     <a class="board_list_title" href="/board/data/<%= d.WRITE_NO %>">
@@ -47,7 +47,7 @@
                 <!-- | <button disabled>다음</button> -->
             <% } %>
         </td>
-        <a class="board_new" href="/board/write_form">글쓰기</a>
+        <td class="board_new" ><a href="/board/write_form">글쓰기</a></td>
     </tr>
 </table>
 
