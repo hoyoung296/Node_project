@@ -52,10 +52,10 @@ const boardInsert = {
             return serCom.getMessage(msg, url );
         }
         if( file != undefined ){
-            body.image_file_name = file.originalname;
+            body.origin = file.originalname;
             body.change = file.filename;
         }else{
-            body.image_file_name = "";
+            body.origin = "";
             body.change = "";
         }
         body.hit = 0;
@@ -84,7 +84,7 @@ const boardUpdate = {
     },
     modify : async ( body, file ) => {
         if( file !== undefined ){
-            body.origin_file = file.originalname;
+            body.upload_file = file.originalname;
             body.change_file = file.filename;
         }
         const result = await dao.boardUpdate.modify( body );

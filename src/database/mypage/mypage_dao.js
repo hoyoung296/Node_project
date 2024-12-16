@@ -11,16 +11,16 @@ const dao = {
         return data.rows[0];
     },
 
-    // 상태 메시지 업데이트
-    updateStatusMessage: async (userId, statusMessage) => {
-        const sql = "UPDATE member SET msg = :statusMessage WHERE id = :userId";
-        await (await con).execute(sql, { userId, statusMessage });
-    },
-
     // 프로필 사진 업데이트
     updateProfilePic: async (userId, profilePic) => {
         const sql = "UPDATE member SET picture = :profilePic WHERE id = :userId";
         await (await con).execute(sql, { userId, profilePic });
+    },
+
+    // 상태 메시지 업데이트
+    updateStatusMessage: async (userId, statusMessage) => {
+        const sql = "UPDATE member SET msg = :statusMessage WHERE id = :userId";
+        await (await con).execute(sql, { userId, statusMessage });
     },
 
     // 사용자 정보 업데이트
