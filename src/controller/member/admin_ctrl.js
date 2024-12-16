@@ -1,8 +1,11 @@
 const ser = require("../../service/member/admin_service")
+const mctrl = require("../controller") //thema설정하려고 추가
 const process = {
     memberlist: async (req, res) => {
-        const data = await ser.process.ser_memberlist()
-        res.render("admin/memberlist", { data: data })
+        console.log("req.query.start : ", req.query.start);
+        const thema = await mctrl.userThema(req.session) //사용자 테마 설정
+        const data = await ser.process.ser_memberlist(req.query.start);
+        res.render("admin/memberlist", { data: data,thema })
     },
     memberdelete: async (req, res) => {
         const uid = req.params.uid;  // URL 경로에서 uid를 가져옴
