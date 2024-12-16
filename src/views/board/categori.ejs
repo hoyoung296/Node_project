@@ -2,47 +2,87 @@
 <html lang="en">
 
 <head>
+    <!-- 문자 인코딩을 UTF-8로 설정하여 다양한 언어를 지원 -->
     <meta charset="UTF-8">
+    <!-- 화면 크기에 맞게 페이지를 조정하는 설정 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 웹 페이지의 제목을 설정 (브라우저 탭에 표시됨) -->
     <title>DOTORI</title>
+    
+    <!-- 웹사이트의 아이콘을 설정 -->
     <link rel="icon" href="/static/front_image/dotoree.png" image/x-icon">
+    
+    <!-- Google Fonts에 대한 연결 설정 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Bungee와 Nanum Gothic 폰트를 페이지에 로드 -->
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&display=swap" rel="stylesheet">
+    
+    <!-- CSS 파일을 로드하여 페이지 스타일 적용 -->
     <link rel="stylesheet" href="/static/css/front/front.css">
     <link rel="stylesheet" href="/static/css/board/board_list.css">
+    
+    <!-- 상단에 있는 JavaScript 파일을 로드 -->
     <script src="/static/js/top.js"></script>
+    
+    <!-- 페이지 로드 시 서버에서 동적으로 HTML 데이터를 받아오는 JavaScript 코드 -->
     <script>
+        // EJS에서 전달된 'thema'와 'menu' 변수 값을 JavaScript 변수로 설정
         var thema = "<%= thema %>";  // EJS에서 전달한 thema 값을 JavaScript 변수로 설정
-        var menu = "<%= menu %>"
-        console.log(thema)
-        console.log(menu)
+        var menu = "<%= menu %>";  // EJS에서 전달한 menu 값을 JavaScript 변수로 설정
+
+        // 브라우저 콘솔에서 thema와 menu 값을 확인
+        console.log(thema);
+        console.log(menu);
+
+        // 페이지가 로드될 때 실행되는 함수 (window.onload)
         window.onload = async () => {
             try {
-                // 서버에서 EJS 템플릿을 렌더링한 HTML을 받아옴
-                const res = await fetch(`/board/topic?menu=${menu}`);  // menu 값을 쿼리 파라미터로 추가
-                const html = await res.text();  // 서버에서 HTML을 텍스트로 받아옴
-                console.log("html: ",html)
-                document.getElementById('main_section').innerHTML = html;  // 받아온 HTML을 페이지에 삽입
+                // 서버로부터 EJS 템플릿을 렌더링한 HTML을 받아옴
+                const res = await fetch(`/board/topic?menu=${menu}`);  // 메뉴 값을 쿼리 파라미터로 추가
+                const html = await res.text();  // 서버에서 받아온 HTML을 텍스트 형식으로 처리
+                console.log("html: ", html);  // 받아온 HTML을 콘솔에 출력 (디버깅용)
+                
+                // 받아온 HTML을 'main_section'이라는 ID를 가진 요소에 삽입
+                document.getElementById('main_section').innerHTML = html;
             } catch (error) {
+                // 오류가 발생한 경우 콘솔에 출력
                 console.error('Error fetching data:', error);
             }
+            // 페이지에 테마를 적용하는 함수 호출
             applyThema(thema);
+        }
+
+        // 페이지 이동 시 새로운 데이터를 동적으로 불러오는 함수
+        async function loadPage(start) {
+            try {
+                // 페이지 번호와 메뉴를 쿼리 파라미터로 전달하여 데이터를 가져옴
+                const res = await fetch(`/board/topic?menu=${menu}&start=${start}`);
+                const html = await res.text();  // 받아온 HTML을 텍스트 형식으로 처리
+                // 받아온 HTML을 'main_section'에 삽입하여 페이지를 동적으로 갱신
+                document.getElementById('main_section').innerHTML = html;
+            } catch (error) {
+                // 오류가 발생한 경우 콘솔에 출력
+                console.error('Error fetching data:', error);
+            }
         }
     </script>
 </head>
 
 <body class="front_body">
-   
-    <%-include('../include/header.ejs')%>
+    <!-- 페이지 상단에 포함된 공통 헤더 부분을 로드 -->
+    <%- include('../include/header.ejs') %>
 
-
+    <!-- 메인 콘텐츠 영역 -->
     <section>
-        <div id="main_section"> </div>
+        <!-- 'main_section'에 동적으로 콘텐츠가 로드됨 -->
+        <div id="main_section"></div>
     </section>
 
-        <%- include('../include/footer.ejs')%>
-
+    <!-- 페이지 하단에 포함된 공통 푸터 부분을 로드 -->
+    <%- include('../include/footer.ejs') %>
 
 </body>
 

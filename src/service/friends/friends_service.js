@@ -1,6 +1,6 @@
 const dao = require("../../database/friends/friends_dao")
 const pageRead = {
-    list: async (start,body) => {
+    list: async (start, body) => {
         if (!start)
             start = 1
         start = Number(start)
@@ -9,10 +9,10 @@ const pageRead = {
         const number = (num % 5 == 0) ? 0 : 1
         const page = parseInt(num / 5 + number)
         startNum = (start - 1) * 5
-        let result = await dao.daoRead.list(startNum,body)
+        let result = await dao.daoRead.list(startNum, body)
         return { result: result.rows, page, start }
     },
-    alram: async (start,body) => {
+    alram: async (start, body) => {
         if (!start)
             start = 1
         start = Number(start)
@@ -21,7 +21,7 @@ const pageRead = {
         const number = (num % 5 == 0) ? 0 : 1
         const page = parseInt(num / 5 + number)
         startNum = (start - 1) * 5
-        let result = await dao.daoRead.alram(startNum,body)
+        let result = await dao.daoRead.alram(startNum, body)
         result = pageRead.timeModify(result.rows)
         return { result, page, start }
     },

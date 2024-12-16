@@ -24,7 +24,7 @@ const boardRead = {
             start = 1;
         start = Number(start);
 
-        const totalCnt = await dao.boardRead.totalCnt();
+        const totalCnt = await dao.boardRead.oneCnt(menu);
         const num = totalCnt.rows[0]['COUNT(*)'];
         const result = ( num % 15 == 0 )? 0 : 1;
         const page = parseInt( num / 15 + result );
@@ -66,7 +66,7 @@ const boardInsert = {
         const result = await dao.boardInsert.write( body );
         if( result != 0 ){
             msg = "등록 성공하였습니다"
-            url = "/board/list";
+            url = "/";
         }
         else{
             msg = "문제가 발생하였습니다"

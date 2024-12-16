@@ -1,4 +1,6 @@
 const ser = require("../../service/friends/friends_service")
+const fs = require("fs")
+const path = require("path")
 const mctrl = require("../controller") //thema설정하려고 추가
 
 const views = {
@@ -24,8 +26,18 @@ const views = {
         res.render("friends/friendsView", { result: data.result, page: data.page, start: data.start, name: req.session.uid, thema })
     },
     download: async (req, res) => {
-        const path = `./upload_file/${req.query.file}`
-        res.download(path)
+        console.log("req.query.file : ", req.query.file)
+        const files = fs.readdirSync("./upload_file")
+        const matchedFile = files.find(file => file.endsWith(`${req.query.file}`))
+        console.log("matchedFile : ", matchedFile)
+        if (matchedFile) {
+            const fullPath = path.join("./upload_file", matchedFile)
+            return res.download(fullPath)
+        }
+    },
+    picture: async (req, res) => {
+        const thema = await mctrl.userThema(req.session) //사용자 테마 설정
+        res.render("friends/picture", { data: req.query.file, name: req.session.uid, thema })
     }
 }
 const process = {
