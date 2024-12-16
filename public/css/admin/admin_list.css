@@ -65,7 +65,7 @@
     font-family: "Nanum Gothic";
     font-size: 13px;
     position: absolute; /* section 안에서 절대 위치로 설정 */
-    bottom: -80px; /* section의 맨 아래로 고정 */
+    bottom: -40px; /* section의 맨 아래로 고정 */
     left: 80px;
     width: 800px; /* 테이블이 section 너비에 맞게 확장되도록 설정 */
 }
@@ -98,7 +98,7 @@
 
 }
 
-.board_new{
+/* .board_new{
     font-family: "Nanum Gothic";
     font-size: 13px;
     margin-top: 10px;
@@ -122,4 +122,4 @@
 }
 .board_new:hover{
     text-decoration: underline;
-}
+} */

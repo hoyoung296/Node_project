@@ -12,7 +12,7 @@
         </tr>
     <% } else { 
         list.forEach(d => { %>
-            <tr>
+            <tr class="board_list">
                 <td class="board_list_num"><%= d.WRITE_NO %></td>
                 <td>
                     <a class="board_list_title" href="/board/data/<%= d.WRITE_NO %>">
@@ -32,7 +32,7 @@
     <tr>
         <td class="board_button">
             <% if (start <= 1) { %>
-                <button disabled>이전</button> |
+                <!-- <button disabled>이전</button> | -->
             <% } else { %>
                 <button type="button" onclick="loadPage('<%= start - 1 %>')">이전</button> |
             <% }
@@ -42,10 +42,10 @@
             if (start < page) { %>
                 | <button type="button" onclick="loadPage('<%= start + 1 %>')">다음</button>
             <% } else { %>
-                | <button disabled>다음</button>
+                <!-- | <button disabled>다음</button> -->
             <% } %>
         </td>
-        <a class="board_new" href="/board/write_form">글쓰기</a>
+        <td class="board_new" ><a href="/board/write_form">글쓰기</a></td>
     </tr>
 </table>
 

@@ -4,64 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="/static/js/admin/boardlist.js" defer></script>
-     <!-- 아이콘 및 폰트 링크 -->
-     <link rel="icon" href="/static/front_image/dotoree.png" type="image/x-icon">
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
-     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap" rel="stylesheet">
-     <!-- front.css 추가 (헤더 등 공통 스타일을 위한 링크) -->
-     <link rel="stylesheet" href="/static/css/front/front.css">
- </head>
+    <title>DOTORI</title>
+    <link rel="icon" href="/static/front_image/dotoree.png" image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/front/front.css">
+    <link rel="stylesheet" href="/static/css/board/board_list.css">
+    <script src="/static/js/top.js"></script>
+    <script>
+        var thema = "<%= thema %>";  // EJS에서 전달한 thema 값을 JavaScript 변수로 설정
+        console.log(thema)
+        window.onload = async () => {
+            try {
+                // 서버에서 EJS 템플릿을 렌더링한 HTML을 받아옴
+                const res = await fetch('/board/main');
+                const html = await res.text();  // 서버에서 HTML을 텍스트로 받아옴
+                // console.log("html: ",html)
+                document.getElementById('main_section').innerHTML = html;  // 받아온 HTML을 페이지에 삽입
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+            applyThema(thema);
+        }
+
+        // 페이지 이동 시 새로운 데이터를 동적으로 불러오는 함수
+        async function loadPage(start) {
+            try {
+                const res = await fetch(`/board/main?start=${start}`);
+                const html = await res.text();  // 받아온 HTML을 텍스트로 처리
+                document.getElementById('main_section').innerHTML = html;  // 받아온 HTML을 페이지에 삽입
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+
+    </script>
 </head>
 
 <body class="front_body">
 
-    <%- include('../include/header.ejs') %>
-     <!-- 아이디 찾기 폼 -->
-     <section id="memberlist">
-    <table border="1">
-        <thead>
-            <tr>
-                <th>게시글 번호</th>
-                <th>제목</th>
-                <th>내용</th>
-                <th>날짜</th>
-                <th>이름</th>
-                <th>삭제</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% data.forEach(d=> { %>
-                <tr>
-                    <td>
-                        <%= d.WRITE_NO %>
-                    </td>
-                    <td>
-                        <%= d.TITLE %>
-                    </td>
-                    <td>
-                        <%= d.CONTENT %>
-                    </td>
-                    <td>
-                        <%= d.SAVE_DATE %>
-                    </td>
-                    <td>
-                        <%= d.NAME %>
-                    </td>
-                    <td>
-                        <!-- 탈퇴 링크를 <a> 태그로 추가 -->
-                        <a href="javascript:void(0);" onclick="deleteBoard('<%= d.WRITE_NO %>');">삭제</a>
-                    </td>
-                </tr>
-                <% }) %>
-        </tbody>
-    </table>
-</section>
+    <%-include('./include/header.ejs')%>
 
-<%- include('../include/footer.ejs') %>
+
+        <section>
+            <div class="story">
+                <%- include('./story/story.ejs') %>
+            </div>
+            <div id="main_section"> </div>
+        </section>
+
+        <%- include('include/footer.ejs')%>
+
 
 </body>
 

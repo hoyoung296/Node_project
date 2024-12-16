@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/static/css/front/front.css">
     <link rel="stylesheet" type="text/css" href="/static/css/product/list.css"> 
     <script src="/static/js/top.js"></script>
+    <script src="/static/js/product/product.js"></script>
     <script>
         // const setThema = thema => document.documentElement.className = thema
         const overBtn = (t) => {
@@ -64,7 +65,7 @@
                         </button>
                         <% h++ %>
                     <% }else{ %>
-                        <button type="button" id="<%= p.PRODUCT_NO %>_btn" onclick="choice('<%= p.PRICE %>', '<%= uDotori %>')">
+                        <button type="button" id="<%= p.PRODUCT_NO %>_btn" onclick="choice('<%= p.PRICE %>', '<%= uDotori %>', '<%= p.PRODUCT_NO %>')">
                         구매하기
                         </button>
                     <% }%>

@@ -7,7 +7,7 @@ function deleteMember(id) {
             .then(data => {
                 if (data.success) {
                     alert('회원 삭제 성공');
-                    window.location.href = "/admin/memberlist";  // 삭제 후 리스트로 이동
+                    window.location.href = "/admin/memberlist2";  // 삭제 후 리스트로 이동
                 } else {
                     alert('회원 삭제 실패');
                 }
