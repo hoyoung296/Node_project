@@ -28,16 +28,4 @@ function scrollToTop() {
 // });
 // 에러발생 삭제예정
 
-// const choice = (price, dotori) => {
-//     $("#purchase").slideDown('slow')
-//     $("#modal_wrap").show()
-//     $("#price").text(price)
-//     result = dotori - price
-//     $("#dotori").text(result)
-// }
 
-// const choice_hide = () => {
-//     $("#fist").hide()
-//     $("#modal_wrap").hide()
-//     location.href='/product'
-// }
