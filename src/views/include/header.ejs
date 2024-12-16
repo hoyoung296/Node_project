@@ -10,56 +10,65 @@
     </h4>
     <script src="/static/js/top.js"></script>
 </header>
-<nav class="nav_bar"> <!--선택메뉴 표시 위해 각 메뉴 버튼에 data-path 지정-->
+<nav class="nav_bar">
+    <div class="propile">
+        <% if (typeof username !== "undefined" && username) { %>
+            <div class="login_propile">
+            <img src="/default-profile.png" alt="Profile Picture">
+            <a href="/mypage"><%= username %></a>
+            </div>
+    <% } else { %>
+        <div class="login"><a href="/member/login_form" >비회원입니다!</a><br>로그인하시고<br>더 많은 기능을<br>이용해보세요!</div>
+    <% } %></div>
     <input type="checkbox" class="menu_checkbox" id="menu_checkbox">
     <label for="menu_checkbox" class="menu_label">게시판</label>
     <ul class="sub_menu">
         <li>
-            <button data-path="/board/hot_issue" onclick="location.href='/board/hot_issue?menu=1'">이번주 핫이슈</button>
+            <button onclick="location.href='/board/hot_issue?menu=1'">이번주 핫이슈</button>
         </li>
         <li>
-            <button data-path="/board/restaurant" onclick="location.href='/board/restaurant?menu=2'">맛집&카페</button>
+            <button onclick="location.href='/board/restaurant?menu=2'">맛집&카페</button>
         </li>
         <li>
-            <button data-path="/board/Problem Solving" onclick="location.href='/board/Problem Solving?menu=3'">고민해결</button>
+            <button onclick="location.href='/board/Problem Solving?menu=3'">고민해결</button>
         </li>
         <li>
-            <button data-path="/board/gifs" onclick="location.href='/board/gifs?menu=4'">짤 모음</button>
+            <button onclick="location.href='/board/gifs?menu=4'">짤 모음</button>
         </li>
         <li>
-            <button data-path="/board/song_recommend" onclick="location.href='/board/song_recommend?menu=5'">노래 추천</button>
-        </li>
-    </ul>
-    <ul>
-        <li>
-            <button data-path="/product" onclick="location.href='/product'">쇼핑몰</button>
+            <button onclick="location.href='/board/song_recommend?menu=5'">노래 추천</button>
         </li>
     </ul>
     <ul>
         <li>
-            <button data-path="/game /game/index /game/info /game/play" onclick="location.href='/game'">미니게임</button>
+            <button onclick="location.href='/product'">쇼핑몰</button>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <button onclick="location.href='/game'">미니게임</button>
 
         </li>
     </ul>
     <ul>
         <li>
-            <button data-path="/mypage" onclick="location.href='/mypage'">마이페이지</button>
+            <button onclick="location.href='/mypage'">마이페이지</button>
         </li>
     </ul>
     <ul>
         <li>
-            <button data-path="/friends" onclick="location.href='/friends'">친구 추가</button>
+            <button onclick="location.href='/friends'">친구 추가</button>
         </li>
     </ul>
     <%if(id == "admin"){%>
         <ul>
             <li>
-                <button data-path="/memberlist"  onclick="location.href='/admin/memberlist'">회원 목록</button>
+                <button onclick="location.href='/admin/memberlist'">회원 목록</button>
             </li>
         </ul>
         <ul>
             <li>
-                <button data-path="/memberlist"  onclick="location.href='/admin/boardlist'">게시판 목록</button>
+                <button onclick="location.href='/admin/boardlist'">게시판 목록</button>
             </li>
         </ul>
     <%}%>
