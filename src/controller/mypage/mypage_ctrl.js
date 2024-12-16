@@ -41,7 +41,10 @@ const views = {
             }
     
             // 세션에 저장된 프로필 사진과 상태 메시지가 있으면 덮어쓰기
-            userInfo.picture = req.session.picture || 'default-profile.png';  // 세션에 프로필 사진 없으면 기본 이미지 사용
+            if(!userInfo.picture){
+                userInfo.picture = 'default-profile.png';
+            }
+            // userInfo.picture = req.session.picture || 'default-profile.png';  // 세션에 프로필 사진 없으면 기본 이미지 사용
             userInfo.msg = req.session.statusMessage || '상태 메시지가 없습니다.'; // 세션에 상태 메시지 가져오기
 
             return res.render("mypage/main", { user: userInfo });  // 사용자 정보를 뷰로 전달
