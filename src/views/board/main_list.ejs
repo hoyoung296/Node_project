@@ -34,7 +34,7 @@
     <tr>
         <td class="board_button">
             <% if (start <= 1) { %>
-                <button disabled>이전</button> |
+                <!-- <button disabled>이전</button> | -->
             <% } else { %>
                 <button type="button" onclick="loadPage('<%= start - 1 %>')">이전</button> |
             <% }
@@ -44,7 +44,7 @@
             if (start < page) { %>
                 | <button type="button" onclick="loadPage('<%= start + 1 %>')">다음</button>
             <% } else { %>
-                | <button disabled>다음</button>
+                <!-- | <button disabled>다음</button> -->
             <% } %>
         </td>
         <td class="board_new" ><a href="/board/write_form">글쓰기</a></td>

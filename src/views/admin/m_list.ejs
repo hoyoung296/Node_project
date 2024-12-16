@@ -1,0 +1,59 @@
+<table class="board_main">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>이름</th>
+            <th>이메일</th>
+            <th>주소</th>
+            <th>전화번호</th>
+            <th>탈퇴</th> <!-- 탈퇴 버튼을 추가 -->
+        </tr>
+    </thead>
+    <tbody>
+        <% list.forEach(d=> { %>
+            <tr>
+                <td>
+                    <%= d.ID %>
+                </td>
+                <td>
+                    <%= d.NAME %>
+                </td>
+                <td>
+                    <%= d.EMAIL %>
+                </td>
+                <td>
+                    <%= d.ADDR %>
+                </td>
+                <td>
+                    <%= d.PHONE %>
+                </td>
+                <td>
+                    <!-- 탈퇴 링크를 <a> 태그로 추가 -->
+                    <a href="javascript:void(0);" onclick="deleteMember('<%= d.ID %>');">탈퇴</a>
+                </td>
+            </tr>
+            <% }) %>
+    </tbody>
+</table>
+
+<!-- board_page 테이블을 board_main 테이블 밖으로 분리 -->
+<table class="board_page">
+    <tr>
+        <td class="board_button">
+            <% if (start <= 1) { %>
+                <!-- <button disabled>이전</button> | -->
+            <% } else { %>
+                <button type="button" onclick="loadPage('<%= start - 1 %>')">이전</button> |
+            <% }
+            for (let i = 1; i <= page; i++) { %>
+                <a href="javascript:void(0);" onclick="loadPage('<%= i %>')"><%= i %></a>
+            <% }
+            if (start < page) { %>
+                | <button type="button" onclick="loadPage('<%= start + 1 %>')">다음</button>
+            <% } else { %>
+                <!-- | <button disabled>다음</button> -->
+            <% } %>
+        </td>
+        <a class="board_new" href="/board/write_form">글쓰기</a>
+    </tr>
+</table>
