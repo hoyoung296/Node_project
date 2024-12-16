@@ -68,7 +68,7 @@
                             <th>내용</th><td><%= data.CONTENT %></td>
                             <td colspan="2">
                                 <% if( data.UPLOAD_FILE === "NAN") { %>
-                                <B>이미지가 없습니다
+                               
                                     <% }else { %>
             
                                     <% } %> 
@@ -78,7 +78,7 @@
                             <td colspan="4"align="center">
                                 <% if( username === data.ID) {%>
                                     <input type="button" onclick="location.href='/board/modify_form/<%= data.WRITE_NO %>'" value="수정하기">
-                                    <input type="button" onclick="location.href='/board/delete/<%= data.WRITE_NO %>/<%= data.CHANGE_FILE_NAME %>'" value="삭제하기">
+                                    <input type="button" onclick="location.href='/board/delete/<%= data.WRITE_NO %>/<%= data.CHANGE_FILE %>'" value="삭제하기">
                                     <% } %>
                                     <input type="button" onclick="reply_form()" value="답글달기">
                                     <input type="button" onclick="reply_form()" value="돌아가기">
