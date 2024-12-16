@@ -1,0 +1,27 @@
+.front_body .mypage {
+    font-family: "Nanum Gothic";
+    background-color: #b8b8b8;
+    width: 100%;
+    height: auto;
+    border-style: solid;
+    border-color: var(--header-color);
+    border-radius: 12px;
+    padding: 15px;
+    text-decoration: none;
+    color: inherit;
+    line-height: 30px;
+}
+.mypage a, ul, li{
+    list-style: none;
+    color: inherit;
+    text-decoration-line: none
+}
+.mypage a:hover{
+    text-decoration: underline;
+}
+.mypage{
+    
+}
+.mypropile{
+    
+}

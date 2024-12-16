@@ -4,11 +4,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    min-height: 400px;
     color:  var(--text-color);
     font-family: "Nanum Gothic";
     font-size: 15px;
 }
+
 .board_menu {
     font-weight: bold;
     text-align: center;
@@ -41,7 +41,6 @@
 .board_list_title{
     text-decoration: none;
     color: inherit;
-    
 }
 .board_list_title:hover{
     text-decoration: underline;
@@ -65,13 +64,21 @@
     color: var(--text-color);
     font-family: "Nanum Gothic";
     font-size: 13px;
+    position: absolute; /* section 안에서 절대 위치로 설정 */
+    bottom: -80px; /* section의 맨 아래로 고정 */
+    left: 80px;
+    width: 800px; /* 테이블이 section 너비에 맞게 확장되도록 설정 */
+}
+.board_page a{
+    
 }
 .board_button{
     display: block;
-    margin-left: 400px;
+    margin-left: 300px;
     color:  var(--text-color);
     font-family: "Nanum Gothic";
     font-size: 13px;
+    width: auto;
 }
 .board_button button{
     background-color: transparent;
@@ -91,6 +98,7 @@
 }
 .board_page a {
     margin: 0 10px;
+
 }
 
 .board_new{
@@ -98,9 +106,7 @@
     font-size: 13px;
     margin-top: 10px;
     display: flex;
-    justify-self: end;
     text-decoration: none;
-    color: inherit;
     width: 60px;
     height: 32px;
     border-radius: 100px;
@@ -109,6 +115,10 @@
     justify-content: center;
     align-items: center;
     box-shadow: 2px 3px 0 #bbbbbb85;
+    text-align: center;
+    margin-left: 750px;
+    position: relative;
+    top: -35px;
 }
 .board_new:active{
     box-shadow: 1px 1px 0 #bbbbbb85;

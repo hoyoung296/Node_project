@@ -28,6 +28,16 @@ const boardRead = {
         }
         return cnt;
     },
+    oneCnt : async(menu) => {
+        let cnt;
+        try{
+            const con = await oracledb.getConnection(dbConfig);
+            cnt = await con.execute(`select count(*) from board where category= '${menu}'`); 
+        }catch( err ){
+            console.log( err )
+        }
+        return cnt;
+    },
     data : async ( num ) => {
         const sql = `select * from board where write_no='${num}'`;
         const data = (await con).execute( sql );
@@ -36,7 +46,7 @@ const boardRead = {
 }
 const boardInsert = {
     write : async ( body ) => {
-        const sql = `insert into board(write_no, title, content, upload_file, id, save_date, hit, name,category,change_file) values(board_seq.nextval, :title, :content, :image_file_name, :id, TO_DATE(:save_data, 'YYYY-MM-DD'), :hit, :name,:category,:change)`;
+        const sql = `insert into board(write_no, title, content, upload_file, id, save_date, hit, name,category,change_file) values(board_seq.nextval, :title, :content, :origin, :id, TO_DATE(:save_data, 'YYYY-MM-DD'), :hit, :name,:category,:change)`;
         let result = 0;
         try{
             result = await(await con).execute(sql, body);
@@ -57,7 +67,7 @@ const boardUpdate = {
         (await con).execute( sql );
     },
     modify : async ( body ) => {
-        const sql = `update board set title=:title, content=:content, upload_file=:upload_file, where write_no=:write_no`;
+        const sql = `update board set title=:title, content=:content, upload_file=:upload_file, change_file=:change_file where write_no=:write_no`;
         return ( await con).execute( sql, body );
     }
 }

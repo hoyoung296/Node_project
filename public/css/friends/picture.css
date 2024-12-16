@@ -1,5 +1,5 @@
 #modal_wrap {
-    display: none;
+    display: block;
     position: fixed;
     z-index: 9;
     margin: 0 auto;
@@ -13,31 +13,29 @@
 
 #first {
     text-align: center;
-    display: none;
+    display: block;
     position: fixed;
     z-index: 10;
     margin: 0 auto;
     top: 30px;
     left: 0;
     right: 0;
-    width: 300px;
-    height: 200px;
+    width: 400px;
+    height: 400px;
     background-color: var(--header-color);
-    line-height: 100px;
     margin-top: 200px;
     color: var(--text-color);
-}
 
-#mainResult{
-    width: 250px; 
-    margin: 0 auto; 
-    padding-top: 20px;
-}
+    &>img {
+        margin-top: 30px;
+    }
 
-#button1 {
-    color: var(--text-color);
-    background: var(--header-color);
-    font-size: 25px;
-    font-weight: bold;
-    cursor: pointer;
+    &>button {
+        color: var(--text-color);
+        background: var(--header-color);
+        font-size: 25px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+    }
 }

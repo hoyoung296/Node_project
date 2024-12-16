@@ -10,54 +10,38 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/front/front.css">
-    <link rel="stylesheet" href="/static/css/board/board_list.css">
     <script src="/static/js/top.js"></script>
     <script>
-        const thema = "<%= thema %>";  // EJS에서 전달한 thema 값을 JavaScript 변수로 설정
+        var thema = "<%= thema %>";  // EJS에서 전달한 thema 값을 JavaScript 변수로 설정
+        console.log(thema)
         window.onload = async () => {
             try {
                 // 서버에서 EJS 템플릿을 렌더링한 HTML을 받아옴
                 const res = await fetch('/board/main');
                 const html = await res.text();  // 서버에서 HTML을 텍스트로 받아옴
-                // console.log("html: ",html)
                 document.getElementById('main_section').innerHTML = html;  // 받아온 HTML을 페이지에 삽입
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
             applyThema(thema);
         }
-
-        // 페이지 이동 시 새로운 데이터를 동적으로 불러오는 함수
-        async function loadPage(start) {
-            try {
-                const res = await fetch(`/board/main?start=${start}`);
-                const html = await res.text();  // 받아온 HTML을 텍스트로 처리
-                document.getElementById('main_section').innerHTML = html;  // 받아온 HTML을 페이지에 삽입
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        }
-
-
-    </script>
     </script>
 </head>
 
 <body class="front_body">
+    <% if(!name) { %>
+        <script>
+            alert("로그인 이후 사용가능합니다!!!!");
+            location.href = '/member/login_form';
+        </script>
+        <% } %>
+            <%- include('../include/header.ejs')%>
 
-    <%-include('./include/header.ejs')%>
+                <section style="margin: 0 auto;">
+                    <%- include("./picture1.ejs") %>
+                </section>
 
-
-        <section>
-            <div class="story">
-                <%- include('./story/story.ejs') %>
-            </div>
-            <div id="main_section"> </div>
-        </section>
-
-        <%- include('include/footer.ejs')%>
-
-
+                <%- include('../include/footer.ejs')%>
 </body>
 
 </html>
