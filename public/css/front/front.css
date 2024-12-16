@@ -185,6 +185,7 @@
     grid-template-rows: 1fr auto;
     gap: 10px;
     min-height: 600px;
+    position: relative;
 }
 .story {
     border-radius: 10px;
@@ -193,9 +194,6 @@
     overflow: hidden;
     border-style: solid; 
     border-color: var(--header-color);
-}
-.main_section{
-    
 }
 .front_body > footer{
     grid-area: footer;
@@ -281,5 +279,3 @@
     background-color: var(--header-color);
     cursor: pointer;
 }
-
-
