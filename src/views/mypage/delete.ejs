@@ -6,36 +6,78 @@
     <title>회원탈퇴</title>
 </head>
 <body>
-    <h1>회원탈퇴</h1>
-    <form action="/mypage/delete" method="POST">
-        <p>정말 탈퇴하시겠습니까?</p>
-
-        <!-- 현재 비밀번호 입력 -->
-        <label for="currentPwd">현재 비밀번호:</label>
-        <input type="password" name="currentPwd" id="currentPwd" required><br>
-
-        <!-- 비밀번호 확인 입력 -->
-        <label for="confirmPwd">비밀번호 확인:</label>
-        <input type="password" name="confirmPwd" id="confirmPwd" required><br>
-        <span id="pwdError" style="color:red; font-size: 12px;"></span><br>
-        <button type="submit">탈퇴</button>
-        <button type="button" onclick="history.back();">취소</button>
-    </form>
+    
     <script>
-        // 비밀번호 확인 기능 (두 비밀번호가 일치하는지 확인)
-        function validatePasswords() {
-            var currentPwd = document.getElementById("currentPwd").value;
-            var confirmPwd = document.getElementById("confirmPwd").value;
-            var errorMessage = document.getElementById("pwdError");
-
-            if (currentPwd !== confirmPwd) {
-                errorMessage.textContent = "비밀번호가 일치하지 않습니다. 다시 확인해주세요.";
-                return false;  // 폼 제출을 막음
-            } else {
-                errorMessage.textContent = "";  // 에러 메시지 숨김
-                return true;  // 폼 제출 허용
-            }
-        }
+      
     </script>
 </body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 탈퇴</title>
+    <link rel="icon" href="/static/front_image/dotoree.png" image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap"rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/front/front.css">
+    <link rel="stylesheet" href="/static/css/mypage/mypage_main.css">
+    <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
+    <script>
+  // 비밀번호 확인 기능 (두 비밀번호가 일치하는지 확인)
+        function validatePasswords() {
+                    var currentPwd = document.getElementById("currentPwd").value;
+                    var confirmPwd = document.getElementById("confirmPwd").value;
+                    var errorMessage = document.getElementById("pwdError");
+
+                    if (currentPwd !== confirmPwd) {
+                        errorMessage.textContent = "비밀번호가 일치하지 않습니다. 다시 확인해주세요.";
+                        return false;  // 폼 제출을 막음
+                    } else {
+                        errorMessage.textContent = "";  // 에러 메시지 숨김
+                        return true;  // 폼 제출 허용
+                    }
+                }
+    </script>
+</head>
+<body class="front_body">
+
+    <%- include('../include/header.ejs')%>
+    
+        <section>
+            <div class="mypage">
+                <div class="mypage_delete">
+                    <p class="mypage_title">회원탈퇴</p>
+                    <form action="/mypage/delete" method="POST">
+                        <p>회원 탈퇴를 위해 비밀번호를 입력해주세요.</p>
+                
+                        <!-- 현재 비밀번호 입력 -->
+                        <label for="currentPwd">현재 비밀번호:</label>&nbsp;&nbsp;
+                        <input type="password" name="currentPwd" id="currentPwd" required><br>
+                
+                        <!-- 비밀번호 확인 입력 -->
+                        <label for="confirmPwd">비밀번호 확인:</label>&nbsp;&nbsp;
+                        <input type="password" name="confirmPwd" id="confirmPwd" required><br>
+                        <span id="pwdError" style="color:red; font-size: 12px;"></span><br>
+                        
+                    </form>
+                </div>
+                <div class="myimg_button_group">
+                        <button class="myimg_button" type="submit">확인</button>
+                        <button class="myimg_button" type="button" onclick="history.back();">취소</button>
+                </div>
+            </div>
+</section>
+
+<%- include('../include/footer.ejs')%>
+
+</body>
+
 </html>
