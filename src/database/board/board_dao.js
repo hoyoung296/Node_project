@@ -28,6 +28,16 @@ const boardRead = {
         }
         return cnt;
     },
+    oneCnt : async(menu) => {
+        let cnt;
+        try{
+            const con = await oracledb.getConnection(dbConfig);
+            cnt = await con.execute(`select count(*) from board where category= '${menu}'`); 
+        }catch( err ){
+            console.log( err )
+        }
+        return cnt;
+    },
     data : async ( num ) => {
         const sql = `select * from board where write_no='${num}'`;
         const data = (await con).execute( sql );
