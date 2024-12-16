@@ -58,7 +58,7 @@ const boardUpdate = {
     },
     modify : async ( body ) => {
         const sql = `update board set title=:title, content=:content, upload_file=:upload_file, where write_no=:write_no`;
-        return ( await cocn).execute( sql, body );
+        return ( await con).execute( sql, body );
     }
 }
 module.exports = { boardUpdate, boardInsert, boardRead }

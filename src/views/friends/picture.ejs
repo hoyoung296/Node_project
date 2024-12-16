@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOTORI</title>
+    <link rel="icon" href="/static/front_image/dotoree.png" image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/front/front.css">
+    <script src="/static/js/top.js"></script>
+    <script>
+        var thema = "<%= thema %>";  // EJS에서 전달한 thema 값을 JavaScript 변수로 설정
+        console.log(thema)
+        window.onload = async () => {
+            try {
+                // 서버에서 EJS 템플릿을 렌더링한 HTML을 받아옴
+                const res = await fetch('/board/main');
+                const html = await res.text();  // 서버에서 HTML을 텍스트로 받아옴
+                document.getElementById('main_section').innerHTML = html;  // 받아온 HTML을 페이지에 삽입
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+            applyThema(thema);
+        }
+    </script>
+</head>
+
+<body class="front_body">
+    <% if(!name) { %>
+        <script>
+            alert("로그인 이후 사용가능합니다!!!!");
+            location.href = '/member/login_form';
+        </script>
+        <% } %>
+            <%- include('../include/header.ejs')%>
+
+                <section style="margin: 0 auto;">
+                    <%- include("./picture1.ejs") %>
+                </section>
+
+                <%- include('../include/footer.ejs')%>
+</body>
+
+</html>

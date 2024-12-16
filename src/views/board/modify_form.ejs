@@ -1,25 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="/static/js/img_view.js"></script>
+    <script src="/static/js/board/img_view.js"></script>
 </head>
+
 <body>
     <div id="mi">
         <div style="width: 300px; margin: 0 auto;">
-            <from action="/board/modify" enctype="multipart.form-data" method="post">
-                <input type="hidden" name="WRITE_NO" value="<%= data.WRITE_NO">
+            <form action="/board/modify" enctype="multipart/form-data" method="post">
+                <input type="hidden" name="write_no" value="<%= data.WRITE_NO %>">
+                <input type="hidden" name="change_file" value="<%= data.CHANGE_FILE %>">
+                <input type="hidden" name="upload_file" value="<%= data.UPLOAD_FILE %>">
+                제목 <input type="text" size="50" name="title" value="<%= data.TITLE %>">
+                <hr>
+                내용 <textarea rows="12" cols="50" name="content"><%= data.CONTENT %></textarea>
+                <hr>
+                <img width="200px" height="100px" id="preview" src="/board/download/<%= data.CHANGE_FILE %>">
+                <input type="file" name="image_file_name" onchange="readURL(this)">
+                <hr>
+                <input type="submit" value="수정하기">
+                <input type="button" onclick="history.back()" value="돌아가기">
+
+            </form>
+            <!-- <from action="/board/modify" enctype="multipart.form-data" method="post">
+                <input type="hidden" name="WRITE_NO" value="<%= data.WRITE_NO %>">
                 <b>제목</b>
-                <input type="text" size="50" name="title" value="data.TITLE"><hr>
+                <input type="text" size="50" name="title" value="data.TITLE %>"><hr>
                 <b>내용</b>
                 <textarea rows="12" cols="50" name="content"><%= data.CONTENT %></textarea><hr>
                 <input type="file" name="UPLOAD_FILE" onchange="readURL(this)"><hr>
                 <input type="submit" value="수정하기">
                 <input type="button" onclick="history.back()" value="돌아가기"
-            </from>
+            </from> -->
         </div>
     </div>
 </body>
+
 </html>

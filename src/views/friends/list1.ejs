@@ -27,8 +27,10 @@
                 <tr>
                     <% if(data.PICTURE) { %>
                         <td>
-                            <img src="/friends/download/?file=<%= data.PICTURE %>" alt="프로필사진" width="80px"
-                                height="80px">
+                            <a href="/friends/picture/?file=<%= data.PICTURE %>">
+                                <img src="/friends/download/?file=<%= data.PICTURE %>" alt="프로필사진" width="80px"
+                                    height="80px">
+                            </a>
                         </td>
                         <% } else { %>
                             <td>

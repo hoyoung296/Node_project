@@ -68,27 +68,27 @@ const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 
     },
     modifyForm : async ( req, res ) => {
         const thema = await mctrl.userThema(req.session)
-        const data = await ser.boardRead.datta( req.query.writeNo );
+        const data = await ser.boardRead.data( req.params.writeNo );
         res.render("board/modify_form", {data, thema});
     }
 }
 const process = {
     write : async ( req, res ) => {
         const msg = await ser.boardInsert.write(
-            req.body, req.file, req.fileValidation, req.session.uid
+            req.body, req.file, req.fileValidation, req.session.uid,req.session.name
         );
         res.send( msg )
     },
     delete : ( req, res ) => {
-        file_process.delete( req.query.imgName);
-        ser.boardUpdate.delete( req.query.writeNo);
+        file_process.delete( req.params.writeNo );
+        ser.boardUpdate.delete( req.params.writeNo );
         res.redirect("/board/list");
     },
     modify : async ( req, res) => {
-        const deleteFile = req.body.upload_file;
+        const deleteFile = req.body.change_file;
         const message = await ser.boardUpdate.modify( req. body, req.file );
         if( req.file !== undefined && message.result ===1 ){
-            file_frocess.delete( deleteFile );
+            file_process.delete( deleteFile );
         }
         res.send(message.msg );
     }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/css/friends/picture.css" rel="stylesheet">
+    <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
+    <script>
+        const thema = "<%= thema %>" //사용자 thema변수 저장
+        window.onload = () => {
+            applyThema(thema) //사용자 thema 설정
+        }
+    </script>
+</head>
+
+<body>
+    <div id="modal_wrap">
+        <div id="first">
+            <img src="/friends/download/?file=<%= data %>" alt="프로필사진" width="300px" height="300px"><br>
+            <button onclick="location.href='/friends'">목록페이지</button>
+        </div>
+    </div>
+</body>
+
+</html>
