@@ -131,8 +131,35 @@
     cursor: pointer;
 }
 
+.mypage_edit{
+    border-style: solid;
+    border-color: var(--header-color);
+    color:  var(--text-color);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.mypage_edit button{
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--header-color);
+    background-color: var(--background-color);
+    border-radius: 12px;
+    padding: 5px;
+}
+.mypage_edit button:hover{
+    text-decoration: underline;
+    background-color: var(--header-color);
+    cursor: pointer;
+}
 
-
+.mypage_delete{
+    border-style: solid;
+    border-color: var(--header-color);
+    color:  var(--text-color);
+    border-radius: 12px;
+    padding: 20px;
+}
 
 #statusMessage{
     position:relative;
@@ -145,4 +172,12 @@
     resize: none;
     color: black;
     border: none;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+.error br{
+    overflow:hidden;
 }
