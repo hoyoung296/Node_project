@@ -4,8 +4,8 @@ let ctx;
 // html은 텍스트나 구조를 보여주는 데는 적합하나 이미지의 움직임을 보여주기엔 부적합 
 // 그래서 html에서 제공하는 canvas태그 사용
 // canvas태그 사용 시 중요한 원칙이 있는데 이미지의 왼쪽 상단 모서리의 좌표(x,y)가 이미지의 위치를 결정
-canvas = document.createElement("canvas") //canvas를 만들어서 변수에 저장
-ctx = canvas.getContext("2d") //2d로 그림을 그려줌
+canvas = document.createElement("canvas") // canvas를 만들어서 변수에 저장
+ctx = canvas.getContext("2d") // 2d로 그림을 그려줌
 // 캔버스 사이즈 지정
 canvas.width = 730;
 canvas.height = 600;
@@ -81,7 +81,7 @@ function Enemy() { // 도토리를 만들기 위한 자료, 도토리 만드는 
 
         if (this.y >= canvas.height - 64) {
             gameOver = true
-            let msg = `<br><button onclick="result_form()" style='color:var(--text-color); width:200px; height:80px; background:var(--header-color); cursor:pointer; font-size:25px; font-weight:bold; margin : 0 auto; margin-top:-600px;'>
+            let msg = `<br><button onclick="result_form()" style='color:var(--text-color); width:200px; height:80px; background:var(--header-color); cursor:pointer; font-size:25px; font-weight:bold; margin : 0 auto; margin-top:-600px; position:relative'>
             결과 확인</button>`
             document.getElementById("main").insertAdjacentHTML("beforeend", msg)
         }
