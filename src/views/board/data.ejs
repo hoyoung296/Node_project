@@ -58,10 +58,10 @@
                         
                         
                         <div colspan="2">
-                            <% if(data.UPLOAD_FILE === null ){%>
+                            <% if(data.UPLOAD_FILE === "nan" ){%>
                                 <b>이미지가 없습니다</b>
                             <%}else{%>
-                                <img id="board_img" src="/board/download/<%= data.CHANGE_FILE %>">
+                                <img id="board_img" src="/board/download/<%= data.CHANGE_FILE %>"width="100px" height="100px">
                             <%}%>
                             <div id="board_content_data"><%= data.CONTENT %></div>
                         </div>

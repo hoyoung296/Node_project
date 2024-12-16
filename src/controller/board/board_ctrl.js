@@ -4,6 +4,7 @@ const path = require("path")
 const ejs = require('ejs');
 const mctrl = require("../controller") //thema설정하려고 추가
 
+
 const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 안보이는 코드 list.ejs에도 있음 
 
     main : async (req, res) => {
@@ -75,28 +76,28 @@ const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 
 const process = {
     write : async ( req, res ) => {
         const msg = await ser.boardInsert.write(
-            req.body, req.file, req.fileValidation, req.session.uid,req.session.name
+            req.body, req.file, req.fileValidation, req.session.uid, req.session.name
         );
         res.send( msg )
     },
     delete : ( req, res ) => {
-        file_process.delete( req.params.writeNo );
+        file_process.delete( req.params.imgName );
         ser.boardUpdate.delete( req.params.writeNo );
         res.redirect("/board/list");
     },
     modify : async ( req, res) => {
         const deleteFile = req.body.change_file;
-        const message = await ser.boardUpdate.modify( req. body, req.file );
+        const message = await ser.boardUpdate.modify( req.body, req.file );
         if( req.file !== undefined && message.result ===1 ){
             file_process.delete( deleteFile );
-        }
+        }0
         res.send(message.msg );
     }
 }
 const fs = require("fs");
 const file_process = {
     download : ( req, res ) => {
-        console.log("req.params.imgName : ",req.params.imgName)
+        console.log("req.params.imgName : ", req.params.imgName)
         const filePath = `./upload_file/${req.params.imgName}`;
         res.download( filePath )
     },
