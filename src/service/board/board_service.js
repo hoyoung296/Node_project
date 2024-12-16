@@ -55,8 +55,8 @@ const boardInsert = {
             body.origin = file.originalname;
             body.change = file.filename;
         }else{
-            body.origin = "";
-            body.change = "";
+            body.origin = "nan";
+            body.change = "nan";
         }
         body.hit = 0;
         body.id = uid
