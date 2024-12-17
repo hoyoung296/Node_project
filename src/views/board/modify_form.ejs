@@ -41,7 +41,12 @@
                     <hr>
                     <div id="write_img">
                     <input type="file" name="image_file_name" onchange="readURL(this)">
-                    <img  width="200px" height="100px" id="preview" src="/board/download/<%= data.CHANGE_FILE %>"></div>
+                    <% if(data.UPLOAD_FILE === "nan" ){%>
+                        <img id="preview" />
+                        <%}else{%>
+                            <img id="preview" src="/board/download/<%= data.CHANGE_FILE %>">
+                        <%}%>
+                   </div>
                     
                     <div id="write_button">
                         <input type="submit" value="수정하기">

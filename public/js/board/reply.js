@@ -4,7 +4,8 @@ function reply_form(){
     console.log($("#id").val());
     if($("#id").val()==""){
         alert("로그인 후 작성가능합니다")
-        return location.href("/member/loginForm")
+        location.href = "/member/login_form"; 
+        return
     }
     $("#first").slideDown('slow');
     $("#modal_wrap").show();
