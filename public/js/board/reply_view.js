@@ -5,7 +5,6 @@ async function init(write_no) {
     // console.log(data)
     let html = "";
     data.forEach(d => {
-
         html += `<div id="board_reply_${d.REPLY_NO}" data-reply-id="${d.REPLY_NO}">
         <b id="reply_id">${d.ID}</b><br>
         <b id="reply_content">${d.CONTENT}</b><br>
