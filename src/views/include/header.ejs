@@ -3,7 +3,7 @@
             onclick="location.href='/main'"><br>DOTORI</h1>
     <h4 class="header_h4">
         <% if (typeof username !== "undefined" && username) { %>
-            <a href="/board/myposts"><%= username %></a>&nbsp; | &nbsp;<a href="/member/logout" id="logout">로그아웃</a>
+            <%= username %>&nbsp; | &nbsp;<a href="/member/logout" id="logout">로그아웃</a>
         <% } else { %>
             <a href="/member/login_form" id="login">로그인</a> &nbsp; / &nbsp;<a href="/member/register_form" id="signup">회원가입</a>
         <% } %>
@@ -69,11 +69,6 @@
         <ul>
             <li>
                 <button onclick="location.href='/admin/memberlist2'">회원 목록</button>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <button onclick="location.href='/admin/boardlist'">게시판 목록</button>
             </li>
         </ul>
     <%}%>

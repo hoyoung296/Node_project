@@ -2,18 +2,32 @@ const ser = require("../../service/member/admin_service")
 const path = require("path")
 const ejs = require('ejs');
 const mctrl = require("../controller") //thema설정하려고 추가
+const views = {
+    editmember: async (req, res) => {
+        const thema = await mctrl.userThema(req.session) //사용자 테마 설정
+        const uid = req.params.uid;
+        const member = await ser.process.ser_memberget(uid)
+        // console.log("member : ", member)
+        res.render("admin/editmember", { thema, data: member })
+    }
+}
+
 const process = {
-    memberlist2 : async(req,res) => {
+    memberedit: async (req, res) => {
+        const msg = await ser.process.ser_eidt(req.body);
+        res.send(msg)
+    },
+    memberlist2: async (req, res) => {
         console.log("req.query.start : ", req.query.start);
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         const data = await ser.process.ser_memberlist2(req.query.start);
-        res.render("admin/memberlist", { data: data,thema })
+        res.render("admin/memberlist", { data: data, thema })
     },
     memberlist: async (req, res) => {
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         const memberlist = await ser.process.ser_memberlist(req.query.start);
         const isLoggedIn = req.session.user ? true : false;
-        console.log("memberlist : ", memberlist.data)
+        // console.log("memberlist : ", memberlist.data)
         const data = {
             list: memberlist.data, start: memberlist.start, page: memberlist.page, isLoggedIn, thema
         }
@@ -54,4 +68,4 @@ const process = {
     },
 }
 
-module.exports = { process }
+module.exports = { views, process }

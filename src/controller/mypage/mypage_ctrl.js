@@ -81,8 +81,8 @@ const views = {
 
     // 회원탈퇴 페이지
     getDeletePage: async (req, res) => {
-        const thema = {thema : await mctrl.userThema(req.session)} //사용자 테마 설정
-        res.render("mypage/delete", thema);
+        const thema = await mctrl.userThema(req.session); // 사용자 테마 설정
+        res.render("mypage/delete", { thema }); // 단일 변수 'thema'로 전달
     }
 };
 

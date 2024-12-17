@@ -15,9 +15,6 @@ router.post("/modify", upload.single('image_file_name'), ctrl.process.modify);
 router.get("/main", ctrl.views.main);
 router.get("/download/:imgName", ctrl.file_process.download );
 router.get("/topic",ctrl.views.topic);
-
-
-router.get("/myposts", ctrl.views.myPosts);
 router.get("/:category",ctrl.views.category);
 
 module.exports = router;
