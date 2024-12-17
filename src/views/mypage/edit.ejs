@@ -13,8 +13,12 @@
     <link rel="stylesheet" href="/static/css/mypage/mypage_main.css">
     <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
     <script>
- // 기존 비밀번호 보이기/숨기기
- function toggleCurrentPassword() {
+        const thema = "<%= thema %>" //사용자 thema변수 저장
+        window.onload = () => {
+            applyThema(thema) //사용자 thema 설정
+        }
+        // 기존 비밀번호 보이기/숨기기
+        function toggleCurrentPassword() {
             var pwdField = document.getElementById("currentPwd");
             if (pwdField.type === "password") {
                 pwdField.type = "text";  // 기존 비밀번호를 보이게 함

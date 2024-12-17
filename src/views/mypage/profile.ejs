@@ -3,21 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>프로필 설정</title>
-</head>
-<body>
-    <h1>프로필 설정</h1>
-
- 
-</body>
-</html>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MY PAGE</title>
     <link rel="icon" href="/static/front_image/dotoree.png" image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,7 +13,10 @@
     <link rel="stylesheet" href="/static/css/mypage/mypage_main.css">
     <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
     <script>
-
+        const thema = "<%= thema %>" //사용자 thema변수 저장
+        window.onload = () => {
+            applyThema(thema) //사용자 thema 설정
+        }
     </script>
 </head>
 <body class="front_body">
