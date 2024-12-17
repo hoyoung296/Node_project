@@ -32,6 +32,10 @@ module.exports = (app) => {
 
     const friendsRouter = require("../routers/friends/friends_router");
     app.use("/friends", friendsRouter);
+    
+    const presentRouter = require("../routers/product/present_router");
+    app.use("/present", presentRouter);
+
 
     // 메인 라우터 설정
     const router = require("express").Router();

@@ -1,11 +1,11 @@
 <table class="board_main">
     <tr class="board_menu">
-        <td class="board_num">No</td>
-        <td class="board_title">제목</td>
-        <td class="board_id">아이디</td>
-        <td class="board_name">이름</td>
-        <td class="board_date">날짜</td>
-        <td class="board_hit">조회수</td>
+        <td class="board_num">아이디</td>
+        <td class="board_title">이름</td>
+        <td class="board_id">이메일</td>
+        <td class="board_name">주소</td>
+        <td class="board_date">전화 번호</td>
+        <td class="board_hit">수정/삭제</td>
     </tr>
     <% list.forEach(d=> { %>
         <tr>
@@ -22,11 +22,13 @@
                 <%= d.ADDR %>
             </td>
             <td>
-                <%= d.PHONE %>
+                <%= d.PHONE.replace(/^(\d{3})(\d{4})(\d{4})$/, '$1-$2-$3') %>
             </td>
             <td>
                 <!-- 탈퇴 링크를 <a> 태그로 추가 -->
-                <a href="javascript:void(0);" onclick="deleteMember('<%= d.ID %>');">탈퇴</a>
+                <a href="javascript:void(0);" class="edit-link" onclick="editMember('<%= d.ID %>');">수정</a>
+                <!-- 탈퇴 링크를 <a> 태그로 추가 -->
+                <a href="javascript:void(0);" class="delete-link" onclick="deleteMember('<%= d.ID %>');">탈퇴</a>
             </td>
         </tr>
         <% }) %>
@@ -50,6 +52,6 @@
                                 <!-- | <button disabled>다음</button> -->
                                 <% } %>
         </td>
-        <td class="board_new" ></td>
+        <td class="board_new"></td>
     </tr>
 </table>

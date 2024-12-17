@@ -97,6 +97,53 @@
     margin: 0 10px;
 
 }
+/* 탈퇴 링크 스타일 */
+.board_main a.delete-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #f44336;  /* 빨간색 배경 */
+    color: white;  /* 텍스트는 흰색 */
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.board_main a.delete-link:hover {
+    background-color: #e53935;  /* 마우스를 올리면 배경색이 조금 어두워짐 */
+    transform: scale(1.05);  /* 마우스를 올렸을 때 크기가 조금 커짐 */
+}
+
+.board_main a.delete-link:active {
+    background-color: #d32f2f;  /* 클릭할 때 더 어두운 빨간색 */
+    transform: scale(1);  /* 클릭하면 원래 크기로 돌아옴 */
+}
+/* 수정 링크 스타일 */
+.board_main a.edit-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #0af529;  /* 빨간색 배경 */
+    color: white;  /* 텍스트는 흰색 */
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.board_main a.edit-link:hover {
+    background-color: #04a52c;  /* 마우스를 올리면 배경색이 조금 어두워짐 */
+    transform: scale(1.05);  /* 마우스를 올렸을 때 크기가 조금 커짐 */
+}
+
+.board_main a.edit-link:active {
+    background-color: #005716;  /* 클릭할 때 더 어두운 빨간색 */
+    transform: scale(1);  /* 클릭하면 원래 크기로 돌아옴 */
+}
+
 
 /* .board_new{
     font-family: "Nanum Gothic";
