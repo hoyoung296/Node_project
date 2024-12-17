@@ -15,7 +15,7 @@ const boardRead = {
 
         const startNum = ( start - 1 ) * 15;
         let list = await dao.boardRead.list( startNum );
-        console.log(list.rows[0])
+        // console.log(list.rows[0])
         list = serCom.timeModify( list.rows )
         return { list, start, page };
     },
@@ -31,7 +31,7 @@ const boardRead = {
 
         const startNum = ( start - 1 ) * 15;
         let list = await dao.boardRead.list2( startNum,menu );
-        console.log(list.rows[0])
+        // console.log(list.rows[0])
         list = serCom.timeModify( list.rows )
         return { list, start, page };
     },

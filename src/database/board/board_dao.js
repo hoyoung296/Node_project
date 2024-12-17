@@ -9,13 +9,13 @@ const boardRead = {
     list : async ( start ) => {
         const sql = `select * from board order by write_no desc offset ${start} rows fetch next 15 rows only`;
         const list = await ( await con ).execute( sql )
-        console.log(list)
+        // console.log(list)
         return list;
     },
     list2 : async ( start,menu ) => {
         const sql = `select * from board where category = '${menu}' order by write_no desc offset ${start} rows fetch next 15 rows only`;
         const list = await ( await con ).execute( sql )
-        console.log(list)
+        // console.log(list)
         return list;
     },
     totalCnt : async() => {
