@@ -23,19 +23,21 @@ const process = {
     },
     ser_login: async (body, req, res) => {
         const result = await dao.process.dao_login(body.id)
-        console.log("login : ", result.rows[0].ID)
-        const admin = result.rows[0].ID;
+        // console.log("login : ", result.rows[0].ID)
+
         const loginFail = await dao.process.selectLoginFailCount(body.id);
-        let LoginFailCount = loginFail[0].LOGIN_FAIL_COUNT;
-        let LoginFailTime = loginFail[0].LOGIN_FAIL_TIME;
-        let currentTime = loginFail[0].CURRENT_TIME;
+
         console.log("loginFail : ", loginFail)
 
         if (result.rows.length == 0) {
-            msg = "아이디 또는 비밀번호가 잘못 되었습니다. 아이디와 비밀번호를 정확히 입력해 주세요"
+            msg = "아이디 입력이 잘못되었습니다."
             url = "/member/login_form"
         } else {
+            const admin = result.rows[0].ID;
             const isMatch = await bcrypt.compare(body.pwd, result.rows[0].PWD);
+            let LoginFailCount = loginFail[0].LOGIN_FAIL_COUNT;
+            let LoginFailTime = loginFail[0].LOGIN_FAIL_TIME;
+            let currentTime = loginFail[0].CURRENT_TIME;
             if (isMatch) {
                 if (LoginFailCount > 4) {
                     if (LoginFailTime > currentTime) {

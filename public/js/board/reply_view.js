@@ -2,22 +2,27 @@ async function init(write_no) {
     console.log("init write_no : ", write_no)
     const res = await fetch("/board_rep/" + write_no)
     const data = await res.json();
-    // console.log(data)
+    console.log("data : ", data)
     let html = "";
-    data.forEach(d => {
+    data.result.forEach(d => {
         html += `<div id="board_reply_${d.REPLY_NO}" data-reply-id="${d.REPLY_NO}">
-        <b id="reply_id">${d.ID}</b><br>
-        <b id="reply_content">${d.CONTENT}</b><br>
-        <b id="reply_date">${d.SAVE_DATE}</b><br>
-        <button onclick="deleteReply(${d.REPLY_NO})">삭제</button>
-     </div>`;
-    })
+          <b id="reply_id">${d.ID}</b><br>
+          <b id="reply_content">${d.CONTENT}</b><br>
+          <b id="reply_date">${d.SAVE_DATE}</b><br>`;
+
+        // 삭제 버튼을 조건부로 표시
+        if ( data.uid === d.ID || data.uid === 'admin') {
+            html += `<button onclick="deleteReply(${d.REPLY_NO})">삭제</button>`;
+        }
+
+        html += `</div>`;
+    });
     document.getElementById("content").innerHTML = html;
 }
 async function deleteReply(reply_no) {
     try {
-        const res = await fetch(`/board_rep/delete/${reply_no}`, { 
-            method: "DELETE" 
+        const res = await fetch(`/board_rep/delete/${reply_no}`, {
+            method: "DELETE"
         });
 
         const result = await res.json();

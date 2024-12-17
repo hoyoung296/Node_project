@@ -23,7 +23,11 @@ const views = {
         console.log("group : ", req.params.writeno )
         const result = await ser.repRead.data( req.params.writeno )
         // console.log("ctrl : ",result)
-        res.json(result)
+        const uid = req.session.uid
+        res.json({
+            result : result,
+            uid : uid// 세션에 저장된 uid를 포함시켜 응답
+        });
     }
 }
 module.exports = { process, views }
