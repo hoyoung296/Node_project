@@ -70,10 +70,12 @@
                 
                 <div id="board_edit">
                         <div colspan="4"align="center" id="board_button">
-                            <% if( id === data.ID) {%>
+                            <% if (id === data.ID) { %>
                                 <input type="button" onclick="location.href='/board/modify_form/<%= data.WRITE_NO %>'" value="수정하기">
                                 <input type="button" onclick="location.href='/board/delete/<%= data.WRITE_NO %>/<%= data.CHANGE_FILE %>'" value="삭제하기">
-                                <% } %>
+                            <% } else if (id === 'admin') { %>
+                                <input type="button" onclick="location.href='/board/delete/<%= data.WRITE_NO %>/<%= data.CHANGE_FILE %>'" value="삭제하기">
+                            <% } %>
                                 <input type="button" onclick="reply_form()" value="답글달기">
                                 <input type="button" onclick="history.back()" value="돌아가기">
                         </div>

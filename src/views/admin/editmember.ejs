@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/member/register.css">
+    <script src="/static/js/admin/edit.js"></script>
+    <link rel="icon" href="/static/front_image/dotoree.png" image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap"rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/front/front.css">
+    <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
+    <script>
+        const thema = "<%= thema %>" //사용자 thema변수 저장
+        window.onload = () => {
+            applyThema(thema) //사용자 thema 설정
+        }
+    </script>
+</head>
+<body class="front_body">
+
+    <%- include('../include/header.ejs')%>
+    
+        <section>
+<body>
+    <form class="register_form" action="/admin/editgo" method="post" onsubmit="return validateForm()">
+        <table>
+             <!-- Email -->
+             <tr>
+                <td><label for="email">이메일:</label></td>
+                <td><input type="text" id="email" name="email" placeholder="Email" onblur="checkEmailAvailability()" readonly value="<%=data[0].EMAIL%>"></td>
+                <td><div id="emailError" class="error-message error-container"></div></td>
+            </tr>
+            <!-- ID -->
+            <tr>
+                <td><label for="id">아이디 :</label></td>
+                <td><input type="text" id="id" name="id" placeholder="ID" onblur="checkIdAvailability()" readonly value="<%=data[0].ID%>"></td>
+                <td><div id="idError" class="error-message error-container"></div></td>
+            </tr>
+
+            <!-- Name -->
+            <tr>
+                <td><label for="name">이름:</label></td>
+                <td><input type="text" id="name" name="name" placeholder="Name" onblur="checkNameAvailability()" value="<%=data[0].NAME%>"></td>
+                <td><div id="nameError" class="error-message error-container" readonly></div></td>
+            </tr>
+
+            <tr>
+                <td><label for="addr">주소:</label></td>
+                <td><input type="text" id="addr" name="addr" placeholder="Addr" onblur="checkAddrAvailability()" value="<%=data[0].ADDR%>"></td>
+                <td><div id="addrError" class="error-message error-container"></div></td>
+            </tr>
+            <!-- Phone -->
+            <tr>
+                <td><label for="phone">휴대폰 번호:</label></td>
+                <td><input type="text" id="phone" name="phone" placeholder="Phone" onblur="checkPhoneAvailability()"  value="<%=data[0].PHONE%>"></td>
+                <td><div id="phoneError" class="error-message error-container"></div></td>
+            </tr>
+
+           
+
+            <!-- Email -->
+            <tr>
+                <td><label for="dotori">도토리 :</label></td>
+                <td><input type="number" id="dotori" name="dotori" placeholder="Dotori" onblur="checkEmailAvailability()" value="<%=data[0].DOTORI%>"></td>
+                <td><div id="dotoriError" class="error-message error-container"></div></td>
+            </tr>
+
+             <!-- Email -->
+             <tr>
+                <td><label for="Loginfail">인증실패수 :</label></td>
+                <td><input type="number" id="loginfail" name="loginfail" placeholder="Loginfail" onblur="checkLoginfailAvailability()" value="<%=data[0].LOGIN_FAIL_COUNT%>"></td>
+                <td><div id="loginfailError" class="error-message error-container"></div></td>
+            </tr>
+
+
+
+            <!-- Submit Button (centered with colspan="3") -->
+            <tr>
+                <td colspan="3" style="text-align: center;">
+                    <input type="submit" value="수정">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</section>
+
+<%- include('../include/footer.ejs')%>
+
+</body>
+</html>
