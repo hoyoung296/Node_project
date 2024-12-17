@@ -52,7 +52,8 @@
     border-color: var(--header-color);
     border-width: 3px;
     border-radius: 10px;
-    height: auto;
+    width: auto;
+    overflow-x: auto;
 }
 #board_img{
     background-color: #707070;
@@ -63,6 +64,7 @@
 #board_content_data{
     padding: 15px;
     margin-bottom: 20px;
+    word-wrap: break-word;
 }
 
 #board_edit{ /*댓글 수정 등*/
@@ -122,6 +124,16 @@
 }
 #board_comment.hidden-border {
     border: none;
+}
+#board_comment button{
+    border: 0;
+    background-color: transparent;
+    color: var(--text-color);
+    cursor: pointer;
+    margin-left: 15px;
+}
+#board_comment button:hover {
+    text-decoration: underline;
 }
 
 .hidden-links { /*main_list.ejs에 있음*/

@@ -9,7 +9,7 @@ async function init(write_no) {
         html += `<div id="board_reply"><b id="reply_id">${d.ID}</b><BR>`;
         html += `<b id="reply_content">${d.CONTENT}</b><BR>`;
         html += `<b id="reply_date">${d.SAVE_DATE}</b>
-        <br>
+        
                 <button onclick="deleteReply(${d.REPLY_NO})">삭제</button>
                 </div>`;
     })
