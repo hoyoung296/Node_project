@@ -43,27 +43,6 @@ const boardRead = {
         const data = (await con).execute( sql );
         return data;
     },
-     /**
-     * 특정 사용자가 작성한 게시글 조회
-     * @param {number} uid - 사용자 ID
-     * @returns {Promise<Array>} 게시글 배열
-     */
-     myPosts: async (uid) => {
-        const sql = `SELECT * FROM board WHERE ID = ? ORDER BY created_at DESC`;
-        try {
-            const result = await connection.execute(
-                `SELECT write_no, title, created_at FROM board WHERE ID = :uid ORDER BY created_at DESC`,
-                [uid] // 바인딩 변수 사용
-            );
-            return result.rows; // 게시글 목록 반환
-        } catch (error) {
-            console.error("DB Error:", error.message);
-            throw error;
-        } finally {
-            await connection.close();
-        }
-    },
-    // 기존 DAO 함수들 (예: 글쓰기, 수정, 삭제 등)...
 }
 
 const boardInsert = {
