@@ -14,4 +14,9 @@ const repRead = {
             return result;
         }
 }
-module.exports = {insert, repRead}
+const boardrepUpdate = {
+    delete : async ( replyNo ) => {
+        await dao.boardrepUpdate.delete( replyNo );
+    }
+}
+module.exports = {insert, repRead, boardrepUpdate}

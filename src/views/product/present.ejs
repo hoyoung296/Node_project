@@ -4,8 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOTORI</title>
+    <link rel="icon" href="/static/front_image/dotoree.png"image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/front/front.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/product/list.css"> 
+    <script src="/static/js/top.js"></script>
+    <script src="/static/js/product/product.js"></script>
+    <script>
+        const thema = "<%= thema %>";
+        window.onload = async () => {
+            await applyThema(thema)
+        }
+        let num = 0
+        const up5 = () => {
+            num = num + 5
+            document.getElementById("dotori").innerHTML = num
+        }
+        const up10 = () => {
+            num = num + 10
+            document.getElementById("dotori").innerHTML = num
+        }
+        const up100 = () => {
+            num = num + 100
+            document.getElementById("dotori").innerHTML = num
+        }
+     </script>
+     <style>
+        #preDotori{
+            width: 60px;
+            transform: rotate(30deg);
+        }
+        #prebtn{
+            font-size: 15px;
+            & > button {
+                width: 30px;
+                height: 16px;
+                font-size: 10px;
+            }
+        }
+        form{
+            width: 100%;
+            height: 700px;
+            border-radius: 10px;
+            border-style: solid;
+            border-color: var(--header-color);
+            padding: 20px 15px;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-color);
+        }
+     </style>
 </head>
-<body>
-    선물하기
+<body class="front_body">
+
+    <%- include('../include/header.ejs') %>
+    
+    <section>
+        <form action="sendPresent">
+            <div id="present">
+                <table>
+                    <tr>
+                        <td>
+                            <img src="/static/front_image/dotoree.png" id="preDotori">
+                            <h2 id="dotori"></h2>
+                        </td>
+                        <td id="prebtn">
+                            <button type="button" onclick="up5()">+5</button><br>
+                            <button type="button" onclick="up10()">+10</button><br>
+                            <button type="button" onclick="up100()">+100</button><br>
+                        </td>
+                    </tr>
+                </table>
+                
+                보내는 사람<br>
+                <input id="receive"><br>
+                받는 사람<br>
+                <input id="transmit"><br>
+                전송 메세지<br>
+                <textarea id="msg"></textarea><br>
+                <button>보내기</button>
+            </div>
+        </form>
+    </section>
+
+    <%-include('../include/footer.ejs')%>
 </body>
 </html>

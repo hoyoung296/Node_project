@@ -48,10 +48,6 @@ const pageRead = {
         startNum = (start - 1) * 5
         let result = await dao.daoRead.friendsview(startNum, username)
         return { result: result.rows, page, start }
-    },
-    check: async (body) => {
-        await dao.daoRead.check1(body)
-        await dao.daoRead.check2(body)
     }
 }
 const pageInsert = {

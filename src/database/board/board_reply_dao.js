@@ -20,4 +20,17 @@ const repRead = {
         return result;
     }
 }
-module.exports = {insert, repRead }
+const boardrepUpdate = {
+    delete: async (replyNo) => {
+        const sql = `DELETE FROM reply WHERE reply_no = :replyNo`;
+        let result;
+        try {
+            result = await (await con).execute(sql, { replyNo });
+        } catch (err) {
+            console.error("댓글 삭제 SQL 오류: ", err);
+            throw err;
+        }
+        return result;
+    }
+}
+module.exports = {insert, repRead, boardrepUpdate }
