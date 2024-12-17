@@ -41,22 +41,6 @@ const boardRead = {
         data = serCom.timeModify( data.rows );
         return data[0];
     },
-    /**
-     * 사용자의 게시글 목록 조회
-     * @param {number} uid - 로그인된 사용자 ID
-     * @returns {Promise<Array>} 게시글 배열
-     */
-    myPosts : async (uid) => {
-        try {
-            const posts = await dao.getPostsByUserId(uid);  // 사용자 ID로 게시글 조회
-            return posts;
-        } catch (error) {
-            console.error("게시글 조회 중 오류 발생:", error.message);
-            throw new Error("게시글을 가져오는 중 오류가 발생했습니다.");
-        }
-    },
-    
-    // 기존 서비스 함수들 (예: 글쓰기, 수정, 삭제 등)...
 }
 const boardInsert = {
     write : async ( body, file, fileValidation, uid,name ) => {
