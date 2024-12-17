@@ -14,7 +14,7 @@
     <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
     <script>
         // 비밀번호 확인 기능 (두 비밀번호가 일치하는지 확인)
-        const thema = "<%= thema %>" //사용자 thema변수 저장
+        const thema = "<%= thema.thema %>" //사용자 thema변수 저장
         window.onload = () => {
             applyThema(thema) //사용자 thema 설정
         }
@@ -41,7 +41,7 @@
             <div class="mypage">
                 <div class="mypage_delete">
                     <p class="mypage_title">회원탈퇴</p>
-                    <form action="/mypage/delete" method="POST">
+                    <form action="/mypage/delete" method="POST" onsubmit="return validatePasswords();">
                         <p>회원 탈퇴를 위해 비밀번호를 입력해주세요.</p>
                 
                         <!-- 현재 비밀번호 입력 -->
@@ -53,12 +53,14 @@
                         <input type="password" name="confirmPwd" id="confirmPwd" required><br>
                         <span id="pwdError" style="color:red; font-size: 12px;"></span><br>
                         
+
+                        <div class="myimg_button_group">
+                            <button class="myimg_button" type="submit">확인</button>
+                            <button class="myimg_button" type="button" onclick="history.back();">취소</button>
+                        </div>
                     </form>
                 </div>
-                <div class="myimg_button_group">
-                        <button class="myimg_button" type="submit">확인</button>
-                        <button class="myimg_button" type="button" onclick="history.back();">취소</button>
-                </div>
+                
             </div>
 </section>
 
