@@ -287,3 +287,7 @@
     background-color: var(--header-color);
     cursor: pointer;
 }
+#main_section{
+    margin-top: 10px;
+    min-height: 650px;
+}

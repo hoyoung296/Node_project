@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/static/css/friends/list1.css" rel="stylesheet">
+    <link href="/static/css/friends/paging.css" rel="stylesheet">
     <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
     <script>
         const thema = "<%= thema %>" //사용자 thema변수 저장
@@ -17,66 +18,66 @@
 <body>
     <div id="main">
         <table align="center" width="730px" height="500px" border="1">
-            <tr style="background: var(--header-color);">
+            <tr style="background: var(--header-color); height: 100px;">
                 <th>프로필사진</th>
                 <th>ID</th>
                 <th>NAME</th>
                 <th>친구 추가</th>
             </tr>
-            <% result.forEach (data=>{ %>
+            <% if(result.length==0) { %>
                 <tr>
-                    <% if(data.PICTURE) { %>
-                        <td>
-                            <a href="/friends/picture/?file=<%= data.PICTURE %>">
-                                <img src="/friends/download/?file=<%= data.PICTURE %>" alt="프로필사진" width="80px"
-                                    height="80px">
-                            </a>
-                        </td>
-                        <% } else { %>
-                            <td>
-                                이미지 없음
-                            </td>
-                            <% } %>
-                                <td>
-                                    <%= data.ID %>
-                                </td>
-                                <td>
-                                    <%= data.NAME %>
-                                </td>
-                                <td>
-                                    <form action="/friends/check" method="post">
-                                        <input type="hidden" name="id" value="<%= data.ID %>">
-                                        <button id="button1" type="submit">친구 추가</button>
-                                    </form>
-                                </td>
+                    <td colspan="4" align="center"><b>친구 추가 가능 id 없음</b></td>
                 </tr>
-                <% }) %>
-                    <% if(result.length==0) { %>
+                <% } else { %>
+                    <% result.forEach (data=>{ %>
                         <tr>
-                            <td colspan="4" align="center"><b>친구 추가 가능 id 없음</b></td>
-                        </tr>
-                        <% } else { %>
-                            <tr>
-                                <td colspan="4">
-                                    <% if(start> 1){ %>
-                                        <button onclick="location.href='/friends?start=<%= start-1 %>'"
-                                            style="cursor: pointer;">이전</button>
-                                        <% } %>
-                                            <% for (let i=1 ; i <=page ; i++) { %>
-                                                <a href="/friends?start=<%= i %>">
-                                                    <%= i %>
-                                                </a>
-                                                <% } %>
-                                                    <% if ( start < page ){ %>
-                                                        <button
-                                                            onclick="location.href='/friends?start=<%= start + 1 %>'"
-                                                            style="cursor: pointer;">다음</button>
-                                                        <% } %>
-                                                            <br>
-                                                            <%= start %>/<%= page %>
+                            <% if(data.PICTURE) { %>
+                                <td>
+                                    <a href="/friends/picture/?file=<%= data.PICTURE %>">
+                                        <img src="/friends/download/?file=<%= data.PICTURE %>" alt="프로필사진" width="80px"
+                                            height="80px">
+                                    </a>
                                 </td>
-                            </tr>
+                                <% } else { %>
+                                    <td>
+                                        이미지 없음
+                                    </td>
+                                    <% } %>
+                                        <td>
+                                            <%= data.ID %>
+                                        </td>
+                                        <td>
+                                            <%= data.NAME %>
+                                        </td>
+                                        <td>
+                                            <form action="/friends/check" method="post">
+                                                <input type="hidden" name="id" value="<%= data.ID %>">
+                                                <button id="button1" type="submit">+</button>
+                                            </form>
+                                        </td>
+                        </tr>
+                        <% }) %>
                             <% } %>
+        </table>
+        <table class="board_page" align="center">
+            <tr>
+                <td class="board_button">
+                    <% if (start <=1) { %>
+                        <button disabled>이전</button> |
+                        <% } else { %>
+                            <button type="button" onclick="location.href='/friends?start=<%= start-1 %>'">이전</button> |
+                            <% } for (let i=1; i <=page; i++) { %>
+                                <a href="/friends?start=<%= i %>">
+                                    <%= i %>
+                                </a>
+                                <% } if (start < page) { %>
+                                    | <button type="button"
+                                        onclick="location.href='/friends?start=<%= start+1 %>'">다음</button>
+                                    <% } else { %>
+                                        | <button disabled>다음</button>
+                                        <% } %>
+                </td>
+            </tr>
         </table>
         <button id="button2" onclick="location.href='/main'">메인 페이지</button>
     </div>

@@ -81,8 +81,8 @@ function Enemy() { // 도토리를 만들기 위한 자료, 도토리 만드는 
 
         if (this.y >= canvas.height - 64) {
             gameOver = true
-            let msg = `<br><button onclick="result_form()" style='color:var(--text-color); width:200px; height:80px; background:var(--header-color); cursor:pointer; font-size:25px; font-weight:bold; margin : 0 auto; margin-top:-600px; position:relative'>
-            결과 확인</button>`
+            let msg = `<br><button onclick="result_form()" style='color:var(--text-color); width:200px; height:80px; background:var(--header-color); cursor:pointer; font-size:25px; font-weight:bold; margin : 0 auto; margin-top:-600px; 
+            border:none; position:relative'>결과 확인</button>`
             document.getElementById("main").insertAdjacentHTML("beforeend", msg)
         }
     }
@@ -113,7 +113,7 @@ function setupKeyboardListener() {
 function kDown(event) {
     event.preventDefault();
 
-    if (spaceshipY >= 0 && spaceshipY <= 504 && spaceshipX >= 0 && spaceshipX <= 634) {
+    if (spaceshipY >= 0 && spaceshipY <= 504 && spaceshipX >= -32 && spaceshipX <= 666) {
         switch (event.code) {
             case 'ArrowUp':
                 spaceshipY -= 10
@@ -129,11 +129,11 @@ function kDown(event) {
         }
     }
 
-    if (spaceshipX < 0)
-        spaceshipX = 0
+    if (spaceshipX < -32)
+        spaceshipX = -32
 
-    if (spaceshipX > 634)
-        spaceshipX = 634
+    if (spaceshipX > 666)
+        spaceshipX = 666
 
     if (spaceshipY < 0)
         spaceshipY = 0

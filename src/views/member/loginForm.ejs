@@ -10,23 +10,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Russo+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap"rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nanum+Gothic&family=Russo+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/front/front.css">
     <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
-    <script>
-        const thema = "<%= thema %>" //사용자 thema변수 저장
-        window.onload = () => {
-            applyThema(thema) //사용자 thema 설정
-        }
-    </script>
+    <script src="/static/js/member/loginform.js"></script>
 </head>
-<body class="front_body">
 
-    <%- include('../include/header.ejs')%>
+<body class="front_body">
+    <%- include('../include/header.ejs') %>
     
-        <section>
-<body>
-    <body>
+    <section>
         <div id="main">
             <form action="/member/login_check" method="post">
                 <!-- 아이디 입력 -->
@@ -39,6 +32,9 @@
                 <div class="form-group">
                     <label for="pwd" aria-hidden="true">비밀번호</label>
                     <input type="password" id="pwd" name="pwd" required placeholder="비밀번호를 입력하세요">
+                    <!-- 비밀번호 보이기/숨기기 버튼 -->
+                    <img src="/static/front_image/eye_closed_icon.png" id="toggle-icon"
+                         onclick="togglePassword()">
                 </div>
     
                 <!-- 로그인 버튼 -->
@@ -53,13 +49,9 @@
                 </div>
             </form>
         </div>
-    </body>
-    
-</body>
-</section>
+    </section>
 
-<%- include('../include/footer.ejs')%>
-
+    <%- include('../include/footer.ejs') %>
 </body>
 
 </html>
