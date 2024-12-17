@@ -65,11 +65,11 @@ const boardInsert = {
         console.log(body)
         const result = await dao.boardInsert.write(body);
         if (result != 0) {
-            msg = "등록 성공하였습니다"
+            msg = "게시글이 등록되었습니다."
             url = "/";
         }
         else {
-            msg = "문제가 발생하였습니다"
+            msg = "문제가 발생하였습니다."
             url = "/board/write_form";
         }
         return serCom.getMessage(msg, url);
@@ -82,10 +82,10 @@ const boardUpdate = {
     delete: (writeNo) => {
         const result = dao.boardUpdate.delete(writeNo);
         if (result != 0) {
-            msg = "게시글 삭제 성공";
+            msg = "게시글이 삭제되었습니다.";
             url = "/main";
         } else {
-            msg = "게시글 삭제 실패";
+            msg = "게시글 삭제에 실패했습니다.";
             url = "/main";
         }
         return serCom.getMessage(msg, url);
@@ -100,10 +100,10 @@ const boardUpdate = {
         let message = {}
         message.result = result.rowsAffected;
         if (message.result === 1) {
-            msg = "수정 완료"
+            msg = "게시글 수정이 완료되었습니다."
             url = `/board/data/${body.write_no}`;
         } else {
-            msg = "문제 발생"
+            msg = "게시글 수정에 실패했습니다."
             url = `/board/modify_form/${body.write_no}`;
             message.result = 0;
         }

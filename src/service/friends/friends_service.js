@@ -59,10 +59,10 @@ const pageInsert = {
         console.log("친구 ser result : ", result)
         let msg = ""
         if (result != 0) {
-            msg = "친구추가 완료!!!!"
+            msg = "친구추가 되었습니다."
         }
         else {
-            msg = "이미 친구관계입니다!!!!"
+            msg = "이미 친구인 회원입니다."
         }
         let url = "/friends/alram"
         return pageInsert.getMessage(msg, url)
