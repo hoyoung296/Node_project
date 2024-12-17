@@ -27,11 +27,11 @@ const views = {
     },
     download: async (req, res) => {
         console.log("req.query.file : ", req.query.file)
-        const files = fs.readdirSync("./upload_file")
+        const files = fs.readdirSync("./public/uploads")
         const matchedFile = files.find(file => file.endsWith(`${req.query.file}`))
         console.log("matchedFile : ", matchedFile)
         if (matchedFile) {
-            const fullPath = path.join("./upload_file", matchedFile)
+            const fullPath = path.join("./public/uploads", matchedFile)
             return res.download(fullPath)
         }
     },

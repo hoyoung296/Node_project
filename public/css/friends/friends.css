@@ -39,4 +39,5 @@ button {
     font-size: 25px;
     font-weight: bold;
     cursor: pointer;
+    border: none;
 }

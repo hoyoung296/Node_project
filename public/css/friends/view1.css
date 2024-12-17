@@ -11,6 +11,7 @@
         border-collapse: collapse;
         border-radius: 30px;
         overflow: hidden;
+        margin-top: 70px;
     }
 }
 
@@ -23,18 +24,7 @@
         font-size: 25px;
         font-weight: bold;
         cursor: pointer;
-    }
-}
-
-#form2 {
-    margin-top: 30px;
-    text-align: center;
-
-    &>button {
-        background: var(--header-color);
-        font-size: 25px;
-        font-weight: bold;
-        cursor: pointer;
+        border: none;
     }
 }
 
@@ -44,4 +34,5 @@
     font-weight: bold;
     cursor: pointer;
     margin-top: 30px;
+    border: none;
 }
