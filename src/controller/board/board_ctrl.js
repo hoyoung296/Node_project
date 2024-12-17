@@ -86,8 +86,8 @@ const process = {
     },
     delete: (req, res) => {
         file_process.delete(req.params.imgName);
-        ser.boardUpdate.delete(req.params.writeNo);
-        res.redirect("/board/list");
+        const msg = ser.boardUpdate.delete(req.params.writeNo);
+        res.send(msg);
     },
     modify : async ( req, res) => {
         const deleteFile = req.body.change_file;
