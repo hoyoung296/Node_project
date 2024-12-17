@@ -23,30 +23,30 @@
 
     <%- include('../include/header.ejs')%>
     
-        <section>
-            <div class="mypage">
-                <form action="/mypage/profile" method="POST" enctype="multipart/form-data">
-                    <!-- 프로필 사진 -->
-                    <div  class="mypage_myid" >
-                        <label for="profilePic">프로필 사진</label><br>
-                        <img src="<%= user.picture ? '/uploads/' + user.picture : '/default-profile.png' %>" alt="Profile Picture" width="150"><br>
-                        <input type="file" name="profilePic" id="profilePic">
-                    </div>
-                
-                    <!-- 상태 메시지 -->
-                    <div  class="mypropile">
-                        <label for="statusMessage">상태 메시지를 입력해주세요.</label><br>
-                        <textarea name="statusMessage" id="statusMessage" rows="3" cols="30" ><%= user.msg ? user.msg : '' %></textarea>
-                    </div>
-                    <div class="myimg_button_group">
-                        <button class="myimg_button" type="submit">저장</button>
-                        <button class="myimg_button" type="button" onclick="history.back();">취소</button>
-                    </div>
-                </form>
-            </div>
-</section>
+    <section>
+        <div class="mypage">
+            <form action="/mypage/profile" method="POST" enctype="multipart/form-data">
+                <!-- 프로필 사진 -->
+                <div  class="mypage_myid" >
+                    <label for="profilePic">프로필 사진</label><br>
+                    <img src="<%= user.PICTURE ? '/uploads/' + user.PICTURE : '/default-profile.png' %>" alt="Profile Picture" width="150"><br>
+                    <input type="file" name="profilePic" id="profilePic">
+                </div>
+            
+                <!-- 상태 메시지 -->
+                <div  class="mypropile">
+                    <label for="statusMessage">상태 메시지를 입력해주세요.</label><br>
+                    <textarea name="statusMessage" id="statusMessage" rows="3" cols="30" ><%= user.MSG %></textarea>
+                </div>
+                <div class="myimg_button_group">
+                    <button class="myimg_button" type="submit">저장</button>
+                    <button class="myimg_button" type="button" onclick="history.back();">취소</button>
+                </div>
+            </form>
+        </div>
+    </section>
 
-<%- include('../include/footer.ejs')%>
+    <%- include('../include/footer.ejs')%>
 
 </body>
 

@@ -5,6 +5,7 @@ module.exports = (app) => {
     app.use((req, res, next) => {
         res.locals.username = req.session.name || null;  // session에서 이름 가져오기
         res.locals.id = req.session.uid || null;         // session에서 uid 가져오기
+        res.locals.picture = req.session.picture || null;
         next(); // 다음 미들웨어로 전달
     });
     

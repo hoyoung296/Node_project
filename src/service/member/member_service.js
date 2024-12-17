@@ -2,6 +2,7 @@ const dao = require("../../database/member/member_dao")
 const serCom = require("../ser_common");
 const emSend = require("./emailSend_service")
 const bcrypt = require("bcrypt");
+const mypser = require("../mypage/mypage_service");
 
 const process = {
     ser_insert: async (body) => {
@@ -26,6 +27,7 @@ const process = {
         console.log("login : ", result.rows[0].ID)
         const admin = result.rows[0].ID;
         const loginFail = await dao.process.selectLoginFailCount(body.id);
+        const userInfo = await mypser.getUserInfo(body.id);
         let LoginFailCount = loginFail[0].LOGIN_FAIL_COUNT;
         let LoginFailTime = loginFail[0].LOGIN_FAIL_TIME;
         let currentTime = loginFail[0].CURRENT_TIME;
@@ -45,6 +47,7 @@ const process = {
                         await dao.process.clearLoginFailCount(body.id);
                         req.session.uid = body.id;
                         req.session.name = result.rows[0].NAME
+                        req.session.picture = userInfo.PICTURE
                         res.cookie("isLogin", true)
                         msg = "성공"
                         url = "/"
@@ -54,13 +57,16 @@ const process = {
                         await dao.process.clearLoginFailCount(body.id);
                         req.session.uid = admin;
                         req.session.name = result.rows[0].NAME
+                        req.session.picture = userInfo.PICTURE
                         res.cookie("isLogin", true)
                         msg = `${req.session.name}님이 로그인 성공`
                         url = "/"
                     } else {
                         await dao.process.clearLoginFailCount(body.id);
                         req.session.uid = body.id;
+                        console.log("mem", req.session.uid)
                         req.session.name = result.rows[0].NAME
+                        req.session.picture = userInfo.PICTURE
                         res.cookie("isLogin", true)
                         msg = `${req.session.name}님이 로그인 성공`
                         url = "/"
