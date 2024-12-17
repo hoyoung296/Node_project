@@ -1,12 +1,14 @@
 /* 메인 폼 컨테이너 */
 #write_from {
     width: 100%;
+    height: 100%;
     margin: 0 auto;
     padding: 20px;
     border: solid var(--header-color);
     border-radius: 10px;
     font-family: "Nanum Gothic";
     color: var(--text-color);
+    position: relative;
 }
 
 .select_box {
@@ -53,9 +55,11 @@
     margin: 15px;
 }
 #write_button{
-    display: flex;
-    justify-self: center;
-    gap: 20px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    
 }
 #write_from input[value="글쓰기"], #write_from input[value="목록보기"], #write_from input[value="수정하기"], #write_from input[value="돌아가기"]{
     background-color: var(--header-color);
