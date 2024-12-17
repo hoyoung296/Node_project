@@ -35,17 +35,10 @@
                     <img src="/static/uploads/<%= user.picture %>" alt="Profile Picture" width="150">
                     <p class="mypage_msg"><%= user.msg ? user.msg : '상태 메시지가 없습니다.' %></p>
                     <p><a href="/mypage/profile">프로필 수정</a></p>
-                </div>
-                
-                <div class="myinfo">
-                    <p class="mypage_title">내 정보 수정하기</p>
-                    <ul>
+                    <div class="myinfo">
                         <li><a href="/mypage/edit">내정보 수정</a></li>
-                        <li><a href="/mypage/delete">회원탈퇴</a></li>
-                        <!-- 나호영 친구 추가 기능 알람 목록 및 친구 목록 확인 경로 추가 -->
-                        <li><a href="/friends/alram">알람 확인</a></li>
-                        <li><a href="/friends/friendsview">친구 확인</a></li>
-                    </ul>
+                        <li><a href="/mypage/delete">회원탈퇴</a></li><!-- 나호영 친구 추가 기능 알람 목록 및 친구 목록 확인 경로 추가++소담:메인nav 프로필로 위치 이동했습니다 -->
+                    </div>
                 </div>
                 
                 <div>
