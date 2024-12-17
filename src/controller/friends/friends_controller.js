@@ -34,6 +34,9 @@ const views = {
             const fullPath = path.join("./public/uploads", matchedFile)
             return res.download(fullPath)
         }
+        else {
+            return res.redirect("/friends")
+        }
     },
     picture: async (req, res) => {
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
