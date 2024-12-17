@@ -50,7 +50,7 @@ const process = {
     insert: async (req, res) => {
         await ser.pageInsert.insert(req.body)
         res.send(`<script>
-                alert("메세지 전송 완료")
+                alert("메세지가 전송되었습니다.")
                 location.href="/friends"
             </script>`)
     },

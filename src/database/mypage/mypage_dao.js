@@ -3,7 +3,7 @@ const con = require("../db_common")
 const dao = {
     // 사용자 정보 조회
     getUserInfo: async (userId) => {
-        const sql = `SELECT id, pwd, name, addr, phone, email, picture, msg FROM member WHERE id = :userId`;
+        const sql = `SELECT * FROM member WHERE id = :userId`;
         const data = await (await con).execute(sql, [userId]);
         if (data.rows.length === 0) {
             return null;

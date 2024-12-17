@@ -32,8 +32,8 @@
                 </div>
                 <div class="mypropile">
                     <p class="mypage_title">내 프로필 확인하기</p>
-                    <img src="<%= user.picture ? '/uploads/' + user.picture : '/uploads/default-profile.png' %>" alt="Profile Picture" width="150">
-                    <p class="mypage_msg"><%= user.msg ? user.msg : '상태 메시지가 없습니다.' %></p>
+                    <img src="<%= '/uploads/' + user.PICTURE %>" alt="Profile Picture" width="150">
+                    <p class="mypage_msg"><%= user.MSG %></p>
                     <p><a href="/mypage/profile">프로필 수정</a></p>
                     <div class="myinfo">
                         <li><a href="/mypage/edit">내정보 수정</a></li>

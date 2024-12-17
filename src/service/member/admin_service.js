@@ -1,7 +1,24 @@
 const dao = require("../../database/member/admin_dao")
 const serCom = require("../ser_common");
 const process = {
-    ser_memberlist2 : async() => {
+    ser_eidt: async (body) => {
+        delete body.email
+        const result = await dao.process.dao_edit(body)
+        // console.log(body)
+        if (result != 0) {
+            msg = "회원 수정 성공하였습니다.";
+            url = "/admin/memberlist2";
+        } else {
+            msg = "회원 수정 실패하였습니다.";
+            url = "/admin/memberlist2";
+        }
+        return serCom.getMessage(msg, url);
+    },
+    ser_memberget: async (uid) => {
+        const data = await dao.process.dao_memberget(uid)
+        return data.rows;
+    },
+    ser_memberlist2: async () => {
         const data = await dao.process.dao_memberlist2()
         // console.log("data.rows : ",data.rows);
         return data.rows;
@@ -19,15 +36,15 @@ const process = {
 
         const data = await dao.process.dao_memberlist(startNum)
         // console.log("data.rows : ",data.rows);
-        return {data : data.rows, start,page};
+        return { data: data.rows, start, page };
     },
     ser_memberdel: async (id) => {
         const rs = await dao.process.dao_memberdel(id)
         if (rs != 0) {
-            msg = "삭제 성공"
+            msg = "회원 삭제 성공하였습니다."
             url = "/admin/memberlist"
         } else {
-            msg = "삭제 실패"
+            msg = "회원 삭제 실패하였습니다."
             url = "/admin/memberlist"
         }
         return serCom.getMessage(msg, url);
@@ -42,10 +59,10 @@ const process = {
     ser_boarddel: async (no) => {
         const rs = await dao.process.dao_boarddel(no)
         if (rs != 0) {
-            msg = "삭제 성공"
+            msg = "게시글 삭제 성공하였습니다."
             url = "/admin/boardlist"
         } else {
-            msg = "삭제 실패"
+            msg = "게시글 삭제 실패하였습니다."
             url = "/admin/boardlist"
         }
         return serCom.getMessage(msg, url);

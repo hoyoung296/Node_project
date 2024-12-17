@@ -39,16 +39,8 @@ const views = {
             if (!userInfo) {
                 return res.send("<script>alert('사용자 정보를 불러올 수 없습니다.'); location.href = '/member/login_form';</script>");
             }
-    
-            // 프로필 사진 기본값 설정
-            userInfo.picture = userInfo.picture || 'default-profile.png';
-            userInfo.msg = userInfo.msg || '상태 메시지가 없습니다.';
 
-            // 렌더링 시 userInfo를 뷰에 전달
-            userInfo.picture = req.session.picture;
-            userInfo.msg = req.session.statusMessage;
-
-            console.log("메인페이지 세션 프로필 사진:", req.session.picture); // 확인용 로그
+            console.log("메인페이지 세션 프로필 사진:", userInfo.MSG); // 확인용 로그
     
             // 마이페이지 렌더링
             res.render("mypage/main", { user: userInfo, thema });
@@ -80,10 +72,6 @@ const views = {
                 return res.send("<script>alert('사용자 정보를 불러올 수 없습니다.'); history.back();</script>");
             }
             
-            // 세션의 프로필 사진과 상태 메시지 반영
-            userInfo.picture = req.session.picture || userInfo.picture || 'default-profile.png';  // 세션의 프로필 사진 반영
-            userInfo.msg = req.session.statusMessage || userInfo.msg || '상태 메시지가 없습니다.'; // 세션의 상태 메시지 반영
-            
             // 프로필 페이지 렌더링
             res.render("mypage/profile", { user: userInfo, thema }); // userInfo를 뷰로 전달
         } catch (err) {
@@ -93,8 +81,8 @@ const views = {
 
     // 회원탈퇴 페이지
     getDeletePage: async (req, res) => {
-        const thema = {thema : await mctrl.userThema(req.session)} //사용자 테마 설정
-        res.render("mypage/delete", thema);
+        const thema = await mctrl.userThema(req.session); // 사용자 테마 설정
+        res.render("mypage/delete", { thema }); // 단일 변수 'thema'로 전달
     }
 };
 
@@ -183,44 +171,6 @@ const process = {
         } catch (err) {
             res.send("<script>alert('회원 탈퇴에 실패했습니다.'); history.back();</script>");
         }
-    },
-
-    login: async (req, res) => {
-        const userId = req.body.userId;
-        const password = req.body.password;
-    
-        try {
-            const userInfo = await ser.getUserInfo(userId);
-    
-            if (!userInfo || !await bcrypt.compare(password, userInfo.pwd)) {
-                return res.send("<script>alert('로그인 실패'); location.href = '/member/login_form';</script>");
-            }
-    
-            // 세션에 최신 사용자 정보 저장
-            req.session.uid = userInfo.id;
-            req.session.name = userInfo.name;
-            req.session.picture = userInfo.picture || 'default-profile.png';
-            req.session.statusMessage = userInfo.msg || '상태 메시지가 없습니다.';
-    
-            req.session.save(() => {
-                res.redirect('/mypage');
-            });
-        } catch (err) {
-            console.error("Login error:", err);
-            res.send("<script>alert('로그인 처리에 실패했습니다.'); location.href = '/member/login_form';</script>");
-        }
-    },
-
-    // 로그아웃 처리
-    logout: (req, res) => {
-        // 세션의 사용자 정보만 초기화
-        req.session.uid = null;
-        req.session.name = null;
-        req.session.picture = req.session.picture || 'default-profile.png';
-        req.session.statusMessage = req.session.statusMessage || '상태 메시지가 없습니다.';
-    
-        // 로그아웃 후 메인 페이지로
-        res.send("<script>alert('로그아웃되었습니다.'); location.href = '/';</script>");
     }
 };
 

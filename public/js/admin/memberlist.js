@@ -18,3 +18,6 @@ function deleteMember(id) {
             });
     }
 }
+function editMember(id) {
+    location.href = '/admin/editmember/'+id
+}
