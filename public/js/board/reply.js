@@ -16,7 +16,8 @@ const reply_hide = () => {
     $("#modal_wrap").hide();
 }
 
-function rep(){
+function rep(no){
+    
     console.log("req  실행")
     let form = {}
     let arr = $("#frm").serializeArray();
@@ -34,7 +35,17 @@ function rep(){
         if(result==1){
             alert("답글 성공")
             reply_hide();
-            init(form["write_no"])
+            location.href = '/board/data/' + no
+            // init(form["write_no"])
+            // const html = `
+            //     <div class="first">
+            //         <p class="first-user">아이디: ${form["id"]}</p>
+            //         <p class="first-date">작성일: ${new Date().toLocaleString()}</p>
+            //         <p class="first-content">내용: ${form["content"]}</p>
+            //     </div>
+            // `;
+            // const content = document.getElementById("content"); // 댓글이 추가될 부모 요소
+            // content.insertAdjacentHTML("beforeend", html); // 새로운 댓글 추가
         }else{
         alert("문제발생")
         }       

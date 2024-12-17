@@ -40,14 +40,17 @@
                     <textarea id="write_content" name="content" rows="12" cols="50"><%= data.CONTENT %></textarea>
                     <hr>
                     <div id="write_img">
+                        <b>이미지 첨부파일</b>
                     <input type="file" name="image_file_name" onchange="readURL(this)">
+                    </div>
+                        <hr>
                     <% if(data.UPLOAD_FILE === "nan" ){%>
                         <img id="preview" />
                         <%}else{%>
                             <img id="preview" src="/board/download/<%= data.CHANGE_FILE %>">
                         <%}%>
-                   </div>
-                    
+                    </div>
+                
                     <div id="write_button">
                         <input type="submit" value="수정하기">
                         <input type="button" onclick="history.back()" value="돌아가기">
