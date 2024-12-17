@@ -68,16 +68,13 @@
 #board_edit{ /*댓글 수정 등*/
     grid-area: board_edit;
     display: block;
-    border-style: solid;
-    height: auto;
-    border-color: var(--header-color);
-    border-width: 3px;
-    border-radius: 10px;
+    
 }
 #board_button{
     display: flex;
     padding: 10px;
     margin: 10px 0;
+    
 }
 #board_button input[type="button"] {
     font-size: 13px;
@@ -87,6 +84,7 @@
     color: var(--text-color);
     cursor: pointer;
     margin: 0 10px;
+    margin-bottom: 15px;
     width: 80px;
     height: 25px;
     
@@ -98,6 +96,7 @@
     display: block;
     margin-bottom: 25px;
     margin-left: 10px;
+    
 }
 #reply_id{
     font-weight: normal;
@@ -115,8 +114,15 @@
     color: #707070;
     font-weight: lighter;
 }
-
-
+#board_comment{
+    border-style: solid;
+    border-color: var(--header-color);
+    border-width: 3px;
+    border-radius: 10px;
+}
+#board_comment.hidden-border {
+    border: none;
+}
 
 .hidden-links { /*main_list.ejs에 있음*/
     display: none;

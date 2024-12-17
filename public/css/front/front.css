@@ -128,8 +128,9 @@
     
 }
 .propile .login{ 
-    line-height: 25px;
+    line-height: 20px;
     margin: auto;
+    margin-top: 20px;
 }
 .propile .login a{
     font-weight: bold;
