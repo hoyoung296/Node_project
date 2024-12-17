@@ -15,7 +15,7 @@ const insert = {
 }
 const repRead = {
     data : async( num ) => {
-        const sql = `select * from reply where reply_group=${num}`;
+        const sql = `select * from reply where reply_group=${num} ORDER BY save_date desc`;
         const result = await ( await con).execute(sql);
         return result;
     }
