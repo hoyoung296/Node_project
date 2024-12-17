@@ -6,7 +6,6 @@ const mctrl = require("../controller") //thema설정하려고 추가
 const views = {
     list: async (req, res) => {
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
-        await ser.pageRead.check(req.session.uid)
         let data = await ser.pageRead.list(req.query.start, req.session.uid)
         res.render("friends/list", { result: data.result, page: data.page, start: data.start, name: req.session.uid, thema })
     },
@@ -27,12 +26,15 @@ const views = {
     },
     download: async (req, res) => {
         console.log("req.query.file : ", req.query.file)
-        const files = fs.readdirSync("./upload_file")
+        const files = fs.readdirSync("./public/uploads")
         const matchedFile = files.find(file => file.endsWith(`${req.query.file}`))
         console.log("matchedFile : ", matchedFile)
         if (matchedFile) {
-            const fullPath = path.join("./upload_file", matchedFile)
+            const fullPath = path.join("./public/uploads", matchedFile)
             return res.download(fullPath)
+        }
+        else {
+            return res.redirect("/friends")
         }
     },
     picture: async (req, res) => {

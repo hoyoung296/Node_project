@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/static/css/friends/list1.css" rel="stylesheet">
+    <link href="/static/css/friends/paging.css" rel="stylesheet">
     <script src="/static/js/top.js"></script> <!-- 사용자thema설정을 위한 js파일 -->
     <script>
         const thema = "<%= thema %>" //사용자 thema변수 저장
@@ -17,68 +18,90 @@
 <body>
     <div id="main">
         <table align="center" width="730px" height="500px" border="1">
-            <tr style="background: var(--header-color);">
-                <th>번호</th>
-                <th>보낸 사람</th>
-                <th>받는 사람</th>
+            <tr style="background: var(--header-color); height: 100px;">
+                <th>구분</th>
+                <th>보낸 사람/받은 사람</th>
                 <th>제목</th>
-                <th>내용</th>
                 <th>날짜</th>
+                <th>삭제</th>
             </tr>
-            <% result.forEach (data=>{ %>
+            <% if(result.length==0) { %>
                 <tr>
-                    <td>
-                        <a href="/friends/view?num=<%= data.NUM %>">
-                            <%= data.NUM %>
-                        </a>
-                    </td>
-                    <td>
-                        <%= data.SENDER %>
-                    </td>
-                    <td>
-                        <%= data.RECEIVER %>
-                    </td>
-                    <td>
-                        <%= data.SUBJECT %>
-                    </td>
-                    <td>
-                        <%= data.CONTENT %>
-                    </td>
-                    <td>
-                        <%= data.SAVE_DATE %>
-                    </td>
+                    <td colspan="5" align="center"><b>등록된 글 없음</b></td>
                 </tr>
-                <% }) %>
-                    <% if(result.length==0) { %>
-                        <tr>
-                            <td colspan="6" align="center"><b>등록된 글 없음</b></td>
-                        </tr>
-                        <% } else { %>
+                <% } else { %>
+                    <% result.forEach (data=>{ %>
+                        <% if(data.SENDER==name) { %>
                             <tr>
-                                <td colspan="6">
-                                    <% if(start> 1){ %>
-                                        <button onclick="location.href='/friends/alram?start=<%= start-1 %>'"
-                                            style="cursor: pointer;">이전</button>
-                                        <% } %>
-                                            <% for (let i=1 ; i <=page ; i++) { %>
-                                                <a href="/friends/alram?start=<%= i %>">
-                                                    <%= i %>
-                                                </a>
-                                                <% } %>
-                                                    <% if ( start < page ){ %>
-                                                        <button
-                                                            onclick="location.href='/friends/alram?start=<%= start + 1 %>'"
-                                                            style="cursor: pointer;">다음</button>
-                                                        <% } %>
-                                                            <br>
-                                                            <%= start %>/<%= page %>
+                                <td>
+                                    발신
+                                </td>
+                                <td>
+                                    <%= data.RECEIVER %>
+                                </td>
+                                <td>
+                                    <a href="/friends/view?num=<%= data.NUM %>">
+                                        <%= data.SUBJECT %>
+                                    </a>
+                                </td>
+                                <td>
+                                    <%= data.SAVE_DATE %>
+                                </td>
+                                <td>
+                                    <form action="/friends/del" method="post" id="form2">
+                                        <input type="hidden" name="num" value="<%= data.NUM %>">
+                                        <button type="submit">-</button>
+                                    </form>
                                 </td>
                             </tr>
                             <% } %>
+                                <% if(data.RECEIVER==name) { %>
+                                    <tr>
+                                        <td>
+                                            수신
+                                        </td>
+                                        <td>
+                                            <%= data.SENDER %>
+                                        </td>
+                                        <td>
+                                            <a href="/friends/view?num=<%= data.NUM %>">
+                                                <%= data.SUBJECT %>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <%= data.SAVE_DATE %>
+                                        </td>
+                                        <td>
+                                            <form action="/friends/del" method="post" id="form2">
+                                                <input type="hidden" name="num" value="<%= data.NUM %>">
+                                                <button type="submit">-</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                                        <% }) %>
+                                            <% } %>
+        </table>
+        <table class="board_page" align="center">
+            <tr>
+                <td class="board_button">
+                    <% if(start!=1) { %>
+                        <button type="button" onclick="location.href='/friends?start=<%= start-1 %>'">이전</button> |
+                        <% } %>
+                            <% for (let i=1; i <=page; i++) { %>
+                                <a href="/friends?start=<%= i %>">
+                                    <%= i %>
+                                </a>
+                                <% } %>
+                                    <% if (start!=page) { %>
+                                        | <button type="button"
+                                            onclick="location.href='/friends?start=<%= start+1 %>'">다음</button>
+                                        <% } %>
+                </td>
+            </tr>
         </table>
         <button id="button2" onclick="location.href='/main'">메인 페이지</button>
     </div>
-
 </body>
 
 </html>

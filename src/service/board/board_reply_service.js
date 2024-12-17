@@ -10,7 +10,13 @@ const repRead = {
         data : async( num ) => {
             let result = await dao.repRead.data( num )
             result = common.timeModify( result.rows );
+            console.log("result : ",result)
             return result;
         }
 }
-module.exports = {insert, repRead}
+const boardrepUpdate = {
+    delete : async ( replyNo ) => {
+        await dao.boardrepUpdate.delete( replyNo );
+    }
+}
+module.exports = {insert, repRead, boardrepUpdate}

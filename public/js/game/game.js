@@ -16,8 +16,8 @@ let gameOver = false // true이면 게임이 끝남, false이면 게임이 안�
 let score = 0
 
 // 사람 좌표 > 사람 죄표는 계속 바뀌기 때문에 따로 뺴줌
-let spaceshipX = 317
-let spaceshipY = 504
+let spaceshipX = 317 // 계산하기 싫으면 (canvas.width - 이미지가로크기)/2
+let spaceshipY = 504 // 계산하기 싫으면 canvas.height- 이미지세로크기
 
 // 총알 만들기
 // 1. 스페이스바를 눌렀다 떼면 총알발사
@@ -81,14 +81,16 @@ function Enemy() { // 도토리를 만들기 위한 자료, 도토리 만드는 
 
         if (this.y >= canvas.height - 64) {
             gameOver = true
-            let msg = `<br><button onclick="result_form()" style='color:var(--text-color); width:200px; height:80px; background:var(--header-color); cursor:pointer; font-size:25px; font-weight:bold; margin : 0 auto; margin-top:-600px; position:relative'>
-            결과 확인</button>`
+            let msg = `<br><button onclick="result_form()" style='color:var(--text-color); width:200px; height:80px; background:var(--header-color); cursor:pointer; font-size:25px; font-weight:bold; margin : 0 auto; margin-top:-600px; 
+            border:none; position:relative'>결과 확인</button>`
             document.getElementById("main").insertAdjacentHTML("beforeend", msg)
         }
     }
 }
 
 function loadImage() { // 각 요소별 이미지 가져오기
+    // new Image()는 JavaScript에서 이미지를 생성하는 데 사용되는 객체 생성자. HTML의 <img> 요소와 동일한 역할을 하지만, 
+    // 코드에서 동적으로 이미지를 로드하고 다룰 수 있도록 제공.
     backgroundImage = new Image();
     backgroundImage.src = "/static/game_image/배경.jpg"
 
@@ -113,7 +115,7 @@ function setupKeyboardListener() {
 function kDown(event) {
     event.preventDefault();
 
-    if (spaceshipY >= 0 && spaceshipY <= 504 && spaceshipX >= 0 && spaceshipX <= 634) {
+    if (spaceshipY >= 0 && spaceshipY <= 504 && spaceshipX >= -32 && spaceshipX <= 666) {
         switch (event.code) {
             case 'ArrowUp':
                 spaceshipY -= 10
@@ -129,11 +131,11 @@ function kDown(event) {
         }
     }
 
-    if (spaceshipX < 0)
-        spaceshipX = 0
+    if (spaceshipX < -32)
+        spaceshipX = -32
 
-    if (spaceshipX > 634)
-        spaceshipX = 634
+    if (spaceshipX > 666)
+        spaceshipX = 666
 
     if (spaceshipY < 0)
         spaceshipY = 0
@@ -192,26 +194,19 @@ function render() {
     }
 }
 
-const dotori = () => {
-    let num = score
-    document.getElementById("a").innerHTML = num + "개"
-    document.getElementById("b").value = num
-}
-
 function main() {
     if (!gameOver) { // gameOver가 true면 main함수 중지
         render()
         console.log("animation calls main function")
-        dotori()
         requestAnimationFrame(main)
     }
-    else
+    else {
+        let num = score
+        document.getElementById("a").innerHTML = num + "개"
+        document.getElementById("b").value = num
         ctx.drawImage(gameOverImage, 215, 100, 300, 300)
+    }
 }
-
-// 방향키를 누르면
-// 사람의 좌표가 바뀌고
-// 다시 render 그려준다.
 
 loadImage() // 이미지 가져오기
 setupKeyboardListener(); // 키보드 업다운 이벤트 발생

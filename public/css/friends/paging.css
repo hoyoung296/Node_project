@@ -1,0 +1,31 @@
+.board_page{
+    color: var(--text-color);
+    font-family: "Nanum Gothic";
+    font-size: 13px;
+    width: 730px;
+}
+.board_button{
+    display: block;
+    color:  var(--text-color);
+    font-family: "Nanum Gothic";
+    font-size: 13px;
+}
+.board_button button{
+    background-color: transparent;
+}
+.board_page .board_button button,
+.board_page a {
+    font-size: 13px;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+.board_page .board_button button:hover,
+.board_page a:hover {
+    text-decoration: underline;
+}
+.board_page a {
+    margin: 0 10px;
+}

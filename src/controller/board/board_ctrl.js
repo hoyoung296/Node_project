@@ -11,8 +11,8 @@ const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 
         console.log(" req.query.start : ", req.query.start)
         const boardList = await ser.boardRead.list( req.query.start );
         const isLoggedIn = req.session.user ? true : false;
-        console.log("data : ",boardList.list)
-        const data = { list : boardList.list, start : boardList.start, page : boardList.page, isLoggedIn,thema }
+        // console.log("data : ",boardList.list)
+        const data = { list : boardList.list, start : boardList.start, page : boardList.page, isLoggedIn,thema,username : req.session.username }
         ejs.renderFile(path.join(__dirname, '../../views/board/main_list.ejs'), data, (err, str) => {
             if(err){
                 console.log(err)
@@ -83,8 +83,9 @@ const views = {//isLoggedIn: isLoggedIn 로그인 안하면 글쓰기 항목이 
         const data = await ser.boardRead.data( req.params.num );
 
         const thema = await mctrl.userThema(req.session)
-        console.log("data : ",data)
-        const username = req.session.username;
+        // console.log("data : ",data)
+        const username = req.session.name;
+        console.log("username : ",req.session)
         res.render("board/data", { data , username, thema } );
     },
     modifyForm : async ( req, res ) => {
