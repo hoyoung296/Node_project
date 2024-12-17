@@ -9,7 +9,7 @@ const insert = {
         }catch ( err ){
             console.log(err);
         }
-        console.log(result);
+        // console.log(result);
         return result;
     }
 }

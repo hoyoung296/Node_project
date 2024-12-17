@@ -2,6 +2,7 @@ const multer = require('multer');
 const ser = require("../../service/mypage/mypage_service");
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const mctrl = require("../controller") //thema설정하려고 추가
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -24,6 +25,7 @@ const hashPassword = async (password) => {
 const views = {
     // 마이페이지 메인화면
     getMainPage: async (req, res) => {
+        const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         const userId = req.session.uid;
     
         console.log("Session Picture:", req.session.picture);  // 프로필 사진 출력
@@ -41,10 +43,13 @@ const views = {
             }
     
             // 세션에 저장된 프로필 사진과 상태 메시지가 있으면 덮어쓰기
-            userInfo.picture = req.session.picture || 'default-profile.png';  // 세션에 프로필 사진 없으면 기본 이미지 사용
+            if(!userInfo.picture){
+                userInfo.picture = 'default-profile.png';
+            }
+            // userInfo.picture = req.session.picture || 'default-profile.png';  // 세션에 프로필 사진 없으면 기본 이미지 사용
             userInfo.msg = req.session.statusMessage || '상태 메시지가 없습니다.'; // 세션에 상태 메시지 가져오기
 
-            return res.render("mypage/main", { user: userInfo });  // 사용자 정보를 뷰로 전달
+            return res.render("mypage/main", { user: userInfo, thema });  // 사용자 정보를 뷰로 전달
         } catch (err) {
             return res.send("Error: " + err.message);
         }
@@ -52,10 +57,11 @@ const views = {
 
     // 개인정보 수정 페이지
     getEditPage: async (req, res) => {
+        const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         const userId = req.session.uid;
         try {
             const userInfo = await ser.getUserInfo(userId);
-            res.render("mypage/edit", { user: userInfo });
+            res.render("mypage/edit", { user: userInfo, thema });
         } catch (err) {
             res.send("Error: " + err.message);
         }
@@ -63,6 +69,7 @@ const views = {
     
     // 프로필 수정 페이지
     getProfilePage: async (req, res) => {
+        const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         const userId = req.session.uid; // 세션에서 사용자 ID 가져오기
         try {
             const userInfo = await ser.getUserInfo(userId); // 사용자 정보 가져오기
@@ -71,19 +78,20 @@ const views = {
             }
             
             // 세션의 프로필 사진과 상태 메시지 반영
-            userInfo.picture = req.session.picture || userInfo.picture;  // 세션의 프로필 사진 반영
-            userInfo.msg = req.session.statusMessage || userInfo.msg; // 세션의 상태 메시지 반영
+            userInfo.picture = req.session.picture || userInfo.picture || 'default-profile.png';  // 세션의 프로필 사진 반영
+            userInfo.msg = req.session.statusMessage || userInfo.msg || '상태 메시지가 없습니다.'; // 세션의 상태 메시지 반영
             
             // 프로필 페이지 렌더링
-            res.render("mypage/profile", { user: userInfo }); // userInfo를 뷰로 전달
+            res.render("mypage/profile", { user: userInfo, thema }); // userInfo를 뷰로 전달
         } catch (err) {
             res.send("Error: " + err.message); // 오류 발생 시 처리
         }
     },
 
     // 회원탈퇴 페이지
-    getDeletePage: (req, res) => {
-        res.render("mypage/delete");
+    getDeletePage: async (req, res) => {
+        const thema = {thema : await mctrl.userThema(req.session)} //사용자 테마 설정
+        res.render("mypage/delete", thema);
     }
 };
 

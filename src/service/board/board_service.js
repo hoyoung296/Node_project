@@ -15,7 +15,7 @@ const boardRead = {
 
         const startNum = ( start - 1 ) * 15;
         let list = await dao.boardRead.list( startNum );
-        console.log(list.rows[0])
+        // console.log(list.rows[0])
         list = serCom.timeModify( list.rows )
         return { list, start, page };
     },
@@ -31,7 +31,7 @@ const boardRead = {
 
         const startNum = ( start - 1 ) * 15;
         let list = await dao.boardRead.list2( startNum,menu );
-        console.log(list.rows[0])
+        // console.log(list.rows[0])
         list = serCom.timeModify( list.rows )
         return { list, start, page };
     },
@@ -40,7 +40,23 @@ const boardRead = {
         let data = await dao.boardRead.data( num )
         data = serCom.timeModify( data.rows );
         return data[0];
-    }
+    },
+    /**
+     * 사용자의 게시글 목록 조회
+     * @param {number} uid - 로그인된 사용자 ID
+     * @returns {Promise<Array>} 게시글 배열
+     */
+    myPosts : async (uid) => {
+        try {
+            const posts = await dao.getPostsByUserId(uid);  // 사용자 ID로 게시글 조회
+            return posts;
+        } catch (error) {
+            console.error("게시글 조회 중 오류 발생:", error.message);
+            throw new Error("게시글을 가져오는 중 오류가 발생했습니다.");
+        }
+    },
+    
+    // 기존 서비스 함수들 (예: 글쓰기, 수정, 삭제 등)...
 }
 const boardInsert = {
     write : async ( body, file, fileValidation, uid,name ) => {
@@ -61,7 +77,7 @@ const boardInsert = {
         body.hit = 0;
         body.id = uid
         body.name = name
-        body.save_data =new Date().toISOString().slice(0, 10);
+        // body.save_data =new Date().toISOString().slice(0, 10);
         console.log(body)
         const result = await dao.boardInsert.write( body );
         if( result != 0 ){

@@ -4,6 +4,7 @@ const ctrl = require("../../controller/board/board_ctrl")
 
 const upload = require("../../../config/file/file_config")
 
+
 router.get("/list", ctrl.views.list)
 router.get("/write_form", ctrl.views.writeForm)
 router.get("/data/:num", ctrl.views.data)
@@ -14,10 +15,9 @@ router.post("/modify", upload.single('image_file_name'), ctrl.process.modify);
 router.get("/main", ctrl.views.main);
 router.get("/download/:imgName", ctrl.file_process.download );
 router.get("/topic",ctrl.views.topic);
+
+
+router.get("/myposts", ctrl.views.myPosts);
 router.get("/:category",ctrl.views.category);
-
-
-
-
 
 module.exports = router;

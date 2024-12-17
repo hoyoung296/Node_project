@@ -3,7 +3,7 @@
             onclick="location.href='/main'"><br>DOTORI</h1>
     <h4 class="header_h4">
         <% if (typeof username !== "undefined" && username) { %>
-            <%= username %>&nbsp; | &nbsp;<a href="/member/logout" id="logout">로그아웃</a>
+            <a href="/board/myposts"><%= username %></a>&nbsp; | &nbsp;<a href="/member/logout" id="logout">로그아웃</a>
         <% } else { %>
             <a href="/member/login_form" id="login">로그인</a> &nbsp; / &nbsp;<a href="/member/register_form" id="signup">회원가입</a>
         <% } %>
@@ -14,8 +14,13 @@
     <div class="propile">
         <% if (typeof username !== "undefined" && username) { %>
             <div class="login_propile">
-            <img src="/default-profile.png" alt="Profile Picture">
+            <img class="login_propile_img" src="/default-profile.png" alt="Profile Picture">
             <a href="/mypage"><%= username %></a>
+            </div>
+            <div class="login_icon">
+                <a href="/friends/alram"><img src="/static/front_image/newpush.png" alt="알림"></a>
+                <a href="/friends/friendsview"><img src="/static/front_image/friendlist.png" alt="친구리스트"></a>
+                <a href="#"><img src="/static/front_image/gift.png" alt="선물하기"></a>
             </div>
     <% } else { %>
         <div class="login"><a href="/member/login_form" >비회원입니다!</a><br>로그인하시고<br>더 많은 기능을<br>이용해보세요!</div>
@@ -63,7 +68,7 @@
     <%if(id == "admin"){%>
         <ul>
             <li>
-                <button onclick="location.href='/admin/memberlist'">회원 목록</button>
+                <button onclick="location.href='/admin/memberlist2'">회원 목록</button>
             </li>
         </ul>
         <ul>
