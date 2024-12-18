@@ -22,7 +22,7 @@
                 <th>친구 ID</th>
                 <th>친구 삭제</th>
             </tr>
-            <% if(result.length==0) { %>
+            <% if(result.length==0 && page==1) { %>
                 <tr>
                     <td colspan="2" align="center"><b>친구 목록 없음</b></td>
                 </tr>
