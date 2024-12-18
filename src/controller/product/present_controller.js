@@ -14,6 +14,7 @@ const presentForm = async (req, res) => {
 }
 
 const check = async (req, res) => {
+    console.log(req.body)
     const result = await ser.transmitCheck(req.body)
     let msg='', url=''
     if(result.length == 0){
