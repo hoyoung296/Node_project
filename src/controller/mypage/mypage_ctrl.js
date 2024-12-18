@@ -107,7 +107,7 @@ const process = {
             const passwordRegex = /^(?=[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
             if (!passwordRegex.test(pwd)) {
                 hashedPwd = userInfo.PWD;  // 비밀번호가 변경x이므로 기존 비밀번호 유지
-                return res.send("<script>alert('비밀번호는 처음 대문자를 시작하고, 소문자, 숫자, 특수문자를 포함해야 합니다.'); history.back();</script>");
+                return res.send("<script>alert('비밀번호는 처음 대문자로 시작하고, 소문자, 숫자, 특수문자를 포함해야 합니다.'); history.back();</script>");
             } else {
                 hashedPwd = await hashPassword(pwd);  // 비밀번호 해시화
             }
