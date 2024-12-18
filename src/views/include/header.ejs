@@ -15,7 +15,15 @@
         <% if (typeof username !== "undefined" && username) { %>
             <div class="login_propile">
             <img class="login_propile_img" src="/static/uploads/<%= picture %>" alt="Profile Picture">
-            <a href="/mypage"><%= username %></a>
+            <a href="/mypage" id="propileName"><%= username %></a><br>
+            <table id="propileDotori">
+                <tr>
+                    <td>
+                        <img src="/static/front_image/dotoree.png" id="proDotori">
+                    </td>
+                    <td><%= dotori %></td>
+                </tr>
+            </table>
             </div>
             <div class="login_icon">
                 <a href="/friends/alram"><img src="/static/front_image/newpush.png" alt="알림"></a>

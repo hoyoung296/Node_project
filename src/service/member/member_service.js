@@ -49,6 +49,7 @@ const process = {
                         req.session.uid = body.id;
                         req.session.name = result.rows[0].NAME
                         req.session.picture = userInfo.PICTURE
+                        req.session.dotori = userInfo.DOTORI
                         res.cookie("isLogin", true)
                         msg = "성공"
                         url = "/"
@@ -59,6 +60,8 @@ const process = {
                         req.session.uid = admin;
                         req.session.name = result.rows[0].NAME
                         req.session.picture = userInfo.PICTURE
+                        req.session.dotori = userInfo.DOTORI
+
                         res.cookie("isLogin", true)
                         msg = `${req.session.name}님 환영합니다!`
                         url = "/"
@@ -68,6 +71,7 @@ const process = {
                         console.log("mem", req.session.uid)
                         req.session.name = result.rows[0].NAME
                         req.session.picture = userInfo.PICTURE
+                        req.session.dotori = userInfo.DOTORI
                         res.cookie("isLogin", true)
                         msg = `${req.session.name}님 환영합니다!`
                         url = "/"
