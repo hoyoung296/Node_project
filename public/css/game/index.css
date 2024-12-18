@@ -22,6 +22,7 @@
     &>button {
         cursor: pointer;
         background: var(--header-color);
+        color: var(--text-color);
         font-size: 25px;
         font-weight: bold;
         border: none;
