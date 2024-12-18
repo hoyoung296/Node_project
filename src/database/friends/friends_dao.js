@@ -116,7 +116,7 @@ const daoRead = {
             sql = `select count(*) from (select * from member where ${msg1} and id!='${body}' and id!='admin')`
         }
         else {
-            sql = `select count(*) from (select * from member where ${msg1} and ${msg2} and id!='${body}')`
+            sql = `select count(*) from (select * from member where ${msg1} and ${msg2} and id!='${body}' and id!='admin')`
         }
         console.log("sql : ", sql)
         try {

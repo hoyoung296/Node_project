@@ -17,7 +17,7 @@ let score = 0
 
 // 사람 좌표 > 사람 죄표는 계속 바뀌기 때문에 따로 뺴줌
 let spaceshipX = 317 // 계산하기 싫으면 (canvas.width - 이미지가로크기)/2
-let spaceshipY = 504 // 계산하기 싫으면 canvas.height- 이미지세로크기
+let spaceshipY = 504 // 계산하기 싫으면 canvas.height - 이미지세로크기
 
 // 총알 만들기
 // 1. 스페이스바를 눌렀다 떼면 총알발사
