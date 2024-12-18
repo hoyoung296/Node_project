@@ -104,12 +104,13 @@ const process = {
     
             // 2. 새 비밀번호 입력x시, 기존 비밀번호 유지
             let hashedPwd = null;
-            if (pwd) {
-                hashedPwd = await hashPassword(pwd);  // 비밀번호 해시화
-            } else {
+            const passwordRegex = /^(?=[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+            if (!passwordRegex.test(pwd)) {
                 hashedPwd = userInfo.PWD;  // 비밀번호가 변경x이므로 기존 비밀번호 유지
+                return res.send("<script>alert('비밀번호는 처음 대문자를 시작하고, 소문자, 숫자, 특수문자를 포함해야 합니다.'); history.back();</script>");
+            } else {
+                hashedPwd = await hashPassword(pwd);  // 비밀번호 해시화
             }
-    
             // 3. 사용자 정보 수정
             await ser.updatePersonalInfo(userId, userId, hashedPwd, name, addr, phone, email);
             res.send("<script>alert('정보가 수정되었습니다.'); location.href = '/';</script>");
