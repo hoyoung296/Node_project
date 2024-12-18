@@ -153,24 +153,26 @@
     border-color: var(--header-color);
     border-style: solid;
     margin: 0 25px;
-    
+
 }
 .nav_bar ul li button, .menu_label {
     background: transparent;
     border: none;
     cursor: pointer;
     padding: 12px;
-    width: 150px;
+    width: 145px;
     transition: 0.2s;
     font-size: 15px;
     font-weight: normal;
     color: var(--text-color);
     display: block;
     text-align: center;
+    
 }
 .nav_bar ul li button:hover, .menu_label:hover{
     background-color: var(--header-color);
     border-radius: 10px;
+    width: 145px;
 }
 .menu_checkbox{
     display: none;
