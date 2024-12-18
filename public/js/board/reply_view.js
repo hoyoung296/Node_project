@@ -6,9 +6,9 @@ async function init(write_no) {
     let html = "";
     data.result.forEach(d => {
         html += `<div id="board_reply_${d.REPLY_NO}" data-reply-id="${d.REPLY_NO}">
-          <b id="reply_id">${d.ID}</b><br>
-          <b id="reply_content">${d.CONTENT}</b><br>
-          <b id="reply_date">${d.SAVE_DATE}</b><br>`;
+            <b id="reply_id">${d.ID}</b><br>
+            <b id="reply_content">${d.CONTENT}</b><br>
+            <b id="reply_date">${d.SAVE_DATE}</b>`;
 
         // 삭제 버튼을 조건부로 표시
         if ( data.uid === d.ID || data.uid === 'admin') {
