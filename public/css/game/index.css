@@ -11,6 +11,7 @@
     margin-top: -600px;
     font-size: 70px;
     color: var(--text-color);
+    font-family: "Bungee";
 
     &>img {
         width: 200px;
@@ -24,5 +25,6 @@
         font-size: 25px;
         font-weight: bold;
         border: none;
+        font-family: "Nanum Gothic";
     }
 }

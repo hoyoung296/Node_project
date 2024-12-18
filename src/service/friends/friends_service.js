@@ -6,7 +6,6 @@ const pageRead = {
         start = Number(start)
         const totalCnt = await dao.daoRead.totalCnt(body)
         const num = totalCnt.rows[0]['COUNT(*)']
-        console.log("ser num : " , num)
         const number = (num % 5 == 0) ? 0 : 1
         const page = parseInt(num / 5 + number)
         startNum = (start - 1) * 5
@@ -57,7 +56,6 @@ const pageInsert = {
     },
     update: async (body) => {
         let result = await dao.daoInsert.update(body)
-        console.log("친구 ser result : ", result)
         let msg = ""
         if (result != 0) {
             msg = "친구추가 되었습니다."

@@ -5,6 +5,7 @@
     height: 600px;
     line-height: 90px;
     color: var(--text-color);
+    font-family: "Nanum Gothic";
 
     &>b {
         display: inline-block;
@@ -21,5 +22,6 @@
         font-size: 25px;
         font-weight: bold;
         border: none;
+        font-family: "Nanum Gothic";
     }
 }

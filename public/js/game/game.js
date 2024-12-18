@@ -82,7 +82,7 @@ function Enemy() { // 도토리를 만들기 위한 자료, 도토리 만드는 
         if (this.y >= canvas.height - 64) {
             gameOver = true
             let msg = `<br><button onclick="result_form()" style='color:var(--text-color); width:200px; height:80px; background:var(--header-color); cursor:pointer; font-size:25px; font-weight:bold; margin : 0 auto; margin-top:-600px; 
-            border:none; position:relative'>결과 확인</button>`
+            border:none; position:relative; font-family: "Nanum Gothic";'>결과 확인</button>`
             document.getElementById("main").insertAdjacentHTML("beforeend", msg)
         }
     }

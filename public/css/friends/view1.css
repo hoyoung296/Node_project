@@ -25,6 +25,7 @@
         font-weight: bold;
         cursor: pointer;
         border: none;
+        font-family: "Nanum Gothic";
     }
 }
 
@@ -35,4 +36,5 @@
     cursor: pointer;
     margin-top: 30px;
     border: none;
+    font-family: "Nanum Gothic";
 }

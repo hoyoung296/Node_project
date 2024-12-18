@@ -20,6 +20,7 @@
     background: none;
     font-size: 25px;
     font-weight: bold;
+    font-family: "Nanum Gothic";
 }
 
 #button2 {
@@ -29,6 +30,7 @@
     cursor: pointer;
     margin-top: 30px;
     border: none;
+    font-family: "Nanum Gothic";
 }
 
 #form2 {
@@ -40,5 +42,6 @@
         font-weight: bold;
         cursor: pointer;
         border: none;
+        font-family: "Nanum Gothic";
     }
 }
