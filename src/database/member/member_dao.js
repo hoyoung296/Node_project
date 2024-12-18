@@ -6,7 +6,7 @@ oracledb.outFormat = oracledb.OBJECT;
 const con = require("../db_common")
 const process = {
     dao_insert: async (body) => {
-        const sql = `insert into member(id,pwd,name,addr,phone,email,dotori,thema_no,LOGIN_FAIL_COUNT) values(:id,:pwd,:name,:addr,:phone,:email,:dotori,:thema,:count)`;
+        const sql = `insert into member(id,pwd,name,addr,phone,email,dotori,thema_no,LOGIN_FAIL_COUNT, picture, msg) values(:id,:pwd,:name,:addr,:phone,:email,:dotori,:thema,:count, 'default-profile.png', '상태메세지가 없습니다')`;
         let result = 0;
         try {
             // const con = await oracledb.getConnection(dbConfig);

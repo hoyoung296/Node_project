@@ -165,10 +165,10 @@ const process = {
         if (authService.verifyEmailCode(emailCheck, verificationCode,expirationTime)) {
             const uid = await ser.process.ser_idsearch(email);
             // 인증 성공 시 클라이언트에 응답
-            return res.json({ success: true, message: '인증 성공! 로그인하세요.', uid: uid });
+            return res.json({ success: true, message: '[인증 성공] 로그인하세요.', uid: uid });
         } else {
             // 인증 실패 시 클라이언트에 응답
-            return res.json({ success: false, message: '인증 실패, 다시 시도해주세요.' });
+            return res.json({ success: false, message: '[인증 실패] 다시 시도해주세요.' });
         }
     }
     

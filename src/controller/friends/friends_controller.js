@@ -7,6 +7,8 @@ const views = {
     list: async (req, res) => {
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
         let data = await ser.pageRead.list(req.query.start, req.session.uid)
+        console.log("data.page : ", data.page)
+        console.log("data.start : ", data.start)
         res.render("friends/list", { result: data.result, page: data.page, start: data.start, name: req.session.uid, thema })
     },
     alram: async (req, res) => {
@@ -50,7 +52,7 @@ const process = {
     insert: async (req, res) => {
         await ser.pageInsert.insert(req.body)
         res.send(`<script>
-                alert("메세지 전송 완료")
+                alert("메세지가 전송되었습니다.")
                 location.href="/friends"
             </script>`)
     },

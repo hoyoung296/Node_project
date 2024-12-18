@@ -6,6 +6,7 @@ const pageRead = {
         start = Number(start)
         const totalCnt = await dao.daoRead.totalCnt(body)
         const num = totalCnt.rows[0]['COUNT(*)']
+        console.log("ser num : " , num)
         const number = (num % 5 == 0) ? 0 : 1
         const page = parseInt(num / 5 + number)
         startNum = (start - 1) * 5
@@ -59,10 +60,10 @@ const pageInsert = {
         console.log("친구 ser result : ", result)
         let msg = ""
         if (result != 0) {
-            msg = "친구추가 완료!!!!"
+            msg = "친구추가 되었습니다."
         }
         else {
-            msg = "이미 친구관계입니다!!!!"
+            msg = "이미 친구인 회원입니다."
         }
         let url = "/friends/alram"
         return pageInsert.getMessage(msg, url)
