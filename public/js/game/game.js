@@ -49,7 +49,6 @@ function Bullet() { // 총알을 만들기 위한 자료, 총알 만드는 틀(�
                 // -> 총알이 죽게됨, 도토리가 없어짐, 점수 획득 
                 score++;
                 this.alive = false // 죽은 총알
-                bulletList.splice(i, 1)
                 enemyList.splice(i, 1)
             }
         }
