@@ -3,13 +3,13 @@
     text-align: center;
     width: 730px;
     height: 600px;
-    line-height: 90px;
+    line-height: 60px;
     color: var(--text-color);
     font-family: "Nanum Gothic";
 
     &>b {
         display: inline-block;
-        margin-top: 50px;
+        margin-top: 110px;
     }
 
     &>b>b {
@@ -19,9 +19,13 @@
     &>b>p>button {
         cursor: pointer;
         background: var(--header-color);
+        color: var(--text-color);
         font-size: 25px;
         font-weight: bold;
         border: none;
         font-family: "Nanum Gothic";
+        margin-top: 50px;
+        padding: 5px;
+        border-radius: 7px;
     }
 }
