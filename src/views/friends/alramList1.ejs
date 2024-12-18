@@ -86,7 +86,7 @@
             <tr>
                 <td class="board_button">
                     <% if(start!=1 && page!=0) { %>
-                        <button type="button" onclick="location.href='/friends?start=<%= start-1 %>'">이전</button> |
+                        <button type="button" onclick="location.href='/friends/alram?start=<%= start-1 %>'">이전</button> |
                         <% } %>
                             <% for (let i=1; i <=page; i++) { %>
                                 <a href="/friends?start=<%= i %>">
@@ -95,7 +95,7 @@
                                 <% } %>
                                     <% if (start!=page && page!=0) { %>
                                         | <button type="button"
-                                            onclick="location.href='/friends?start=<%= start+1 %>'">다음</button>
+                                            onclick="location.href='/friends/alram?start=<%= start+1 %>'">다음</button>
                                         <% } %>
                 </td>
             </tr>

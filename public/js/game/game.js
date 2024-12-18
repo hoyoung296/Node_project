@@ -195,7 +195,7 @@ function render() {
 }
 
 function main() {
-    if (!gameOver) { // gameOver가 true면 main함수 중지
+    if (!gameOver) {
         render()
         console.log("animation calls main function")
         requestAnimationFrame(main)
