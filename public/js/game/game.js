@@ -32,7 +32,7 @@ function Bullet() { // 총알을 만들기 위한 자료, 총알 만드는 틀(�
     this.init = function () {
         this.x = spaceshipX + 18
         this.y = spaceshipY - 60
-        this.alive = true // true면 살아있는 총알, false면 죽은 총알
+        // this.alive = true // true면 살아있는 총알, false면 죽은 총알
         bulletList.push(this)
     }
 
@@ -48,8 +48,9 @@ function Bullet() { // 총알을 만들기 위한 자료, 총알 만드는 틀(�
             if (this.y <= enemyList[i].y && this.x >= enemyList[i].x && this.x <= enemyList[i].x + 64) {
                 // -> 총알이 죽게됨, 도토리가 없어짐, 점수 획득 
                 score++;
-                this.alive = false // 죽은 총알
-                enemyList.splice(i, 1)
+                // this.alive = false // 죽은 총알
+                bulletList.splice(i, 1);
+                enemyList.splice(i, 1);
             }
         }
     }
@@ -173,15 +174,12 @@ function render() {
 
     // 총알의 y좌표 업데이트하는 함수 호출, 동시에 총알이 도토리를 쳤는지 동시 확인
     for (let i = 0; i < bulletList.length; i++) {
-        if (bulletList[i].alive) {
-            bulletList[i].update()
-            bulletList[i].checkHit()
-        }
+        bulletList[i].update()
+        bulletList[i].checkHit()
     }
 
     for (let i = 0; i < bulletList.length; i++) {
-        if (bulletList[i].alive)
-            ctx.drawImage(bulletImage, bulletList[i].x, bulletList[i].y)
+        ctx.drawImage(bulletImage, bulletList[i].x, bulletList[i].y)
     }
 
     // 외계인의 y좌표 업데이트하는 함수 호출
