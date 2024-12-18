@@ -1,5 +1,6 @@
 const ser = require("../../service/game/game_service")
 const mctrl = require("../controller") //thema설정하려고 추가
+const mypser = require("../../service/mypage/mypage_service");
 
 const views = {
     check: (req, res) => {
@@ -23,6 +24,8 @@ const process = {
     update: async (req, res) => {
         req.body.result = parseInt(req.body.result)
         await ser.pageUpdate.update(req.body)
+        const userInfo = await mypser.getUserInfo(req.session.uid); //사용자 사진, 메세지 설정
+        req.session.dotori = userInfo.DOTORI
         res.redirect("/game/index")
     }
 }

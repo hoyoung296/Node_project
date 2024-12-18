@@ -1,6 +1,8 @@
 const commonSer = require("../../service/ser_common")
 const mctrl = require("../controller") //thema설정하려고 추가
 const ser = require("../../service/product/present_service")
+const mypser = require("../../service/mypage/mypage_service");
+
 
 const presentForm = async (req, res) => {
     const check = commonSer.sessionCheck(req.session)
@@ -35,6 +37,8 @@ const check = async (req, res) => {
             res.send(msg)
         }else{
             msg = await ser.sendDotori(req.body, req.session.uid)
+            const userInfo = await mypser.getUserInfo(req.session.uid); //사용자 사진, 메세지 설정
+            req.session.dotori = userInfo.DOTORI
             res.send(msg)
         }
     }
