@@ -121,7 +121,7 @@
     color: var(--text-color);
 }
 .login_icon img{
-    margin-top: 10px;
+    margin-top: 2px;
     display: inline-flex;
     width: 30px;
     height: 30px;
@@ -298,9 +298,7 @@
     min-height: 650px;
 }
 #propileDotori{
-    text-items: center; /* 수직 정렬 */
     padding-top: 0px;
-    margin-top: 5px;
 }
 #propileName{
     margin-bottom: 2px;
@@ -308,4 +306,6 @@
 #proDotori{
     width: 20px;
     transform: rotate(30deg);
+    margin-left: 30px;
+    margin-right: 7px;
 }
