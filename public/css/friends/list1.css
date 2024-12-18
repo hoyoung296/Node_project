@@ -33,6 +33,8 @@
     margin-top: 30px;
     border: none;
     font-family: "Nanum Gothic";
+    padding: 5px;
+    border-radius: 7px;
 }
 
 #form2 {
