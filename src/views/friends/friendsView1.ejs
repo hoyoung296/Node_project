@@ -49,7 +49,7 @@
                                         <td>
                                             <form action="/friends/friendsdel" method="post">
                                                 <input type="hidden" name="id" value="<%= data.MEMBER_ID %>">
-                                                <button id="button1" type="submit">-</button>
+                                                <button id="button1" type="submit" style="font-size: 100px;">-</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -60,17 +60,17 @@
         <table class="board_page" align="center">
             <tr>
                 <td class="board_button">
-                    <% if(start!=1) { %>
-                        <button type="button" onclick="location.href='/friends?start=<%= start-1 %>'">이전</button> |
+                    <% if(start!=1 && page!=0) { %>
+                        <button type="button" onclick="location.href='/friends/friendsview?start=<%= start-1 %>'">이전</button> |
                         <% } %>
                             <% for (let i=1; i <=page; i++) { %>
                                 <a href="/friends?start=<%= i %>">
                                     <%= i %>
                                 </a>
                                 <% } %>
-                                    <% if (start!=page) { %>
+                                    <% if (start!=page && page!=0) { %>
                                         | <button type="button"
-                                            onclick="location.href='/friends?start=<%= start+1 %>'">다음</button>
+                                            onclick="location.href='/friends/friendsview?start=<%= start+1 %>'">다음</button>
                                         <% } %>
                 </td>
             </tr>

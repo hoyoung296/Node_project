@@ -1,17 +1,8 @@
 const con = require("../db_common")
 const daoRead = {
     list: async (start, body) => {
-        console.log("check1 : ", await daoRead.check1(body))
-        console.log("check2 : ", await daoRead.check2(body))
-        console.log("typeof check1 : ", typeof await daoRead.check1(body))
-        console.log("typeof check2 : ", typeof await daoRead.check2(body))
         const check1Result = await daoRead.check1(body);
         const check2Result = await daoRead.check2(body);
-
-        console.log("First entry of check1:", check1Result[0]);
-        console.log("First entry of check2:", check2Result[0]);
-        console.log("check1.length : ", check1Result.length);
-        console.log("check2.length : ", check2Result.length);
 
         let msg1 = '', msg2 = ''
         for (let i = 0; i < check1Result.length; i++) {
@@ -42,8 +33,6 @@ const daoRead = {
             msg2 += `id!='${check2Result[i].MEMBER_ID}' and `
         }
 
-        console.log("msg1 : ", msg1)
-        console.log("msg2 : ", msg2)
         if (check1Result.length == 0 && check2Result.length == 0) {
             sql = `select * from (select * from member where id!='${body}' and id!='admin' order by ID desc) offset ${start} rows fetch next 5 rows only`
         }
@@ -56,7 +45,7 @@ const daoRead = {
         else {
             sql = `select * from (select * from member where ${msg1} and ${msg2} and id!='${body}' and id!='admin' order by ID desc) offset ${start} rows fetch next 5 rows only`
         }
-        console.log("sql : ", sql)
+
         try {
             result = await (await con).execute(sql)
         } catch (err) {
@@ -65,15 +54,8 @@ const daoRead = {
         return result
     },
     totalCnt: async (body) => {
-        console.log("check1 : ", await daoRead.check1(body))
-        console.log("check2 : ", await daoRead.check2(body))
         const check1Result = await daoRead.check1(body);
         const check2Result = await daoRead.check2(body);
-
-        console.log("First entry of check1:", check1Result[0]);
-        console.log("First entry of check2:", check2Result[0]);
-        console.log("check1.length : ", check1Result.length);
-        console.log("check2.length : ", check2Result.length);
 
         let msg1 = '', msg2 = ''
         for (let i = 0; i < check1Result.length; i++) {
@@ -104,8 +86,6 @@ const daoRead = {
             msg2 += `id!='${check2Result[i].MEMBER_ID}' and `
         }
 
-        console.log("msg1 : ", msg1)
-        console.log("msg2 : ", msg2)
         if (check1Result.length == 0 && check2Result.length == 0) {
             sql = `select count(*) from (select * from member where id!='${body}' and id!='admin')`
         }
@@ -116,15 +96,14 @@ const daoRead = {
             sql = `select count(*) from (select * from member where ${msg1} and id!='${body}' and id!='admin')`
         }
         else {
-            sql = `select count(*) from (select * from member where ${msg1} and ${msg2} and id!='${body}')`
+            sql = `select count(*) from (select * from member where ${msg1} and ${msg2} and id!='${body}' and id!='admin')`
         }
-        console.log("sql : ", sql)
+
         try {
             cnt = await (await con).execute(sql)
         } catch (err) {
             console.log(err)
         }
-        console.log("cnt : ", cnt)
         return cnt
     },
     alram: async (start, body) => {
@@ -165,7 +144,7 @@ const daoRead = {
     },
     totalCnt2: async (body) => {
         sql = `select count(*) from (select * from friends where member_id='${body}' or friend_id='${body}' order by member_id desc)`
-        try{
+        try {
             cnt = (await con).execute(sql)
         } catch (err) {
             console.log(err)
@@ -202,7 +181,6 @@ const daoInsert = {
     },
     update: async (body) => {
         let { mem_id, fr_id } = body
-        console.log("{mem_id, fr_id} : ", { mem_id, fr_id })
         if (mem_id > fr_id) {
             [mem_id, fr_id] = [fr_id, mem_id]
         }
@@ -213,7 +191,6 @@ const daoInsert = {
         } catch (err) {
             console.log(err)
         }
-        console.log("친구 result : ", result)
         return result
     },
     del: async (body) => {

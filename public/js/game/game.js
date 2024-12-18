@@ -17,7 +17,7 @@ let score = 0
 
 // 사람 좌표 > 사람 죄표는 계속 바뀌기 때문에 따로 뺴줌
 let spaceshipX = 317 // 계산하기 싫으면 (canvas.width - 이미지가로크기)/2
-let spaceshipY = 504 // 계산하기 싫으면 canvas.height- 이미지세로크기
+let spaceshipY = 504 // 계산하기 싫으면 canvas.height - 이미지세로크기
 
 // 총알 만들기
 // 1. 스페이스바를 눌렀다 떼면 총알발사
@@ -82,7 +82,7 @@ function Enemy() { // 도토리를 만들기 위한 자료, 도토리 만드는 
         if (this.y >= canvas.height - 64) {
             gameOver = true
             let msg = `<br><button onclick="result_form()" style='color:var(--text-color); width:200px; height:80px; background:var(--header-color); cursor:pointer; font-size:25px; font-weight:bold; margin : 0 auto; margin-top:-600px; 
-            border:none; position:relative'>결과 확인</button>`
+            border:none; position:relative; font-family: "Nanum Gothic";'>결과 확인</button>`
             document.getElementById("main").insertAdjacentHTML("beforeend", msg)
         }
     }

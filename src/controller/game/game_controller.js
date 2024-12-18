@@ -3,7 +3,6 @@ const mctrl = require("../controller") //thema설정하려고 추가
 
 const views = {
     check: (req, res) => {
-        console.log("req.session.uid : ", req.session.uid)
         let msg = ser.pageRead.check(req.session.uid,req.session.name)
         res.send(msg)
     },
@@ -17,7 +16,6 @@ const views = {
     },
     play: async (req, res) => {
         const thema = await mctrl.userThema(req.session) //사용자 테마 설정
-        console.log("req.session.uid : ", req.session.uid)
         res.render("game/play", { name: req.session.uid, thema, name1 : req.session.name })
     }
 }

@@ -20,15 +20,21 @@
     background: none;
     font-size: 25px;
     font-weight: bold;
+    font-family: "Nanum Gothic";
+    color: var(--text-color);
 }
 
 #button2 {
     background: var(--header-color);
+    color: var(--text-color);
     font-size: 25px;
     font-weight: bold;
     cursor: pointer;
     margin-top: 30px;
     border: none;
+    font-family: "Nanum Gothic";
+    padding: 5px;
+    border-radius: 7px;
 }
 
 #form2 {
@@ -40,5 +46,16 @@
         font-weight: bold;
         cursor: pointer;
         border: none;
+        font-family: "Nanum Gothic";
     }
+}
+#form2 button{
+    color: var(--text-color);
+}
+
+#main img, #alramList_a{
+    color: var(--text-color);
+}
+#main a{
+    text-decoration: none;
 }

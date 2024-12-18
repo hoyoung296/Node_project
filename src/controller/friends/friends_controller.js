@@ -25,10 +25,8 @@ const views = {
         res.render("friends/friendsView", { result: data.result, page: data.page, start: data.start, name: req.session.uid, thema })
     },
     download: async (req, res) => {
-        console.log("req.query.file : ", req.query.file)
         const files = fs.readdirSync("./public/uploads")
         const matchedFile = files.find(file => file.endsWith(`${req.query.file}`))
-        console.log("matchedFile : ", matchedFile)
         if (matchedFile) {
             const fullPath = path.join("./public/uploads", matchedFile)
             return res.download(fullPath)
@@ -55,17 +53,14 @@ const process = {
             </script>`)
     },
     update: async (req, res) => {
-        console.log("update : ", req.body)
         let msg = await ser.pageInsert.update(req.body)
         res.send(msg)
     },
     del: (req, res) => {
-        console.log("delete : ", req.body)
         ser.pageInsert.del(req.body)
         res.redirect("/friends/alram")
     },
     friendsdel: (req, res) => {
-        console.log("friendsdelete : ", req.body.id)
         ser.pageInsert.friendsdel(req.body.id, req.session.uid)
         res.redirect("/friends/friendsview")
     }

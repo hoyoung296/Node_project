@@ -56,7 +56,6 @@ const pageInsert = {
     },
     update: async (body) => {
         let result = await dao.daoInsert.update(body)
-        console.log("친구 ser result : ", result)
         let msg = ""
         if (result != 0) {
             msg = "친구추가 되었습니다."
