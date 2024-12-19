@@ -104,7 +104,7 @@ const sendVerificationEmail = async (email) => {
     const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
 
     // 인증번호 만료 시간을 10분으로 설정 (600000 밀리초)
-    const expirationTime = Date.now() + 600000;  // 현재 시간 + 10분 (600,000 밀리초)
+    const expirationTime = Date.now() + 60000;  // 현재 시간 + 10분 (600,000 밀리초)
 
     // Nodemailer로 이메일 보내기
     const transporter = nodemailer.createTransport({

@@ -13,7 +13,7 @@ async function sendVerificationCode(event) {
         },
         body: JSON.stringify({ email: email })
     });
-
+ 
     const data = await response.json();
     console.log("data : ",data)
     if (response.ok) {
@@ -97,6 +97,7 @@ async function resendCode(event) {
         // 재발송 시 새로운 만료 시간을 로컬스토리지에 저장
         expiryTime = data.expirationTime;  // 새로운 만료 시간 업데이트
         localStorage.setItem('verificationExpiry', expiryTime);  // 로컬스토리지에 새로운 만료 시간 저장
+        document.getElementById('verifyBtn').disabled = false;
         startTimer();  // 타이머 다시 시작
     }
 }
