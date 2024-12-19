@@ -22,11 +22,8 @@
                         <img src="/static/front_image/dotoree.png" id="proDotori">
                     </td>
                     <td>
-                        <% if(dotori == 0){ %>
-                            0
-                        <% }else{ %>
-                            <%= dotori %></td>
-                        <% } %>
+                        <%= dotori || '0' %>
+                    </td>
                 </tr>
             </table>
             </div>
