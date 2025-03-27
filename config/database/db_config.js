@@ -1,7 +1,7 @@
 const dbConfig = {
-    user: "c##dotori",
-    password: "dotori",
-    connectString: "192.168.51.10:1521/xe"
+    user: "c##ghdud024",
+    password: "ghdud1532",
+    connectString: "localhost:1521/xe"
 }
 
 module.exports = dbConfig
